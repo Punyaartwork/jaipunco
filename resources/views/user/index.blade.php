@@ -1,5 +1,5 @@
 @extends('user.master')
-@section('title','Type Table')
+@section('title','Users Table')
 @section('content')
 <div class="container">
 <h1>USER</h1>
@@ -27,7 +27,7 @@
         <td>{{$row['facebook_id']}}</td> 
         <td>{{$row['email']}}</td> 
         <td>{{$row['name']}}</td> 
-        <td>{{$row['password']}}</td>      
+        <td>{{$row['profile']}}</td>      
         
         <td> <a href="{{action('UserController@edit',$row['id'])}}">edit</a></td> 
         <td>

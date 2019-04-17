@@ -103,7 +103,7 @@ class UserController extends Controller
          $user  = User::find($id);
          $user ->email = $request->get('email');
          $user ->name = $request->get('name');
-         $user ->password = $request->get('password');
+         $user ->profile = $request->get('profile');
          $user ->save();
          return redirect()->route('user.index')->with('success','!!!!!!EDITED!!!!!!');  
      }

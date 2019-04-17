@@ -30,8 +30,8 @@
         <input type="text" class="form-control"  name="name" value="{{$user->name}}">
       </div>
       <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd"  name="password" value="{{$user->password}}">
+        <label for="pwd">profile:</label>
+        <input type="text" class="form-control" id="pwd"  name="profile" value="{{$user->profile}}">
       </div>
       <div class="form-group form-check">
         <label class="form-check-label">
