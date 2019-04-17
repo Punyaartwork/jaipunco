@@ -14,7 +14,7 @@
         <th>facebook_id</th>
         <th>email</th>
         <th>name</th>   
-        <th>password</th>  
+        <th>profile</th>  
         <th><b>edit</b></th>        
         <th><b>DETELE</b></th>                                                                                                
       </tr>

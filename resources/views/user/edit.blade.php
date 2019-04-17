@@ -5,7 +5,7 @@
 
   
 <div class="container">
-    <h1>Edit types</h1>
+    <h1>Edit Users</h1>
 
     @if(count($errors) > 0)
         @foreach($errors->all() as $error)
