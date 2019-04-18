@@ -21,3 +21,4 @@ Route::get('/welcome', function () {
 
 Route::resource('user','UserController');
 Route::resource('type','TypeController');
+Route::resource('tag','TagController');
