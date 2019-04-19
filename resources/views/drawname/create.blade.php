@@ -3,7 +3,7 @@
 @section('content')
   
 <div class="container">
-    <h1>create types</h1>
+    <h1>create drawname</h1>
 
     @if(count($errors) > 0)
         @foreach($errors->all() as $error)

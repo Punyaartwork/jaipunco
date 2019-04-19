@@ -14,7 +14,7 @@ class DrawnameController extends Controller
     public function index()
     {
         $drawnames = Drawname::all()->toArray();
-        return view('Drawname.index',compact('drawnames'));   
+        return view('drawname.index',compact('drawnames'));   
     }
 
     /**
