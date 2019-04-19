@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Drawname;
 use Illuminate\Http\Request;
+//เรียกใช้ library Input แล้วสร้าง alias ว่า Input
+use Illuminate\Support\Facades\Input as Input;
 
 class DrawnameController extends Controller
 {
@@ -11,12 +13,11 @@ class DrawnameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $drawnames = Drawname::all()->toArray();
-        return view('drawname.index',compact('drawnames'));   
-    }
-
+     public function index()
+     {
+         $drawnames = Drawname::all()->toArray(); 
+         return view('drawname.index',compact('drawnames'));   
+     }
     /**
      * Show the form for creating a new resource.
      *
@@ -38,22 +39,28 @@ class DrawnameController extends Controller
         $this->validate($request,[
             'user_id'=>'required',
             'drawName'=>'required',
-            'drawDetail'=>'required',            
-            'drawTag'=>'required',
+            'drawDetail'=>'required',     
             'drawUse'=>'required',
             ]);
-        $type = new Drawname(
+        if(Input::hasFile('file')){
+            $file = Input::file('file');
+            $time = time().".png";
+            //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
+            $file->move('drawtag/', $file->getClientOriginalName());
+            rename('drawtag/'.$file->getClientOriginalName(),'drawtag/'.$time);
+        }
+        $drawname = new Drawname(
         [
             'user_id'=>$request->get('user_id'),
             'drawName'=>$request->get('drawName'),
             'drawDetail'=>$request->get('drawDetail'),            
-            'drawTag'=>$request->get('drawTag'),
+            'drawTag'=>'drawtag/'.$time,
             'drawUse'=>$request->get('drawUse'),
             'drawTime'=>time(),    
             'draw_ip'=>$request->getClientIp()           
         ]
         );
-        $type->save();
+        $drawname->save();
         return redirect()->route('drawname.create')->with('success','!!!!!!SAVED!!!!!!');
     }
 
@@ -95,12 +102,19 @@ class DrawnameController extends Controller
             'drawDetail'=>'required',            
             'drawTag'=>'required',
             'drawUse'=>'required'
-            ]);        
+            ]);   
+            if(Input::hasFile('file')){
+                $file = Input::file('file');
+                $time = time().".png";
+                //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
+                $file->move('drawtag/', $file->getClientOriginalName());
+                rename('drawtag/'.$file->getClientOriginalName(),'drawtag/'.$time);
+            }     
         $drawname = Drawname::find($id);
         $drawname->user_id = $request->get('user_id');
         $drawname->drawName = $request->get('drawName');
         $drawname->drawDetail = $request->get('drawDetail');        
-        $drawname->drawTag = $request->get('drawTag');
+        $drawname->drawTag = 'drawtag/'.$time;
         $drawname->drawUse = $request->get('drawUse');        
         $drawname->save();
         return redirect()->route('drawname.index')->with('success','!!!!!!EDITED!!!!!!');       

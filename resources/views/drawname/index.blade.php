@@ -8,7 +8,7 @@
     @endif
 
     <table class="table table-bordered">
-    <thead  style="background:#ffeb3b">
+    <thead  style="background:#009688">
       <tr>
         <th>id</th>
         <th>user_id</th>
@@ -28,7 +28,7 @@
         <td>{{$row['user_id']}}</td>
         <td>{{$row['drawName']}}</td> 
         <td>{{$row['drawDetail']}}</td>          
-        <td>{{$row['drawTag']}}</td> 
+        <td><img src="{{$row['drawTag']}}" alt="" style="width:100px;"></td> 
         <td>{{$row['drawUse']}}</td> 
         
         <td> <a href="{{action('DrawnameController@edit',$row['id'])}}">edit</a></td> 

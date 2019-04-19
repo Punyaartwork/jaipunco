@@ -37,6 +37,9 @@ class DrawController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+        'drawname_id'=>'required',
+        ]);        
 
         if(Input::hasFile('file')){
         $file = Input::file('file');
@@ -47,7 +50,7 @@ class DrawController extends Controller
                 echo "<img src='draw/{$file->getClientOriginalName()}'>";
                 $draw = new Draw(
                 [
-                    'drawname_id'=>1,
+                    'drawname_id'=>$request->get('drawname_id'),
                     'draw'=>'draw/'.$time
                 ]
                 );
@@ -91,11 +94,18 @@ class DrawController extends Controller
     {
         $this->validate($request,[
             'drawname_id'=>'required',
-            'draw'=>'required'
             ]);        
+
+        if(Input::hasFile('file')){
+            $file = Input::file('file');
+            $time = time().".png";
+            //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
+            $file->move('draw/', $file->getClientOriginalName());
+            rename('draw/'.$file->getClientOriginalName(),'draw/'.$time);
+        }
         $draw = Draw::find($id);
         $draw->drawname_id = $request->get('drawname_id');
-        $draw->draw = $request->get('draw');
+        $draw->draw = 'draw/'.$time;
         $draw->save();
         return redirect()->route('img.index')->with('success','!!!!!!EDITED!!!!!!');       
     }

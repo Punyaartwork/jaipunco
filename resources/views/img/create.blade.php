@@ -16,6 +16,11 @@
     @endif
 
     <form action="{{url('img')}}" method="post" enctype="multipart/form-data">
+                <div class="type">
+                <label for="email">drawname_id:</label>
+                <input type="text" class="form-control" id="email" placeholder="Enter drawname_id" name="drawname_id">
+                </div>
+
                 <label for="file">Select image to upload:</label>
                 <input type="file" name="file" id="file">
                 <input class="btn btn-primary" type="submit" value="Upload" name="submit">

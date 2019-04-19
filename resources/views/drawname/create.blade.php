@@ -15,7 +15,7 @@
     <p class="alert alert-success">{{ \Session::get('success')}}</p>
     @endif
 
-    <form action="{{url('drawname')}}"  method="post">
+    <form action="{{url('drawname')}}"  method="post" enctype="multipart/form-data">
     {{csrf_field()}}
     <div class="type">
       <label for="email">user_id:</label>
@@ -33,14 +33,17 @@
     </div>
 
     <div class="form-group">
+
+    
       <label for="pwd">drawTag:</label>
-      <input type="text" class="form-control" id="pwd" placeholder="Enter drawTag" name="drawTag">
+      <input type="file" name="file" id="file">
+      <input type="hidden" value="{{ csrf_token() }}" name="_token">
     </div>
     <div class="type">
       <label for="email">drawUse:</label>
       <input type="text" class="form-control" id="email" placeholder="Enter drawUse" name="drawUse">
     </div><br>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit"  value="Upload" name="submit" class="btn btn-primary">Submit</button>
   </form>
 
 </div>  

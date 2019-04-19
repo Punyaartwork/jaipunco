@@ -17,7 +17,7 @@
     <p class="alert alert-success">{{ \Session::get('success')}}</p>
     @endif
 
-    <form action="{{action('DrawController@update',$id)}}"  method="post">
+    <form action="{{action('DrawController@update',$id)}}"  method="post" enctype="multipart/form-data">
     {{csrf_field()}}
     <div class="type">
       <label for="email">drawname_id:</label>
@@ -26,7 +26,9 @@
 
     <div class="type">
       <label for="email">draw:</label>
-      <input type="text" class="form-control" id="email" placeholder="Enter draw" name="draw"  value="{{$draw->draw}}">
+        <input type="file" name="file" id="file">
+        <input type="hidden" value="{{ csrf_token() }}" name="_token">
+        <input type="text" class="form-control" id="email" placeholder="Enter draw" name="draw"  value="{{$draw->draw}}">
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>
