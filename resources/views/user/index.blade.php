@@ -15,6 +15,7 @@
         <th>email</th>
         <th>name</th>   
         <th>profile</th>  
+        <th>detail</th>          
         <th><b>edit</b></th>        
         <th><b>DETELE</b></th>                                                                                                
       </tr>
@@ -27,7 +28,8 @@
         <td>{{$row['facebook_id']}}</td> 
         <td>{{$row['email']}}</td> 
         <td>{{$row['name']}}</td> 
-        <td>{{$row['profile']}}</td>      
+        <td>{{$row['profile']}}</td>  
+        <td>{{$row['detail']}}</td>                  
         
         <td> <a href="{{action('UserController@edit',$row['id'])}}">edit</a></td> 
         <td>

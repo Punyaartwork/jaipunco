@@ -33,6 +33,11 @@
         <label for="pwd">profile:</label>
         <input type="text" class="form-control" id="pwd"  name="profile" value="{{$user->profile}}">
       </div>
+      <div class="form-group">
+        <label for="pwd">detail:</label>
+        <input type="text" class="form-control" id="pwd"  name="detail" value="{{$user->detail}}">
+      </div>
+
       <div class="form-group form-check">
         <label class="form-check-label">
           <input class="form-check-input" type="checkbox"> Remember me
