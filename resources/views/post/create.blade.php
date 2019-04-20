@@ -158,7 +158,7 @@ $(document).ready(function () {
     var wrapper = document.querySelector('.wrapper')
     wrapper.innerHTML="";
     $.ajax({
-        url:"http://127.0.0.1:8000/api/draw",
+        url:"http://128.199.215.103/api/draw",
         beforeSend: function()
             {
                 $('.ajax-load').show();
