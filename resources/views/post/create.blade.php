@@ -213,7 +213,7 @@ function submit(){
         url: '/postsave',
         type: 'POST',
         /* send the csrf-token and the input to the controller */
-        data: {_token:"{{csrf_token()}}", message:"OK",tag_id:tag_id,title:title,content:content,user_id:user_id,postDraw:postDraw},
+        data: {_token: $('meta[name=csrf_token]').attr('content'), message:"OK",tag_id:tag_id,title:title,content:content,user_id:user_id,postDraw:postDraw},
         dataType: 'JSON',
         /* remind that 'data' is the response of the AjaxController */
         success: function (data) { 
