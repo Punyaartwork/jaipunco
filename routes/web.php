@@ -25,6 +25,5 @@ Route::resource('tag','TagController');
 Route::resource('drawname','DrawnameController');
 Route::resource('img','DrawController');
 Route::resource('post','PostController');
-Route::post('/postsave','PostController@store');
 Route::get('api/postnew','ApiController@postnew');
 Route::get('api/draw','ApiController@draw');

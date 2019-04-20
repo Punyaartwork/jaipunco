@@ -115,7 +115,8 @@ background: #fff;
 ">
      
             </div>
-            
+            <form action="{{url('post')}}" id="postform" method="post">
+            {{ csrf_field() }}
             <div style="width: 50%;float: right;height: 100%;padding: 20px;"><div style="max-width: 600px;height: 500px;position: relative;margin-left: auto;margin-right: auto;">
             <!-- WRITE START -->
             <fieldset class="msf_show" style="max-width: 600px;">
@@ -125,7 +126,7 @@ background: #fff;
             
             
             <div class="errorpost" style="color:red;"></div>
-            <input type="hidden" name="document" id="inputC">
+            <input type="hidden" name="content" id="inputC">
             
             <div style="
             width: 99%;
@@ -133,8 +134,8 @@ background: #fff;
             ">
             <div id="document" contenteditable="true" data-text="เล่าเรื่องของคุณที่นี่" class="post-card-contentform" style="min-height: 100%;border: none;outline: none;padding: 20px 20px;"></div>
             
-            <button class="postbutton" onclick="submit()" style="padding: 20px;border: 1px solid #fafafa;background: #00BCD4;border-radius: 10px;color: #fff;margin: 10px;float: right;">POST TO Jaipun</button></div>
-            
+            <button class="postbutton" onclick="submitform()" style="padding: 20px;border: 1px solid #fafafa;background: #00BCD4;border-radius: 10px;color: #fff;margin: 10px;float: right;">POST TO Jaipun</button></div>
+            </form>
             
             </fieldset>
             <!-- WRITE END -->
@@ -195,33 +196,34 @@ $(document).ready(function () {
 
 
 //function Send data to datadase
-function submit(){
+function submitform(){
     var doc = document.getElementById("document").innerHTML;
     var inputC = $('#inputC'); //document
     inputC.val(doc);
+
 
   var tag_id = $('input[type=text][name=tag_id]').val();
   var title = $('input[type=text][name=title]').val();
   var user_id = $('input[type=text][name=user_id]').val();  
   var postDraw = $('input[type=text][name=postDraw]').val();    
-  var content = $('input[type=hidden][name=document]').val();
+  var content = $('input[type=hidden][name=content]').val();
     alert(":::user_id::" + user_id  + ":::tag_id::" + tag_id + ":::title:: " + title + " :::content::" + content + ":::postDraw::" + postDraw);
-
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    $('#postform').submit();
+    /* var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
-        /* the route pointing to the post function */
+        the route pointing to the post function 
         url: '/postsave',
         type: 'POST',
-        /* send the csrf-token and the input to the controller */
-        data: {_token: $('meta[name=csrf_token]').attr('content'), message:"OK",tag_id:tag_id,title:title,content:content,user_id:user_id,postDraw:postDraw},
+        /* send the csrf-token and the input to the controller 
+        data: {_token: CSRF_TOKEN, message:"OK",tag_id:tag_id,title:title,content:content,user_id:user_id,postDraw:postDraw},
         dataType: 'JSON',
-        /* remind that 'data' is the response of the AjaxController */
+        /* remind that 'data' is the response of the AjaxController 
         success: function (data) { 
             alert('Successed Post'); 
             location.reload();
         }
     }); 
-
+    */
 }
 
     </script>

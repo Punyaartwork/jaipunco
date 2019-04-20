@@ -36,10 +36,6 @@ class PostController extends Controller
       */
      public function store(Request $request)
      {
-        $response = array(
-            'status' => 'success',
-            'msg' => $request->content,
-        );
         $post = new Post(
         [
             'user_id'=>$request->user_id,
@@ -56,8 +52,8 @@ class PostController extends Controller
         ]
         );
         $post->save();
-        //return redirect()->route('post.create')->with('success','!!!!!!SAVED!!!!!!');
-        return response()->json($response); 
+        return redirect()->route('post.create')->with('success','!!!!!!SAVED!!!!!!');
+       // return response()->json($response); 
  
      }
  
