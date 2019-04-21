@@ -18,7 +18,7 @@
     @endif
 
 
-  <form action="{{action('UserController@update',$id)}}"  method="post">
+  <form action="{{action('UserController@update',$id)}}"   method="post"  enctype="multipart/form-data">
     {{csrf_field()}}
 
       <div class="form-group">
@@ -31,6 +31,7 @@
       </div>
       <div class="form-group">
         <label for="pwd">profile:</label>
+        <input type="file" name="file" id="file">
         <input type="text" class="form-control" id="pwd"  name="profile" value="{{$user->profile}}">
       </div>
       <div class="form-group">

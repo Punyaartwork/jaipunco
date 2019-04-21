@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 Use Session;
 use App\User;
 use Illuminate\Http\Request;
+//เรียกใช้ library Input แล้วสร้าง alias ว่า Input
+use Illuminate\Support\Facades\Input as Input;
 
 class UserController extends Controller
 {
@@ -97,14 +99,21 @@ class UserController extends Controller
      {
          $this->validate($request,[
             'email'=>'required',
-            'name'=>'required', 
-            'profile'=>'required',       
+            'name'=>'required',    
             'detail'=>'required',                   
              ]);        
+
+             if(Input::hasFile('file')){
+                $file = Input::file('file');
+                $time = time().".jpg";
+                //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
+                $file->move('profile/', $file->getClientOriginalName());
+                rename('profile/'.$file->getClientOriginalName(),'profile/'.$time);
+            }
          $user  = User::find($id);
          $user ->email = $request->get('email');
          $user ->name = $request->get('name');
-         $user ->profile = $request->get('profile');
+         $user ->profile = 'profile/'.$time;
          $user ->detail = $request->get('detail');         
          $user ->save();
          return redirect()->route('user.index')->with('success','!!!!!!EDITED!!!!!!');  

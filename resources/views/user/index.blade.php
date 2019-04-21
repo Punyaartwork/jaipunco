@@ -28,7 +28,7 @@
         <td>{{$row['facebook_id']}}</td> 
         <td>{{$row['email']}}</td> 
         <td>{{$row['name']}}</td> 
-        <td>{{$row['profile']}}</td>  
+        <td><img src="{{$row['profile']}}" style="width:60px;" ></td>  
         <td>{{$row['detail']}}</td>                  
         
         <td> <a href="{{action('UserController@edit',$row['id'])}}">edit</a></td> 
