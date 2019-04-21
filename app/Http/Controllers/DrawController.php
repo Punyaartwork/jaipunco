@@ -51,7 +51,7 @@ class DrawController extends Controller
                 $draw = new Draw(
                 [
                     'drawname_id'=>$request->get('drawname_id'),
-                    'draw'=>'draw/'.$time
+                    'draw'=>'/'.'draw/'.$time
                 ]
                 );
                 $draw->save();
@@ -105,7 +105,7 @@ class DrawController extends Controller
         }
         $draw = Draw::find($id);
         $draw->drawname_id = $request->get('drawname_id');
-        $draw->draw = 'draw/'.$time;
+        $draw->draw = '/'.'draw/'.$time;
         $draw->save();
         return redirect()->route('img.index')->with('success','!!!!!!EDITED!!!!!!');       
     }

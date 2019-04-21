@@ -54,7 +54,7 @@ class DrawnameController extends Controller
             'user_id'=>$request->get('user_id'),
             'drawName'=>$request->get('drawName'),
             'drawDetail'=>$request->get('drawDetail'),            
-            'drawTag'=>'drawtag/'.$time,
+            'drawTag'=>'/'.'drawtag/'.$time,
             'drawUse'=>$request->get('drawUse'),
             'drawTime'=>time(),    
             'draw_ip'=>$request->getClientIp()           
@@ -114,7 +114,7 @@ class DrawnameController extends Controller
         $drawname->user_id = $request->get('user_id');
         $drawname->drawName = $request->get('drawName');
         $drawname->drawDetail = $request->get('drawDetail');        
-        $drawname->drawTag = 'drawtag/'.$time;
+        $drawname->drawTag = '/'.'drawtag/'.$time;
         $drawname->drawUse = $request->get('drawUse');        
         $drawname->save();
         return redirect()->route('drawname.index')->with('success','!!!!!!EDITED!!!!!!');       
