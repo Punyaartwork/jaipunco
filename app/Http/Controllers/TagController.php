@@ -42,7 +42,8 @@ class TagController extends Controller
              'tagDraw'=>'required',                        
              'tagDetail'=>'required',          
              'tagStories'=>'required', 
-             'tagVotes'=>'required',                                                            
+             'tagVotes'=>'required',    
+             'tagColor'=>'required',                                                          
              ]);
          $tag = new Tag(
          [
@@ -52,7 +53,9 @@ class TagController extends Controller
              'tagDraw'=>$request->get('tagDraw'),            
              'tagDetail'=>$request->get('tagDetail'),            
              'tagStories'=>$request->get('tagStories'),
-             'tagVotes'=>$request->get('tagVotes')               
+             'tagVotes'=>$request->get('tagVotes'),
+             'tagColor'=>$request->get('tagColor'),          
+             'tagDate'=>time(),                                      
          ]
          );
          $tag->save();
@@ -99,6 +102,7 @@ class TagController extends Controller
              'tagDetail' => 'required',
              'tagStories' => 'required',
              'tagVotes' => 'required',
+             'tagColor' => 'required',             
              ]);        
          $tag  = Tag::find($id);
          $tag ->user_id = $request->get('user_id');
@@ -108,6 +112,7 @@ class TagController extends Controller
          $tag ->tagDetail = $request->get('tagDetail');
          $tag ->tagStories = $request->get('tagStories');
          $tag ->tagVotes = $request->get('tagVotes');
+         $tag ->tagColor = $request->get('tagColor');         
          $tag ->save();
          return redirect()->route('tag.index')->with('success','!!!!!!EDITED!!!!!!');     
      }

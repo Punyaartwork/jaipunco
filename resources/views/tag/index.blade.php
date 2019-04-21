@@ -17,7 +17,8 @@
         <th>tagDraw</th>  
         <th>tagDetail</th>  
         <th>tagStories</th>  
-        <th>tagVotes</th>          
+        <th>tagVotes</th>     
+        <th>tagColor</th>                       
         <th><b>Edit</b></th>  
         <th><b>Deleie</b></th>                                                
       </tr>
@@ -33,7 +34,8 @@
         <td>{{$row['tagDraw']}}  </td> 
         <td>{{$row['tagDetail']}}  </td> 
         <td>{{$row['tagStories']}}  </td>         
-        <td>{{$row['tagVotes']}}  </td>         
+        <td>{{$row['tagVotes']}}  </td> 
+        <td>{{$row['tagColor']}}  </td>                         
         <td> <a href="{{action('TagController@edit',$row['id'])}}">edit</a></td> 
         <td>
         <form method="post" class="detele_form"action="{{action('TagController@destroy',$row['id'])}}">

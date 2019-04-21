@@ -46,6 +46,10 @@
       <label for="pwd">Votes:</label>
       <input type="text" class="form-control" id="pwd" placeholder="Enter tagVotes" name="tagVotes"  value="{{$tag->tagVotes}}">
     </div>
+    <div class="form-group">
+      <label for="pwd">Color:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter tagColor" name="tagColor"  value="{{$tag->tagColor}}">
+    </div>
     <div class="type">
       <label for="email">Stories:</label>
       <input type="text" class="form-control" id="email" placeholder="Enter tagStories" name="tagStories" value="{{$tag->tagStories}}">
