@@ -25,5 +25,53 @@ Route::resource('tag','TagController');
 Route::resource('drawname','DrawnameController');
 Route::resource('img','DrawController');
 Route::resource('post','PostController');
-Route::get('api/postnew','ApiController@postnew');
-Route::get('api/draw','ApiController@draw');
+
+/********    API     *********/
+Route::get('api/post/{feed}',function($feed){
+    if($feed == "new"){
+        $data = App\Post::with('user')->with('tag')->orderBy('id','desc')->paginate(10);      
+    }else if($feed == "top"){
+        $data = App\Post::with('user')->with('tag')->orderBy('postLike','desc')->paginate(10);
+    }
+    return response()->json($data);
+});
+
+Route::get('api/typenew',function(){
+    $data = App\Type::orderBy('id','desc')->paginate(10);
+    return response()->json($data);
+});
+
+Route::get('api/type/{feed}/{id}',function($feed,$id){
+    if($feed == "new"){
+        $data = App\Tag::with('user')->where('type_id', $id)->orderBy('id','desc')->paginate(10);
+    }else if($feed == "top"){
+        $data = App\Tag::with('user')->where('type_id', $id)->orderBy('tagVotes','desc')->paginate(10);
+    }
+    return response()->json($data);
+});
+
+Route::get('api/tag/{feed}/{id}',function($feed,$id){
+    if($feed == "new"){
+        $data = App\Post::with('user')->with('tag')->where('tag_id', $id)->orderBy('id','desc')->paginate(10);
+    }else if($feed == "top"){
+        $data = App\Post::with('user')->with('tag')->where('tag_id', $id)->orderBy('postLike','desc')->paginate(10);
+    }
+    return response()->json($data);
+});
+
+Route::get('api/user/{feed}/{id}',function($feed,$id){
+    if($feed == "new"){
+        $data = App\Post::with('user')->with('tag')->where('user_id', $id)->orderBy('id','desc')->paginate(10);
+    }else if($feed == "top"){
+        $data = App\Post::with('user')->with('tag')->where('user_id', $id)->orderBy('postLike','desc')->paginate(10);
+    }
+    return response()->json($data);
+});
+
+
+Route::get('api/draw',function(){
+    $data = App\Draw::all();
+    return response()->json($data);
+});
+
+/********    API     *********/
