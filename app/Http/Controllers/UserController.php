@@ -102,18 +102,18 @@ class UserController extends Controller
             'name'=>'required',    
             'detail'=>'required',                   
              ]);        
-
-             if(Input::hasFile('file')){
+            $user  = User::find($id);
+            if(Input::hasFile('file')){
                 $file = Input::file('file');
                 $time = time().".jpg";
                 //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
                 $file->move('profile/', $file->getClientOriginalName());
                 rename('profile/'.$file->getClientOriginalName(),'profile/'.$time);
+                $user ->profile = '/'.'profile/'.$time;
             }
-         $user  = User::find($id);
+         
          $user ->email = $request->get('email');
          $user ->name = $request->get('name');
-         $user ->profile = '/'.'profile/'.$time;
          $user ->detail = $request->get('detail');         
          $user ->save();
          return redirect()->route('user.index')->with('success','!!!!!!EDITED!!!!!!');  
