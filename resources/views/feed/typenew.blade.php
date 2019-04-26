@@ -1,7 +1,7 @@
 @extends('feed.master')
 @section('title',$type->type.' | jaipun')
 @section('nav')
-            <a href="/feedtype/top/{{$type_id}}" style="
+            <a href="/feedtype/{{$type_id}}" style="
             padding: 10px;
             font-size: 14px;
             ">
