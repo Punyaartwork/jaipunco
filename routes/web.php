@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('feed.top');
 });
 
 Route::get('/welcome', function () {
@@ -79,3 +79,45 @@ Route::get('api/draw',function(){
 Route::get('/new', function () {
     return view('feed.new');
 });
+
+
+Route::get('/types', function () {
+    return view('feed.types');
+});
+
+Route::get('/feedtype/{type_id}', function ($type_id) {
+    $type = App\Type::find($type_id);
+    return view('feed.type',compact('type','type_id'));
+});
+
+Route::get('/feedtype/new/{type_id}', function ($type_id) {
+    $type = App\Type::find($type_id);
+    return view('feed.typenew',compact('type','type_id'));  
+});
+
+Route::get('/feed/{id}', function ($id) {
+    $tag = App\Tag::with('user')->find($id);
+    return view('feed.tag',compact('tag','id'));
+});
+
+Route::get('/feed/new/{id}', function ($id) {
+    $tag = App\Tag::with('user')->find($id);
+    return view('feed.tagnew',compact('tag','id'));
+});
+
+Route::get('/profile/{id}', function ($id) {
+    $user = App\User::find($id);
+    return view('feed.user',compact('user','id'));
+});
+
+Route::get('/profile/new/{id}', function ($id) {
+    $user = App\User::find($id);
+    return view('feed.usernew',compact('user','id'));
+});
+
+Route::get('/story/{id}', function ($id) {
+    $post = App\Post::with('user')->with('tag')->find($id);
+    return view('story.view',compact('post','id'));
+});
+
+
