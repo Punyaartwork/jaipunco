@@ -75,3 +75,7 @@ Route::get('api/draw',function(){
 });
 
 /********    API     *********/
+
+Route::get('/new', function () {
+    return view('feed.new');
+});
