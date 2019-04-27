@@ -168,7 +168,7 @@ $(document).ready(function () {
         for(var i = 0; i < emojis.length; i++){
             if(emojis[i].draw == null) continue
             wrapper.innerHTML += `
-                <button  data-action="insertImage" data-img="${emojis[i].draw}" ><img    class="emoji-img" src="/${emojis[i].draw}"/></button>
+                <button  data-action="insertImage" data-img="${emojis[i].draw}" ><img    class="emoji-img" src="${emojis[i].draw}"/></button>
             `
             }
 
