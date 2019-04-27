@@ -95,17 +95,18 @@ class DrawController extends Controller
         $this->validate($request,[
             'drawname_id'=>'required',
             ]);        
-
+        $draw = Draw::find($id);
         if(Input::hasFile('file')){
             $file = Input::file('file');
             $time = time().".png";
             //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
             $file->move('draw/', $file->getClientOriginalName());
             rename('draw/'.$file->getClientOriginalName(),'draw/'.$time);
+            $draw->draw = '/'.'draw/'.$time;
         }
-        $draw = Draw::find($id);
+        
         $draw->drawname_id = $request->get('drawname_id');
-        $draw->draw = '/'.'draw/'.$time;
+        
         $draw->save();
         return redirect()->route('img.index')->with('success','!!!!!!EDITED!!!!!!');       
     }
