@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <title>Laravel</title>
+        <title>Write JAIPUN</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -168,7 +168,7 @@ $(document).ready(function () {
         for(var i = 0; i < emojis.length; i++){
             if(emojis[i].draw == null) continue
             wrapper.innerHTML += `
-                <button  data-action="insertImage" data-img="${emojis[i].draw}" ><img    class="emoji-img" src="${emojis[i].draw}"/></button>
+                <button  data-action="insertImage" data-img="${emojis[i].draw}" ><img  class="emoji-img" src="${emojis[i].draw}"/></button>
             `
             }
 
