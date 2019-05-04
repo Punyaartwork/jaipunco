@@ -168,12 +168,12 @@
                 }
 
                 .feed{
-                    box-shadow: 0 4px 12px 0 rgba(0,0,0,.05)!important;
+                    box-shadow: 0 10px 20px 0 rgba(0,0,0,.05)!important;
                     /* border-bottom: 2px solid rgba(0,0,0,.15)!important; */
                     border-radius: 15px;
                     word-wrap: break-word;
                     float: left;
-                    margin: 5px 0px;
+                    margin: 10px 0px;
                     width: 100%;
                     background: #fff;
                 }
