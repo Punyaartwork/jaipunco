@@ -19,8 +19,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::resource('user','UserController');
 Route::group(['middleware' => 'usersession'], function () {
-    Route::resource('user','UserController');
     Route::resource('type','TypeController');
     Route::resource('tag','TagController');
     Route::resource('drawname','DrawnameController');
@@ -122,4 +122,13 @@ Route::get('/story/{id}', function ($id) {
     return view('story.view',compact('post','id'));
 });
 
+Route::get('/login', function () {
+    return view('user.login');
+});
 
+Route::get('/register', function () {
+    return view('user.create');
+});
+
+Route::post('login', 'LoginController@login');
+Route::get('logout', 'LoginController@logout');

@@ -39,30 +39,32 @@ class UserController extends Controller
       */
      public function store(Request $request)
      {
-         $this->validate($request,[
-             'email'=>'required',
-             'name'=>'required', 
-             'password'=>'required',                                                                     
-             ]);
-         $user = new User(
-         [
-             'facebook_id'=>'0',
-             'name'=>$request->get('name'),  
-             'detail'=>'0',            
-             'email'=>$request->get('email'),            
-             'profile'=>'0',            
-             'password'=>$request->get('password'),
-             'stories'=>'0',             
-             'following'=>'0',
-             'followers'=>'0',  
-             'notification'=>'0',                        
-             'link'=>'0',              
-         ]
-         );
-         $user->save();
-         $session_user = User::where('email', '=',$request->get('email'))->first();
-         Session::put('user_id',$session_user->id);
-         return redirect()->route('user.create')->with('success',"!!!!!SUCCESS!!!!!!");
+        $this->validate($request,[
+                'email'=>'required|email|max:255|unique:users',
+                'name'=>'required|max:255|unique:users', 
+                'password'=>'required|min:8',
+                'password_confirmation'=>'required|min:8|same:password',                                                                       
+        ]);
+
+        $user = new User(
+        [
+            'facebook_id'=>'0',
+            'name'=>$request->get('name'),  
+            'detail'=>'0',            
+            'email'=>$request->get('email'),            
+            'profile'=>'0',            
+            'password'=>md5($request->get('password')),
+            'stories'=>'0',             
+            'following'=>'0',
+            'followers'=>'0',  
+            'notification'=>'0',                        
+            'link'=>'0',              
+        ]
+        );
+        $user->save();
+        $session_user = User::where('email', '=',$request->get('email'))->first();
+        Session::put('user_id',$session_user->id);
+       return redirect()->route('user.index')->with('success',"!!!!!SUCCESS!!!!!!");
      }
  
      /**
