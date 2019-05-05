@@ -19,12 +19,14 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::resource('user','UserController');
-Route::resource('type','TypeController');
-Route::resource('tag','TagController');
-Route::resource('drawname','DrawnameController');
-Route::resource('img','DrawController');
-Route::resource('post','PostController');
+Route::group(['middleware' => 'usersession'], function () {
+    Route::resource('user','UserController');
+    Route::resource('type','TypeController');
+    Route::resource('tag','TagController');
+    Route::resource('drawname','DrawnameController');
+    Route::resource('img','DrawController');
+    Route::resource('post','PostController');
+});
 
 /********    API     *********/
 Route::get('api/post/{feed}',function($feed){
