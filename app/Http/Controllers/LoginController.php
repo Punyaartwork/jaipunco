@@ -19,7 +19,7 @@ class LoginController extends Controller
             return view('user.login',compact('comment')); 
         }else{
             Session::put('user_id',$session_user->id);
-            return redirect()->route('feed.top')->with('success',"!!!!!SUCCESS!!!!!!");
+            return redirect('/');
         }
     }
 
