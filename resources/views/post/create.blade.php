@@ -113,7 +113,9 @@ height: 100%;
 background: #fff;
 
 ">
-     
+@foreach($draws as $draw)
+<button  data-action="insertImage" data-img="/{{$draw['draw']}}" ><img    class="emoji-img" src="/{{$draw['draw']}}"/></button>
+@endforeach
             </div>
             <form action="{{url('post')}}" id="postform" method="post">
             {{ csrf_field() }}
@@ -156,39 +158,22 @@ background: #fff;
 $(document).ready(function () {
     
 /*** OPEN DRAW START ***/
-    var wrapper = document.querySelector('.wrapper')
-    wrapper.innerHTML="";
-    $.ajax({
-        url:"http://www.jaipun.com/api/draw",
-        beforeSend: function()
-            {
-                $('.ajax-load').show();
-            }
-    }).then(function(emojis) {
-        for(var i = 0; i < emojis.length; i++){
-            if(emojis[i].draw == null) continue
-            wrapper.innerHTML += `
-                <button  data-action="insertImage" data-img="${emojis[i].draw}" ><img  class="emoji-img" src="${emojis[i].draw}"/></button>
-            `
-            }
+$('button').on('click', function(e) {
+    var $this = $(this),
+            action = $this.data("action");
+    
+    var aShowDefaultUI = false, aValueArgument = null;
+    if($this.data('show-default-ui'))
+        aShowDefaultUI = $this.data('show-default-ui');
+    
 
-            $('button').on('click', function(e) {
-                var $this = $(this),
-                        action = $this.data("action");
-                
-                var aShowDefaultUI = false, aValueArgument = null;
-                if($this.data('show-default-ui'))
-                    aShowDefaultUI = $this.data('show-default-ui');
-                
-
-                if($this.data('action') == 'insertImage')
-                    aValueArgument = $this.data("img");	
-                //emojibtn.classList.remove('open');
-                
-                document.execCommand(action, aShowDefaultUI, aValueArgument);
-            });
-    });
-    /*** OPEN DRAW END ***/
+    if($this.data('action') == 'insertImage')
+        aValueArgument = $this.data("img");	
+    //emojibtn.classList.remove('open');
+    
+    document.execCommand(action, aShowDefaultUI, aValueArgument);
+});
+/*** OPEN DRAW END ***/
 }); 
 
 

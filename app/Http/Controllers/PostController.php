@@ -25,7 +25,8 @@ class PostController extends Controller
       */
      public function create()
      {
-         return view('post.create');        
+        $draws = Draw::all()->toArray();        
+        return view('post.create',compact('draws'));         
      }
  
      /**
