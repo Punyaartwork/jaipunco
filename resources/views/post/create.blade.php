@@ -114,7 +114,7 @@ background: #fff;
 
 ">
 @foreach($draws as $draw)
-<button  data-action="insertImage" data-img="/{{$draw['draw']}}" ><img    class="emoji-img" src="/{{$draw['draw']}}"/></button>
+<button  data-action="insertImage" data-img="{{$draw['draw']}}" ><img    class="emoji-img" src="{{$draw['draw']}}"/></button>
 @endforeach
             </div>
             <form action="{{url('post')}}" id="postform" method="post">
