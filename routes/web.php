@@ -26,6 +26,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::resource('drawname','DrawnameController');
     Route::resource('img','DrawController');
     Route::resource('post','PostController');
+    Route::resource('comments','CommentController');
 });
 
 /********    API     *********/

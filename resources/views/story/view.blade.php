@@ -395,6 +395,88 @@ z-index: 4;
         /* font-weight: 600; */
     }
 
+    /************************Comments****************************/
+
+    .comment-profile-into{
+        float: left;
+        width: 10%;
+    }
+
+    .comment-profile-img{
+        border-radius: 100px;
+        height: 40px;
+        object-fit: cover;
+        width: 40px;
+        display: inline-block;
+        margin: 0px 0px;
+        padding: 0px;
+    }
+    .comments{
+        padding: 20px 0px;
+         border-bottom: 1px solid #eee;
+    }
+    textarea {
+          font-weight: 500;
+          font-size: 15px;
+          display: block;
+          border-radius: 25px;
+          border: 1px solid #bec2c9;
+          width: 100%;
+          outline: none;
+          font-family: 'cs_prajad', sans-serif;
+          resize: none;
+          padding: 13px 17px;
+          margin-top:20px;
+        }
+
+        #send{
+          background: rgba(0, 0, 0, 0);
+          box-shadow: 0 0 0 2px #4267b2;
+          border: 0;
+          height: 30px;
+          width: 80px;
+          line-height: 20px;
+          font-weight: 700;
+          font-size: 15px;
+          color: #4267b2;
+          position: relative;
+          display: block;
+          margin-left: auto;
+          margin-top: 10px;
+          margin-bottom: 5px;
+          border-radius: 30px;
+          transition: all 0.15s ease;
+          cursor: pointer;
+          outline: none;
+        }
+        #send:hover {
+          background: #4267b2;
+          color: #fff;
+        }
+
+        .form-control{
+          border-radius: 5px;
+          border: 1px solid #bec2c9;
+          width: 80%;
+          padding: 5px 17px;
+          outline: none;
+          background: #fafafa;
+        }
+        #reply{
+          border: none;
+          background: #fff;
+          line-height: 20px;
+          font-weight: 700;
+          font-size: 15px;
+          height: 30px;
+          color: #4267b2;
+        }
+
+        @media only screen and (max-width: 620px) {
+            .comment-profile-into{
+                width: 15%;
+            }
+        }
 @stop
 @section('content')
 
@@ -434,6 +516,26 @@ z-index: 4;
     </div>
 
     <!-- /////////////////////   -->
+
+    <h1 style="
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    padding: 20px 0px;
+    text-align: center;
+    ">Comments</h1>
+
+    @include('story.commentsDisplay', ['comments' => $post->comments, 'post_id' => $post->id])
+
+    <form method="post" action="{{ route('comments.store') }}">
+        @csrf
+        <div class="form-group">
+            <textarea placeholder='Write a comment...'  name="body"></textarea>
+            <input type="hidden" name="post_id" value="{{ $post->id }}" />
+        </div>
+        <div class="form-group">
+            <input type="submit" id="send" value="SEND" />
+        </div>
+    </form>
 
     
   </div>
@@ -476,6 +578,7 @@ z-index: 4;
                 // track scroll event
             },
             created() {
+                this.show = true;
                 // get the data by performing API request
                 this.fetch();
             }
