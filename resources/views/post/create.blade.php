@@ -159,7 +159,7 @@ $(document).ready(function () {
     var wrapper = document.querySelector('.wrapper')
     wrapper.innerHTML="";
     $.ajax({
-        url:"http://128.199.215.103/api/draw",
+        url:"http://www.jaipun.com/api/draw",
         beforeSend: function()
             {
                 $('.ajax-load').show();
