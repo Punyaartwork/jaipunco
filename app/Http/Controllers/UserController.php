@@ -64,7 +64,7 @@ class UserController extends Controller
         $user->save();
         $session_user = User::where('email', '=',$request->get('email'))->first();
         Session::put('user_id',$session_user->id);
-       return redirect()->route('user.index')->with('success',"!!!!!SUCCESS!!!!!!");
+        return redirect('/');
      }
  
      /**
