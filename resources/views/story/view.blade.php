@@ -576,7 +576,7 @@ z-index: 4;
                     }, 2000);
                 },
                 toggleLike: function() {
-                    @if ($post->user->id != \Session::get('user_id') and \Session::get('user_id') != 0)
+                    
                     this.$http.get('/like/'+{{$post->id}}+'/islikedbyme').then(function(response){
                         //alert(JSON.stringify(response)); 
                         if(response.body==='true'){
@@ -596,7 +596,7 @@ z-index: 4;
                     }, function(error){
                         console.log(error.statusText);
                     });
-                    @endif
+                    
                 },
 
             },
