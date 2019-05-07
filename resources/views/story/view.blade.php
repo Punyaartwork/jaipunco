@@ -498,8 +498,8 @@ z-index: 4;
     padding-bottom: 25px!important;
     margin-top:60px;
     ">
-        <div style="  width: 100%;"><img class="iconlike" src="https://image.flaticon.com/icons/svg/1531/1531027.svg">
-            <span class="textlike">{{$post->postLike}}  liked</span></div>
+        <div style="  width: 100%;"><img v-bind:style="{background:background}"  v-on:click="toggleLike" class="iconlike" src="https://image.flaticon.com/icons/svg/1531/1531027.svg">
+            <span class="textlike"><span  v-text="likesCount"></span>  liked</span></div>
 
 
 
@@ -554,6 +554,9 @@ z-index: 4;
                 text:null,
                 post:null,
                 content:null,
+                liked: false,
+                likesCount: {{$post->postLike}},
+                background:'#fff'
             },
             computed: {
                 // slice the array of data to display
@@ -572,6 +575,29 @@ z-index: 4;
                         this.show = true;
                     }, 2000);
                 },
+                toggleLike: function() {
+                    @if ($post->user->id != \Session::get('user_id') and \Session::get('user_id') != 0)
+                    this.$http.get('/like/'+{{$post->id}}+'/islikedbyme').then(function(response){
+                        //alert(JSON.stringify(response)); 
+                        if(response.body==='true'){
+                            this.background='#fff';                        
+                            this.liked = false;
+                            this.likesCount--;      
+                            this.$http.get('/like/'+{{$post->id}}+'/liked').then(function(response){
+                            });
+                        }else{
+                            this.background='#fff59d';
+                            this.liked = true;                        
+                            this.likesCount++;      
+                            this.$http.get('/like/'+{{$post->id}}+'/liked').then(function(response){
+                                
+                            });
+                        }
+                    }, function(error){
+                        console.log(error.statusText);
+                    });
+                    @endif
+                },
 
             },
             mounted() {
@@ -581,6 +607,11 @@ z-index: 4;
                 this.show = true;
                 // get the data by performing API request
                 this.fetch();
+                this.$http.get('/like/'+{{$post->id}}+'/islikedbyme').then(function(response){
+                    if(response.body==='true'){
+                        this.background='#fff59d';     
+                    }
+                });
             }
         });
 

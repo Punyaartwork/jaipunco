@@ -133,3 +133,6 @@ Route::get('/register', function () {
 
 Route::post('login', 'LoginController@login');
 Route::get('logout', 'LoginController@logout');
+
+Route::get('like/{id}/islikedbyme', 'LikeController@isLikedByMe');
+Route::get('like/{id}/liked', 'LikeController@like');

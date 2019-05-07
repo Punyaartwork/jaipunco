@@ -19,4 +19,8 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class)->whereNull('parent_id');
     }  
+    public function likes()
+    {
+        return $this->belongsToMany('App\User', 'likes');
+    }
 }
