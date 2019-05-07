@@ -607,6 +607,11 @@ z-index: 4;
                 this.show = true;
                 // get the data by performing API request
                 this.fetch();
+                this.$http.get('/like/'+{{$post->id}}+'/islikedbyme').then(function(response){
+                    if(response.body==='true'){
+                        this.background='#fff59d';     
+                    }
+                });
                 
             }
         });
