@@ -8,10 +8,6 @@
        target="_blank" style="color: #1cb7eb !important;">
         <i class="fa fa-twitter-square"></i>
     </a>
-    <a href="https://plus.google.com/share?url={{ urlencode($url) }}"
-       target="_blank" style="color: #c94a3a !important;">
-       <i class="fa fa-google-plus-square"></i>
-    </a>
     <a href="https://pinterest.com/pin/create/button/?{{ 
         http_build_query([
             'url' => $url,

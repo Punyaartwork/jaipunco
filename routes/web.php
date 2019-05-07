@@ -136,3 +136,9 @@ Route::get('logout', 'LoginController@logout');
 
 Route::get('like/{id}/islikedbyme', 'LikeController@isLikedByMe');
 Route::get('like/{id}/liked', 'LikeController@like');
+
+Route::get('/sharepost/{id}', function ($id) {
+    $post = App\Post::find($id);
+    $post->postShare += 1;
+    $post->save();
+});

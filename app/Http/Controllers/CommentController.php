@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 Use Session;
 use Illuminate\Http\Request;
 use App\Comment;
+use App\Post;
 
 class CommentController extends Controller
 {
@@ -21,9 +22,11 @@ class CommentController extends Controller
     
          $input = $request->all();
          $input['user_id'] = session('user_id');
-     
+         $post = Post::find($request->get('post_id'));
+         $post->postComment += 1;
+         $post->save();
          Comment::create($input);
-    
+
          return back();
      }
 }

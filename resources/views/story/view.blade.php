@@ -500,11 +500,13 @@ z-index: 4;
     ">
         <div style="  width: 100%;"><img v-bind:style="{background:background}"  v-on:click="toggleLike" class="iconlike" src="https://image.flaticon.com/icons/svg/1531/1531027.svg">
             <span class="textlike"><span  v-text="likesCount"></span>  liked</span>
+            <span v-on:click="Sharepost">
             @include('story.share', [
                 'url' => request()->fullUrl(),
                 'description' => 'This is really cool link',
                 'image' => 'http://placehold.it/300x300?text=Cool+link'
             ])
+            </span>
             </div>
 
 
@@ -603,6 +605,10 @@ z-index: 4;
                         console.log(error.statusText);
                     });
                     @endif
+                },
+                Sharepost:function() {
+                    this.$http.get('/sharepost/'+{{$post->id}}).then(function(response){
+                    });
                 },
 
             },
