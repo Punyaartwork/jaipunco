@@ -80,7 +80,7 @@
             margin: 0;
             box-sizing: border-box;
             background: #74b0c8;
-            height: 70px;
+            height: 55px;
             display: block;
             width: 100%;
             box-shadow: 0 4px 12px 0 rgba(0,0,0,.05)!important;
@@ -726,7 +726,7 @@
 <body>
 
   <div id="app">
-  <div id="taghome" style=" margin-top: 120px;display: block;position: relative;">
+  <div id="taghome" style=" margin-top: 100px;display: block;position: relative;">
     @yield('headpage')
     </div>
   <header class="header">
