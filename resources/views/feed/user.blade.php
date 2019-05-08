@@ -138,7 +138,7 @@
                                                 postShare:postarray.data[i].postShare,     
                                                 postTime:postarray.data[i].postTime,                                                                                                             
                                                 tag:{
-                                                    id:postarray.data[i].tag.id                                      
+                                                    id:postarray.data[i].tag.id,                                      
                                                     tagname:postarray.data[i].tag.tagname
                                                     },
                                                 user:{
