@@ -89,7 +89,7 @@
             top: 0;
             z-index: 2;
             transition: .3s;
-            padding-top: 30px;
+            padding-top: 15px;
         
         }
         .header.small {
