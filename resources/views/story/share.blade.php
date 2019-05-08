@@ -17,4 +17,8 @@
         }}" target="_blank" style="color: #ca3737 !important;">
         <i class="fa fa-pinterest-square"></i>
     </a>
+    <a href="https://social-plugins.line.me/lineit/share?url={{ urlencode($url) }}"
+       target="_blank" >
+       <img src="https://image.flaticon.com/icons/svg/124/124027.svg" style=" width: 20px;">
+    </a>
 </div>
