@@ -72,6 +72,15 @@ margin-right: auto;">
                 text:null,
                 tagColor:null,
                 type:null,
+                menu: [
+                        { name: 'login', url: '/login' },
+                        { name: 'About US', url: '' }   
+                    ],
+                menulogin: [
+                        { name: 'POST', url: '/post/create' },
+                        { name: 'logout', url: '/logout' }   
+                    ],
+                onOff:false
             },
             computed: {
                 // slice the array of data to display

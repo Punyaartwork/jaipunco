@@ -690,6 +690,34 @@
             display: block;
             color: #8a8b8a;
         }
+
+                /*********************toggle profile************************/
+                
+        .message {
+            background: #fff;
+            color: #000;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 320px;
+            height: 100%;
+            padding: 20px;
+            overflow: hidden;
+            box-sizing: border-box;
+            z-index: 2;
+            border-left: 1px solid rgb(238, 238, 238);
+            font-size: 20px;
+            box-shadow: 0 10px 20px 0 rgba(0,0,0,.05)!important;
+            
+        }
+        .message li{
+            display: block;
+        }
+
+        .message h1 {
+            color:#FFF;
+        }
+
       </style>
 
   
@@ -734,7 +762,7 @@
                     <li>
                         <router-link class="nav__item" to="/search">
                     <!--<a id="btnsearch" href="#" style="">-->
-                        <img src="/icon/magnifying-glass.svg" style="width: 20px;padding-top:5px">    
+                        <img src="/icon/user.svg" style="width: 20px;padding-top:5px" @click="onOff = !onOff">    
                         </router-link>
                     </li>
                 </ul>
@@ -772,6 +800,20 @@
       <div v-html="text">
           
 </div>      
+            <div v-if="onOff" class="bg-success">
+                <div class="message">
+                    <div style="float:right" @click="onOff = !onOff">X</div>
+                    @if (\Session::get('user_id') == 0)
+                    <ul v-for="menus in menu">
+                        <a v-bind:href="menus.url"><li v-text="menus.name"></li></a>
+                    </ul>
+                    @else
+                    <ul v-for="menus in menulogin">
+                        <a v-bind:href="menus.url"><li v-text="menus.name"></li></a>
+                    </ul>
+                    @endif
+                 </div>
+            </div>
 
       <transition name="slide-fade">
           
