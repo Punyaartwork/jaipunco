@@ -83,7 +83,7 @@ class PostController extends Controller
          $post = Post::find($id);
          $tags = Tag::all()->toArray();      
          $users = User::all()->toArray();       
-         return view('post.edit',compact('post','id'));
+         return view('post.create',compact('draws','tags','users'));   
      }
  
      /**
