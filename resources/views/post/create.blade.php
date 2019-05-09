@@ -2,9 +2,10 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="/css/font.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <title>Write JAIPUN</title>
+        <title>POST JAIPUN</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -122,8 +123,17 @@ background: #fff;
             <div style="width: 50%;float: right;height: 100%;padding: 20px;"><div style="max-width: 600px;height: 500px;position: relative;margin-left: auto;margin-right: auto;">
             <!-- WRITE START -->
             <fieldset class="msf_show" style="max-width: 600px;">
-            <input name="user_id" type="text" id="txtUsername" placeholder="user_id" style="outline: none;padding: 10px;font-size: 16px;font-weight: 600;width: 100px;border: 1px solid #eee;margin: 10px;border-radius: 10px;">
-            <input type="text" name="tag_id" placeholder="tag_id" id="inputA" style="outline: none;padding: 10px;font-size: 16px;font-weight: 600;width: 100px;border: 1px solid #eee;margin: 10px;border-radius: 10px;"><input name="postDraw" type="text" id="txtUsername" placeholder="Draw" style="outline: none;padding: 10px;font-size: 16px;/* font-weight: 600; */width: 250px;border: 1px solid #eee;margin: 10px;border-radius: 10px;">
+            <select name="user_id"  id="inputA"  style="outline: none;padding: 10px;font-size: 16px;font-weight: 600;width: 100px;border: 1px solid #eee;margin: 10px;border-radius: 10px;">
+                @foreach($users as $users)
+                <option value="{{$users['id']}}">{{$users['name']}}</option>
+                @endforeach
+            </select>            
+            <select name="tag_id"  id="inputA"  style="outline: none;padding: 10px;font-size: 16px;font-weight: 600;width: 100px;border: 1px solid #eee;margin: 10px;border-radius: 10px;">
+                @foreach($tags as $tags)
+                <option value="{{$tags['id']}}">{{$tags['tagname']}}</option>
+                @endforeach
+            </select>
+            <input name="postDraw" type="text" id="txtUsername" placeholder="Draw" style="outline: none;padding: 10px;font-size: 16px;/* font-weight: 600; */width: 250px;border: 1px solid #eee;margin: 10px;border-radius: 10px;">
             <input name="title" type="text" id="txtUsername" placeholder="ชื่อเรื่อง" style="border: none;outline: none;padding: 15px 15px;font-size: 18px;font-weight: 600;border-bottom: 1px solid #eee;width: 90%;/* margin: 20px; */display: block;">
             
             
@@ -186,29 +196,13 @@ function submitform(){
     var inputC = $('#inputC'); //document
     inputC.val(doc);
 
-
-  var tag_id = $('input[type=text][name=tag_id]').val();
+  var tag_id = $("#inputA").val();
   var title = $('input[type=text][name=title]').val();
   var user_id = $('input[type=text][name=user_id]').val();  
   var postDraw = $('input[type=text][name=postDraw]').val();    
   var content = $('input[type=hidden][name=content]').val();
-    alert(":::user_id::" + user_id  + ":::tag_id::" + tag_id + ":::title:: " + title + " :::content::" + content + ":::postDraw::" + postDraw);
+    alert("!!!!!!!!!!POST SUCCESS!!!!!!!!!!");
     $('#postform').submit();
-    /* var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    $.ajax({
-        the route pointing to the post function 
-        url: '/postsave',
-        type: 'POST',
-        /* send the csrf-token and the input to the controller 
-        data: {_token: CSRF_TOKEN, message:"OK",tag_id:tag_id,title:title,content:content,user_id:user_id,postDraw:postDraw},
-        dataType: 'JSON',
-        /* remind that 'data' is the response of the AjaxController 
-        success: function (data) { 
-            alert('Successed Post'); 
-            location.reload();
-        }
-    }); 
-    */
 }
 
     </script>
