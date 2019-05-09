@@ -115,6 +115,7 @@
                                 for (var i = 0; i < postarray.data.length; i++) { 
                                 this.items.push({
                                     id:postarray.data[i].id,
+                                    tag_id:postarray.data[i].tag_id,  
                                     postName:postarray.data[i].postName,  
                                     post:postarray.data[i].post,         
                                     postDraw:postarray.data[i].postDraw,   
