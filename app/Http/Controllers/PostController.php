@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Draw;
-use App\Tag;
-use App\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -28,8 +26,10 @@ class PostController extends Controller
       */
      public function create()
      {
-        $draws = Draw::all()->toArray();        
-        return view('post.create',compact('draws'));         
+        $draws = Draw::all()->toArray();
+        $tags = Tag::all()->toArray();      
+        $users = User::all()->toArray();            
+        return view('post.create',compact('draws','tags','users'));          
      }
  
      /**
@@ -80,10 +80,8 @@ class PostController extends Controller
       */
      public function edit($id)
      {
-         $post = Post::find($id);
-         $tags = Tag::all()->toArray();      
-         $users = User::all()->toArray();       
-         return view('post.create',compact('draws','tags','users'));   
+         $post = Post::find($id);   
+         return view('post.edit',compact('post','id'));
      }
  
      /**
