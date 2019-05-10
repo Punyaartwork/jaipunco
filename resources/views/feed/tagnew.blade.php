@@ -4,19 +4,19 @@
 @section('nav')
             <a style="
             padding: 10px;
-            font-size: 14px;
+            font-size: 16px;
             font-weight:600;
             " href="/feed/{{$tag->id}}">
                 Popular
             </a>
             @foreach($tags as $tags)
-            <a href="/feed/{{$tags->id}}"  style="padding: 10px;font-size: 14px;">
+            <a href="/feed/{{$tags->id}}"  style="padding: 10px;font-size: 16px;">
                {{$tags->tagname}} 
             </a>
             @endforeach
             <a href="/feedtype/{{$tag->type_id}}" style="
             padding: 10px;
-            font-size: 14px;
+            font-size: 16px;
             
             ">
                     more

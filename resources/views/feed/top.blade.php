@@ -4,19 +4,19 @@
 @section('nav')
     <a href="/new"  style="
     padding: 10px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight:600;
     ">
     new
     </a>
     @foreach($types as $types)
-    <a href="/feedtype/{{$types->id}}"  style="padding: 10px;font-size: 14px;">
+    <a href="/feedtype/{{$types->id}}"  style="padding: 10px;font-size: 16px;">
     {{$types->type}} 
     </a>
     @endforeach
     <a href="/types"  style="
     padding: 10px;
-    font-size: 14px;
+    font-size: 16px;
     ">
         more
             
