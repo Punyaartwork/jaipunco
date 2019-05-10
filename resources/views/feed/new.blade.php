@@ -9,7 +9,7 @@
     Popular
     </a>
     @foreach($types as $types)
-    <a href="/feed/{{$types->id}}"  style="padding: 10px;font-size: 14px;">
+    <a href="/feedtype/{{$types->id}}"  style="padding: 10px;font-size: 14px;">
     {{$types->type}} 
     </a>
     @endforeach
