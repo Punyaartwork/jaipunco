@@ -18,7 +18,7 @@
     padding: 10px;
     font-size: 14px;
     ">
-        MORE
+        more
             
     </a>
 @stop
