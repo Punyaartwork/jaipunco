@@ -2,23 +2,26 @@
 @section('title','Jaipun')
 
 @section('nav')
-            <div  style="
-            padding: 10px;
-            font-size: 14px;
-            border-bottom: 3px solid #74b0c8;
-            ">
-                Popular
-            </div>
-            <a href="/new"  style="
-            padding: 10px;
-            font-size: 14px;
-
+    <a href="/new"  style="
+    padding: 10px;
+    font-size: 14px;
+    font-weight:600;
+    ">
+    Recent
+    </a>
+    @foreach($types as $types)
+    <a href="/feed/{{$types->id}}"  style="padding: 10px;font-size: 14px;">
+    {{$types->type}} 
+    </a>
+    @endforeach
+    <a href="/types"  style="
+    padding: 10px;
+    font-size: 14px;
+    ">
+        MORE
             
-            ">
-                    Recent
-                    
-            </a>
-            @stop
+    </a>
+@stop
 @section('feedcontent')
     <article class="feed" v-for="item in sliced" :key="item.id" v-if="sliced">
 

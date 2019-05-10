@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('feed.top');
+    $types = App\Type::all();
+    return view('feed.top',compact('types'));
 });
 
 Route::get('/welcome', function () {
@@ -80,7 +81,8 @@ Route::get('api/draw',function(){
 /********    API     *********/
 
 Route::get('/new', function () {
-    return view('feed.new');
+    $types = App\Type::all();
+    return view('feed.new',compact('types'));
 });
 
 

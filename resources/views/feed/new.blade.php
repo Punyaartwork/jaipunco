@@ -1,23 +1,26 @@
 @extends('feed.master')
 @section('title','latest.')
-
 @section('nav')
-            <a href="/" style="
-            padding: 10px;
-            font-size: 14px;
-            ">
-                Popular
-            </a>
-            <div style="
-            padding: 10px;
-            font-size: 14px;
-            border-bottom: 3px solid #74b0c8;
+    <a href="/"  style="
+    padding: 10px;
+    font-size: 14px;
+    font-weight:600;
+    ">
+    Home
+    </a>
+    @foreach($types as $types)
+    <a href="/feed/{{$types->id}}"  style="padding: 10px;font-size: 14px;">
+    {{$types->type}} 
+    </a>
+    @endforeach
+    <a href="/types"  style="
+    padding: 10px;
+    font-size: 14px;
+    ">
+        MORE
             
-            ">
-                    Recent
-                    
-            </div>
-            @stop
+</a>
+@stop
 @section('feedcontent')
     <article class="feed" v-for="item in sliced" :key="item.id" v-if="sliced">
 
