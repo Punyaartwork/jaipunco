@@ -779,6 +779,7 @@
         <div class="navcenter" style="
             white-space: nowrap!important;
             overflow-y: auto;
+            -webkit-overflow-scrolling:touch;
         ">
                 @yield('nav')
                
