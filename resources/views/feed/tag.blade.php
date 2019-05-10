@@ -1,20 +1,26 @@
 @extends('feed.master')
 @section('title',$tag->tagname.' | jaipun')
 
+
 @section('nav')
-            <div style="
+            <a style="
             padding: 10px;
             font-size: 14px;
-            border-bottom: 3px solid #74b0c8;
-            ">
-                Popular
-            </div>
-            <a href="/feed/new/{{$tag->id}}" style="
+            font-weight:600;
+            " href="/feed/new/{{$tag->id}}">
+                new
+            </a>
+            @foreach($tags as $tags)
+            <a href="/feed/{{$tags->id}}"  style="padding: 10px;font-size: 14px;">
+               {{$tags->tagname}} 
+            </a>
+            @endforeach
+            <a href="/feedtype/{{$tag->type_id}}" style="
             padding: 10px;
             font-size: 14px;
             
             ">
-                    Recent
+                    more
                     
             </a>
 @stop

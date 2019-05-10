@@ -6,7 +6,7 @@
     font-size: 14px;
     font-weight:600;
     ">
-    Home
+    Popular
     </a>
     @foreach($types as $types)
     <a href="/feed/{{$types->id}}"  style="padding: 10px;font-size: 14px;">
@@ -17,7 +17,7 @@
     padding: 10px;
     font-size: 14px;
     ">
-        MORE
+        more
             
 </a>
 @stop

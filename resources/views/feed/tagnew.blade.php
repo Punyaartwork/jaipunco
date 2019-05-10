@@ -2,21 +2,26 @@
 @section('title',$tag->tagname.' | jaipun')
 
 @section('nav')
-            <a href="/feed/{{$tag->id}}" style="
+            <a style="
             padding: 10px;
             font-size: 14px;
-           
-            ">
+            font-weight:600;
+            " href="/feed/{{$tag->id}}">
                 Popular
             </a>
-            <div style="
+            @foreach($tags as $tags)
+            <a href="/feed/{{$tags->id}}"  style="padding: 10px;font-size: 14px;">
+               {{$tags->tagname}} 
+            </a>
+            @endforeach
+            <a href="/feedtype/{{$tag->type_id}}" style="
             padding: 10px;
             font-size: 14px;
-            border-bottom: 3px solid #74b0c8;
+            
             ">
-                    Recent
+                    more
                     
-            </div>
+            </a>
 @stop
 
 

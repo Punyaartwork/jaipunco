@@ -7,7 +7,7 @@
     font-size: 14px;
     font-weight:600;
     ">
-    Recent
+    new
     </a>
     @foreach($types as $types)
     <a href="/feed/{{$types->id}}"  style="padding: 10px;font-size: 14px;">
