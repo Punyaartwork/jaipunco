@@ -776,7 +776,10 @@
         ">
             
     
-            <div class="navcenter">
+        <div class="navcenter" style="
+            white-space: nowrap!important;
+            overflow-y: auto;
+        ">
                 @yield('nav')
                
 
