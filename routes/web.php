@@ -28,6 +28,11 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::resource('img','DrawController');
     Route::resource('post','PostController');
     Route::resource('comments','CommentController');
+    Route::get('image-crop', 'ImageController@imageCrop');
+    Route::post('image-crop', 'ImageController@imageCropPost');
+    Route::get('/edit', function () {
+        return view('user.editprofile');
+    });
 });
 
 /********    API     *********/

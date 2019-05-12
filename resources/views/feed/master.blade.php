@@ -691,23 +691,21 @@
             color: #8a8b8a;
         }
 
-                /*********************toggle profile************************/
+  /*********************toggle profile************************/
                 
         .message {
             background: #fff;
             color: #000;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 320px;
-            height: 100%;
-            padding: 20px;
+            max-width: 540px;
+            padding: 40px;
             overflow: hidden;
             box-sizing: border-box;
-            z-index: 2;
-            border-left: 1px solid rgb(238, 238, 238);
+            border: 1px solid rgb(238, 238, 238);
             font-size: 20px;
-            box-shadow: 0 10px 20px 0 rgba(0,0,0,.05)!important;
+            box-shadow: 0px 1px 5px 0 rgba(0,0,0,.1)!important;
+            display: block;
+            margin: auto;
+            margin-top:50px;
             
         }
         .message li{
@@ -716,6 +714,82 @@
 
         .message h1 {
             color:#FFF;
+        }
+
+        .formlogin input{
+            line-height: initial;
+            width: 100%;
+            padding: 4px 16px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(230, 230, 230);
+            border-image: initial;
+            border-radius: 4px;
+            outline: 0px;
+            transition: border-color 0.1s ease-in-out 0s;
+            -webkit-appearance: textfield;
+            background-color: white;
+            -webkit-rtl-ordering: logical;
+            cursor: text;
+            font-size: 20px;
+            font-family: 'cs_prajad', sans-serif;
+        }
+
+        .btn-login{
+            vertical-align: middle;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.1s ease-in-out 0s, color 0.1s ease-in-out 0s, border-color 0.1s ease-in-out 0s;
+            border: 1px solid #007bff;
+            width: 100%;
+
+        }
+        .label-login{
+            display: block;
+            color: rgb(128, 128, 128);
+            font-size: 18px;
+            margin: 0px 0px 4px;
+        }
+
+        .profile {
+            margin: auto;
+            border-radius: 100px;
+            height: 120px;
+            width: 120px;
+            object-fit: cover;
+            display: block;
+        }
+        .btn-all a{
+            margin: 10px 0px;
+            float: left;
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            transition: background-color 0.1s ease-in-out 0s, color 0.1s ease-in-out 0s, border-color 0.1s ease-in-out 0s;
+            border: 1px solid #007bff;
+            width: 100%;
+            font-weight: 600;
+        }
+        .bg-success{
+            background: #ffffffc7;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            z-index: 2;
+            font-size: 20px;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling:touch;
         }
 
       </style>
@@ -730,8 +804,7 @@
     @yield('headpage')
     </div>
   <header class="header">
-        <nav style="
-    ">
+        <nav >
             <div class="navleft">
             <ul>
                 <li>
@@ -761,8 +834,15 @@
                     
                     <li>
                         <router-link class="nav__item" to="/search">
-                    <!--<a id="btnsearch" href="#" style="">-->
-                        <img src="/icon/user.svg" style="width: 20px;padding-top:5px" @click="onOff = !onOff">    
+                    @if (\Session::has('user_id'))
+                        <?php
+                        $user = \App\User::find(\Session::get('user_id'));
+                        ?>
+                        <img src="{{$user->profile}}" style="width: 20px;padding-top:5px"  @click="onOff = !onOff">  
+                    @else  
+                        <img src="/icon/user.svg" style="width: 20px;padding-top:5px"  @click="onOff = !onOff">
+                    @endif  
+                        
                         </router-link>
                     </li>
                 </ul>
@@ -806,16 +886,104 @@
 </div>      
             <div v-if="onOff" class="bg-success">
                 <div class="message">
+                @if (\Session::has('user_id'))
+
+                    <div style=" position: relative;">
                     <div style="float:right" @click="onOff = !onOff">X</div>
-                    @if (\Session::get('user_id') == 0)
-                    <ul v-for="menus in menu">
-                        <a v-bind:href="menus.url"><li v-text="menus.name"></li></a>
-                    </ul>
-                    @else
-                    <ul v-for="menus in menulogin">
-                        <a v-bind:href="menus.url"><li v-text="menus.name"></li></a>
-                    </ul>
-                    @endif
+                        <a href="/image-crop" style=" position: absolute;left: 50%;">
+                            <img src="https://image.flaticon.com/icons/svg/1782/1782703.svg" style="width: 35px;background: #fff;border-radius: 100%;">
+                        </a>
+                        <img src="{{ $user->profile }}" class="profile"> 
+                    </div>
+                   
+                    <div style="
+                        font-size: 32px;
+                        text-align: center;
+                        font-weight: 600;
+                        margin-top: 10px;
+                    ">{{ $user->name }}</div>
+                    <div style="text-align: center;">{{ $user->detail }}</div>
+                    <div style="width:100%;float:left;">
+                        <div style="width: 300px;display: block;margin: auto;padding: 10px 0px;">
+                            <div style="
+                                float: left;
+                                width: 100px;
+                                font-size: 30px;
+                                text-align: center;
+                            ">{{ $user->stories }}<span style="
+                                display: block;
+                                font-size: 16px;
+                                text-align: center;
+                            ">stories</span>
+                            </div>
+                            <div style="
+                                float: left;
+                                width: 100px;
+                                font-size: 30px;
+                                text-align: center;
+                                border-left: 1px solid #BDBDBD;
+                                border-right: 1px solid #BDBDBD;
+                            ">{{ $user->following }}<span style="
+                                display: block;
+                                font-size: 16px;
+                                text-align: center;
+                            ">following</span>
+                            </div>
+                            <div style="
+                                float: left;
+                                width: 100px;
+                                font-size: 30px;
+                                text-align: center;
+                            ">{{ $user->followers }}<span style="
+                                display: block;
+                                font-size: 16px;
+                                text-align: center;
+                            ">followers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-all">
+                        <a href="/post/create">write</a>                    
+                        <a href="/edit">edit profile</a>
+                        <a href="/logout">logout</a>
+                    </div>
+
+                @else
+                    <div style="float:right" @click="onOff = !onOff">X</div>
+                    <div class="formlogin">
+                        <div style="text-align:center;">
+                            <h3 class="card-title text-center" style="font-weight: 300;font-size:30px">Log in to Jaipun</h3>
+                        </div>
+                        
+                        @if(count($errors) > 0)
+                            @foreach($errors->all() as $error)
+                            <div  style="color:red;">{{$error}}</div>
+                            @endforeach    
+                        @endif
+
+                        @isset($comment)
+                        <p style="color:red;">{{$comment}}</p>
+                        @endisset
+                        <form action="{{url('login')}}"  method="post">
+                            {{csrf_field()}}
+                            <div style="margin-bottom:32px">
+                                <label class="label-login">Email address</label> 
+                                <input type="text" name="email">
+                            </div>
+                            <div style="margin-bottom:32px">
+                                <label class="label-login">Password</label> 
+                                <input type="password"  name="password">  
+                            </div> 
+                            <div style="margin-bottom:32px">
+                                <button type="submit" class="btn-login" >Sign in</button>   
+                            </div>            
+                                <div style=" text-align: center;"> Don't have an account? 
+                                    <a href="/register" style=" font-weight: 600; color: #2196F3; ">Create One</a>
+                                </div> 
+                        </form>
+                    </div>
+                @endif
+
                  </div>
             </div>
 

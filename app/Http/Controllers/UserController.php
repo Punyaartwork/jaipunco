@@ -118,7 +118,7 @@ class UserController extends Controller
          $user ->name = $request->get('name');
          $user ->detail = $request->get('detail');         
          $user ->save();
-         return redirect()->route('user.index')->with('success','!!!!!!EDITED!!!!!!');  
+         return redirect('/');  
      }
  
      /**
