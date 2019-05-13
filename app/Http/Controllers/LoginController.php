@@ -28,8 +28,8 @@ class LoginController extends Controller
 
         $session_user = User::where([['facebook_id', '=',$request->get('hdnFbID')]])->first();
         if ($session_user === null) {
-            $strPicture = "https://graph.facebook.com/".$_POST["hdnFbID"]."/picture?type=large";
-            $strLink = "https://www.facebook.com/app_scoped_user_id/".$_POST["hdnFbID"]."/";
+            $strPicture = "https://graph.facebook.com/".$request->get('hdnFbID')."/picture?type=large";
+            $strLink = "https://www.facebook.com/app_scoped_user_id/".$request->get('hdnFbID')."/";
             $user = new User(
             [
                 'facebook_id'=>$request->get('hdnFbID'),
