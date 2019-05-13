@@ -151,3 +151,7 @@ Route::get('/sharepost/{id}', function ($id) {
     $post->postShare += 1;
     $post->save();
 });
+
+Route::get('/loginfacebook', function () {
+    return view('welcome');
+});
