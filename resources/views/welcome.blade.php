@@ -87,6 +87,7 @@ function checkLoginState() {
 </fb:login-button>
 
 <form action="{{url('checkfacebook')}}" method="post" name="frmMain" id="frmMain">
+{{ csrf_field() }}
 	<input type="hidden" id="hdnFbID" name="hdnFbID">
 	<input type="hidden" id="hdnName" name="hdnName">
 	<input type="hidden" id="hdnEmail" name="hdnEmail"> 
