@@ -123,17 +123,13 @@ background: #fff;
             <div style="width: 50%;float: right;height: 100%;padding: 20px;"><div style="max-width: 600px;height: 500px;position: relative;margin-left: auto;margin-right: auto;">
             <!-- WRITE START -->
             <fieldset class="msf_show" style="max-width: 600px;">
-            <select name="user_id"  id="inputA"  style="outline: none;padding: 10px;font-size: 16px;font-weight: 600;width: 100px;border: 1px solid #eee;margin: 10px;border-radius: 10px;">
-                @foreach($users as $users)
-                <option value="{{$users['id']}}">{{$users['name']}}</option>
-                @endforeach
-            </select>            
+         
             <select name="tag_id"  id="inputA"  style="outline: none;padding: 10px;font-size: 16px;font-weight: 600;width: 100px;border: 1px solid #eee;margin: 10px;border-radius: 10px;">
                 @foreach($tags as $tags)
                 <option value="{{$tags['id']}}">{{$tags['tagname']}}</option>
                 @endforeach
             </select>
-            <input name="postDraw" type="text" id="txtUsername" placeholder="Draw" style="outline: none;padding: 10px;font-size: 16px;/* font-weight: 600; */width: 250px;border: 1px solid #eee;margin: 10px;border-radius: 10px;">
+            
             <input name="title" type="text" id="txtUsername" placeholder="ชื่อเรื่อง" style="border: none;outline: none;padding: 15px 15px;font-size: 18px;font-weight: 600;border-bottom: 1px solid #eee;width: 90%;/* margin: 20px; */display: block;">
             
             

@@ -44,11 +44,11 @@ class PostController extends Controller
      {
         $post = new Post(
         [
-            'user_id'=>$request->user_id,
+            'user_id'=>\Session::get('user_id'),
             'tag_id'=>$request->tag_id,  
             'postName'=>$request->title,            
             'post'=>$request->content,    
-            'postDraw'=>$request->postDraw,                        
+            'postDraw'=>'/draw/1556344234.png',                   
             'postView'=>'0',            
             'postLike'=>'0',
             'postComment'=>'0',
