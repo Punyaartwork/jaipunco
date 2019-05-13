@@ -23,6 +23,38 @@ class LoginController extends Controller
         }
     }
 
+    public function checkfacebook(Request $request)
+    {
+
+        $session_user = User::where([['facebook_id', '=',$request->get('hdnFbID')]])->first();
+        if ($session_user === null) {
+            $strPicture = "https://graph.facebook.com/".$_POST["hdnFbID"]."/picture?type=large";
+            $strLink = "https://www.facebook.com/app_scoped_user_id/".$_POST["hdnFbID"]."/";
+            $user = new User(
+            [
+                'facebook_id'=>$request->get('hdnFbID'),
+                'name'=>$request->get('hdnName'),  
+                'detail'=>'...',            
+                'email'=>$request->get('hdnEmail'),            
+                'profile'=>$strPicture,            
+                'password'=>'0',
+                'stories'=>'0',             
+                'following'=>'0',
+                'followers'=>'0',  
+                'notification'=>'0',                        
+                'link'=>$strLink,              
+            ]
+            );
+            $user->save();
+            $session_user = User::where('email', '=',$request->get('hdnEmail'))->first();
+            Session::put('user_id',$session_user->id);            
+            return redirect('/'); 
+        }else{
+            Session::put('user_id',$session_user->id);
+            return redirect('/'); 
+        }
+    }
+
     public function logout() {
         Session::forget('user_id');
 		//Auth::logout();		

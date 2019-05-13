@@ -141,6 +141,7 @@ Route::get('/register', function () {
 });
 
 Route::post('login', 'LoginController@login');
+Route::post('checkfacebook', 'LoginController@checkfacebook');
 Route::get('logout', 'LoginController@logout');
 
 Route::get('like/{id}/islikedbyme', 'LikeController@isLikedByMe');
