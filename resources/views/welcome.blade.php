@@ -1,7 +1,8 @@
 <html>
 <head>
-<title>ThaiCreate.Com Tutorials</title>
+<title>Login With facebook to jaipun</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>

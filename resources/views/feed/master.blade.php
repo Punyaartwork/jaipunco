@@ -954,6 +954,24 @@
                         <div style="text-align:center;">
                             <h3 class="card-title text-center" style="font-weight: 300;font-size:30px">Log in to Jaipun</h3>
                         </div>
+
+                        <a href="/loginfacebook" style="
+                            display: block;
+                            background: #355ba8;
+                            color: #fff;
+                            padding: 5px;
+                            border-radius: 2px;
+                            width: 300px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            margin: 10px auto;
+                            border: 2px solid #d7e1f5;
+                        "><img src="/icon/facebook-logo.svg" style="
+                                width: 20px;
+                                margin: 0px 10px;
+                                margin-bottom: -5px;
+                            ">Login with facebook
+                        </a>
                         
                         @if(count($errors) > 0)
                             @foreach($errors->all() as $error)
