@@ -956,6 +956,7 @@
                         </div>
 
                         <a href="/loginfacebook" style="
+                            text-align: center;
                             display: block;
                             background: #355ba8;
                             color: #fff;
