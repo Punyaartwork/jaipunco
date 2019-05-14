@@ -1,10 +1,10 @@
 <html lang="en">
 <head>
   <title>crop image profile jaipun</title>
-  <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
-  <script src="http://demo.itsolutionstuff.com/plugin/croppie.js"></script>
-  <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
-  <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/croppie.css">
+  <script src="/js/jquery.js"></script>
+  <script src="/js/croppie.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap-3.min.css">
+  <link rel="stylesheet" href="/css/croppie.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
