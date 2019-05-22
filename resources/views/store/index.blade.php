@@ -26,12 +26,12 @@
         max-width: 200px;
         margin:10px;
     }
-    .drawtag img{
+    .draw{
         width: 180px;
         margin: 0px;
     }
 
-    .drawName{
+    .drawname{
         text-align: center;
         font-size: 20px;
         font-weight: 600;
@@ -42,7 +42,7 @@
         .drawtag{
             float: left;width: 100%;margin: 10px auto;display: block;
         }
-        .drawtag img{
+        .draw{
             width: 180px;margin: auto;display: block;
         }
     }
@@ -51,7 +51,8 @@
     @foreach($drawname as $data)
 
     <a class="drawtag" href="/store/draw/{{$data->id}}">
-    <img src="{{$data->drawTag}}" > <div class="drawName">  {{$data->drawName}}</div>
+    <img class="draw" src="{{$data->drawTag}}" > 
+    <div class="drawname">  {{$data->drawName}}</div>
     </a>
 
             
