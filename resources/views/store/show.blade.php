@@ -3,7 +3,7 @@
 
 @section('headpage')
 
-<img src="/{{$drawname->drawTag}}" style="
+<img src="{{$drawname->drawTag}}" style="
         width: 180px;
         display:block;
         margin: auto;
