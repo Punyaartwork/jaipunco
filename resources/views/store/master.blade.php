@@ -529,10 +529,10 @@
             
                 @media only screen and (max-width: 670px) {
                     .drawtag{
-                        float: left;width: 100%;margin: 10px auto;display: block;
+                        float: left;margin: 20px;display: block;
                     }
                     .draw{
-                        width: 180px;margin: auto;display: block;
+                        width: 120px;margin: auto;display: block;
                     }
                 }
 
