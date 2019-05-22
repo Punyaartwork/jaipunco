@@ -521,7 +521,7 @@
 <body>
 
   <div id="app">
-    <img src="/draw.png" style="width: 100%;">
+    <img src="/namestore.PNG" style="width: 100%;">
 
 
  @yield('headpage')
