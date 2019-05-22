@@ -156,3 +156,16 @@ Route::get('/sharepost/{id}', function ($id) {
 Route::get('/loginfacebook', function () {
     return view('welcome');
 });
+
+Route::get('/store', function () {
+    $drawname = App\Drawname::all();
+    return view('store.index',compact('drawname'));
+});
+
+Route::get('/store/draw/{id}', function ($id) {
+    $drawuser = App\Draw::where('drawname_id',$id)->first();
+    $drawname = App\Drawname::find($drawuser->drawname_id);    
+    $user = App\User::find($drawname->user_id);
+    $draw = App\Draw::where('drawname_id', $id)->get();    
+    return view('store.show',compact('draw','user','drawname'));
+});
