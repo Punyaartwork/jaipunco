@@ -21,7 +21,7 @@
 @section('feedcontent')
 <div class="drawcontent">
     @foreach($draw as $data)
-    <img src="/{{$data->draw}}" style="
+    <img src="{{$data->draw}}" style="
             width: 110px;
             margin: 20px;
         "> 
