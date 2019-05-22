@@ -1,5 +1,5 @@
 @extends('store.master')
-@section('title','{{$drawname->drawName}} | jaipun store.')
+@section('title',$drawname->drawName.' | jaipun store.')
 
 @section('headpage')
 
