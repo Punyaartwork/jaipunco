@@ -510,8 +510,31 @@
 
                 }
 
-      
-
+                .drawtag{
+                    float: left;
+                    max-width: 200px;
+                    margin:10px;
+                }
+                .draw{
+                    width: 180px;
+                    margin: 0px;
+                }
+            
+                .drawname{
+                    text-align: center;
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: #000;
+                }
+            
+                @media only screen and (max-width: 670px) {
+                    .drawtag{
+                        float: left;width: 100%;margin: 10px auto;display: block;
+                    }
+                    .draw{
+                        width: 180px;margin: auto;display: block;
+                    }
+                }
 
       </style>
 
