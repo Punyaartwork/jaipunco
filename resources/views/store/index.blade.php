@@ -20,22 +20,38 @@
 "></div>
 @stop
 @section('feedcontent')
-
-    @foreach($drawname as $data)
-
-    <a href="/store/draw/{{$data->id}}" style="
-    float: left;
-    max-width: 200px;
-    margin:10px;
-    "><img src="{{$data->drawTag}}" style="
+    <style>
+    .drawtag{
+        float: left;
+        max-width: 200px;
+        margin:10px;
+    }
+    .drawtag img{
         width: 180px;
         margin: 0px;
-    "> <div style="
+    }
+
+    .drawName{
         text-align: center;
         font-size: 20px;
         font-weight: 600;
         color: #000;
-    ">  {{$data->drawName}}</div>
+    }
+
+    @media only screen and (max-width: 670px) {
+        .drawtag{
+            float: left;width: 100%;margin: 10px auto;display: block;
+        }
+        .drawtag img{
+            width: 180px;margin: auto;display: block;
+        }
+    }
+    </style>
+
+    @foreach($drawname as $data)
+
+    <a class="drawtag" href="/store/draw/{{$data->id}}">
+    <img src="{{$data->drawTag}}" > <div class="drawName">  {{$data->drawName}}</div>
     </a>
 
             
