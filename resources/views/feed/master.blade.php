@@ -529,13 +529,11 @@
         }
 
         .feedtag-detail{
-            position: absolute;
             word-wrap: break-word !important;  
         }
 
         .feedtag-votes{
             position: absolute; 
-            bottom: -120%;
         }
 
         .feedtag-votes img{
@@ -589,6 +587,14 @@
                 height: 320px;                
             }
 
+            .feedtag-title{
+                font-size: 28px;
+            }
+
+            .feedtag-detail{
+                font-size: 20px;  
+            }
+
             .feedtag-draw{
                 margin-top: 58px;
                 margin-left: 58px;
@@ -612,6 +618,13 @@
                 height: 340px;                
             }
 
+            .feedtag-title{
+                font-size: 32px;
+            }
+
+            .feedtag-detail{
+                font-size: 20px;  
+            }
             .feedtag-draw{
                 margin-top: 58px;
                 margin-left: 58px;
