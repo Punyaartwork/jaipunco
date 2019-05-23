@@ -525,6 +525,7 @@
         }
 
         .feedtag-title{
+            color:#2196F3;
             font-size: 24px; 
             font-weight: bold;
         }
@@ -578,12 +579,12 @@
             .feedtag-draw{
                 margin-top: 58px;
                 margin-left: 58px;
-                width: 280px;
-                height: 280px;
+                width: 160px;
+                height: 160px;
             }
 
             .feedtag-draw img{
-                width: 340px;
+                width: 200px;
             }
         }
 

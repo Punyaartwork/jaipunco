@@ -36,7 +36,7 @@ margin-right: auto;">
     <div class="feedtag"  v-for="item in sliced"  :key="item.id" v-if="sliced">
         <a v-bind:href="'/feed/' + item.id">
             <div style="padding: 15px;position: absolute;">
-                <div class="feedtag-title" v-text="item.tagname" v-bind:style="{ color:tagColor }"></div>
+                <div class="feedtag-title" v-text="item.tagname"></div>
                 <div v-html="item.tagDetail" class="feedtag-detail"></div>
                 <div class="feedtag-votes">
                     <img src="https://image.flaticon.com/icons/svg/1721/1721997.svg" >
