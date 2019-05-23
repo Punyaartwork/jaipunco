@@ -28,7 +28,9 @@
 </div>
 @stop
 @section('feedcontent')
-<div style="max-width: 820px;
+<div style="
+text-align: center;
+max-width: 820px;
 margin-left: auto;
 margin-right: auto;">
     <div class="feedtag"  v-for="item in sliced"  :key="item.id" v-if="sliced">

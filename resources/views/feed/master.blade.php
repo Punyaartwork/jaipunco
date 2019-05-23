@@ -513,6 +513,7 @@
 
 
         .feedtag{
+            text-align: left;
             position: relative;
             width: 260px;
             height: 260px;
@@ -558,83 +559,58 @@
         .feedtag-draw img{
             width: 280px;
         }
-
-        @media only screen and (max-width: 910px) {
-            .feedtag{
-                margin: 20px;
-                width: 300px;
-                height: 300px;                
-            }
-
-            .feedtag-draw{
-                margin-top: 58px;
-                margin-left: 58px;
-                width: 240px;
-                height: 240px;
-                overflow: hidden;
-            }
-
-            .feedtag-draw img{
-                width: 300px;
-            }
-        }
             
         @media only screen and (max-width: 870px) {
 
             .feedtag{
-                margin: 10px;
-                width: 320px;
-                height: 320px;                
+                margin: 5px;
+                width: 220px;
+                height: 220px;            
             }
 
             .feedtag-title{
-                font-size: 28px;
+                font-size: 18px;
             }
 
             .feedtag-detail{
-                font-size: 20px;  
-            }
-
-            .feedtag-draw{
-                margin-top: 58px;
-                margin-left: 58px;
-                width: 260px;
-                height: 260px;
-                overflow: hidden;
-            }
-
-            .feedtag-draw img{
-                width: 320px;
-            }
-        }
-
-        @media only screen and (max-width: 720px) {
-
-            .feedtag{
-                margin: 20px auto;
-                float: none;
-                display:block;
-                width: 340px;
-                height: 340px;                
-            }
-
-            .feedtag-title{
-                font-size: 32px;
-            }
-
-            .feedtag-detail{
-                font-size: 20px;  
+                font-size: 14px;
             }
             .feedtag-draw{
                 margin-top: 58px;
                 margin-left: 58px;
                 width: 280px;
                 height: 280px;
-                overflow: hidden;
             }
 
             .feedtag-draw img{
                 width: 340px;
+            }
+        }
+
+        @media only screen and (max-width: 720px) {
+
+            .feedtag{
+                margin: 2px;
+                width: 160px;
+                height: 160px;         
+            }
+
+            .feedtag-title{
+                font-size: 16px;
+            }
+
+            .feedtag-detail{
+                font-size: 12px;
+            }
+            .feedtag-draw{
+                margin-top: 58px;
+                margin-left: 58px;
+                width: 100px;
+                height: 100px;
+            }
+
+            .feedtag-draw img{
+                width: 120px;
             }
         }
 
