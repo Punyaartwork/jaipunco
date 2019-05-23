@@ -1,6 +1,6 @@
 @extends('feed.master')
 @section('title','Jaipun')
-
+@section('background','#fafafa')
 @section('nav')
     <a href="/new"  style="
     padding: 10px;
