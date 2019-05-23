@@ -1,5 +1,6 @@
 @extends('feed.master')
 @section('title',$user->name.' | jaipun')
+@section('background','#fafafa')
 @section('nav')
             <div style="
             padding: 10px;

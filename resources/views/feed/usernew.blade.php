@@ -1,5 +1,6 @@
 @extends('feed.master')
 @section('title',$user->name.' | jaipun')
+@section('background','#fafafa')
 @section('nav')
             <a href="/profile/{{$user->id}}"
             style=" padding: 10px;

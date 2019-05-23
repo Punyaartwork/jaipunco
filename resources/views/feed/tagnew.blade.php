@@ -1,6 +1,6 @@
 @extends('feed.master')
 @section('title',$tag->tagname.' | jaipun')
-
+@section('background',$tag->tagColor)
 @section('nav')
             <a style="
             padding: 10px;

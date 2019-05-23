@@ -13,7 +13,7 @@
 
       <style>
         body{
-          background:#fafafa;
+          background:@yield('background');
         }
         * {
           box-sizing: border-box;
@@ -511,34 +511,118 @@
 
         /***************************FEED TYPE END************************************/
 
-        .feedtag{
-            box-shadow: 0 4px 12px 0 rgba(0,0,0,.05)!important;
-            padding: 20px 20px;
-            text-align: center;
-            word-wrap: break-word;
-            margin: 10px;
-            background: rgb(135, 189, 182);
-            border: 1px solid #EEEEEE;
-            width: 240px;
-            float: left;
-            border-radius: 5px;
-        }
 
-        .feedtag-img{
-            width: 160px;
-            display: block;
-            height: 160px;
-            background: #fff;
-            border-radius: 50%;
-            margin: auto;
+        .feedtag{
+            position: relative;
+            width: 260px;
+            height: 260px;
+            background: rgb(255, 255, 255);
+            margin: 5px;
+            display: inline-block;border:1px solid #eee;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px 0 rgba(0,0,0,.05)!important;
         }
 
         .feedtag-title{
-            color: #fff;
-            margin: 0px;
-            display: inline-block;
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 24px; 
+            font-weight: bold;
+        }
+
+        .feedtag-detail{
+            position: absolute;
+            word-wrap: break-word !important;  
+        }
+
+        .feedtag-votes{
+            position: absolute; 
+            bottom: -120%;
+        }
+
+        .feedtag-votes img{
+            float: left; 
+            width: 20px;
+        }
+        
+        .feedtag-votes span{
+            font-size: 12px; 
+            float: left; 
+            margin: 2px 5px;
+        }
+
+        .feedtag-draw{
+            margin-top: 48px;
+            margin-left: 48px;
+            width: 210px;
+            height: 210px;
+            overflow: hidden;
+        }
+
+        .feedtag-draw img{
+            width: 280px;
+        }
+
+        @media only screen and (max-width: 910px) {
+            .feedtag{
+                margin: 20px;
+                width: 300px;
+                height: 300px;                
+            }
+
+            .feedtag-draw{
+                margin-top: 58px;
+                margin-left: 58px;
+                width: 240px;
+                height: 240px;
+                overflow: hidden;
+            }
+
+            .feedtag-draw img{
+                width: 300px;
+            }
+        }
+            
+        @media only screen and (max-width: 870px) {
+
+            .feedtag{
+                margin: 10px;
+                width: 320px;
+                height: 320px;                
+            }
+
+            .feedtag-draw{
+                margin-top: 58px;
+                margin-left: 58px;
+                width: 260px;
+                height: 260px;
+                overflow: hidden;
+            }
+
+            .feedtag-draw img{
+                width: 320px;
+            }
+        }
+
+        @media only screen and (max-width: 720px) {
+
+            .feedtag{
+                margin: 20px auto;
+                float: none;
+                display:block;
+                width: 340px;
+                height: 340px;                
+            }
+
+            .feedtag-draw{
+                margin-top: 58px;
+                margin-left: 58px;
+                width: 280px;
+                height: 280px;
+                overflow: hidden;
+            }
+
+            .feedtag-draw img{
+                width: 340px;
+            }
         }
 
         .feedtag-img img{
@@ -577,22 +661,7 @@
             margin-left: 10px;
         }
 
-        @media only screen and (max-width: 780px) {
-            .feedtag{
-                margin: 20px;
-                width: 280px;
-            }
-        }
-            
-        @media only screen and (max-width: 670px) {
-            .feedtag{
-                margin: 20px auto;
-                float: none;
-                width: 300px;
-            }
-        }
-
-        /***************************FEED TAG END************************************/
+        /***************************FEED TAG END UPDATE 23/05/62 ************************************/
 
         .hometag{
             box-shadow: 0 4px 12px 0 rgba(0,0,0,.05)!important;

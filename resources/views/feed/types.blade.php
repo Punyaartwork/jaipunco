@@ -1,5 +1,6 @@
 @extends('feed.master')
 @section('title','Types | jaipun')
+@section('background','#fafafa')
 @section('feedcontent')
 <div style="max-width: 520px;margin-left: auto;margin-right: auto;">
     <article  class="feedtype" v-for="item in sliced" :key="item.id" v-if="sliced">

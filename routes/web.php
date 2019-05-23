@@ -107,6 +107,8 @@ Route::get('/feedtype/new/{type_id}', function ($type_id) {
 
 Route::get('/feed/{id}', function ($id) {
     $tag = App\Tag::with('user')->find($id);
+    $tag->tagVotes += 1;
+    $tag->save();
     $tags = App\Tag::where('type_id', $tag->type_id)->take(3)->get();    
     return view('feed.tag',compact('tag','id','tags'));
 });
