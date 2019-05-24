@@ -851,6 +851,59 @@
             -webkit-overflow-scrolling:touch;
         }
 
+        /*********************feed list start************************/
+        .feedlist{
+            box-shadow: 0 10px 20px 0 rgba(0,0,0,.05)!important;word-wrap: break-word;margin: 10px 5px;display: inline-block;max-width: 400px;background: #fff;text-align: left;
+        }
+
+        .feedlist-into{
+            position: relative;
+            height: 150px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .feedlist-text{
+            position: absolute;margin: 0px 25px;
+        }
+
+        .feedlist-votes{
+            font-size: 12px;
+            float: left;
+            margin: 0px 5px;
+        }
+
+        .feedlist-draw{
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            margin-left: 250px;
+            margin-top: 20px;
+            display: block;
+        }
+
+        .feedlist-draw img{
+            width:200px
+        }
+
+        @media only screen and (max-width: 920px) {
+            .feedlist{
+                max-width: 320px;
+            }
+            .feedlist-draw{
+                margin-left: 170px;
+            }
+        }
+
+        @media only screen and (max-width: 420px) {
+            .feedlist{
+                max-width: 300px;
+            }
+            .feedlist-draw{
+                margin-left: 150px;
+            }
+        }
+        /*********************feed list end************************/
+
       </style>
 
   

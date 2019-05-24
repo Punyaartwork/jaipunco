@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('feed.top',compact('types'));
 });
 
+Route::get('/list', function () {
+    return view('feed.list');
+});
+
 Route::get('/welcome', function () {
     return view('welcome');
 });
@@ -80,6 +84,11 @@ Route::get('api/user/{feed}/{id}',function($feed,$id){
 
 Route::get('api/draw',function(){
     $data = App\Draw::all();
+    return response()->json($data);
+});
+
+Route::get('api/list',function(){
+    $data = App\Tag::with('user')->with('type')->with('post')->paginate(10);
     return response()->json($data);
 });
 
