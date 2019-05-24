@@ -1,6 +1,6 @@
 @extends('feed.master')
 @section('title','Jaipun')
-@section('background','#fff')
+@section('background','#fafafa')
 @section('nav')
 <!-- https://image.flaticon.com/icons/svg/263/263115.svg -->
 <div class="navcenter" style="white-space: nowrap !important;overflow-y: auto;justify-content: center;
@@ -41,7 +41,7 @@
             <div style="
                 font-weight: bold;font-size: 20px;
             " v-text="item.tagname"></div>
-            <div style="font-size: 12px;width: 80%;" v-text="item.tagDetail"></div>
+            <div style="font-size: 12px;width: 100%;" v-text="item.tagDetail"></div>
             <div v-text="item.user.name"></div>   
             <img src="https://image.flaticon.com/icons/svg/1721/1721997.svg" style="
                 width: 15px;

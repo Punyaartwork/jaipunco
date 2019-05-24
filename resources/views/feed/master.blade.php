@@ -853,7 +853,7 @@
 
         /*********************feed list start************************/
         .feedlist{
-            border:1px solid #ddd;word-wrap: break-word;margin: 10px 5px;display: inline-block;max-width: 400px;background: #fff;text-align: left;
+            box-shadow: 0 10px 20px 0 rgba(0,0,0,.05)!important;word-wrap: break-word;margin: 10px 5px;display: inline-block;max-width: 400px;background: #fff;text-align: left;
         }
 
         .feedlist-into{
@@ -875,7 +875,7 @@
             width: 150px;
             height: 150px;
             overflow: hidden;
-            margin-left: 250px;
+            margin-left: 245px;
             margin-top: 20px;
             display: block;
         }
@@ -889,7 +889,7 @@
                 max-width: 320px;
             }
             .feedlist-draw{
-                margin-left: 170px;
+                margin-left: 168px
             }
         }
 
