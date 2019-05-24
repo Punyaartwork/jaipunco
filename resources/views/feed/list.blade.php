@@ -55,7 +55,7 @@
         </a>
     <div style="float:left;width:100%">
         <div style="
-            padding: 10px;
+            padding: 10px;border-top:1px solid #ddd;
         " v-for="data in item.post.slice(0,3)" >
         <a v-bind:href="'/story/' + data.id">
             <div style="

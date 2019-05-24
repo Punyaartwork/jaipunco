@@ -853,13 +853,12 @@
 
         /*********************feed list start************************/
         .feedlist{
-            box-shadow: 0 10px 20px 0 rgba(0,0,0,.05)!important;word-wrap: break-word;margin: 10px 5px;display: inline-block;max-width: 400px;background: #fff;text-align: left;
+            border:1px solid #ddd;word-wrap: break-word;margin: 10px 5px;display: inline-block;max-width: 400px;background: #fff;text-align: left;
         }
 
         .feedlist-into{
             position: relative;
             height: 150px;
-            border-bottom: 1px solid #eee;
         }
 
         .feedlist-text{
