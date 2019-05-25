@@ -971,28 +971,28 @@
                 padding:15px 5px 15px 15px;
             }
             .feedhome-draw {
-                width: 120px;
-                margin-top: -105px;
+                width: 100px;
+                margin-top: -95px;
             }
             .feedhome-tag {
-                font-size: 12px;
+                font-size: 14px;
             }
             .feedhome-title {
-                font-size: 24px;
+                font-size: 18px;
             }
             .feedhome-post {
                 font-size: 12px;
             }
             .feedhome-name {
-                font-size: 14px;
+                font-size: 12px;
             }
         }
 
         @media only screen and (max-width: 340px) {
 
             .feedhome-draw {
-                width: 120px;
-                margin-top: -105px;
+                width: 90px;
+                margin-top: -80px;
             }
             .feedhome-title {
                 font-size: 18px;
