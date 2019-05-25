@@ -902,7 +902,108 @@
             }
         }
         /*********************feed list end************************/
+        /*********************feed homoe start************************/
+        .feedhome{
+            width: 50%;display: inline-block;float: left;padding: 25px;
+        }
+        .feedhome-tag{
+            font-size: 14px;
+        }
+        .feedhome-title{
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .feedhome-post{
+            font-size: 12px;width:70%;
+        }
+        .feedhome-name{
+            font-size: 14px;
+        }
+        .feedhome-time{
+            float: left;
+            font-size: 12px;
+        }
 
+        .feedhome-time img{
+            float: left;
+            width: 12px;
+        }
+
+        .feedhome-time-into{
+            font-size: 10px;
+            float: left;
+            margin: 0px 5px 0px 0px;
+        }
+        .feedhome-like{
+            font-size: 10px;
+            float: left;
+            margin: 0px 5px;
+        }
+        .feedhome-draw{
+            width: 120px;float: right;margin-top: -100px;
+        }
+
+        @media only screen and (max-width: 720px) {
+            .feedhome {
+                width: 100%;
+            }
+            .feedhome-draw {
+                width: 180px;
+                margin-top: -135px;
+            }
+            .feedhome-tag {
+                font-size: 18px;
+            }
+            .feedhome-title {
+                font-size: 32px;
+            }
+            .feedhome-post {
+                font-size: 16px;
+            }
+            .feedhome-name {
+                font-size: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 460px) {
+            .feedhome {
+                width: 100%;
+                padding:15px 5px 15px 15px;
+            }
+            .feedhome-draw {
+                width: 120px;
+                margin-top: -105px;
+            }
+            .feedhome-tag {
+                font-size: 12px;
+            }
+            .feedhome-title {
+                font-size: 24px;
+            }
+            .feedhome-post {
+                font-size: 12px;
+            }
+            .feedhome-name {
+                font-size: 14px;
+            }
+        }
+
+        @media only screen and (max-width: 340px) {
+
+            .feedhome-draw {
+                width: 120px;
+                margin-top: -105px;
+            }
+            .feedhome-title {
+                font-size: 18px;
+            }
+            .feedhome-post {
+                font-size: 12px;
+            }
+            .feedhome-name {
+                font-size: 12px;
+            }
+        }
       </style>
 
   

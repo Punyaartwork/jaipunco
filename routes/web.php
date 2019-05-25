@@ -11,9 +11,17 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/top', function () {
     $types = App\Type::all();
     return view('feed.top',compact('types'));
+});
+
+Route::get('/', function () {
+    $tags = App\tag::with('user')->with('type')->take(3)->orderBy('tagVotes','desc')->get();
+    $tops =  App\Post::with('user')->with('tag')->orderBy('postLike','desc')->take(6)->get();
+    $shares =  App\Post::with('user')->with('tag')->orderBy('postShare','desc')->take(6)->get();
+    $news =  App\Post::with('user')->with('tag')->orderBy('id','desc')->take(6)->get();    
+    return view('feed.home',compact('tags','tops','shares','news'));
 });
 
 Route::get('/list', function () {

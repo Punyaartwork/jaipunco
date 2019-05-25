@@ -2,25 +2,34 @@
 @section('title','latest.')
 @section('background','#fafafa')
 @section('nav')
-    <a href="/"  style="
-    padding: 10px;
-    font-size: 16px;
-    font-weight:600;
-    ">
-    Popular
+<div class="navcenter" style="white-space: nowrap !important;overflow-y: auto;justify-content: center;
+display: flex;text-align: center;max-width: 450px;margin: 0px auto;">
+    <a href="/" style="padding: 10px 15px; font-size: 14px; font-weight: 600;width: 20%;">
+        <img src="https://image.flaticon.com/icons/svg/263/263115.svg" style="width: 20px;">
+    </a> 
+
+
+    <!-- https://image.flaticon.com/icons/svg/865/865132.svg -->
+    <a href="/new" style="padding: 10px 15px; font-size: 14px;width: 20%;">
+        <img src=" https://image.flaticon.com/icons/svg/865/865132.svg" style="width: 20px;">
+    </a> 
+
+    <!--     https://image.flaticon.com/icons/svg/1001/1001287.svg -->
+
+    <a href="/list" style="padding: 10px 15px; font-size: 14px;width: 20%;">
+        <img src="https://image.flaticon.com/icons/svg/1001/1001399.svg" style="width: 20px;">
     </a>
-    @foreach($types as $types)
-    <a href="/feedtype/{{$types->id}}"  style="padding: 10px;font-size: 16px;">
-    {{$types->type}} 
+
+    <!-- https://image.flaticon.com/icons/svg/132/132233.svg -->
+    <a href="/types" style="padding: 10px 15px;font-size: 14px;width: 20%;">
+        <img src="https://image.flaticon.com/icons/svg/132/132284.svg" style="width: 20px;">
     </a>
-    @endforeach
-    <a href="/types"  style="
-    padding: 10px;
-    font-size: 16px;
-    ">
-        more
-            
-</a>
+
+    <!-- https://image.flaticon.com/icons/svg/149/149022.svg -->
+    <a href="/types" style="padding: 10px 15px;font-size: 14px;width: 20%;">
+        <img src="https://image.flaticon.com/icons/svg/149/149946.svg" style="width: 20px;">
+    </a>
+</div>
 @stop
 @section('feedcontent')
     <article class="feed" v-for="item in sliced" :key="item.id" v-if="sliced">
