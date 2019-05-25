@@ -17,7 +17,7 @@ Route::get('/top', function () {
 });
 
 Route::get('/', function () {
-    $tags = App\tag::with('user')->with('type')->take(3)->orderBy('tagVotes','desc')->get();
+    $tags = App\Tag::with('user')->with('type')->take(3)->orderBy('tagVotes','desc')->get();
     $tops =  App\Post::with('user')->with('tag')->orderBy('postLike','desc')->take(6)->get();
     $shares =  App\Post::with('user')->with('tag')->orderBy('postShare','desc')->take(6)->get();
     $news =  App\Post::with('user')->with('tag')->orderBy('id','desc')->take(6)->get();    
