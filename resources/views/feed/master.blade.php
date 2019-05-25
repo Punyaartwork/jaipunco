@@ -1220,7 +1220,7 @@
 
       <transition name="slide-fade">
           
-         <div class="content" v-if="show">
+         <div class="content" >
 
            @yield('feedcontent')
 
