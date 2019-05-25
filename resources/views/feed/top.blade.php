@@ -81,7 +81,7 @@ display: flex;text-align: center;max-width: 450px;margin: 0px auto;">
         const app = new Vue({
             el: "#app",
             data: {
-                show   : false, // display content after API request
+                show   : true, // display content after API request
                 offset : 5,     // items to display after scroll
                 display: 5,     // initial items
                 trigger: 300,   // how far from the bottom to trigger infinite scroll
