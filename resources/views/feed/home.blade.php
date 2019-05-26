@@ -141,6 +141,7 @@
         margin: 0px;
         border-bottom: 1px solid rgba(0,0,0,.15)!important;
         padding: 30px 15px 15px 15px;
+        display: inline-block;
     ">New</h1>
     <div>
         @foreach($news as $data)
