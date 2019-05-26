@@ -124,7 +124,7 @@
                     window.onscroll = ev => {
                         if (
                         window.innerHeight + window.scrollY >=
-                        (document.body.offsetHeight - this.trigger)
+                        (document.documentElement.offsetHeight - this.trigger)
                     ) {
                                 if (this.display < this.items.length) {
                                     this.display = this.display + this.offset;
