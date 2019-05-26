@@ -115,7 +115,8 @@
                                     id:postarray.data[i].id,
                                     tagname:postarray.data[i].tagname,  
                                     tagDetail:postarray.data[i].tagDetail,  
-                                    post:postarray.data[i].post,                   
+                                    post:postarray.data[i].post, 
+                                    type:postarray.data[i].type,                                                                         
                                 });     
                                 }                                                                                                    
                             }, function(error){
