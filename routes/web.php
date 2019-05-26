@@ -115,6 +115,11 @@ Route::get('api/app/story/{id}',function($id){
     return response()->json([$data]);
 });
 
+Route::get('api/app/feedtag/{id}',function($id){
+    $data = App\Post::with('user')->with('tag')->where('tag_id', $id)->orderBy('id','desc')->get();
+    return response()->json($data);
+});
+
 /********    API     *********/
 
 Route::get('/new', function () {
