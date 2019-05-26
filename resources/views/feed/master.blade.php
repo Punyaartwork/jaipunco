@@ -969,6 +969,9 @@
         }
 
         @media only screen and (max-width: 460px) {
+            .feedhome-text {
+                margin-top: 0px;
+            }
             .feedhome {
                 width: 100%;
                 padding:15px 5px 15px 15px;
