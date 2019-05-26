@@ -1096,11 +1096,11 @@
     </header>
 
    <!-- preloader -->
-   <!--<transition name="fade">
+   <transition name="fade">
       <div class="preloader" v-if="!show">
          <span><img src="https://sv1.picz.in.th/images/2019/04/20/w7PfHE.png" style="width:80px;" ></span>
       </div>
-   </transition>-->
+   </transition>
    <!-- /preloader -->
    <!-- section -->
    <section class="section">
@@ -1232,7 +1232,7 @@
 
       <transition name="slide-fade">
           
-         <div class="content" >
+         <div class="content" v-if="show">
 
            @yield('feedcontent')
 
