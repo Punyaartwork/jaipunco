@@ -114,7 +114,9 @@
                                 this.items.push({
                                     id:postarray.data[i].id,
                                     tagname:postarray.data[i].tagname,  
-                                    tagDetail:postarray.data[i].tagDetail,  
+                                    tagDetail:postarray.data[i].tagDetail, 
+                                    tagVotes:postarray.data[i].tagVotes,  
+                                    tagDraw:postarray.data[i].tagDraw,   
                                     post:postarray.data[i].post, 
                                     type:postarray.data[i].type,     
                                     user:postarray.data[i].user,                                                                                                                                                                                 
