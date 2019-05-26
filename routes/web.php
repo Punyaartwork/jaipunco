@@ -100,6 +100,16 @@ Route::get('api/list',function(){
     return response()->json($data);
 });
 
+Route::get('api/app/post',function(){
+    $data = App\Post::with('user')->with('tag')->orderBy('id','desc')->take(6)->get();    
+    return response()->json($data);
+});
+
+Route::get('api/app/tag',function(){
+    $data = App\Tag::with('user')->with('type')->orderBy('id','desc')->take(6)->get();    
+    return response()->json($data);
+});
+
 /********    API     *********/
 
 Route::get('/new', function () {
