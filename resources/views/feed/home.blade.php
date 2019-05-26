@@ -182,7 +182,6 @@
         const app = new Vue({
             el: "#app",
             data: {
-                onOff:false,
                 show   : true, // display content after API request
                 offset : 5,     // items to display after scroll
                 display: 5,     // initial items
@@ -192,6 +191,7 @@
                 posts: [],
                 page:1,
                 text:null,
+                onOff:false,
             },
             computed: {
                 // slice the array of data to display
@@ -201,7 +201,6 @@
             },
             methods: {
                 // check to see if we're at the bottom of the page
-                this.end = true;
                 scroll() {
                 window.onscroll = ev => {
                     if (
