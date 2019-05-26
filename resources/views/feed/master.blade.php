@@ -975,6 +975,7 @@
             .feedhome {
                 width: 100%;
                 padding:15px 5px 15px 15px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
             }
             .feedhome-draw {
                 width: 100px;
