@@ -916,6 +916,9 @@
         .feedhome-post{
             font-size: 12px;width:70%;
         }
+        .feedhome-text{
+            margin-top: 10px;
+        }
         .feedhome-name{
             font-size: 14px;
         }
@@ -974,14 +977,16 @@
                 width: 100px;
                 margin-top: -95px;
             }
-            .feedhome-tag {
-                font-size: 14px;
-            }
             .feedhome-title {
-                font-size: 18px;
+                font-size: 24px;
+                width: 70%;
+            }            
+            .feedhome-tag {
+                font-size: 16px;
             }
             .feedhome-post {
                 font-size: 12px;
+                display:none;
             }
             .feedhome-name {
                 font-size: 12px;
@@ -989,14 +994,17 @@
         }
 
         @media only screen and (max-width: 340px) {
+            .feedhome-text{
+                margin-top:0px;
+            }
 
             .feedhome-draw {
                 width: 90px;
                 margin-top: -80px;
             }
             .feedhome-title {
-                font-size: 18px;
-            }
+                font-size: 22px;
+            }            
             .feedhome-post {
                 font-size: 12px;
             }

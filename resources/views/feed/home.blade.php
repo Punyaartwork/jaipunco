@@ -73,14 +73,19 @@
     <div>
         @foreach($tops as $data)
         <div class="feedhome">
-            <div class="feedhome-tag">{{$data->tag->tagname}}</div> 
-            <div class="feedhome-title">{{$data->postName}}</div> 
-            <div class="feedhome-post" :text-content.prop="'{{$data->post}}' | truncate" ></div>  
-
-            <div style=" margin-top: 10px;">
-                <div class="feedhome-name">
-                    {{$data->user->name}}  
-                </div>
+            <a href="/feed/{{$data->tag->id}}">
+                <div class="feedhome-tag">{{$data->tag->tagname}}</div> 
+            </a>
+            <a href="/story/{{$data->id}}">
+                <div class="feedhome-title">{{$data->postName}}</div> 
+                <div class="feedhome-post" :text-content.prop="'{{$data->post}}' | truncate" ></div>  
+            </a>
+            <div class="feedhome-text" >
+                <a href="/profile/{{$data->user->id}}">
+                    <div class="feedhome-name">
+                        {{$data->user->name}}  
+                    </div>
+                </a>
                 <div class="feedhome-time">
 
                     <span class="feedhome-time-into"  :text-content.prop="{{$data->postTime}} | timeSince" ></span>
@@ -105,14 +110,19 @@
     <div>
         @foreach($shares as $data)
         <div class="feedhome">
-            <div class="feedhome-tag">{{$data->tag->tagname}}</div> 
-            <div class="feedhome-title">{{$data->postName}}</div> 
-            <div class="feedhome-post" :text-content.prop="'{{$data->post}}' | truncate" ></div>  
-
-            <div style=" margin-top: 10px;">
-                <div class="feedhome-name">
-                    {{$data->user->name}}  
-                </div>
+            <a href="/feed/{{$data->tag->id}}">
+                <div class="feedhome-tag">{{$data->tag->tagname}}</div> 
+            </a>
+            <a href="/story/{{$data->id}}">
+                <div class="feedhome-title">{{$data->postName}}</div> 
+                <div class="feedhome-post" :text-content.prop="'{{$data->post}}' | truncate" ></div>  
+            </a>
+            <div class="feedhome-text" >
+                <a href="/profile/{{$data->user->id}}">
+                    <div class="feedhome-name">
+                        {{$data->user->name}}  
+                    </div>
+                </a>
                 <div class="feedhome-time">
 
                     <span class="feedhome-time-into"  :text-content.prop="{{$data->postTime}} | timeSince" ></span>
@@ -135,14 +145,19 @@
     <div>
         @foreach($news as $data)
         <div class="feedhome">
-            <div class="feedhome-tag">{{$data->tag->tagname}}</div> 
-            <div class="feedhome-title">{{$data->postName}}</div> 
-            <div class="feedhome-post" :text-content.prop="'{{$data->post}}' | truncate" ></div>  
-
-            <div style=" margin-top: 10px;">
-                <div class="feedhome-name">
-                    {{$data->user->name}}  
-                </div>
+            <a href="/feed/{{$data->tag->id}}">
+                <div class="feedhome-tag">{{$data->tag->tagname}}</div> 
+            </a>
+            <a href="/story/{{$data->id}}">
+                <div class="feedhome-title">{{$data->postName}}</div> 
+                <div class="feedhome-post" :text-content.prop="'{{$data->post}}' | truncate" ></div>  
+            </a>
+            <div class="feedhome-text" >
+                <a href="/profile/{{$data->user->id}}">
+                    <div class="feedhome-name">
+                        {{$data->user->name}}  
+                    </div>
+                </a>
                 <div class="feedhome-time">
 
                     <span class="feedhome-time-into"  :text-content.prop="{{$data->postTime}} | timeSince" ></span>
