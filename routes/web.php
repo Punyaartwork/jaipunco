@@ -110,7 +110,7 @@ Route::get('api/app/tag',function(){
     return response()->json($data);
 });
 
-Route::get('api/app/story/{id}',function(){
+Route::get('api/app/story/{id}',function($id){
     $data = App\Post::with('user')->with('tag')->find($id);    
     return response()->json($data);
 });
