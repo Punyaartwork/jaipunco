@@ -96,7 +96,7 @@ Route::get('api/draw',function(){
 });
 
 Route::get('api/list',function(){
-    $data = App\Tag::with('user')->with('type')->with('post')->paginate(10);
+    $data = App\Tag::with('user')->with('type')->with('post')->orderBy('tagVotes','desc')->paginate(10);
     return response()->json($data);
 });
 
