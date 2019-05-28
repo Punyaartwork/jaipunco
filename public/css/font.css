@@ -48,8 +48,8 @@
   @font-face {
     font-family: "LayijiMaHaNiYom";
   
-    src: url("/fonts/LayijiMahaniyomV161.woff") format("woff"), /* Modern Browsers */
-      url("/fonts/LayijiMahaniyomV161.woff2") format("woff2"); /* Modern Browsers */
+    src: url("LayijiMahaniyomV161.woff") format("woff"), /* Modern Browsers */
+      url("LayijiMahaniyomV161.woff2") format("woff2"); /* Modern Browsers */
     font-weight: bold;
     font-style: normal;
   }
@@ -58,8 +58,8 @@
   @font-face {
     font-family: "LayijiMaHaNiYom";
   
-    src: url("/fonts/LayijiMahaniyom-Bao-12.woff") format("woff"), /* Modern Browsers */
-      url("/fonts/LayijiMahaniyom-Bao-12.woff2") format("woff2"); /* Modern Browsers */
+    src: url("LayijiMahaniyom-Bao-12.woff") format("woff"), /* Modern Browsers */
+      url("LayijiMahaniyom-Bao-12.woff2") format("woff2"); /* Modern Browsers */
     font-weight: normal;
     font-style: normal;
   }
