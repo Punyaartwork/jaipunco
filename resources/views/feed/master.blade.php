@@ -982,7 +982,7 @@
                 margin-top: -95px;
             }
             .feedhome-title {
-                font-size: 24px;
+                font-size: 32px;
                 width: 70%;
             }            
             .feedhome-tag {
@@ -1007,7 +1007,7 @@
                 margin-top: -80px;
             }
             .feedhome-title {
-                font-size: 22px;
+                font-size: 30px;
             }            
             .feedhome-post {
                 font-size: 12px;
