@@ -168,6 +168,8 @@ Route::get('/profile/new/{id}', function ($id) {
 
 Route::get('/story/{id}', function ($id) {
     $post = App\Post::with('user')->with('tag')->find($id);
+    $post->postView += 1;
+    $post->save();
     return view('story.view',compact('post','id'));
 });
 

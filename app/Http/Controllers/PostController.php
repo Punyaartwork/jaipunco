@@ -58,6 +58,12 @@ class PostController extends Controller
         ]
         );
         $post->save();
+        $user = User::find(\Session::get('user_id'));
+        $user->stories += 1;
+        $user->save();
+        $tag = Tag::find($request->tag_id);
+        $tag->tagStories += 1;
+        $tag->save();
         return redirect()->route('post.create')->with('success','!!!!!!SAVED!!!!!!');
        // return response()->json($response); 
  
