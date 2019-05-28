@@ -106,6 +106,8 @@
         margin: 0px;
         border-bottom: 1px solid rgba(0,0,0,.15)!important;
         padding: 30px 15px 15px 15px;
+        width: 100%;
+        display: inline-block;
     ">For you</h1>
     <div>
         @foreach($shares as $data)
