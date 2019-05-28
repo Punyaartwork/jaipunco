@@ -93,7 +93,7 @@ body{
 
     
 .content-article * {
-        font-family: 'LayijiMaHaNiYom', sans-serif !important;
+        font-family: 'cs_prajad', sans-serif !important;
         word-wrap: break-word;
         margin: 5px;
         color:#000 !important;
@@ -104,7 +104,7 @@ body{
         }
 
         .content-article{
-        font-family: 'LayijiMaHaNiYom', sans-serif !important;
+        font-family: 'cs_prajad', sans-serif !important;
         word-wrap: break-word;
         margin: 5px;
         color:#000 !important;

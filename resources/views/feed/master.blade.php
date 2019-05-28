@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="stylesheet" href="/css/fontnew.css">   
+<link rel="stylesheet" href="/css/font.css">   
 <link rel='shortcut icon' href='/css/3ByI2t.ico' type='image/x-icon'>        
 
   <meta charset="UTF-8">
@@ -982,7 +982,7 @@
                 margin-top: -95px;
             }
             .feedhome-title {
-                font-size: 32px;
+                font-size: 24px;
                 width: 70%;
             }            
             .feedhome-tag {
@@ -1007,7 +1007,7 @@
                 margin-top: -80px;
             }
             .feedhome-title {
-                font-size: 30px;
+                font-size: 22px;
             }            
             .feedhome-post {
                 font-size: 12px;
