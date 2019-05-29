@@ -168,9 +168,38 @@ Route::get('/profile/new/{id}', function ($id) {
 });
 
 Route::get('/story/{id}', function ($id) {
-    $post = App\Post::with('user')->with('tag')->find($id);
+    $post = App\Post::with('user')->with('tag')->find($id);  
     $post->postView += 1;
-    $post->save();
+    $post->save();  
+    $post_id = $post->id;
+    // if the cookie exists, read it and unserialize it. If not, create a blank array
+    if(array_key_exists('history', $_COOKIE)) {
+        $data = json_decode(\Cookie::get('history'), true);
+        $new=Array
+        (
+        '0' => Array
+            (
+                'id' => $post_id,
+                'time' => time(),
+            )
+        );
+        if(in_array($post_id, array_column($data, 'id'))) { // search value in the array
+            $cookie = $data;
+        }else{
+            $cookie = array_merge($new,$data);
+        }
+
+    } else {
+        $cookie=Array
+        (
+        '0' => Array
+            (
+                'id' => $post_id,
+                'time' => time(),
+            )
+        );  
+    }
+    \Cookie::queue(\Cookie::make('history',json_encode($cookie),864000));
     return view('story.view',compact('post','id'));
 });
 
@@ -218,6 +247,15 @@ Route::get('/more', function () {
 });
 
 Route::get('/history', function () {
+    $cookie=\Cookie::get('history');
+    if(isset($cookie)){
+        $data = json_decode(\Cookie::get('history'), true);
+        for($i=0;$i>=count($data);$i++){
+            $history = $data[$i]['id'];
+        }    
+    }else{
+        $data=0;
+    }
     $title = 'history | jaipun';
-    return view('feed.coming',compact('title'));
+    return view('feed.history',compact('title','data'));
 });
