@@ -53,7 +53,7 @@
             $post = \App\Post::with('user')->with('tag')->find($data['id']);
             ?>
 
-            <div style="
+            <a href='/story/{{$post->id}}'style="
                 display: inline-block;
                 margin: 20px 0px;
             ">
@@ -72,7 +72,7 @@
                     อ่านล่าสุดเมื่อ <span  :text-content.prop="{{$data['time']}} | timeSince" ></span>
                 </div>
                 </div>
-            </div>
+            </a>
             
 
         @endforeach 
