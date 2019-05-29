@@ -101,8 +101,9 @@ Route::get('api/list',function(){
 });
 
 Route::get('api/app/post',function(){
-    $data = App\Post::with('user')->with('tag')->orderBy('id','desc')->take(6)->get();    
-    return response()->json($data);
+    //$data = App\Post::with('user')->with('tag')->where('user_id', $id)->orderBy('id','desc')->paginate(10); 
+    $data = App\Post::with('user')->with('tag')->orderBy('id','desc')->paginate(10);   
+    return response()->json([$data]);
 });
 
 Route::get('api/app/tag',function(){
@@ -116,8 +117,8 @@ Route::get('api/app/story/{id}',function($id){
 });
 
 Route::get('api/app/feedtag/{id}',function($id){
-    $data = App\Post::with('user')->with('tag')->where('tag_id', $id)->orderBy('id','desc')->get();
-    return response()->json($data);
+    $data = App\Post::with('user')->with('tag')->where('tag_id', $id)->orderBy('id','desc')->paginate(10);
+    return response()->json([$data]);
 });
 
 /********    API     *********/

@@ -988,6 +988,7 @@
             }
             .feedhome-post {
                 font-size: 12px;
+                display:none;
             }
             .feedhome-name {
                 font-size: 16px;
