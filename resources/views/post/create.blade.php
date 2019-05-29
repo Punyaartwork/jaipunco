@@ -2,11 +2,36 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="/css/font.css">
+        <link rel="stylesheet" href="/css/fonts.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>POST JAIPUN</title>
+        #coming{
+            display:none;
+        }
+        @media only screen and (max-width: 820px) {
+            #coming{
+                display:block;
+            }
+        }
 
+        </style>
+        <div id="coming"style="
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 99;
+                    ">
+                <div style="
+                position: relative;
+                font-family: 'LayijiMaHaNiYom', sans-serif;
+                top: 30%;
+                font-size: -webkit-xxx-large;
+                margin: auto;
+                display: table;
+                ">ยังไม่พร้อมใช้งาน</div>
+        </div>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 

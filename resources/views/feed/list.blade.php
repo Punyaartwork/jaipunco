@@ -16,17 +16,17 @@
 
      <!--    https://image.flaticon.com/icons/svg/1001/1001399.svg  -->
      
-    <a href="/types" style="padding: 10px 15px; font-size: 14px;width: 20%;">
+    <a href="" style="padding: 10px 15px; font-size: 14px;width: 20%;">
         <img src="https://image.flaticon.com/icons/svg/1001/1001287.svg" style="width: 20px;">
     </a>
 
     <!-- https://image.flaticon.com/icons/svg/132/132233.svg -->
-    <a href="/types" style="padding: 10px 15px;font-size: 14px;width: 20%;">
+    <a href="/history" style="padding: 10px 15px;font-size: 14px;width: 20%;">
         <img src="https://image.flaticon.com/icons/svg/132/132284.svg" style="width: 20px;">
     </a>
 
     <!-- https://image.flaticon.com/icons/svg/149/149022.svg -->
-    <a href="/types" style="padding: 10px 15px;font-size: 14px;width: 20%;">
+    <a href="/more" style="padding: 10px 15px;font-size: 14px;width: 20%;">
         <img src="https://image.flaticon.com/icons/svg/149/149946.svg" style="width: 20px;">
     </a>
 </div>

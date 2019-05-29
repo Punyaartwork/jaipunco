@@ -210,3 +210,13 @@ Route::get('/store/draw/{id}', function ($id) {
     $draw = App\Draw::where('drawname_id', $id)->get();    
     return view('store.show',compact('draw','user','drawname'));
 });
+
+Route::get('/more', function () {
+    $title = 'more | jaipun';
+    return view('feed.coming',compact('title'));
+});
+
+Route::get('/history', function () {
+    $title = 'history | jaipun';
+    return view('feed.coming',compact('title'));
+});
