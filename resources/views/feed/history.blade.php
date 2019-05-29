@@ -59,7 +59,7 @@
             ">
                 <img src="{{$post->postDraw}}" style="width: 30%;float: left;"> 
                 <div style="font-family: 'cs_prajad', sans-serif;padding: 0px 10px;width: 70%;float: left;">
-                <a href='/feed/{{$post->tag->id}}'> style="font-size: 16px;">
+                <a href='/feed/{{$post->tag->id}}' style="font-size: 16px;">
                 {{$post->tag->tagname}}
                 </a> 
                 <a href='/story/{{$post->id}}'>
