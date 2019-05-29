@@ -969,34 +969,31 @@
         }
 
         @media only screen and (max-width: 460px) {
-            .feedhome-text {
-                margin-top: 0px;
-            }
+            @media only screen and (max-width: 460px) {
             .feedhome {
-                width: 100%;
+                width: 95%;
+                margin: 10px;
                 padding:15px 5px 15px 15px;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
             }
             .feedhome-draw {
-                width: 100px;
-                margin-top: -95px;
+                width: 180px;
+                margin-top: -30px;
+            }
+            .feedhome-tag {
+                font-size: 18px;
             }
             .feedhome-title {
-                font-size: 24px;
-                width: 70%;
-            }            
-            .feedhome-tag {
-                font-size: 16px;
+                font-size: 26px;
             }
             .feedhome-post {
                 font-size: 12px;
-                display:none;
             }
             .feedhome-name {
-                font-size: 12px;
+                font-size: 16px;
             }
         }
-
+           
         @media only screen and (max-width: 340px) {
             .feedhome-text{
                 margin-top:0px;
