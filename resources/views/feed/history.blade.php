@@ -51,7 +51,7 @@
     ">Bookmark</div>
 
     @if($data != 0)
-    <div style="
+    <div v-if="onmark==false" style="
                 padding: 10px;
                 width: 95%;
                 width: 340px;
