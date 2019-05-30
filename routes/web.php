@@ -259,7 +259,7 @@ Route::get('/history', function () {
     }else{
         $data=0;
     }
-    $mark = App\Mark::where('user_id',\Session::get('user_id'))->get();    
+    $mark = App\Mark::where('user_id',\Session::get('user_id'))->orderBy('id','desc')->get();    
     $title = 'history | jaipun';
     return view('feed.history',compact('title','data','mark'));
 });
