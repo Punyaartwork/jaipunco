@@ -33,15 +33,24 @@
 </div>
  @stop
 @section('feedcontent')
-
-    @if($data != 0)
-    <div id="coming" style="
+<div  @click="onmark = false" id="coming" style="
     font-family: LayijiMaHaNiYom, sans-serif;
-    font-size: -webkit-xxx-large;
-    margin: 0px 0px;
-    width: 100%;
+    font-size: xx-large;
+    margin: 30px 0px;
+    width: 50%;
+    float:left;    
     text-align: center;
     ">อ่านล่าสุด</div>
+    <div  @click="onmark = true" id="coming" style="
+    font-family: LayijiMaHaNiYom, sans-serif;
+    font-size: xx-large;
+    margin: 30px 0px;
+    float:left;
+    width: 50%;
+    text-align: center;
+    ">Bookmark</div>
+
+    @if($data != 0)
     <div style="
                 padding: 10px;
                 width: 95%;
@@ -88,6 +97,55 @@
     text-align: center;
     ">ยังไม่มีข้อมูลครับ</div>
     @endif
+    
+    
+    <div v-if="onmark!=false" style="
+                padding: 10px;
+                width: 95%;
+                width: 340px;
+                margin:10px auto;
+            ">
+        @if (\Session::has('user_id'))
+            
+        @foreach($mark as $mark)
+            <?php
+            $post = \App\Post::with('user')->with('tag')->find($mark->post_id);
+            ?>
+
+            <div style="
+                display: inline-block;
+                margin: 20px 0px;
+            ">
+                <img src="{{$post->postDraw}}" style="width: 30%;float: left;"> 
+                <div style="font-family: 'cs_prajad', sans-serif;padding: 0px 10px;width: 70%;float: left;">
+                <div style="font-size: 16px;">
+                {{$post->tag->tagname}}
+                </div> 
+                <div style="
+                    font-size: 20px;
+                    font-weight: 600;
+                ">
+                {{$post->postName}} 
+                </div> 
+                <div>
+                    บันทึกล่าสุดเมื่อ <span  :text-content.prop="{{$mark->markTime}} | timeSince" ></span>
+                </div>
+                </div>
+            </div>
+            
+
+        @endforeach 
+        </div>
+        @else   
+        <div id="coming" style="
+        font-family: LayijiMaHaNiYom, sans-serif;
+        font-size: -webkit-xxx-large;
+        margin: 40% 0px;
+        width: 100%;
+        text-align: center;
+        ">กรุณาล็อกอินก่อนใช้งาน</div>
+        @endif
+
 @stop
 @section('vuefeed')
         <script>
@@ -104,7 +162,8 @@
                 posts: [],
                 page:1,
                 text:null,
-                onOff:false
+                onOff:false,
+                onmark:false,
             },
             computed: {
                 // slice the array of data to display

@@ -480,7 +480,7 @@ z-index: 4;
 @stop
 @section('content')
 
-
+<img v-bind:src="backmark"  v-on:click="togglemark"  style="width: 30px;margin-top: -30px;margin-left: 90%;margin-bottom: 20px;">
 
   <div class="content-title">{{$post->postName}}</div> 
         <div class="content-tag">
@@ -564,7 +564,9 @@ z-index: 4;
                 content:null,
                 liked: false,
                 likesCount: {{$post->postLike}},
-                background:'#fff'
+                background:'#fff',
+                marked: false,
+                backmark: 'https://image.flaticon.com/icons/svg/88/88208.svg',
             },
             computed: {
                 // slice the array of data to display
@@ -606,6 +608,27 @@ z-index: 4;
                     });
                     @endif
                 },
+                togglemark: function() {
+                    @if ($post->user->id != \Session::get('user_id') and \Session::get('user_id') != 0)
+                    this.$http.get('/mark/'+{{$post->id}}+'/ismarkedbyme').then(function(response){
+                        //alert(JSON.stringify(response)); 
+                        if(response.body==='true'){
+                            this.backmark='https://image.flaticon.com/icons/svg/88/88208.svg';                        
+                            this.marked = false;
+                            this.$http.get('/mark/'+{{$post->id}}+'/marked').then(function(response){
+                            });
+                        }else{
+                            this.backmark='https://image.flaticon.com/icons/svg/261/261920.svg';
+                            this.marked = true;            
+                            this.$http.get('/mark/'+{{$post->id}}+'/marked').then(function(response){
+                                
+                            });
+                        }
+                    }, function(error){
+                        console.log(error.statusText);
+                    });
+                    @endif
+                },
                 Sharepost:function() {
                     this.$http.get('/sharepost/'+{{$post->id}}).then(function(response){
                     });
@@ -622,6 +645,11 @@ z-index: 4;
                 this.$http.get('/like/'+{{$post->id}}+'/islikedbyme').then(function(response){
                     if(response.body==='true'){
                         this.background='#fff59d';     
+                    }
+                });
+                this.$http.get('/mark/'+{{$post->id}}+'/ismarkedbyme').then(function(response){
+                    if(response.body==='true'){
+                        this.backmark='https://image.flaticon.com/icons/svg/261/261920.svg';     
                     }
                 });
                 

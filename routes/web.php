@@ -218,6 +218,9 @@ Route::get('logout', 'LoginController@logout');
 Route::get('like/{id}/islikedbyme', 'LikeController@isLikedByMe');
 Route::get('like/{id}/liked', 'LikeController@like');
 
+Route::get('mark/{id}/ismarkedbyme', 'MarkController@isMarkedByMe');
+Route::get('mark/{id}/marked', 'MarkController@mark');
+
 Route::get('/sharepost/{id}', function ($id) {
     $post = App\Post::find($id);
     $post->postShare += 1;
@@ -256,6 +259,7 @@ Route::get('/history', function () {
     }else{
         $data=0;
     }
+    $mark = App\Mark::where('user_id',\Session::get('user_id'))->get();    
     $title = 'history | jaipun';
-    return view('feed.history',compact('title','data'));
+    return view('feed.history',compact('title','data','mark'));
 });
