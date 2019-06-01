@@ -102,12 +102,12 @@ Route::get('api/list',function(){
 
 Route::get('api/app/post',function(){
     //$data = App\Post::with('user')->with('tag')->where('user_id', $id)->orderBy('id','desc')->paginate(10); 
-    $data = App\Post::with('user')->with('tag')->orderBy('id','desc')->paginate(10);   
+    $data = App\Post::with('user')->with('tag')->where('user_id', 18)->orderBy('id','desc')->paginate(10);   
     return response()->json([$data]);
 });
 
 Route::get('api/app/tag',function(){
-    $data = App\Tag::with('user')->with('type')->orderBy('id','desc')->take(6)->get();    
+    $data = App\Tag::with('user')->with('type')->where('user_id', 18)->orderBy('id','desc')->take(6)->get();    
     return response()->json($data);
 });
 
