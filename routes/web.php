@@ -113,6 +113,11 @@ Route::get('api/app/tag',function(){
 
 Route::get('api/app/story/{id}',function($id){
     $data = App\Post::with('user')->with('tag')->find($id);    
+    $data->postView += 1;
+    $data->save(); 
+    $tag = App\Tag::find($data->id);
+    $tag->tagVotes += 1;
+    $tag->save();
     return response()->json([$data]);
 });
 
@@ -172,6 +177,9 @@ Route::get('/story/{id}', function ($id) {
     $post->postView += 1;
     $post->save();  
     $post_id = $post->id;
+    $tag = App\Tag::find($post->id);
+    $tag->tagVotes += 1;
+    $tag->save();
     // if the cookie exists, read it and unserialize it. If not, create a blank array
     if(array_key_exists('history', $_COOKIE)) {
         $data = json_decode(\Cookie::get('history'), true);
