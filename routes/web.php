@@ -24,6 +24,10 @@ Route::get('/', function () {
     return view('feed.home',compact('tags','tops','shares','news'));
 });
 
+Route::get('/font', function () {
+    return view('font');
+});
+
 Route::get('/list', function () {
     return view('feed.list');
 });

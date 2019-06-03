@@ -1,0 +1,38 @@
+/* font converted using font-converter.net. thank you! */
+@font-face {
+  font-family: "TFNopScript";
+
+  src: url("TFNopScript.woff") format("woff"), /* Modern Browsers */
+    url("TFNopScript.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* font converted using font-converter.net. thank you! */
+@font-face {
+  font-family: "THMaliGrade6";
+
+  src: url("THMaliGrade6.woff") format("woff"), /* Modern Browsers */
+    url("THMaliGrade6.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+/* font converted using font-converter.net. thank you! */
+@font-face {
+  font-family: "TFChiangsaen";
+
+  src: url("TFChiangsaen.woff") format("woff"), /* Modern Browsers */
+    url("TFChiangsaen.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* font converted using font-converter.net. thank you! */
+@font-face {
+  font-family: "2005iannnnnUBC";
+
+  src: url("2005iannnnnUBC.woff") format("woff"), /* Modern Browsers */
+    url(".2005iannnnnUBC.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
