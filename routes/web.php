@@ -15,15 +15,17 @@ Route::get('/top', function () {
     $types = App\Type::all();
     return view('feed.top',compact('types'));
 });
-
+/*
 Route::get('/', function () {
     $tags = App\Tag::with('user')->with('type')->take(3)->orderBy('tagVotes','desc')->get();
     $tops =  App\Post::with('user')->with('tag')->orderBy('postLike','desc')->take(6)->get();
     $shares =  App\Post::with('user')->with('tag')->orderBy('postShare','desc')->take(6)->get();
     $news =  App\Post::with('user')->with('tag')->orderBy('id','desc')->take(6)->get();    
     return view('feed.home',compact('tags','tops','shares','news'));
+});*/
+Route::get('/', function () {
+    return view('boon.index');    
 });
-
 Route::get('/font', function () {
     return view('font');
 });
@@ -49,6 +51,10 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/edit', function () {
         return view('user.editprofile');
     });
+    Route::resource('boon','BoonController'); 
+    Route::resource('photo','PhotoController');
+    Route::post('photo-crop', 'PhotoController@store');
+    Route::get('deletephoto/{id}', 'PhotoController@destroy');
 });
 
 /********    API     *********/
@@ -57,6 +63,15 @@ Route::get('api/post/{feed}',function($feed){
         $data = App\Post::with('user')->with('tag')->orderBy('id','desc')->paginate(10);      
     }else if($feed == "top"){
         $data = App\Post::with('user')->with('tag')->orderBy('postLike','desc')->paginate(10);
+    }
+    return response()->json($data);
+});
+
+Route::get('api/boon/{feed}',function($feed){
+    if($feed == "new"){
+        $data = App\Boon::with('user')->with('photo')->orderBy('id','desc')->paginate(10);      
+    }else if($feed == "top"){
+        $data = App\Boon::with('user')->with('photo')->orderBy('postLike','desc')->paginate(10);
     }
     return response()->json($data);
 });
