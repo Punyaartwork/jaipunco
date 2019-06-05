@@ -154,7 +154,7 @@
    <div style="
         font-size: 25px;
         margin: 0px 5px 0px 10px;
-    "><span v-if="item.boonLike != 0"><span style=" margin: 0px 5px 0px 10px;" v-text="item.boonLike"></span>ล้านปลื้ม</span> <span style="float: right;" v-if="item.boonComment != 0"><span style=" margin: 0px 5px 0px 10px;" v-text="item.boonComment"></span>comments</span></div>
+    " v-bind:id="'text_'+item.id" ><span  v-if="item.boonLike != 0"><span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.id" v-text="item.boonLike"></span>ล้านปลื้ม</span> <span style="float: right;" v-if="item.boonComment != 0"><span style=" margin: 0px 5px 0px 10px;" v-text="item.boonComment"></span>comments</span></div>
 
 
     <div style="margin: 15px 20px;">
@@ -180,9 +180,10 @@
     ">
     <!-- https://image.flaticon.com/icons/svg/1865/1865880.svg -->
         <div style="padding: 5px 20px;margin: auto;display: table;">
-            <img src="https://image.flaticon.com/icons/svg/1865/1865963.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
+            <img v-bind:id="'like_'+item.id" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg" @click="likedBoon(item.id)" v-on:click="item.liked = ! item.liked" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
+            <img v-bind:id="'unlike_'+item.id" v-else src="https://image.flaticon.com/icons/svg/1865/1865880.svg" @click="likedBoon(item.id)" v-on:click="item.liked = ! item.liked" alt="" style="float: left; width: 25px; margin: 3px 0px;">
             <div style="display: inline-block;">
-                <div style="font-size: 25px; margin: 3px 0px 0px 10px;">ปลื้มเลย</div>
+                <div style="font-size: 25px; margin: 3px 0px 0px 10px;">ปลื้มเลย<span v-text="item.liked"></span></div>
             </div>
         </div>
     </div>
@@ -250,14 +251,68 @@
                 page:1,
                 text:null,
                 onOff:false,
+                liked:null
             },
             computed: {
                 // slice the array of data to display
                 sliced() {
-                return this.items.slice(0, this.display);
+                    return this.items.slice(0, this.display);
                 },
             },
             methods: {
+                likeBoon(id){
+
+                    //this.items[index].liked =vm.liked;
+                },
+                likedtest(id){
+                    //alert(id);
+                    let vm = this;   
+                    var index = this.items.map((el) => el.id).indexOf(id);  
+                    this.$http.get('/like/'+ id +'/islikedBoonbyme').then(function(response){
+                        this.items[index].liked = response.body;
+                    });  
+                    if(this.items[index].liked=='false'){
+                        alert('false');
+                    }else{
+                        //this.items[index].liked=true;
+                        alert(this.items[index].liked);
+                    }
+
+                    //this.items[index].liked =vm.liked;
+                },
+                likedBoon(id){
+                    var index = this.items.map((el) => el.id).indexOf(id); 
+                    let vm = this;
+                    @if(\Session::get('user_id') != 0)
+                        this.$http.get('/like/'+ id +'/islikedBoonbyme').then(function(response){
+                            if(response.body==='true'){                  
+                                this.items[index].liked = false;
+                                this.items[index].boonLike - 10;
+                                var count = Number($( "#count_"+id ).text()); 
+                                var sum = count - 10;
+                                $("#count_"+id).html(sum);   
+                                $("#unlike_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865963.svg');                                                                          
+                                this.$http.get('/like/'+ id +'/likedBoon').then(function(response){});
+                                $("#unlike_"+id).attr('id',   'like_' + id);                                   
+                            }else{
+                                this.items[index].liked = true; 
+                                this.items[index].boonLike + 10;  
+                                var count = Number($( "#count_"+id ).text()); 
+                                var sum = count + 10;
+                                $("#count_"+id).html(sum);
+                                $("#text_"+id).html('<span ><span style=" margin: 0px 5px 0px 10px;" id="count_'+id+'" >'+sum +'</span>ล้านปลื้ม</span>');                                                                                                                                                                                                                         
+                                $("#like_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865880.svg'); 
+                                this.$http.get('/like/'+ id +'/likedBoon').then(function(response){});
+                                $("#like_"+id).attr('id',   'unlike_' + id);   
+                                
+                            }
+                        }, function(error){
+                            console.log(error.statusText);
+                        });
+                    @else
+                    this.onOff = true;
+                    @endif                  
+                },
                 prev(id) {
                     var index = this.items.map((el) => el.id).indexOf(id);                   
                     var last = this.items[index].photo.pop();
@@ -284,6 +339,17 @@
                                 postarray = response.data;
                                 vm.posts = postarray.data;
                                 for (var i = 0; i < postarray.data.length; i++) { 
+                                        if(postarray.data[i].like.length > 0){
+                                            for (var j = 0; j <postarray.data[i].like.length; j++) { 
+                                                if(postarray.data[i].like[j].user_id == {{\Session::get('user_id')}}){
+                                                    postarray.data[i].liked = true;
+                                                }else{
+                                                    postarray.data[i].liked = false;
+                                                }
+                                            }
+                                        }else{
+                                            postarray.data[i].liked = false;
+                                        }
                                 this.items.push({
                                     id:postarray.data[i].id,
                                     boonName:postarray.data[i].boonName,  
@@ -293,8 +359,11 @@
                                     boonShare:postarray.data[i].boonShare,
                                     boonTime:postarray.data[i].boonTime,    
                                     user:postarray.data[i].user,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                                    photo:postarray.data[i].photo,                   
-                                });     
+                                    photo:postarray.data[i].photo,
+                                    like:postarray.data[i].like,   
+                                    liked:postarray.data[i].liked,                                                                       
+                                });  
+                                
                                 }                                                                                                    
                             }, function(error){
                                 console.log(error.statusText);
@@ -308,19 +377,36 @@
                 },
                 // preform API request to the server
                 fetch() {
+                    
                     let vm = this;
                     var postarray = [];
                     this.$http.get('/api/boon/new?page='+this.page).then(function(response){
                         postarray = response.data;
-                        this.items = postarray.data;  
+                        this.items = postarray.data;         
+                        for (var i = 0; i < this.items.length; i++) { 
+                            if(this.items[i].like.length > 0){
+                                for (var j = 0; j < this.items[i].like.length; j++) { 
+                                    if(this.items[i].like[j].user_id == {{\Session::get('user_id')}}){
+                                        this.items[i].liked = true;
+                                    }else{
+                                        this.items[i].liked = false;
+                                    }
+                                }
+                            }else{
+                                this.items[i].liked = false;
+                            }
+                        } 
                     }, function(error){
                         console.log(error.statusText);
                     });
+                    
+                 
                     this.show = true;
                 },
 
             },
             mounted() {
+                
                 // track scroll event
                 this.end = true;
                 let vm = this;
@@ -328,7 +414,7 @@
             },
             created() {
                 // get the data by performing API request
-                this.fetch();
+                this.fetch();  
             }
         });
 

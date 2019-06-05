@@ -15,4 +15,8 @@ class Boon extends Model
     {
         return $this->hasMany('App\Photo');
     }  
+    public function like()
+    {
+        return $this->hasMany('App\Like','post_id')->where('likes.likeType', '=', 2);
+    }  
 }

@@ -69,9 +69,9 @@ Route::get('api/post/{feed}',function($feed){
 
 Route::get('api/boon/{feed}',function($feed){
     if($feed == "new"){
-        $data = App\Boon::with('user')->with('photo')->orderBy('id','desc')->paginate(10);      
+        $data = App\Boon::with('user')->with('like')->with('photo')->orderBy('id','desc')->paginate(10);      
     }else if($feed == "top"){
-        $data = App\Boon::with('user')->with('photo')->orderBy('postLike','desc')->paginate(10);
+        $data = App\Boon::with('user')->with('like')->with('photo')->orderBy('postLike','desc')->paginate(10);
     }
     return response()->json($data);
 });
@@ -244,6 +244,9 @@ Route::get('logout', 'LoginController@logout');
 
 Route::get('like/{id}/islikedbyme', 'LikeController@isLikedByMe');
 Route::get('like/{id}/liked', 'LikeController@like');
+
+Route::get('like/{id}/islikedBoonbyme', 'LikeController@isLikedBoonByMe');
+Route::get('like/{id}/likedBoon', 'LikeController@likeBoon');
 
 Route::get('mark/{id}/ismarkedbyme', 'MarkController@isMarkedByMe');
 Route::get('mark/{id}/marked', 'MarkController@mark');
