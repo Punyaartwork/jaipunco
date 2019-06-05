@@ -183,7 +183,7 @@
             <img v-bind:id="'like_'+item.id" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg" @click="likedBoon(item.id)" v-on:click="item.liked = ! item.liked" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
             <img v-bind:id="'unlike_'+item.id" v-else src="https://image.flaticon.com/icons/svg/1865/1865880.svg" @click="likedBoon(item.id)" v-on:click="item.liked = ! item.liked" alt="" style="float: left; width: 25px; margin: 3px 0px;">
             <div style="display: inline-block;">
-                <div style="font-size: 25px; margin: 3px 0px 0px 10px;">ปลื้มเลย<span v-text="item.liked"></span></div>
+                <div style="font-size: 25px; margin: 3px 0px 0px 10px;">ปลื้มเลย</div>
             </div>
         </div>
     </div>
@@ -260,26 +260,6 @@
                 },
             },
             methods: {
-                likeBoon(id){
-
-                    //this.items[index].liked =vm.liked;
-                },
-                likedtest(id){
-                    //alert(id);
-                    let vm = this;   
-                    var index = this.items.map((el) => el.id).indexOf(id);  
-                    this.$http.get('/like/'+ id +'/islikedBoonbyme').then(function(response){
-                        this.items[index].liked = response.body;
-                    });  
-                    if(this.items[index].liked=='false'){
-                        alert('false');
-                    }else{
-                        //this.items[index].liked=true;
-                        alert(this.items[index].liked);
-                    }
-
-                    //this.items[index].liked =vm.liked;
-                },
                 likedBoon(id){
                     var index = this.items.map((el) => el.id).indexOf(id); 
                     let vm = this;
