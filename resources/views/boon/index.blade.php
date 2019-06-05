@@ -283,7 +283,7 @@
                 likedBoon(id){
                     var index = this.items.map((el) => el.id).indexOf(id); 
                     let vm = this;
-                    @if(\Session::get('user_id') != 0)
+                    @if(\Session::has('user_id'))
                         this.$http.get('/like/'+ id +'/islikedBoonbyme').then(function(response){
                             if(response.body==='true'){                  
                                 this.items[index].liked = false;
