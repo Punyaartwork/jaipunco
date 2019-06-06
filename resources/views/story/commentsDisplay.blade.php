@@ -11,6 +11,7 @@
             <input type="text" name="body" class="form-control" />
             <input type="hidden" name="post_id" value="{{ $post_id }}" />
             <input type="hidden" name="parent_id" value="{{ $comment->id }}" />
+            <input type="hidden" name="commentType" value="1" />    
             <input type="submit" id="reply" value="Reply" />
     </form>
     </div>
