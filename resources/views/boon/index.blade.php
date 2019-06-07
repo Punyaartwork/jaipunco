@@ -2,6 +2,16 @@
 @section('title','Boons | jaipun')
 @section('background','#fafafa')
 @section('nav')
+@if (\Session::has('user_id'))
+    <?php
+    $user = \App\User::find(\Session::get('user_id'));
+    $image = $user->profile;
+    ?>
+@else  
+    <?php
+    $image = "https://image.flaticon.com/icons/svg/109/109718.svg" ;
+    ?>
+@endif  
 <link rel="stylesheet" href="fonts/style.css" type="text/css" media="all" />
 
     <!-- https://image.flaticon.com/icons/svg/263/263115.svg -->
@@ -212,8 +222,59 @@
     </div>
 </div>
 
-    
-    </article>
+    <form method="post" action="{{ route('comments.store') }}" style="
+        padding-top: 10px;
+        border-top: 1px solid rgb(234, 237, 241);
+    ">
+        @csrf
+        <div class="form-group">
+                        
+                <img src="{{$image}}" height="30px" alt="" style="border-radius: 100px;position: absolute;    margin: 0px 2%;   border: 1px solid #BDBDBD;object-fit: cover;">
+                <textarea placeholder="Write a comment..." name="body" style="
+                border: 1px solid #ccd0d5;
+                border-radius: 16px;
+                width: 75%;
+                margin: 0% 12%;
+                padding: 8px 12px;
+                line-height: 16px;
+                overflow: hidden;
+                height: 35px;
+                outline:none;
+            "></textarea>
+            <input type="hidden" name="post_id" :value="item.id" />
+            <input type="hidden" name="commentType" value="2" />  
+            <button type="submit" style="border: 0; background: transparent; position: absolute;outline:none;
+                margin: 0px 0px 0px -12%;">
+                <img src="https://image.flaticon.com/icons/svg/1878/1878898.svg" width="35" height="35" alt="submit" />
+            </button>  
+        </div>
+    </form>
+
+
+    <div :key="comment.id" v-for="comment in item.comments" >
+
+            <div style="margin: 15px 20px;">
+                <img v-bind:src="comment.user.profile" alt="" style="
+                margin: 0px 10px 0px 0px;
+                border-radius: 100px;
+                border: 1px solid #BDBDBD;
+                height: 30px;
+                width: 30px;
+                object-fit: cover;
+                display: inline-block;
+                float: left;
+                "> 
+                <div style="display: inline-block;">
+                    <span style="font-weight: bold;font-size:20px" v-text="comment.user.name"></span><span style="
+                        font-size: 20px;
+                        margin: 0px 5px;
+                    " v-text="comment.body"></span>   
+                    <div style="font-size: 18px;" v-text="comment.created_at"></div>
+                </div> 
+            </div>
+    </div>
+
+</article>
 
 
 

@@ -69,9 +69,9 @@ Route::get('api/post/{feed}',function($feed){
 
 Route::get('api/boon/{feed}',function($feed){
     if($feed == "new"){
-        $data = App\Boon::with('user')->with('like')->with('photo')->orderBy('id','desc')->paginate(10);      
+        $data = App\Boon::with('user')->with('like')->with('comments')->with('photo')->orderBy('id','desc')->paginate(10);      
     }else if($feed == "top"){
-        $data = App\Boon::with('user')->with('like')->with('photo')->orderBy('postLike','desc')->paginate(10);
+        $data = App\Boon::with('user')->with('like')->with('comments')->with('photo')->orderBy('postLike','desc')->paginate(10);
     }
     return response()->json($data);
 });
