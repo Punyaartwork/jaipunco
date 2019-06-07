@@ -6,6 +6,7 @@
 	<div class="card login-form">
 	<div class="card-body">
 		<h3 class="card-title text-center">Log in to Jaipun</h3>
+		<a href="/loginfacebook" style="text-align: center; display: block; background: rgb(53, 91, 168); color: rgb(255, 255, 255); padding: 5px; border-radius: 2px; width: 300px; font-size: 16px; font-weight: 600; margin: 10px auto; border: 2px solid rgb(215, 225, 245);"><img src="/icon/facebook-logo.svg" style="width: 20px;margin: 0px 10px;">Login with facebook</a>
 		<div class="card-text">
       @if(count($errors) > 0)
           @foreach($errors->all() as $error)
