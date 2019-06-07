@@ -8,12 +8,10 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="fonts/style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="fonttest/style.css" type="text/css" media="all" />
+
         
         <style>
-            .thankyou, .notes {
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                font-size: 16px;
-            }
     
             .sample1 {
                 font-family: 'TFNopScript';
@@ -49,6 +47,53 @@
                 display: inline-block;
                 padding: 10px;
             }
+
+            .sample5 {
+                font-family: 'MNPaethai';
+                font-size: 24px;
+                border: 1px solid #ddd;
+                display: inline-block;
+                padding: 10px;
+            }
+            .sample6 {
+                font-family: 'MNArluck';
+                font-size: 24px;
+                border: 1px solid #ddd;
+                display: inline-block;
+                padding: 10px;
+            }
+
+            .sample7 {
+                font-family: 'MNForSorEW-Med';
+                font-size: 24px;
+                border: 1px solid #ddd;
+                display: inline-block;
+                padding: 10px;
+            }
+
+            .sample8 {
+                font-family: 'MNKomainEW';
+                font-size: 24px;
+                border: 1px solid #ddd;
+                display: inline-block;
+                padding: 10px;
+            }
+
+            .sample9 {
+                font-family: 'MNLanna';
+                font-size: 24px;
+                border: 1px solid #ddd;
+                display: inline-block;
+                padding: 10px;
+            }
+
+            .sample10 {
+                font-family: 'MNUthong';
+                font-size: 24px;
+                border: 1px solid #ddd;
+                display: inline-block;
+                padding: 10px;
+            }
     
     
     
@@ -57,103 +102,95 @@
     </head>
     <body>
 
-        <div class="sample1">
-            <div style="
-            font-size: 20px;
-            font-weight: bold;
-            color: #717171;">ความรัก</div>
-    
-            <div style=" 
-            display: inline-block;
-            font-size: 32px;
-            font-weight: 600;
-            color: #000;">อยากให้รักยั่งยืน เอาบุญมาฝาก</div>
-    
-    
-            <div style="    word-wrap: break-word;
-            height: 1em;
-            overflow: hidden;
-            min-height: 25px;
-            color: #757575;
-            font-size: 18px;">    คำถาม : มีคนทักว่าเราจะอยู่กันไม่ยืดอยากให้ความรัก...</div>
-    
-            punyapath<br>
-    
-    
-    
+    <div class="sample1">
+            <p>Font TFNopScript</p>                                        
+            <div style="font-size:30px">jaipun มาจากคำว่า "ใจปุญ"</div>
+            <div style="font-size:24px"> หมายถึงใจที่เป็นกุศลอันเกิดจากการทำความดีและการสั่งสมบุญ</div>
+            <div>วันเริ่มต้นโปรเจค คือ วันที่ 31 สิงหาคม 2559</div>        
+            <b>เป็นส่วนหนึ่งกับเราติดต่อ line ID punyaartwork</b>                        
         </div>
-    
+        <br>
+
         <div class="sample2">
-            <div style="
-            font-size: 20px;
-            font-weight: bold;
-            color: #717171;">ความรัก</div>
-    
-            <div style=" 
-            display: inline-block;
-            font-size: 32px;
-            font-weight: 600;
-            color: #000;">อยากให้รักยั่งยืน เอาบุญมาฝาก</div>
-    
-    
-            <div style="    word-wrap: break-word;
-            height: 1em;
-            overflow: hidden;
-            min-height: 25px;
-            color: #757575;
-            font-size: 18px;">    คำถาม : มีคนทักว่าเราจะอยู่กันไม่ยืดอยากให้ความรัก...</div>
-    
-            punyapath<br>
+            <p>Font THMaliGrade6</p>                                        
+            <div style="font-size:30px">jaipun มาจากคำว่า "ใจปุญ"</div>
+            <div style="font-size:24px"> หมายถึงใจที่เป็นกุศลอันเกิดจากการทำความดีและการสั่งสมบุญ</div>
+            <div>วันเริ่มต้นโปรเจค คือ วันที่ 31 สิงหาคม 2559</div>        
+            <b>เป็นส่วนหนึ่งกับเราติดต่อ line ID punyaartwork</b>                        
         </div>
-    
-    
-    
+        <br>
+
         <div class="sample3">
-            <div style="
-            font-size: 20px;
-            font-weight: bold;
-            color: #717171;">ความรัก</div>
-    
-            <div style=" 
-            display: inline-block;
-            font-size: 32px;
-            font-weight: 600;
-            color: #000;">อยากให้รักยั่งยืน</div>
-    
-    
-            <div style="    word-wrap: break-word;
-            height: 1em;
-            overflow: hidden;
-            min-height: 25px;
-            color: #757575;
-            font-size: 18px;">    คำถาม : มีคนทักว่าเราจะอยู่กันไม่ยืดอยากให้ความรัก...</div>
-    
-            punyapath<br>
+            <p>Font TFChiangsaen</p>                                        
+            <div style="font-size:30px">jaipun มาจากคำว่า "ใจปุญ"</div>
+            <div style="font-size:24px"> หมายถึงใจที่เป็นกุศลอันเกิดจากการทำความดีและการสั่งสมบุญ</div>
+            <div>วันเริ่มต้นโปรเจค คือ วันที่ 31 สิงหาคม 2559</div>        
+            <b>เป็นส่วนหนึ่งกับเราติดต่อ line ID punyaartwork</b>                        
         </div>
-    
-    
-    
+        <br>
+
         <div class="sample4">
-            <div style="
-            font-size: 20px;
-            font-weight: bold;
-            color: #717171;">ความรัก</div>
-    
-            <div style=" 
-            display: inline-block;
-            font-size: 32px;
-            font-weight: 600;
-            color: #000;">อยากให้รักยั่งยืน</div>
-    
-    
-            <div style="    word-wrap: break-word;
-            height: 1em;
-            overflow: hidden;
-            min-height: 25px;
-            color: #757575;
-            font-size: 18px;">    คำถาม : มีคนทักว่าเราจะอยู่กันไม่ยืดอยากให้ความรัก...</div>
-    
-            punyapath<br>
+            <p>Font 2005iannnnnUBC</p>                                        
+            <div style="font-size:30px">jaipun มาจากคำว่า "ใจปุญ"</div>
+            <div style="font-size:24px"> หมายถึงใจที่เป็นกุศลอันเกิดจากการทำความดีและการสั่งสมบุญ</div>
+            <div>วันเริ่มต้นโปรเจค คือ วันที่ 31 สิงหาคม 2559</div>        
+            <b>เป็นส่วนหนึ่งกับเราติดต่อ line ID punyaartwork</b>                        
         </div>
+        <br>
+
+        <div class="sample5">
+            <p>Font MNPaethai</p>                                        
+            <div style="font-size:30px">jaipun มาจากคำว่า "ใจปุญ"</div>
+            <div style="font-size:24px"> หมายถึงใจที่เป็นกุศลอันเกิดจากการทำความดีและการสั่งสมบุญ</div>
+            <div>วันเริ่มต้นโปรเจค คือ วันที่ 31 สิงหาคม 2559</div>        
+            <b>เป็นส่วนหนึ่งกับเราติดต่อ line ID punyaartwork</b>                        
+        </div>
+        <br>
+
+        <div class="sample6">
+            <p>Font MNArluck</p>                                        
+            <div style="font-size:30px">jaipun มาจากคำว่า "ใจปุญ"</div>
+            <div style="font-size:24px"> หมายถึงใจที่เป็นกุศลอันเกิดจากการทำความดีและการสั่งสมบุญ</div>
+            <div>วันเริ่มต้นโปรเจค คือ วันที่ 31 สิงหาคม 2559</div>        
+            <b>เป็นส่วนหนึ่งกับเราติดต่อ line ID punyaartwork</b>                        
+        </div>
+        <br>
+
+        <div class="sample7">
+            <p>Font MNArluck</p>                                        
+            <div style="font-size:30px">jaipun มาจากคำว่า "ใจปุญ"</div>
+            <div style="font-size:24px"> หมายถึงใจที่เป็นกุศลอันเกิดจากการทำความดีและการสั่งสมบุญ</div>
+            <div>วันเริ่มต้นโปรเจค คือ วันที่ 31 สิงหาคม 2559</div>        
+            <b>เป็นส่วนหนึ่งกับเราติดต่อ line ID punyaartwork</b>                        
+        </div>
+        <br>
+
+        <div class="sample8">
+            <p>Font MNKomainEW</p>                                        
+            <div style="font-size:30px">jaipun มาจากคำว่า "ใจปุญ"</div>
+            <div style="font-size:24px"> หมายถึงใจที่เป็นกุศลอันเกิดจากการทำความดีและการสั่งสมบุญ</div>
+            <div>วันเริ่มต้นโปรเจค คือ วันที่ 31 สิงหาคม 2559</div>        
+            <b>เป็นส่วนหนึ่งกับเราติดต่อ line ID punyaartwork</b>                        
+        </div>
+        <br>
+
+        <div class="sample9">
+            <p>Font MNLanna</p>                                        
+            <div style="font-size:30px">jaipun มาจากคำว่า "ใจปุญ"</div>
+            <div style="font-size:24px"> หมายถึงใจที่เป็นกุศลอันเกิดจากการทำความดีและการสั่งสมบุญ</div>
+            <div>วันเริ่มต้นโปรเจค คือ วันที่ 31 สิงหาคม 2559</div>        
+            <b>เป็นส่วนหนึ่งกับเราติดต่อ line ID punyaartwork</b>                        
+        </div>
+        <br>
+
+        <div class="sample10">
+            <p>Font MNUthong</p>                                        
+            <div style="font-size:30px">jaipun มาจากคำว่า "ใจปุญ"</div>
+            <div style="font-size:24px"> หมายถึงใจที่เป็นกุศลอันเกิดจากการทำความดีและการสั่งสมบุญ</div>
+            <div>วันเริ่มต้นโปรเจค คือ วันที่ 31 สิงหาคม 2559</div>        
+            <b>เป็นส่วนหนึ่งกับเราติดต่อ line ID punyaartwork</b>                        
+        </div>
+        <br>
+    </body>
     
 </html>
