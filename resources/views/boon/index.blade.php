@@ -90,7 +90,7 @@
     font-size: xx-large;
     text-align: center;
     padding-bottom: 0px;
-    ">มาร่วมสร้างสังคมที่เต็มไปด้วยเรื่องบุญ ๆ ด้วยกันกับเรา</div>
+    ">มาร่วมสร้างสังคมที่เต็มไปด้วย "บุญ" ด้วยกันกับเรา</div>
     <a href="/boon/create" style="
     text-align: center;
     width: 300px;
