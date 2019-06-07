@@ -82,7 +82,7 @@
 
 </style>
 
-<div class="container" style="font-family: 'LayijiMaHaNiYom', 'sans-serif';max-width: 560px;margin: auto;">
+<div class="container" style="font-family: '2005iannnnnUBC';max-width: 560px;margin: auto;">
 
 <div style="border: 1px solid rgb(234, 237, 241);max-width: 560px;background: rgb(255, 255, 255);border-radius: 10px;margin: 20px 0px;">
     <div style="
@@ -111,9 +111,9 @@
         margin:20px 0px;
     ">
     <div style="padding: 10px 15px 5px 15px;">
-        <div style="font-size:36px;
+        <div style="font-size:40px;
         text-align: center;" v-text="item.boonName"></div>
-        <div style="font-size: 24px;text-align: center;" v-text="item.boon"></div>
+        <div style="font-size: 30px;text-align: center;" v-text="item.boon"></div>
 
     </div>
 
