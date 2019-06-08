@@ -257,6 +257,12 @@ Route::get('/sharepost/{id}', function ($id) {
     $post->save();
 });
 
+Route::get('/shareboon/{id}', function ($id) {
+    $boon = App\Boon::find($id);
+    $boon->boonShare += 1;
+    $boon->save();
+});
+
 Route::get('/loginfacebook', function () {
     return view('welcome');
 });

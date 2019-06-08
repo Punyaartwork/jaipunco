@@ -217,7 +217,7 @@
     width: 35%;      float: left;   display: inline-block;
     border-top: 1px solid rgb(234, 237, 241);
     ">
-        <div style="padding: 5px 20px;margin: auto;display: table;position: relative;">
+        <div  @click="shareBoon(item.id)"  style="padding: 5px 20px;margin: auto;display: table;position: relative;">
             <div style="position: absolute;display:none;margin-top: -45px"  v-bind:id="'share_'+item.id">
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
                 <div class="social-buttons" style="font-size: 25px;float:right;margin-top:10px">
