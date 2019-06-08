@@ -7,6 +7,8 @@ use App\Post;
 use App\Like;
 use App\Boon;
 use App\User;
+use App\Card;
+
 
 class LikeController extends Controller
 {
@@ -76,4 +78,39 @@ class LikeController extends Controller
         }
         $boon->save();        
     }
+
+    public function isLikedCardByMe($id)
+    {
+        //$post = Post::findOrFail($id)->first();
+        $card = Card::findOrFail($id);        
+        if (Like::whereUserId(session('user_id'))->wherePostId($card->id)->where('likeType',3)->exists()){
+            return 'true';
+        }
+        return 'false';
+    }
+
+    public function likeCard($id)
+    {
+        $existing_like = Like::withTrashed()->wherePostId($id)->whereUserId(session('user_id'))->where('likeType',3)->first();
+        $card = Card::find( $id );
+        if (is_null($existing_like)) {
+            Like::create([
+                'post_id' => $id,
+                'user_id' => session('user_id'),
+                'likeType' => 3,                                
+            ]);
+            $boon->boonLike += 10;
+        } else {
+            if (is_null($existing_like->deleted_at)) {
+                $existing_like->delete();
+                $card->cardLike -= 10;                
+            } else {
+                $existing_like->restore();
+                $card->cardLike += 10;
+            }
+        }
+        $card->save();        
+    }
+}
+
 }

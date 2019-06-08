@@ -30,6 +30,10 @@ Route::get('/font', function () {
     return view('font');
 });
 
+Route::get('/card', function () {
+    return view('card.index');
+});
+
 Route::get('/list', function () {
     return view('feed.list');
 });
@@ -43,6 +47,7 @@ Route::resource('boon','BoonController');
 Route::group(['middleware' => 'usersession'], function () {
     Route::resource('type','TypeController');
     Route::resource('tag','TagController');
+    Route::resource('card','CardController');            
     Route::resource('drawname','DrawnameController');
     Route::resource('img','DrawController');
     Route::resource('post','PostController');
@@ -73,6 +78,15 @@ Route::get('api/boon/{feed}',function($feed){
         $data = App\Boon::with('user')->with('like')->with('comments')->with('photo')->orderBy('id','desc')->paginate(10);      
     }else if($feed == "top"){
         $data = App\Boon::with('user')->with('like')->with('comments')->with('photo')->orderBy('postLike','desc')->paginate(10);
+    }
+    return response()->json($data);
+});
+
+Route::get('api/card/{feed}',function($feed){
+    if($feed == "new"){
+        $data = App\Card::with('user')->with('like')->with('comments')->orderBy('id','desc')->paginate(10);      
+    }else if($feed == "top"){
+        $data = App\Card::with('user')->with('like')->with('comments')->orderBy('cardLike','desc')->paginate(10);
     }
     return response()->json($data);
 });
@@ -249,6 +263,9 @@ Route::get('like/{id}/liked', 'LikeController@like');
 Route::get('like/{id}/islikedBoonbyme', 'LikeController@isLikedBoonByMe');
 Route::get('like/{id}/likedBoon', 'LikeController@likeBoon');
 
+Route::get('like/{id}/islikedCardbyme', 'LikeController@isLikedCardByMe');
+Route::get('like/{id}/likedCard', 'LikeController@likeCard');
+
 Route::get('mark/{id}/ismarkedbyme', 'MarkController@isMarkedByMe');
 Route::get('mark/{id}/marked', 'MarkController@mark');
 
@@ -262,6 +279,12 @@ Route::get('/shareboon/{id}', function ($id) {
     $boon = App\Boon::find($id);
     $boon->boonShare += 1;
     $boon->save();
+});
+
+Route::get('/sharecard/{id}', function ($id) {
+    $card = App\Card::find($id);
+    $card->cardShare += 1;
+    $card->save();
 });
 
 Route::get('/loginfacebook', function () {

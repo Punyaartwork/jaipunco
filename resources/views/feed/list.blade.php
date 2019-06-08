@@ -10,9 +10,9 @@
     </a> 
 
     <!-- https://image.flaticon.com/icons/svg/865/865132.svg -->
-    <a href="/new" style="padding: 10px 15px; font-size: 14px;width: 20%;">
-        <img src="https://image.flaticon.com/icons/svg/109/109613.svg" style="width: 20px;">
-    </a> 
+    <a href="/card" style="padding: 10px 15px; font-size: 14px;width: 20%;">
+    <img src="https://image.flaticon.com/icons/svg/1001/1001287.svg" style="width: 20px;">
+</a> 
 
      <!--    https://image.flaticon.com/icons/svg/1001/1001399.svg  -->
      
