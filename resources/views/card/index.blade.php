@@ -23,7 +23,7 @@
 
 
         <!-- https://image.flaticon.com/icons/svg/238/238693.svg -->
-        <a href="/new" style="padding: 10px 15px; font-size: 14px;width: 20%;">
+        <a style="padding: 10px 15px; font-size: 14px;width: 20%;">
             <img src="https://image.flaticon.com/icons/svg/238/238755.svg" style="width: 20px;">
         </a> 
 
