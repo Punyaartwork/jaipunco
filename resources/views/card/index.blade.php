@@ -81,8 +81,8 @@
         <div style="font-weight: bold;font-size:26px" v-text="item.user.name"></div>
         <div style="font-size: 18px;" :text-content.prop="item.cardTime | timeSince"></div>
         <img v-bind:src="item.cardPhoto" alt="" style="
-            width: 100%;
-            padding: 30px 120px 10px;
+            width: 50%;
+            margin: 30px 0px 15px;
         ">
     </div>
 
@@ -121,7 +121,7 @@
             <img v-bind:id="'like_'+item.id" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg" @click="likedCard(item.id)" v-on:click="item.liked = ! item.liked" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
             <img v-bind:id="'unlike_'+item.id" v-else src="https://image.flaticon.com/icons/svg/1865/1865880.svg" @click="likedCard(item.id)" v-on:click="item.liked = ! item.liked" alt="" style="float: left; width: 25px; margin: 3px 0px;">
             <div style="display: inline-block;">
-                <div style="font-size: 25px; margin: 3px 0px 0px 10px;">ปลื้มเลย<span v-text="item.liked"></span></div>
+                <div style="font-size: 25px; margin: 3px 0px 0px 10px;">ปลื้มเลย</div>
             </div>
         </div>
     </div>
