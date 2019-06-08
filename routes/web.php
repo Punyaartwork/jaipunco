@@ -43,11 +43,12 @@ Route::get('/welcome', function () {
 });
 
 Route::resource('user','UserController');
-Route::resource('boon','BoonController'); 
+Route::resource('boon','BoonController');
+Route::resource('card','CardController');   
 Route::group(['middleware' => 'usersession'], function () {
     Route::resource('type','TypeController');
     Route::resource('tag','TagController');
-    Route::resource('card','CardController');            
+         
     Route::resource('drawname','DrawnameController');
     Route::resource('img','DrawController');
     Route::resource('post','PostController');
