@@ -164,7 +164,11 @@
    <div style="
         font-size: 25px;
         margin: 0px 5px 0px 10px;
-    " v-bind:id="'text_'+item.id" ><span  v-if="item.boonLike != 0"><span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.id" v-text="item.boonLike"></span>ล้านปลื้ม</span> <span style="float: right;" v-if="item.boonComment != 0"><span style=" margin: 0px 5px 0px 10px;" v-text="item.boonComment"></span>comments</span></div>
+    " v-bind:id="'text_'+item.id" ><span  v-if="item.boonLike != 0"><span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.id" v-text="item.boonLike"></span>ล้านปลื้ม</span> <span style="float: right;" v-if="item.boonComment != 0"><span style=" margin: 0px 5px 0px 10px;" v-text="item.boonComment"></span>comments</span>
+    <span style="float: right;" v-if="item.boonShare != 0">
+        <span style=" margin: 0px 5px 0px 10px;" v-text="item.boonShare"></span>shared
+    </span>
+    </div>
 
 
     <div style="margin: 15px 20px;">
@@ -213,7 +217,22 @@
     width: 35%;      float: left;   display: inline-block;
     border-top: 1px solid rgb(234, 237, 241);
     ">
-        <div style="padding: 5px 20px;margin: auto;display: table;">
+        <div style="padding: 5px 20px;margin: auto;display: table;position: relative;">
+            <div style="position: absolute;display:none;margin-top: -45px"  v-bind:id="'share_'+item.id">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+                <div class="social-buttons" style="font-size: 25px;float:right;margin-top:10px">
+                    <a v-bind:href="'https://www.facebook.com/sharer/sharer.php?u=https://jaipun.com/boon/'+item.id"
+                    target="_blank" style="color: #4e71a8 !important;">
+                    <i class="fa fa-facebook-official"></i>
+                    </a>
+                    <a v-bind:href="'https://twitter.com/intent/tweet?url=https://jaipun.com/boon/'+item.id"
+                    target="_blank" style="color: #1cb7eb !important;">
+                        <i class="fa fa-twitter-square"></i>
+                    </a>
+
+                    <a v-bind:href="'https://social-plugins.line.me/lineit/share?url=https://jaipun.com/boon/'+item.id" target="_blank"><img src="https://image.flaticon.com/icons/svg/124/124027.svg" style="width: 20px;"></a>
+                </div>
+            </div>
             <img src="https://image.flaticon.com/icons/svg/1787/1787887.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
             <div style="display: inline-block;">
                 <div style="font-size: 25px; margin: 3px 0px 0px 10px;">ส่งบุญ</div>
@@ -354,6 +373,17 @@
                     this.onOff = true;
                     @endif                  
                 },
+                shareBoon(id){
+                    var index = this.items.map((el) => el.id).indexOf(id);                     
+                    if(this.items[index].share===true){
+                        $("#share_"+id).hide(); 
+                        this.items[index].share = false;
+                    }else{
+                        $("#share_"+id).show();   
+                        this.items[index].share = true; 
+                        this.$http.get('/shareboon/'+id).then(function(response){});                                             
+                    }                   
+                },
                 prev(id) {
                     var index = this.items.map((el) => el.id).indexOf(id);                   
                     var last = this.items[index].photo.pop();
@@ -406,7 +436,8 @@
                                     user:postarray.data[i].user,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
                                     photo:postarray.data[i].photo,
                                     like:postarray.data[i].like,   
-                                    liked:postarray.data[i].liked,                                                                       
+                                    liked:postarray.data[i].liked,
+                                    share:false,                                                                           
                                 });  
                                 
                                 }                                                                                                    
@@ -430,6 +461,7 @@
                         this.items = postarray.data;         
                         for (var i = 0; i < this.items.length; i++) { 
                             if(this.items[i].like.length > 0){
+                                this.items[i].share = false;
                                 for (var j = 0; j < this.items[i].like.length; j++) { 
                                     @if(\Session::has('user_id'))
                                     if(this.items[i].like[j].user_id == {{\Session::get('user_id')}}){
