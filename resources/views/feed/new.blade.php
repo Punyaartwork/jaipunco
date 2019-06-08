@@ -10,8 +10,8 @@ display: flex;text-align: center;max-width: 450px;margin: 0px auto;">
 
 
     <!-- https://image.flaticon.com/icons/svg/865/865132.svg -->
-    <a href="/new" style="padding: 10px 15px; font-size: 14px;width: 20%;">
-        <img src=" https://image.flaticon.com/icons/svg/865/865132.svg" style="width: 20px;">
+    <a href="/card" style="padding: 10px 15px; font-size: 14px;width: 20%;">
+        <img src="https://image.flaticon.com/icons/svg/238/238755.svg" style="width: 20px;">
     </a> 
 
     <!--     https://image.flaticon.com/icons/svg/1001/1001287.svg -->

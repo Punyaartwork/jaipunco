@@ -356,12 +356,15 @@
                                 for (var i = 0; i < postarray.data.length; i++) { 
                                         if(postarray.data[i].like.length > 0){
                                             for (var j = 0; j <postarray.data[i].like.length; j++) { 
+                                                @if(\Session::has('user_id'))
                                                 if(postarray.data[i].like[j].user_id == {{\Session::get('user_id')}}){
                                                     postarray.data[i].liked = true;
                                                 }else{
                                                     postarray.data[i].liked = false;
                                                 }
-                                            }
+                                                @else
+                                                    postarray.data[i].liked = false;                                                
+                                                @endif
                                         }else{
                                             postarray.data[i].liked = false;
                                         }
@@ -403,11 +406,15 @@
                             this.items[i].share = false;
                             if(this.items[i].like.length > 0){
                                 for (var j = 0; j < this.items[i].like.length; j++) { 
+                                    @if(\Session::has('user_id'))
                                     if(this.items[i].like[j].user_id == {{\Session::get('user_id')}}){
                                         this.items[i].liked = true;
                                     }else{
                                         this.items[i].liked = false;
                                     }
+                                    @else
+                                        this.items[i].liked = false;                                              
+                                    @endif
                                 }
                             }else{
                                 this.items[i].liked = false;
