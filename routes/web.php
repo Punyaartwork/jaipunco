@@ -39,6 +39,7 @@ Route::get('/welcome', function () {
 });
 
 Route::resource('user','UserController');
+Route::resource('boon','BoonController'); 
 Route::group(['middleware' => 'usersession'], function () {
     Route::resource('type','TypeController');
     Route::resource('tag','TagController');
@@ -51,7 +52,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('/edit', function () {
         return view('user.editprofile');
     });
-    Route::resource('boon','BoonController'); 
+    
     Route::resource('photo','PhotoController');
     Route::post('photo-crop', 'PhotoController@store');
     Route::get('deletephoto/{id}', 'PhotoController@destroy');

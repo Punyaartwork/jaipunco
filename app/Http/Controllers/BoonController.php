@@ -25,7 +25,11 @@ class BoonController extends Controller
      */
     public function create()
     {
-        return view('boon.create'); 
+        if(\Session::has('user_id')){
+            return view('boon.create'); 
+        }else{
+            return view('user.login');
+        }
     }
 
     /**
@@ -63,12 +67,11 @@ class BoonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $boon = boon::find($id);
-        return response()->json($boon);
-    }
-
+     public function show($id)
+     {
+         $boon = Boon::with('user')->with('like')->with('comments')->with('photo')->find($id);
+         return view('boon.show',compact('boon','id'));
+     }
     /**
      * Show the form for editing the specified resource.
      *
