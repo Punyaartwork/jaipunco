@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Card;
+use App\Draw;
 use Illuminate\Http\Request;
 
 class CardController extends Controller
@@ -24,7 +25,8 @@ class CardController extends Controller
      */
     public function create()
     {
-        return view('card.create'); 
+        $draws = Draw::orderBy('id','desc')->get();
+        return view('card.create',compact('draws')); 
     }
 
     /**
@@ -53,7 +55,7 @@ class CardController extends Controller
         ]
         );
         $card->save();
-        return redirect()->route('card.create')->with('success','!!!!!!SAVED!!!!!!');
+        return redirect()->route('card.index')->with('success','!!!!!!SAVED!!!!!!');
     }
 
     /**

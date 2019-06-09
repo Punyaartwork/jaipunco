@@ -77,7 +77,7 @@
 
 
     <div style="padding: 10px 60px 5px;text-align: center;">
-        <div style="font-size: 40px;margin-top: 60px;" v-text="item.card"></div>
+        <div style="font-size: 40px;margin-top: 60px;" v-html="item.card"></div>
         <div style="font-weight: bold;font-size:26px" v-text="item.user.name"></div>
         <div style="font-size: 18px;" :text-content.prop="item.cardTime | timeSince"></div>
         <img v-bind:src="item.cardPhoto" alt="" style="
@@ -110,7 +110,7 @@
     </div>
 
 
-<div style="width:100%;display: flow-root;">
+<div style="width:100%;display: flow-root;white-space: nowrap;">
     <div style="
     width: 30%;     float: left;    display: inline-block;
     border-top: 1px solid rgb(234, 237, 241);
