@@ -25,8 +25,12 @@ class CardController extends Controller
      */
     public function create()
     {
-        $draws = Draw::orderBy('id','desc')->get();
-        return view('card.create',compact('draws')); 
+        if(\Session::has('user_id')){
+            $draws = Draw::orderBy('id','desc')->get();
+            return view('card.create',compact('draws')); 
+        }else{
+            return view('user.login');
+        }
     }
 
     /**
