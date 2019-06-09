@@ -92,8 +92,8 @@
           @foreach($draws as $draw)
 
           <label >
-            <input type="radio" name="cardPhoto" id="one" value="/{{$draw->draw}}" v-model="picked">
-            <img src="/{{$draw->draw}}" width="90px" style="margin:15px">
+            <input type="radio" name="cardPhoto" id="one" value="{{$draw->draw}}" v-model="picked">
+            <img src="{{$draw->draw}}" width="90px" style="margin:15px">
           </label>
 
           @endforeach    
