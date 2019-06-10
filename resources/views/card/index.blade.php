@@ -86,9 +86,7 @@
         ">
     </div>
 
-
-
-   <div style="
+    <div style="
         font-size: 25px;
         margin: 0px 5px 0px 10px;
     " v-bind:id="'text_'+item.id" ><span  v-if="item.cardLike != 0">
@@ -100,6 +98,17 @@
         <span style=" margin: 0px 5px 0px 10px;" v-text="item.cardShare"></span>shared</span>
     
     </div>
+
+        <div class="multislider news__main" style="
+        display: block;
+        flex-wrap: wrap;
+        overflow: hidden;
+        position: relative;
+        max-width: 560px;
+    ">
+
+
+
 
 
 <div style="width:100%;display: flow-root;white-space: nowrap;">
@@ -127,8 +136,7 @@
                 <div style="font-size: 25px; margin: 3px 0px 0px 10px;">comment</div>
             </div>
         </div>
-
-    
+    </div>
     <!-- https://image.flaticon.com/icons/svg/1787/1787882.svg -->
     <div style="
     width: 35%;      float: left;   display: inline-block;
