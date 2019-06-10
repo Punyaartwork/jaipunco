@@ -127,7 +127,8 @@
                 <div style="font-size: 25px; margin: 3px 0px 0px 10px;">comment</div>
             </div>
         </div>
-    </div>
+
+    
     <!-- https://image.flaticon.com/icons/svg/1787/1787882.svg -->
     <div style="
     width: 35%;      float: left;   display: inline-block;
