@@ -112,5 +112,3 @@ class LikeController extends Controller
         $card->save();        
     }
 }
-
-}
