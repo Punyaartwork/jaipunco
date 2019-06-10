@@ -86,18 +86,6 @@
         ">
     </div>
 
-    <div style="
-        font-size: 25px;
-        margin: 0px 5px 0px 10px;display: flow-root;
-    " v-bind:id="'text_'+item.id" ><span  v-if="item.cardLike != 0">
-        <span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.id" v-text="item.cardLike"></span>
-            ล้านปลื้ม</span> 
-        <span style="float: right;" v-if="item.cardComment != 0">
-        <span style=" margin: 0px 5px 0px 10px;" v-text="item.cardComment"></span>comments</span>
-        <span style="float: right;" v-if="item.cardShare != 0">
-        <span style=" margin: 0px 5px 0px 10px;" v-text="item.cardShare"></span>shared</span>
-    
-    </div>
 
         <div class="multislider news__main" style="
         display: block;
@@ -108,7 +96,18 @@
     ">
 
 
-
+   <div style="
+        font-size: 25px;
+        margin: 0px 5px 0px 10px;
+    " v-bind:id="'text_'+item.id" ><span  v-if="item.cardLike != 0">
+        <span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.id" v-text="item.cardLike"></span>
+            ล้านปลื้ม</span> 
+        <span style="float: right;" v-if="item.cardComment != 0">
+        <span style=" margin: 0px 5px 0px 10px;" v-text="item.cardComment"></span>comments</span>
+        <span style="float: right;" v-if="item.cardShare != 0">
+        <span style=" margin: 0px 5px 0px 10px;" v-text="item.cardShare"></span>shared</span>
+    
+    </div>
 
 
 <div style="width:100%;display: flow-root;white-space: nowrap;">
