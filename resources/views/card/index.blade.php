@@ -88,7 +88,7 @@
 
     <div style="
         font-size: 25px;
-        margin: 0px 5px 0px 10px;
+        margin: 0px 5px 0px 10px;display: flow-root;
     " v-bind:id="'text_'+item.id" ><span  v-if="item.cardLike != 0">
         <span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.id" v-text="item.cardLike"></span>
             ล้านปลื้ม</span> 
