@@ -1,191 +1,347 @@
 @extends('feed.master')
-@section('title','Jaipun')
-@section('background','#fff')
+@section('title','latest.')
+@section('background','#fafafa')
 @section('nav')
-<!-- https://image.flaticon.com/icons/svg/263/263115.svg -->
-<div class="navcenter" style="white-space: nowrap !important;overflow-y: auto;justify-content: center;
-    display: flex;text-align: center;max-width: 450px;margin: 0px auto;">
-    <a href="#" style="padding: 10px 15px; font-size: 14px; font-weight: 600;width: 20%;">
-        <img src="https://image.flaticon.com/icons/svg/262/262584.svg" style="width: 20px;">
-    </a> 
+@if (\Session::has('user_id'))
+    <?php
+    $user = \App\User::find(\Session::get('user_id'));
+    $image = $user->profile;
+    ?>
+@else  
+    <?php
+    $image = "https://image.flaticon.com/icons/svg/109/109718.svg" ;
+    ?>
+@endif  
+    <div class="navcenter" style="white-space: nowrap !important;overflow-y: auto;justify-content: center;
+    display: flex;text-align: center;max-width: 400px;margin: 0px auto;">
+        <a  style="padding: 10px 15px; font-size: 14px; font-weight: 600;width: 20%;">
+            <img src="https://image.flaticon.com/icons/svg/238/238755.svg" style="width: 20px;">
+        </a> 
 
 
-    <!-- https://image.flaticon.com/icons/svg/865/865132.svg -->
-    <a href="/card" style="padding: 10px 15px; font-size: 14px;width: 20%;">
-        <img src=" https://image.flaticon.com/icons/svg/238/238693.svg" style="width: 20px;">
-    </a> 
+        <!-- https://image.flaticon.com/icons/svg/865/865132.svg -->
+        <a href="/coming" style="padding: 10px 15px; font-size: 14px;width: 20%;">
+            <img src="https://image.flaticon.com/icons/svg/1034/1034138.svg" style="width: 20px;">
+        </a> 
 
+        <!--     https://image.flaticon.com/icons/svg/1001/1001287.svg -->
 
-     <!--     https://image.flaticon.com/icons/svg/1001/1001287.svg -->
+        <a href="/list" style="padding: 10px 15px; font-size: 14px;width: 20%;">
+            <img src="https://image.flaticon.com/icons/svg/1001/1001399.svg" style="width: 20px;">
+        </a>
 
-    <a href="/list" style="padding: 10px 15px; font-size: 14px;width: 20%;">
-        <img src="https://image.flaticon.com/icons/svg/1001/1001399.svg" style="width: 20px;">
-    </a>
+        <!-- https://image.flaticon.com/icons/svg/132/132233.svg -->
+        <a href="/history" style="padding: 10px 15px;font-size: 14px;width: 20%;">
+            <img src="https://image.flaticon.com/icons/svg/63/63269.svg" style="width: 20px;">
+        </a>
 
-    <!-- https://image.flaticon.com/icons/svg/132/132233.svg -->
-    <a href="/history" style="padding: 10px 15px;font-size: 14px;width: 20%;">
-        <img src="https://image.flaticon.com/icons/svg/132/132284.svg" style="width: 20px;">
-    </a>
-
-    <!-- https://image.flaticon.com/icons/svg/149/149022.svg -->
-    <a href="/more" style="padding: 10px 15px;font-size: 14px;width: 20%;">
-        <img src="https://image.flaticon.com/icons/svg/149/149946.svg" style="width: 20px;">
-    </a>
-</div>
- @stop
+        <!-- https://image.flaticon.com/icons/svg/149/149022.svg -->
+        <a href="/more" style="padding: 10px 15px;font-size: 14px;width: 20%;">
+            <img src="https://image.flaticon.com/icons/svg/149/149946.svg" style="width: 20px;">
+        </a>
+    </div>
+            @stop
 @section('feedcontent')
-    <!--<div style="
-        white-space: nowrap !important;
-        overflow-x: scroll;
-        -webkit-overflow-scrolling:touch;
-    ">
-        @foreach($tags as $tags)
-        <article class="feedlist" style="border-radius: 5px;
-        border: 1px solid rgb(238, 238, 238);
-        box-shadow: 0 1px 6px 0 rgba(0,0,0,.05)!important;">
-            <div class="feedlist-into">
-                <a href="/feed/{{$tags->id}}">
-                <div class="feedlist-text">
-                    <div style="font-size: 14px;" >{{$tags->type->type}}</div>    
-                    <div style="
-                        font-weight: bold;font-size: 20px;
-                    " >{{$tags->tagname}}</div>
-                    <div style="font-size: 12px;width: 80%;">{{$tags->tagDetail}}</div>
-                    <div >{{$tags->user->name}}</div>   
-                    <img src="https://image.flaticon.com/icons/svg/1721/1721997.svg" style="
-                        width: 15px;
-                        float: left;
-                    "> <span class="feedlist-votes">{{$tags->tagVotes}}</span>
-                    <br>    
-                </div>
-                <div  class="feedlist-draw">
-                    <img  src="{{$tags->tagDraw}}">
-                </div>     
-                </a>
-        </article>
-        @endforeach
-    </div>-->
-    <h1 style="
-        font-size: 20px;
-        margin: 0px;
-        border-bottom: 1px solid rgba(0,0,0,.15)!important;
-        padding: 30px 15px 15px 15px;
-    ">Featured for members</h1>
-    <div>
-        @foreach($tops as $data)
-        <div class="feedhome">
-            <a href="/feed/{{$data->tag->id}}">
-                <div class="feedhome-tag">{{$data->tag->tagname}}</div> 
-            </a>
-            <a href="/story/{{$data->id}}">
-                <div class="feedhome-title">{{$data->postName}}</div> 
-                <div class="feedhome-post" :text-content.prop="'{{$data->post}}' | truncate" ></div>  
-            </a>
-            <div class="feedhome-text" >
-                <a href="/profile/{{$data->user->id}}">
-                    <div class="feedhome-name">
-                        {{$data->user->name}}  
-                    </div>
-                </a>
-                <div class="feedhome-time">
+<style>
 
-                    <span class="feedhome-time-into"  :text-content.prop="{{$data->postTime}} | timeSince" ></span>
-                    
-                    <img src="https://image.flaticon.com/icons/svg/1721/1721997.svg" >
-                    <span class="feedhome-like">{{$data->postLike}} </span>
-                </div>
+    feedboon-text{
+        padding: 10px 15px 5px 15px;
+        text-align: center;
+    }
+    feedboon-boonName{
+        font-size:40px;
+    }
+    feedboon-boon{
+        font-size: 30px;
+    }
+</style>
+<link rel="stylesheet" href="fonts/style.css" type="text/css" media="all" />
 
-            </div> 
-            <img src="{{$data->postDraw}}" class="feedhome-draw">
-        </div>
+    <article style="border: 1px solid rgb(234, 237, 241);
+    max-width: 560px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    margin: 20px auto;font-family: '2005iannnnnUBC';" v-for="item in sliced" >
 
-        @endforeach
-        <a href="/top" style="font-size: 18px;text-align: right;display: block;font-weight: bold;color: #1998cc;margin:15px 20px">more</a>
-    </div>
-    <h1 style="
-        font-size: 20px;
-        margin: 0px;
-        border-bottom: 1px solid rgba(0,0,0,.15)!important;
-        padding: 30px 15px 15px 15px;
-        width: 100%;
-        display: inline-block;
-    ">For you</h1>
-    <div>
-        @foreach($shares as $data)
-        <div class="feedhome">
-            <a href="/feed/{{$data->tag->id}}">
-                <div class="feedhome-tag">{{$data->tag->tagname}}</div> 
-            </a>
-            <a href="/story/{{$data->id}}">
-                <div class="feedhome-title">{{$data->postName}}</div> 
-                <div class="feedhome-post" :text-content.prop="'{{$data->post}}' | truncate" ></div>  
-            </a>
-            <div class="feedhome-text" >
-                <a href="/profile/{{$data->user->id}}">
-                    <div class="feedhome-name">
-                        {{$data->user->name}}  
-                    </div>
-                </a>
-                <div class="feedhome-time">
+        <boon v-if="item.boon != null" 
+            v-bind:item="item"
+            v-on:like="likedBoon"
+            v-on:share="shareBoon"
+            v-on:prev="prev"
+            v-on:next="next"            
+        > 
+         </boon>
 
-                    <span class="feedhome-time-into"  :text-content.prop="{{$data->postTime}} | timeSince" ></span>
-                    
-                    <img src="https://image.flaticon.com/icons/svg/1721/1721997.svg" >
-                    <span class="feedhome-like">{{$data->postLike}} </span>
-                </div>
+         <card v-else 
+            v-bind:item="item"
+            v-on:like="likedCard"
+            v-on:share="shareCard"
+         > 
+         </card>
 
-            </div> 
-            <img src="{{$data->postDraw}}" class="feedhome-draw">
-        </div>
-        @endforeach
-    </div>
-    <h1 style="
-        font-size: 20px;
-        margin: 0px;
-        width: 100%;
-        border-bottom: 1px solid rgba(0,0,0,.15)!important;
-        padding: 40px 15px 15px 15px;
-        display: inline-block;
-    ">New</h1>
-    <div>
-        @foreach($news as $data)
-        <div class="feedhome">
-            <a href="/feed/{{$data->tag->id}}">
-                <div class="feedhome-tag">{{$data->tag->tagname}}</div> 
-            </a>
-            <a href="/story/{{$data->id}}">
-                <div class="feedhome-title">{{$data->postName}}</div> 
-                <div class="feedhome-post" :text-content.prop="'{{$data->post}}' | truncate" ></div>  
-            </a>
-            <div class="feedhome-text" >
-                <a href="/profile/{{$data->user->id}}">
-                    <div class="feedhome-name">
-                        {{$data->user->name}}  
-                    </div>
-                </a>
-                <div class="feedhome-time">
+    </article>
 
-                    <span class="feedhome-time-into"  :text-content.prop="{{$data->postTime}} | timeSince" ></span>
-                    
-                    <img src="https://image.flaticon.com/icons/svg/1721/1721997.svg" >
-                    <span class="feedhome-like">{{$data->postLike}} </span>
-                </div>
 
-            </div> 
-            <img src="{{$data->postDraw}}" class="feedhome-draw">
-        </div>
-        @endforeach
-        <a href="/new" style="font-size: 18px;text-align:right;display: block;font-weight: bold;color: #1998cc;margin:15px 20px">more</a>
-    </div>
 @stop
 
 @section('vuefeed')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
+
+        Vue.component('boon', {
+            props: ['item'],
+        template:  `
+        <div>
+            <div style="padding: 10px 15px 5px 15px;text-align: center;"><div style="font-size:40px"  v-text="item.boonName"></div><div style="font-size:30px" class="feedboon-boon"   v-text="item.boon"></div></div>
+            <div style="display: block;flex-wrap: wrap;overflow: hidden; position: relative;max-width: 560px;"> 
+            <div><div v-if="item.photo.length > 1" v-on:click="$emit('prev', item.index)" style="left: 15px;position: absolute; font-size: 50px;top: 40%;cursor: pointer;user-select: none;">&lt;</div> <div v-if="item.photo.length > 1" v-on:click="$emit('next', item.index)" style="right: 15px;top: 40%;position: absolute;font-size: 50px;cursor: pointer;user-select: none;">&gt;</div></div>
+                <div style="white-space: nowrap;">
+                    <div  style=" margin-left: 0%; width: 100%;display: inline-block;transition: all .3s;" :key="photo.id" v-for="photo in item.photo" >
+                        <div><a><div><img :src="photo.photo" style="width:100%"></div></a></div>
+                    </div>
+                </div>
+            </div>   
+
+            <div style="font-size: 25px;margin: 0px 5px 0px 10px;" >
+                <span v-bind:id="'text_'+item.index"  v-if="item.boonLike  > 0">
+                    <span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.index" v-text="item.boonLike"></span>
+                    ล้านปลื้ม
+                </span> 
+                <span style="float: right;" v-if="item.boonComment  > 0">
+                    <span style=" margin: 0px 5px 0px 10px;" v-text="item.boonComment"></span>
+                    comments
+                </span>
+                <span style="float: right;" v-if="item.boonShare  > 0">
+                    <span style=" margin: 0px 5px 0px 10px;" v-text="item.boonShare"></span>
+                    shared
+                </span>
+            </div>
+
+            <div style="width:100%;display: flow-root;">
+                <div style="width: 30%;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
+                    <div style="padding: 5px;margin: auto;display: table;">
+                        <img v-bind:id="'like_'+item.index" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg" v-on:click="$emit('like', item.index)" v-on:click="item.liked = ! item.liked" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
+                        <img v-bind:id="'unlike_'+item.index" v-else src="https://image.flaticon.com/icons/svg/1865/1865880.svg" v-on:click="$emit('like', item.index)" v-on:click="item.liked = ! item.liked" alt="" style="float: left; width: 25px; margin: 3px 0px;">
+                        <div style="display: inline-block;">
+                            <div style="font-size: 25px; margin: 3px 0px 0px 5px;">ปลื้มเลย</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style=" width: 35%;float: left;  display: inline-block; border-top: 1px solid rgb(234, 237, 241);">
+                    <div style="padding: 5px;margin: auto;display: table;">
+                        <img src="https://image.flaticon.com/icons/svg/134/134819.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
+                        <div style="display: inline-block;">
+                            <div style="font-size: 25px; margin: 3px 0px 0px 10px;">comment</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style=" width: 35%; float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
+                    <div v-on:click="$emit('share', item.index)" style="padding: 5px 10px;margin: auto;display: table;position: relative;">
+                        <div style="position: absolute;display:none;margin-top: -45px"  v-bind:id="'share_'+item.index">
+                            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+                            <div class="social-buttons" style="font-size: 25px;float:right;margin-top:10px">
+                                <a v-bind:href="'https://www.facebook.com/sharer/sharer.php?u=https://jaipun.com/boon/'+item.id"
+                                target="_blank" style="color: #4e71a8 !important;">
+                                <i class="fa fa-facebook-official"></i>
+                                </a>
+                                <a v-bind:href="'https://twitter.com/intent/tweet?url=https://jaipun.com/boon/'+item.id"
+                                target="_blank" style="color: #1cb7eb !important;">
+                                    <i class="fa fa-twitter-square"></i>
+                                </a>
+
+                                <a v-bind:href="'https://social-plugins.line.me/lineit/share?url=https://jaipun.com/boon/'+item.id" target="_blank"><img src="https://image.flaticon.com/icons/svg/124/124027.svg" style="width: 20px;"></a>
+                            </div>
+                        </div>
+                        <img src="https://image.flaticon.com/icons/svg/1787/1787887.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
+                        <div style="display: inline-block;">
+                            <div style="font-size: 25px; margin: 3px 0px 0px 10px;">ส่งบุญ</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form method="post" action="{{ route('comments.store') }}" style=" padding-top: 10px;border-top: 1px solid rgb(234, 237, 241);">
+                @csrf
+                <div class="form-group">
+                                
+                        <img src="{{$image}}" height="30px" alt="" style="border-radius: 100px;position: absolute;    margin: 0px 2%;   border: 1px solid #BDBDBD;object-fit: cover;">
+                        <textarea placeholder="Write a comment..." name="body" style="
+                        border: 1px solid #ccd0d5;
+                        border-radius: 16px;
+                        width: 75%;
+                        margin: 0% 0px 0% 12%;
+                        padding: 8px 12px;
+                        line-height: 16px;
+                        overflow: hidden;
+                        height: 35px;
+                        outline:none;
+                    "></textarea>
+                    <input type="hidden" name="post_id" :value="item.id" />
+                    <input type="hidden" name="commentType" value="2" />  
+                    <button type="submit" style="border: 0; background: transparent; position: absolute;outline:none;">
+                        <img src="https://image.flaticon.com/icons/svg/1878/1878898.svg" width="30" height="30" alt="submit" />
+                    </button>  
+                </div>
+            </form>
+
+            <div :key="comment.id" v-for="comment in item.comments" >
+                <div style="margin: 15px 20px;">
+                    <img v-bind:src="comment.user.profile" alt="" style="
+                    margin: 0px 10px 0px 0px;
+                    border-radius: 100px;
+                    border: 1px solid #BDBDBD;
+                    height: 30px;
+                    width: 30px;
+                    object-fit: cover;
+                    display: inline-block;
+                    float: left;
+                    "> 
+                    <div style="display: inline-block;">
+                        <span style="font-weight: bold;font-size:20px" v-text="comment.user.name"></span><span style="
+                            font-size: 20px;
+                            margin: 0px 5px;
+                        " v-text="comment.body"></span>   
+                        <div style="font-size: 18px;" v-text="comment.created_at"></div>
+                    </div> 
+                </div>
+            </div>
+            
+        </div>
+        `
+        })
+
+        
+        Vue.component('card', {
+            props: ['item'],
+        template: `
+        <div>
+            <div style="padding: 10px 60px 5px;text-align: center;">
+                <div style="font-size: 40px;margin-top: 60px;" v-html="item.card"></div>
+                <div style="font-weight: bold;font-size:26px" v-text="item.user.name"></div>
+                <div style="font-size: 18px;" :text-content.prop="item.cardTime | timeSince"></div>
+                <img v-bind:src="item.cardPhoto" alt="" style="
+                    width: 50%;
+                    margin: 30px 0px 15px;
+                ">
+            </div>
+
+            <div style="font-size: 25px;margin: 0px 5px 0px 10px;display: inline-block;" v-bind:id="'text_'+item.index" >
+                <span  v-if="item.cardLike > 0">
+                    <span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.index" v-text="item.cardLike"></span>
+                    ล้านปลื้ม
+                </span> 
+                <span style="float: right;" v-if="item.cardComment > 0">
+                    <span style=" margin: 0px 5px 0px 10px;" v-text="item.cardComment"></span>
+                    comments
+                </span>
+                <span style="float: right;" v-if="item.cardShare > 0">
+                    <span style=" margin: 0px 5px 0px 10px;" v-text="item.cardShare"></span>
+                    shared
+                </span>
+            </div>
+
+            <div style="width:100%;display: flow-root;">
+                <div style="width: 30%;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
+                    <div style="padding: 5px;margin: auto;display: table;">
+                        <img v-bind:id="'like_'+item.index" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg" v-on:click="$emit('like', item.index)"  v-on:click="item.liked = ! item.liked" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
+                        <img v-bind:id="'unlike_'+item.index" v-else src="https://image.flaticon.com/icons/svg/1865/1865880.svg" v-on:click="$emit('like', item.index)"  v-on:click="item.liked = ! item.liked" alt="" style="float: left; width: 25px; margin: 3px 0px;">
+                        <div style="display: inline-block;">
+                            <div style="font-size: 25px; margin: 3px 0px 0px 5px;">ปลื้มเลย</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style=" width: 35%;float: left;  display: inline-block; border-top: 1px solid rgb(234, 237, 241);">
+                    <div style="padding: 5px;margin: auto;display: table;">
+                        <img src="https://image.flaticon.com/icons/svg/134/134819.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
+                        <div style="display: inline-block;">
+                            <div style="font-size: 25px; margin: 3px 0px 0px 10px;">comment</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style=" width: 35%; float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
+                    <div v-on:click="$emit('share', item.index)" style="padding: 5px 10px;margin: auto;display: table;position: relative;">
+                        <div style="position: absolute;display:none;margin-top: -45px"  v-bind:id="'share_'+item.index">
+                            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+                            <div class="social-buttons" style="font-size: 25px;float:right;margin-top:10px">
+                                <a v-bind:href="'https://www.facebook.com/sharer/sharer.php?u=https://jaipun.com/card/'+item.id"
+                                target="_blank" style="color: #4e71a8 !important;">
+                                <i class="fa fa-facebook-official"></i>
+                                </a>
+                                <a v-bind:href="'https://twitter.com/intent/tweet?url=https://jaipun.com/card/'+item.id"
+                                target="_blank" style="color: #1cb7eb !important;">
+                                    <i class="fa fa-twitter-square"></i>
+                                </a>
+
+                                <a v-bind:href="'https://social-plugins.line.me/lineit/share?url=https://jaipun.com/card/'+item.id" target="_blank"><img src="https://image.flaticon.com/icons/svg/124/124027.svg" style="width: 20px;"></a>
+                            </div>
+                        </div>
+                        <img src="https://image.flaticon.com/icons/svg/1787/1787887.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
+                        <div style="display: inline-block;">
+                            <div style="font-size: 25px; margin: 3px 0px 0px 10px;">ส่งบุญ</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form method="post" action="{{ route('comments.store') }}" style=" padding-top: 10px;border-top: 1px solid rgb(234, 237, 241);">
+                @csrf
+                <div class="form-group">
+                                
+                        <img src="{{$image}}" height="30px" alt="" style="border-radius: 100px;position: absolute;    margin: 0px 2%;   border: 1px solid #BDBDBD;object-fit: cover;">
+                        <textarea placeholder="Write a comment..." name="body" style="
+                        border: 1px solid #ccd0d5;
+                        border-radius: 16px;
+                        width: 75%;
+                        margin: 0% 0px 0% 12%;
+                        padding: 8px 12px;
+                        line-height: 16px;
+                        overflow: hidden;
+                        height: 35px;
+                        outline:none;
+                    "></textarea>
+                    <input type="hidden" name="post_id" :value="item.id" />
+                    <input type="hidden" name="commentType" value="3" />  
+                    <button type="submit" style="border: 0; background: transparent; position: absolute;outline:none;">
+                        <img src="https://image.flaticon.com/icons/svg/1878/1878898.svg" width="30" height="30" alt="submit" />
+                    </button>  
+                </div>
+            </form>
+
+            <div :key="comment.id" v-for="comment in item.comments" >
+                <div style="margin: 15px 20px;">
+                    <img v-bind:src="comment.user.profile" alt="" style="
+                    margin: 0px 10px 0px 0px;
+                    border-radius: 100px;
+                    border: 1px solid #BDBDBD;
+                    height: 30px;
+                    width: 30px;
+                    object-fit: cover;
+                    display: inline-block;
+                    float: left;
+                    "> 
+                    <div style="display: inline-block;">
+                        <span style="font-weight: bold;font-size:20px" v-text="comment.user.name"></span><span style="
+                            font-size: 20px;
+                            margin: 0px 5px;
+                        " v-text="comment.body"></span>   
+                        <div style="font-size: 18px;" v-text="comment.created_at"></div>
+                    </div> 
+                </div>
+            </div>
+
+            
+        </div> 
+        `
+        })
+        
         // example demo content
         const app = new Vue({
             el: "#app",
             data: {
-                show   : true, // display content after API request
+                show   : false, // display content after API request
                 offset : 5,     // items to display after scroll
                 display: 5,     // initial items
                 trigger: 300,   // how far from the bottom to trigger infinite scroll
@@ -194,25 +350,191 @@
                 posts: [],
                 page:1,
                 text:null,
-                onOff:false,
+                tags:[],
+                datacontent: 'This component was made with the help of a data object in the Vue instance',
+                menu: [
+                        { name: 'login', url: '/login' },
+                        { name: 'About US', url: '' }   
+                    ],
+                menulogin: [
+                        { name: 'edit profile', url: '/post/create' },
+                        { name: 'edit', url: '/post/create' },
+                        { name: 'POST', url: '/post/create' },                        
+                        { name: 'logout', url: '/logout' }   
+                    ],
+                onOff:false
             },
             computed: {
                 // slice the array of data to display
                 sliced() {
-                return this.items.slice(0, this.display);
+                    return this.items.slice(0, this.display);
                 },
             },
             methods: {
+                test(id) {
+                    alert('OK'+id);
+                },
+                likedBoon(id){
+                    let vm = this;
+                    @if(\Session::has('user_id'))
+                        this.$http.get('/like/'+ this.items[id].id +'/islikedBoonbyme').then(function(response){
+                            if(response.body==='true'){                  
+                                this.items[id].liked = false;
+                                this.items[id].boonLike - 10;
+                                var count = Number($( "#count_"+id ).text()); 
+                                var sum = count - 10;
+                                $("#count_"+id).html(sum);   
+                                $("#unlike_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865963.svg');                                                                          
+                                this.$http.get('/like/'+ this.items[id].id  +'/likedBoon').then(function(response){});
+                                $("#unlike_"+id).attr('id',   'like_' + id);                                   
+                            }else{
+                                this.items[id].liked = true; 
+                                this.items[id].boonLike + 10;  
+                                var count = Number($( "#count_"+id ).text()); 
+                                var sum = count + 10;
+                                $("#count_"+id).html(sum);
+                                $("#text_"+id).html('<span ><span style=" margin: 0px 5px 0px 10px;" id="count_'+id+'" >'+sum +'</span>ล้านปลื้ม</span>');                                                                                                                                                                                                                         
+                                $("#like_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865880.svg'); 
+                                this.$http.get('/like/'+ this.items[id].id  +'/likedBoon').then(function(response){});
+                                $("#like_"+id).attr('id',   'unlike_' + id);   
+                                
+                            }
+                        }, function(error){
+                            console.log(error.statusText);
+                        });
+                    @else
+                    this.onOff = true;
+                    @endif                  
+                },
+                shareBoon(id){        
+                    if(this.items[id].share===true){
+                        $("#share_"+id).hide(); 
+                        this.items[id].share = false;
+                    }else{
+                        $("#share_"+id).show();   
+                        this.items[id].share = true; 
+                        this.$http.get('/shareboon/'+items[id].id).then(function(response){});                                             
+                    }                   
+                },                
+                prev(id) {                  
+                    var last = this.items[id].photo.pop();
+                    this.items[id].photo.splice(0, 0, last)
+                },
+                next(id) {                                                                      
+                    var first = this.items[id].photo.shift();
+                    this.items[id].photo.push(first)
+                },
+
+                likedCard(id){
+                    let vm = this;
+                    @if(\Session::has('user_id'))
+                        this.$http.get('/like/'+ this.items[id].id +'/islikedCardbyme').then(function(response){
+                            if(response.body==='true'){                                   
+                                this.items[id].liked = false;
+                                this.items[id].cardLike - 10;
+                                var count = Number($( "#count_"+id ).text()); 
+                                var sum = count - 10;
+                                $("#count_"+id).html(sum);   
+                                $("#unlike_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865963.svg');                                                                          
+                                this.$http.get('/like/'+ this.items[id].id +'/likedCard').then(function(response){});
+                                $("#unlike_"+id).attr('id',   'like_' + id);                                   
+                            }else{
+                                this.items[id].liked = true; 
+                                this.items[id].cardLike + 10;  
+                                var count = Number($( "#count_"+id ).text()); 
+                                var sum = count + 10;
+                                $("#count_"+id).html(sum);
+                                $("#text_"+id).html('<span ><span style=" margin: 0px 5px 0px 10px;" id="count_'+id+'" >'+sum +'</span>ล้านปลื้ม</span>');                                                                                                                                                                                                                         
+                                $("#like_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865880.svg'); 
+                                this.$http.get('/like/'+ this.items[id].id +'/likedCard').then(function(response){});
+                                $("#like_"+id).attr('id',   'unlike_' + id);   
+                                
+                            }
+                        }, function(error){
+                            console.log(error.statusText);
+                        });
+                    @else
+                    this.onOff = true;
+                    @endif                  
+                },
+                shareCard(id){              
+                    if(this.items[id].share===true){
+                        $("#share_"+id).hide(); 
+                        this.items[id].share = false;
+                    }else{
+                        $("#share_"+id).show();   
+                        this.items[id].share = true; 
+                        this.$http.get('/sharecard/'+this.items[id].id).then(function(response){});                                             
+                    }                   
+                },   
+
                 // check to see if we're at the bottom of the page
                 scroll() {
                 window.onscroll = ev => {
+                    
                     if (
                         window.innerHeight + window.scrollY >=
-                        (document.body.offsetHeight - this.trigger)
+                        (document.documentElement.offsetHeight - this.trigger)
                     ) {
                         if (this.display < this.items.length) {
                             this.display = this.display + this.offset;
                             let vm = this;
+                            var postarray = [];
+                            this.page = this.page+1;
+                            this.$http.get('/api/all?page='+this.page).then(function(response){
+                                postarray = response.body;
+                                vm.posts = postarray;
+                                //alert(JSON.stringify(response.body));
+                                for (var i = 0; i < postarray.length; i++) { 
+                                        if(postarray[i].like.length > 0){
+                                            for (var j = 0; j < postarray[i].like.length; j++) { 
+                                                @if(\Session::has('user_id'))
+                                                    if(postarray[i].like[j].user_id == {{\Session::get('user_id')}}){
+                                                        postarray[i].liked = true;
+                                                    }else{
+                                                        postarray[i].liked = false;
+                                                    }
+                                                @else
+                                                    postarray[i].liked = false;                                                
+                                                @endif
+                                            }
+                                        }else{
+                                            postarray[i].liked = false;
+                                        }
+                                    if(postarray[i].boon != 0){
+                                        this.items.push({
+                                            id:postarray[i].id, 
+                                            index:this.items.length,                                                 
+                                            boon:postarray[i].boon,   
+                                            boonName:postarray[i].boonName, 
+                                            boonLike:postarray[i].boonLike,  
+                                            boonComment:postarray[i].boonComment,  
+                                            boonShare:postarray[i].boonShare,                                               
+                                            photo:postarray[i].photo,  
+                                            comments:postarray[i].comments,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                            user:postarray[i].user,   
+                                            liked:postarray[i].liked,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                                        }); 
+                                    }else{
+                                        this.items.push({
+                                            id:postarray[i].id, 
+                                            index:this.items.length,    
+                                            card:postarray[i].card, 
+                                            cardPhoto:postarray[i].cardPhoto,   
+                                            cardLike:postarray[i].cardLike,  
+                                            cardComment:postarray[i].cardComment,  
+                                            cardShare:postarray[i].cardShare,  
+                                            comments:postarray[i].comments,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                            user:postarray[i].user,   
+                                            liked:postarray[i].liked,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+                                        });     
+                                    }
+                                }                                                                                                    
+                            }, function(error){
+                                console.log(error.statusText);
+                            });
+                            
+                            
                         }
                         else {
                             this.end = true;
@@ -222,14 +544,39 @@
                 },
                 // preform API request to the server
                 fetch() {
+                    let vm = this;
+                    var postarray = [];
+                    this.$http.get('/api/all?page='+this.page).then(function(response){
+                        postarray = response.body;
+                        this.items = postarray;            
+                        for (var i = 0; i < this.items.length; i++) { 
+                            this.items[i].share = false;
+                            this.items[i].index = i;                            
+                            if(this.items[i].like.length > 0){
+                                for (var j = 0; j < this.items[i].like.length; j++) { 
+                                    @if(\Session::has('user_id'))
+                                    if(this.items[i].like[j].user_id == {{\Session::get('user_id')}}){
+                                        this.items[i].liked = true;
+                                    }else{
+                                        this.items[i].liked = false;
+                                    }
+                                    @else
+                                        this.items[i].liked = false;                                              
+                                    @endif
+                                }
+                            }else{
+                                this.items[i].liked = false;
+                            }
+                        }        
+                    }, function(error){
+                        console.log(error.statusText);
+                    });
                     this.show = true;
                 },
 
             },
             mounted() {
                 // track scroll event
-                this.end = true;
-                let vm = this;
                 this.scroll();
             },
             created() {
@@ -237,7 +584,6 @@
                 this.fetch();
             }
         });
-
 
         Vue.filter('truncate', function (text) {
           return text.replace(/<\/?[^>]+(>|$)/g, "").replace(/&amp;nbsp;/gi,' ').substring(0, 50) + '...';

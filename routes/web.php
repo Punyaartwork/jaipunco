@@ -24,7 +24,7 @@ Route::get('/', function () {
     return view('feed.home',compact('tags','tops','shares','news'));
 });*/
 Route::get('/', function () {
-    return view('boon.index');    
+    return view('feed.home');    
 });
 Route::get('/font', function () {
     return view('font');
@@ -90,6 +90,13 @@ Route::get('api/card/{feed}',function($feed){
         $data = App\Card::with('user')->with('like')->with('comments')->orderBy('cardLike','desc')->paginate(10);
     }
     return response()->json($data);
+});
+
+Route::get('api/all',function(){
+    $boon = App\Boon::with('user')->with('like')->with('comments')->with('photo')->orderBy('id','desc')->paginate(5);      
+    $card = App\Card::with('user')->with('like')->with('comments')->orderBy('id','desc')->paginate(5);
+    $merged = $boon->merge($card);     
+return response()->json($merged);
 });
 
 Route::get('api/typenew',function(){
