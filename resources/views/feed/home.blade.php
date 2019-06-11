@@ -56,7 +56,9 @@
     }
 </style>
 <link rel="stylesheet" href="fonts/style.css" type="text/css" media="all" />
-
+<div style="max-width: 560px;border-radius: 10px;margin: 20px auto;">
+    <div style="border: 1px solid rgb(234, 237, 241);width:100%;background: rgb(255, 255, 255);border-radius: 10px;display: inline-block;"><div style="padding: 15px 15px 0px; font-size: xx-large; text-align: center; font-family: &quot;2005iannnnnUBC&quot;;">มาร่วมสร้างสังคมที่เต็มไปด้วยเรื่องบุญ ๆ ด้วยกันกับเรา</div> <a href="/boon/create" style="text-align: center;width: 40%;padding: 10px;font-size: xx-large;border-radius: 5px;background: rgb(33, 150, 243);margin: 10px 5%;display: block;float: left;color: rgb(255, 255, 255);font-family: &quot;2005iannnnnUBC&quot;;">Add a Boon</a> <a href="/card/create" style="text-align: center;width: 40%;padding: 10px;font-size: xx-large;border-radius: 5px;background:#009688;margin: 10px 5%;color: rgb(255, 255, 255);display: block;float: left;font-family: &quot;2005iannnnnUBC&quot;;">Add a card</a></div>
+</div>
     <article style="border: 1px solid rgb(234, 237, 241);
     max-width: 560px;
     background: rgb(255, 255, 255);
