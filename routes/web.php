@@ -93,12 +93,19 @@ Route::get('api/card/{feed}',function($feed){
 });
 
 Route::get('api/all',function(){
+    $collection = collocet();
     $boon = App\Boon::with('user')->with('like')->with('comments')->with('photo')->orderBy('id','desc')->paginate(5);      
     $card = App\Card::with('user')->with('like')->with('comments')->orderBy('id','desc')->paginate(5);
-    $allItems = new \Illuminate\Database\Eloquent\Collection;
-    $allItems = $allItems->merge($boon);
-    $allItems = $allItems->merge($card);   
-return response()->json($allItems);
+    $merged = $boon->merge($card);  
+    
+    foreach($boon as $boon){
+        $collection->push($boon);
+    }
+    foreach($card as $card){
+        $collection->push($card);
+    }
+
+return response()->json($collection);
 });
 
 Route::get('api/typenew',function(){
