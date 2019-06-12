@@ -569,7 +569,6 @@
                                     @else
                                         this.items[i].liked = false;                                              
                                     @endif
-                                    return; 
                                 }
                             }else{
                                 this.items[i].liked = false;
