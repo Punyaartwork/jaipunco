@@ -562,14 +562,14 @@
                                     @if(\Session::has('user_id'))
                                     if(this.items[i].like[j].user_id == {{\Session::get('user_id')}}){
                                         alert(this.items[i].like[j].user_id+'==' + {{\Session::get('user_id')}});
-                                        this.items[i].liked = true; 
-                                        return;                                   
+                                        this.items[i].liked = true;       
                                     }else{
                                         this.items[i].liked = false;
                                     }
                                     @else
                                         this.items[i].liked = false;                                              
                                     @endif
+                                    return; 
                                 }
                             }else{
                                 this.items[i].liked = false;
