@@ -97,10 +97,9 @@ class DrawController extends Controller
             ]);        
         $draw = Draw::find($id);
         $filename = substr($draw->draw,1);
-        if(\File::exists(public_path($filename))){
-            
-        \File::delete(public_path($filename));
-    
+        $deleteImage =  getcwd() . $draw->draw;
+        if(\File::exists($deleteImage)){
+            \File::delete($deleteImage);
         }else{
     
             dd('File does not exists.');
