@@ -22,7 +22,7 @@
 
 <head>
     <script src="/js/jquery.js"></script>
-    <script src="/js/croppie.js"></script>
+    <script src="/js/croppie2.js"></script>
     <link rel="stylesheet" href="/css/bootstrap-3.min.css">
     <link rel="stylesheet" href="/css/croppie.css">
   <meta name="csrf-token" content="{{ csrf_token() }}">
