@@ -252,7 +252,7 @@
                         <img class="clike" v-bind:id="'like_'+item.index+'_'+item.id" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg"  alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
                         <img  class="cunlike" v-bind:id="'unlike_'+item.index+'_'+item.id" v-else src="https://image.flaticon.com/icons/svg/1865/1865880.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;">
                         <div style="display: inline-block;">
-                            <div style="font-size: 25px; margin: 3px 0px 0px 5px;">ปลื้มเลย<span v-text="item.liked"></span></div>
+                            <div style="font-size: 25px; margin: 3px 0px 0px 5px;">ปลื้มเลย</div>
                         </div>
                     </div>
                 </div>
