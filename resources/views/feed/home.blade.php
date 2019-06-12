@@ -559,9 +559,9 @@
                             this.items[i].index = i;                            
                             if(this.items[i].like.length > 0){
                                 for (var j = 0; j < this.items[i].like.length; j++) { 
-                                    alert(this.items[i].like[j].user_id+'==' + {{\Session::get('user_id')}})
                                     @if(\Session::has('user_id'))
                                     if(this.items[i].like[j].user_id == {{\Session::get('user_id')}}){
+                                        alert(this.items[i].like[j].user_id+'==' + {{\Session::get('user_id')}})
                                         this.items[i].liked = true;
                                     }else{
                                         this.items[i].liked = false;
