@@ -563,9 +563,7 @@
                                     if(this.items[i].like[j].user_id == {{\Session::get('user_id')}}){
                                         alert(this.items[i].like[j].user_id+'==' + {{\Session::get('user_id')}});
                                         this.items[i].liked = true;
-                                        $("#like_"+this.items[i].index+"_"+this.items[i].id).attr('src','https://image.flaticon.com/icons/svg/1865/1865880.svg'); 
-                                        $("#like_"+this.items[i].index+"_"+this.items[i].id).attr('class','unlike');            
-                                        $("#like_"+this.items[i].index+"_"+this.items[i].id).attr('id',   'unlike_'+this.items[i].index+"_"+this.items[i].id); 
+                                        alert(this.items[i].liked);                                        
                                     }else{
                                         this.items[i].liked = false;
                                     }
