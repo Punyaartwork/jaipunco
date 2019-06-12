@@ -98,6 +98,7 @@ class DrawController extends Controller
         $draw = Draw::find($id);
         $filename = substr($draw->draw,1);
         $deleteImage =  getcwd() . $draw->draw;
+        chmod($deleteImage,0777);
         if(\File::exists($deleteImage)){
             \File::delete($deleteImage);
         }else{
