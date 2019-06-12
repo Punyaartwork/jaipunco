@@ -496,7 +496,6 @@
                                                 @if(\Session::has('user_id'))
                                                     if(postarray[i].like[j].user_id == {{\Session::get('user_id')}}){
                                                         postarray[i].liked = true;
-                                                        return;
                                                     }else{
                                                         postarray[i].liked = false;
                                                     }
@@ -553,28 +552,29 @@
                     let vm = this;
                     var postarray = [];
                     this.$http.get('/api/all?page='+this.page).then(function(response){
-                        postarray = response.body;        
-                        for (var i = 0; i < postarray.length; i++) { 
-                            postarray[i].share = false;
-                            postarray[i].index = i;                            
-                            if(postarray[i].like.length > 0){
-                                for (var j = 0; j < postarray[i].like.length; j++) { 
+                        postarray = response.body;
+                        this.items = postarray;            
+                        for (var i = 0; i < this.items.length; i++) { 
+                            this.items[i].share = false;
+                            this.items[i].index = i;                            
+                            if(this.items[i].like.length > 0){
+                                for (var j = 0; j < this.items[i].like.length; j++) { 
                                     @if(\Session::has('user_id'))
-                                    if(postarray[i].like[j].user_id == {{\Session::get('user_id')}}){
-                                        postarray[i].liked = true; 
+                                    if(this.items[i].like[j].user_id == {{\Session::get('user_id')}}){
+                                        alert(this.items[i].like[j].user_id+'==' + {{\Session::get('user_id')}});
+                                        this.items[i].liked = true; 
                                         return;                                   
                                     }else{
-                                        postarray[i].liked = false;
+                                        this.items[i].liked = false;
                                     }
                                     @else
-                                        postarray[i].liked = false;                                              
+                                        this.items[i].liked = false;                                              
                                     @endif
                                 }
                             }else{
-                                postarray[i].liked = false;
+                                this.items[i].liked = false;
                             }
-                        }    
-                        this.items = postarray;        
+                        }        
                     }, function(error){
                         console.log(error.statusText);
                     });
