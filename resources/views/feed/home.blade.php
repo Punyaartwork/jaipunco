@@ -566,7 +566,6 @@
                                         break;      
                                     }else{
                                         this.items[i].liked = false;
-                                        break;                                              
                                     }
                                     @else
                                         this.items[i].liked = false;                                              
