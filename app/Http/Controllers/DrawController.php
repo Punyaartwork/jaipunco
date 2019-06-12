@@ -102,17 +102,12 @@ class DrawController extends Controller
         $deleteImage =  getcwd() . $draw->draw;
         $file_path = app_path($filename); 
         //chmod($draw->draw,0777);
-        if(\File::exists(public_path($draw->draw))){
+        if(\File::exists(public_path('draw/1556936665.png'))){
             dd('The file is writable');            
             \File::delete($deleteImage);
         }else{
-            if (is_writable($deleteImage)) {
-                dd('The file is writable');
-            } else {
-                dd('The file is not writable');
-            }
     
-            dd('File does not exists.'.$deleteImage);
+            dd('File does not exists.'.$draw->draw);
     
         }
         if(Input::hasFile('file')){
