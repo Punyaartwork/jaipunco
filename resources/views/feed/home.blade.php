@@ -112,7 +112,7 @@
             </div>
 
             <div style="width:100%;display: flow-root;line-height: 30px;">
-                <div  style="width: 30%;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
+                <div  style="line-height: 30px;width: 30%;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
                     <div style="padding: 5px;margin: auto;display: table;">
                         <img class="like" v-bind:id="'like_'+item.index+'_'+item.id" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg"   alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
                         <img class="unlike" v-bind:id="'unlike_'+item.index+'_'+item.id" v-else src="https://image.flaticon.com/icons/svg/1865/1865880.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;">
@@ -215,7 +215,7 @@
             </div>
 
             <div style="width:100%;display: flow-root;line-height: 30px;">
-                <div style="width: 30%;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
+                <div style="width: 30%;line-height: 30px;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
                     <div style="padding: 5px;margin: auto;display: table;">
                         <img class="clike" v-bind:id="'like_'+item.index+'_'+item.id" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg"  alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
                         <img  class="cunlike" v-bind:id="'unlike_'+item.index+'_'+item.id" v-else src="https://image.flaticon.com/icons/svg/1865/1865880.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;">
