@@ -1,17 +1,7 @@
 @extends('feed.master')
 @section('title','home | jaipun')
-@section('background','#fafafa')
+@section('background','#EEEEEE')
 @section('nav')
-@if (\Session::has('user_id'))
-    <?php
-    $user = \App\User::find(\Session::get('user_id'));
-    $image = $user->profile;
-    ?>
-@else  
-    <?php
-    $image = "https://image.flaticon.com/icons/svg/109/109718.svg" ;
-    ?>
-@endif  
     <div class="navcenter" style="white-space: nowrap !important;overflow-y: auto;justify-content: center;
     display: flex;text-align: center;max-width: 400px;margin: 0px auto;">
         <a  style="padding: 10px 15px; font-size: 14px; font-weight: 600;width: 20%;">
@@ -63,6 +53,7 @@
     max-width: 560px;
     background: rgb(255, 255, 255);
     border-radius: 10px;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,.05)!important;
     margin: 20px auto;font-family: '2005iannnnnUBC';" v-for="item in sliced" >
 
         <boon v-if="item.boon != null" 
@@ -120,7 +111,7 @@
                 </span>
             </div>
 
-            <div style="width:100%;display: flow-root;">
+            <div style="width:100%;display: flow-root;line-height: 30px;">
                 <div  style="width: 30%;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
                     <div style="padding: 5px;margin: auto;display: table;">
                         <img class="like" v-bind:id="'like_'+item.index+'_'+item.id" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg"   alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
@@ -223,7 +214,7 @@
                 </span>
             </div>
 
-            <div style="width:100%;display: flow-root;">
+            <div style="width:100%;display: flow-root;line-height: 30px;">
                 <div style="width: 30%;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
                     <div style="padding: 5px;margin: auto;display: table;">
                         <img class="clike" v-bind:id="'like_'+item.index+'_'+item.id" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg"  alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
