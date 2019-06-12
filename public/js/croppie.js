@@ -320,7 +320,7 @@
 
         addClass(boundary, 'cr-boundary');
         css(boundary, {
-            width: self.options.boundary.width + 'px',
+            'max-width': self.options.boundary.width + 'px',
             height: self.options.boundary.height + 'px'
         });
 

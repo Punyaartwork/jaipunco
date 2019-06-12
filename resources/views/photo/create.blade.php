@@ -3,7 +3,7 @@
 @section('content')
   
 <div class="container">
-    <h1>Add photos  {{ \Session::get('boon_id')}}<button onclick="window.location.href='/'" class="btn btn-primary" style="float:right">POST</button></h1>
+    <h1>เพิ่มภาพบุญของคุณ<button onclick="window.location.href='/'" class="btn btn-primary" style="float:right">POST</button></h1>
 
     @if(count($errors) > 0)
         @foreach($errors->all() as $error)
@@ -16,7 +16,7 @@
     @endif
 
 
-   
+
 
 </div>
 
@@ -30,24 +30,30 @@
 
 
 <body>
-<div  style="width:100%;text-align:center;margin:10px">
-				<strong>Select Image:</strong>
-				<br/>
+
 
   <div  style="">
-    <div id="upload-demo-i" style="background:#e1e1e1;margin-top:30px">
-  <?php
-  $photo = \App\Photo::where('boon_id', \Session::get('boon_id'))->get();
-  ?>
+    <div id="upload-demo-i" style="margin:30px auto;text-align: center;border-bottom: 2px solid #B0BEC5;padding:10px 0px">
+    <?php
+    $photo = \App\Photo::where('boon_id', \Session::get('boon_id'))->get();
+    ?>
         @foreach($photo as $photo)
-        <a href="/deletephoto/{{$photo->id}}">delete</a><img src="{{$photo->photo}}" style="width:300px;height:200;" />
+        <img src="{{$photo->photo}}" style="width:300px;height:200;" /><a href="/deletephoto/{{$photo->id}}" style="  display: block;background: #fff;width: 30px;font-size: 20px;border-radius: 100%;color: #000;margin: 5px auto;">X</a>
         @endforeach 
      </div>
 </div>
 
-				<input type="file" id="upload" style="margin:auto">
+
+                <div  style="width:250px;margin:10px auto">
+                                <strong>เลือกภาพ:</strong>
+                                <br/>
+                    <div class="custom-file">
+                        <input type="file" id="upload" class="custom-file-input" >
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                </div>
 				<br/>
-				<button class="btn btn-success upload-result">Upload Image</button>
+				<button class="btn btn-success upload-result" style="margin:10px auto;display:block">Upload Image</button>
   </div>
 
 
@@ -55,7 +61,7 @@
 <div >
     <div >
       <div style="width:100%;">
-        <div id="upload-demo" style="width:100%;height:auto;padding:0px;margin:auto;"></div>
+        <div id="upload-demo" style="width:100% !important ;height:auto !important;padding:0px;margin:auto;"></div>
       </div>
     </div>
     
@@ -66,6 +72,12 @@
 
 
 <script type="text/javascript">
+
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
 
 
 $.ajaxSetup({
@@ -111,8 +123,7 @@ $('.upload-result').on('click', function (ev) {
 			type: "POST",
 			data: {"image":resp,"boon_id":{{\Session::get('boon_id')}}},
 			success: function (data) {
-        //alert(data.id);
-				html = '<a href="/deletephoto/'+data.id+'">delete</a><img src="' + resp + '" style="width:300px;height:200;" />';
+				html = '<img src="' + resp + '" style="width:300px;height:200;" /><a href="/deletephoto/'+data.id+'" style="  display: block;background: #fff;width: 30px;font-size: 20px;border-radius: 100%;color: #000;margin: 5px auto;">X</a>';
 				$("#upload-demo-i").append(html);
 			}
 		});

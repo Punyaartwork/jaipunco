@@ -125,8 +125,9 @@ class PhotoController extends Controller
     public function destroy($id)
     {
         $photo = Photo::find($id);
+        $boon_id = $photo->boon_id;
         unlink('.'.$photo->photo);
         $photo->delete();
-        return redirect()->route('photo.create')->with('success','!!!!DELETED!!!!');
+        return redirect()->route('photo.create')->with('boon_id',$boon_id );
     }
 }
