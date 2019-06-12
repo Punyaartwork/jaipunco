@@ -496,6 +496,7 @@
                                                 @if(\Session::has('user_id'))
                                                     if(postarray[i].like[j].user_id == {{\Session::get('user_id')}}){
                                                         postarray[i].liked = true;
+                                                        return;
                                                     }else{
                                                         postarray[i].liked = false;
                                                     }
@@ -560,7 +561,8 @@
                                 for (var j = 0; j < postarray[i].like.length; j++) { 
                                     @if(\Session::has('user_id'))
                                     if(postarray[i].like[j].user_id == {{\Session::get('user_id')}}){
-                                        postarray[i].liked = true;                                    
+                                        postarray[i].liked = true; 
+                                        return;                                   
                                     }else{
                                         postarray[i].liked = false;
                                     }
