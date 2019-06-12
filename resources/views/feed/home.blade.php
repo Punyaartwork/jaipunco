@@ -15,13 +15,13 @@
     <div class="navcenter" style="white-space: nowrap !important;overflow-y: auto;justify-content: center;
     display: flex;text-align: center;max-width: 400px;margin: 0px auto;">
         <a  style="padding: 10px 15px; font-size: 14px; font-weight: 600;width: 20%;">
-            <img src="https://image.flaticon.com/icons/svg/238/238755.svg" style="width: 20px;">
+            <img src="https://image.flaticon.com/icons/svg/262/262584.svg" style="width: 20px;">
         </a> 
 
 
         <!-- https://image.flaticon.com/icons/svg/865/865132.svg -->
-        <a href="/coming" style="padding: 10px 15px; font-size: 14px;width: 20%;">
-            <img src="https://image.flaticon.com/icons/svg/1034/1034138.svg" style="width: 20px;">
+        <a href="/more" style="padding: 10px 15px; font-size: 14px;width: 20%;">
+            <img src="https://image.flaticon.com/icons/svg/238/238693.svg" style="width: 20px;">
         </a> 
 
         <!--     https://image.flaticon.com/icons/svg/1001/1001287.svg -->
@@ -83,53 +83,11 @@
 
     </article>
 
-
 @stop
 
 @section('vuefeed')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <script>
-    $( document ).ready(function() {
-        console.log( "ready!" );
-        $(document).on("click",".like",function() {
-            //alert("click bound to document listening for #test-element"+$(this).attr('id'));
-            var res = $(this).attr('id').substring(5);
-            var split_id = res.split("_");
-            //alert(res +'  '+ split_id[1]);
-            var index =split_id[0];
-            var id =split_id[1];     
-            var count = Number($( "#count_"+index ).text()); 
-            var sum = count + 10;      
-            $("#count_"+index).html(sum);
-            $("#text_"+index).html('<span ><span style=" margin: 0px 5px 0px 10px;" id="count_'+index+'" >'+sum +'</span>ล้านปลื้ม</span>');                                                                                                                                                                                                                         
-            $("#like_"+index+"_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865880.svg'); 
-            //this.$http.get('/like/'+ this.items[id].id  +'/likedBoon').then(function(response){});
-            $("#like_"+index+"_"+id).attr('class','unlike');            
-            $("#like_"+index+"_"+id).attr('id',   'unlike_'+index+'_'+id);    
-        });
-
-        $(document).on("click",".unlike",function() {
-            //alert("click bound to document listening for #test-element"+$(this).attr('id'));
-            var res = $(this).attr('id').substring(7);
-            var split_id = res.split("_");
-            //alert(res +'  '+ split_id[1]);
-            var index =split_id[0];
-            var id =split_id[1];   
-
-            var count = Number($( "#count_"+index ).text()); 
-            var sum = count - 10;
-            $("#count_"+index).html(sum);  
-            $("#unlike_"+index+"_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865963.svg');                                                                          
-            //this.$http.get('/like/'+ this.items[id].id  +'/likedBoon').then(function(response){});
-            $("#unlike_"+index+"_"+id).attr('class','like');
-            $("#unlike_"+index+"_"+id).attr('id',   'like_'+index+'_'+id);       
-        });
-    });
-    </script>
-
-
-        <script>
 
         Vue.component('boon', {
             props: ['item'],
@@ -146,10 +104,12 @@
             </div>   
 
             <div style="font-size: 25px;margin: 0px 5px 0px 10px;" >
-                <span v-bind:id="'text_'+item.index"  v-if="item.boonLike  > 0">
-                    <span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.index" v-text="item.boonLike"></span>
-                    ล้านปลื้ม
-                </span> 
+                <span v-bind:id="'text_'+item.index">
+                    <span   v-if="item.boonLike  > 0">
+                        <span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.index" v-text="item.boonLike"></span>
+                        ล้านปลื้ม
+                    </span> 
+                </span>
                 <span style="float: right;" v-if="item.boonComment  > 0">
                     <span style=" margin: 0px 5px 0px 10px;" v-text="item.boonComment"></span>
                     comments
@@ -161,7 +121,7 @@
             </div>
 
             <div style="width:100%;display: flow-root;">
-                <div style="width: 30%;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
+                <div  style="width: 30%;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
                     <div style="padding: 5px;margin: auto;display: table;">
                         <img class="like" v-bind:id="'like_'+item.index+'_'+item.id" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg"   alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
                         <img class="unlike" v-bind:id="'unlike_'+item.index+'_'+item.id" v-else src="https://image.flaticon.com/icons/svg/1865/1865880.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;">
@@ -269,11 +229,13 @@
                 ">
             </div>
 
-            <div style="font-size: 25px;margin: 0px 5px 0px 10px;display: inline-block;" v-bind:id="'text_'+item.index" >
-                <span  v-if="item.cardLike > 0">
-                    <span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.index" v-text="item.cardLike"></span>
-                    ล้านปลื้ม
-                </span> 
+            <div style="font-size: 25px;margin: 0px 5px 0px 10px;display: inline-block;"  >
+                <span v-bind:id="'text_'+item.index">
+                    <span  v-if="item.cardLike > 0">
+                        <span style=" margin: 0px 5px 0px 10px;" v-bind:id="'count_'+item.index" v-text="item.cardLike"></span>
+                        ล้านปลื้ม
+                    </span> 
+                </span>
                 <span style="float: right;" v-if="item.cardComment > 0">
                     <span style=" margin: 0px 5px 0px 10px;" v-text="item.cardComment"></span>
                     comments
@@ -287,8 +249,8 @@
             <div style="width:100%;display: flow-root;">
                 <div style="width: 30%;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
                     <div style="padding: 5px;margin: auto;display: table;">
-                        <img class="like" v-bind:id="'like_'+item.index+'_'+item.id" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg"   alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
-                        <img class="unlike" v-bind:id="'unlike_'+item.index+'_'+item.id" v-else src="https://image.flaticon.com/icons/svg/1865/1865880.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;">
+                        <img class="clike" v-bind:id="'like_'+item.index+'_'+item.id" v-if="item.liked == false" src="https://image.flaticon.com/icons/svg/1865/1865963.svg"  alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
+                        <img  class="cunlike" v-bind:id="'unlike_'+item.index+'_'+item.id" v-else src="https://image.flaticon.com/icons/svg/1865/1865880.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;">
                         <div style="display: inline-block;">
                             <div style="font-size: 25px; margin: 3px 0px 0px 5px;">ปลื้มเลย</div>
                         </div>
@@ -379,11 +341,7 @@
         </div> 
         `
         })
-        
-        // example demo content
-        const app = new Vue({
-            el: "#app",
-            data: {
+        let feed = {
                 show   : false, // display content after API request
                 offset : 5,     // items to display after scroll
                 display: 5,     // initial items
@@ -406,7 +364,11 @@
                         { name: 'logout', url: '/logout' }   
                     ],
                 onOff:false
-            },
+            };
+        // example demo content
+        const app = new Vue({
+            el: "#app",
+            data: feed,
             computed: {
                 // slice the array of data to display
                 sliced() {
@@ -666,5 +628,95 @@
         }
         });
 
+        $( document ).ready(function() {
+            console.log( "ready!" );
+            $(document).on("click",".like",function() {
+                @if(\Session::has('user_id'))
+                //alert("click bound to document listening for #test-element"+$(this).attr('id'));
+                var res = $(this).attr('id').substring(5);
+                var split_id = res.split("_");
+                //alert(res +'  '+ split_id[1]);
+                var index =split_id[0];
+                var id =split_id[1];     
+                var count = Number($( "#count_"+index ).text()); 
+                var sum = count + 10;      
+                $("#count_"+index).html(sum);
+                $("#text_"+index).html('<span ><span style=" margin: 0px 5px 0px 10px;" id="count_'+index+'" >'+sum +'</span>ล้านปลื้ม</span>');                                                                                                                                                                                                                         
+                $("#like_"+index+"_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865880.svg'); 
+                $.get( '/like/'+ id  +'/likedBoon', function( response ) {
+                    console.log( response ); // server response
+                });
+                //this.$http.get('/like/'+ this.items[id].id  +'/likedBoon').then(function(response){});
+                $("#like_"+index+"_"+id).attr('class','unlike');            
+                $("#like_"+index+"_"+id).attr('id',   'unlike_'+index+'_'+id); 
+                @else
+                    feed.onOff = true;                                             
+                @endif   
+            });
+
+            $(document).on("click",".unlike",function() {
+                //alert("click bound to document listening for #test-element"+$(this).attr('id'));
+                var res = $(this).attr('id').substring(7);
+                var split_id = res.split("_");
+                //alert(res +'  '+ split_id[1]);
+                var index =split_id[0];
+                var id =split_id[1];   
+
+                var count = Number($( "#count_"+index ).text()); 
+                var sum = count - 10;
+                $("#count_"+index).html(sum);  
+                $("#unlike_"+index+"_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865963.svg');                                                                          
+                //this.$http.get('/like/'+ this.items[id].id  +'/likedBoon').then(function(response){});
+                $.get( '/like/'+ id  +'/likedBoon', function( response ) {
+                    console.log( response ); // server response
+                });
+                $("#unlike_"+index+"_"+id).attr('class','like');
+                $("#unlike_"+index+"_"+id).attr('id',   'like_'+index+'_'+id);       
+            });
+
+            $(document).on("click",".clike",function() {
+                @if(\Session::has('user_id'))                
+                //alert("click bound to document listening for #test-element"+$(this).attr('id'));
+                var res = $(this).attr('id').substring(5);
+                var split_id = res.split("_");
+                //alert(res +'  '+ split_id[1]);
+                var index =split_id[0];
+                var id =split_id[1];     
+                var count = Number($( "#count_"+index ).text()); 
+                var sum = count + 10;      
+                $("#count_"+index).html(sum);
+                $("#text_"+index).html('<span ><span style=" margin: 0px 5px 0px 10px;" id="count_'+index+'" >'+sum +'</span>ล้านปลื้ม</span>');                                                                                                                                                                                                                         
+                $("#like_"+index+"_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865880.svg'); 
+                $.get( '/like/'+ id  +'/likedCard', function( response ) {
+                    console.log( response ); // server response
+                });
+                //this.$http.get('/like/'+ this.items[id].id  +'/likedBoon').then(function(response){});
+                $("#like_"+index+"_"+id).attr('class','cunlike');            
+                $("#like_"+index+"_"+id).attr('id',   'unlike_'+index+'_'+id);    
+                @else
+                    feed.onOff = true;                                             
+                @endif   
+            });
+
+            $(document).on("click",".cunlike",function() {
+                //alert("click bound to document listening for #test-element"+$(this).attr('id'));
+                var res = $(this).attr('id').substring(7);
+                var split_id = res.split("_");
+                //alert(res +'  '+ split_id[1]);
+                var index =split_id[0];
+                var id =split_id[1];   
+
+                var count = Number($( "#count_"+index ).text()); 
+                var sum = count - 10;
+                $("#count_"+index).html(sum);  
+                $("#unlike_"+index+"_"+id).attr('src','https://image.flaticon.com/icons/svg/1865/1865963.svg');                                                                          
+                //this.$http.get('/like/'+ this.items[id].id  +'/likedBoon').then(function(response){});
+                $.get( '/like/'+ id  +'/likedCard', function( response ) {
+                    console.log( response ); // server response
+                });
+                $("#unlike_"+index+"_"+id).attr('class','clike');
+                $("#unlike_"+index+"_"+id).attr('id',   'like_'+index+'_'+id);       
+            });
+        });
         </script>
 @stop
