@@ -132,12 +132,12 @@
                 </div>
 
                 <div style=" width: 35%;float: left;  display: inline-block; border-top: 1px solid rgb(234, 237, 241);">
-                    <div style="padding: 5px;margin: auto;display: table;">
+                    <a v-bind:href="'boon/'+item.id" style="padding: 5px;margin: auto;display: table;">
                         <img src="https://image.flaticon.com/icons/svg/134/134819.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
                         <div style="display: inline-block;">
                             <div style="font-size: 25px; margin: 3px 0px 0px 10px;">comment</div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div style=" width: 35%; float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
@@ -164,29 +164,6 @@
                     </div>
                 </div>
             </div>
-            <form method="post" action="{{ route('comments.store') }}" style=" padding-top: 10px;border-top: 1px solid rgb(234, 237, 241);">
-                @csrf
-                <div class="form-group">
-                                
-                        <img src="{{$image}}" height="30px" alt="" style="border-radius: 100px;position: absolute;    margin: 0px 2%;   border: 1px solid #BDBDBD;object-fit: cover;">
-                        <textarea placeholder="Write a comment..." name="body" style="
-                        border: 1px solid #ccd0d5;
-                        border-radius: 16px;
-                        width: 75%;
-                        margin: 0% 0px 0% 12%;
-                        padding: 8px 12px;
-                        line-height: 16px;
-                        overflow: hidden;
-                        height: 35px;
-                        outline:none;
-                    "></textarea>
-                    <input type="hidden" name="post_id" :value="item.id" />
-                    <input type="hidden" name="commentType" value="2" />  
-                    <button type="submit" style="border: 0; background: transparent; position: absolute;outline:none;">
-                        <img src="https://image.flaticon.com/icons/svg/1878/1878898.svg" width="30" height="30" alt="submit" />
-                    </button>  
-                </div>
-            </form>
 
             <div :key="comment.id" v-for="comment in item.comments" >
                 <div style="margin: 15px 20px;">
@@ -258,12 +235,12 @@
                 </div>
 
                 <div style=" width: 35%;float: left;  display: inline-block; border-top: 1px solid rgb(234, 237, 241);">
-                    <div style="padding: 5px;margin: auto;display: table;">
+                    <a v-bind:href="'card/'+item.id" style="padding: 5px;margin: auto;display: table;">
                         <img src="https://image.flaticon.com/icons/svg/134/134819.svg" alt="" style="float: left; width: 25px; margin: 3px 0px;"> 
                         <div style="display: inline-block;">
                             <div style="font-size: 25px; margin: 3px 0px 0px 10px;">comment</div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div style=" width: 35%; float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
@@ -290,30 +267,6 @@
                     </div>
                 </div>
             </div>
-
-            <form method="post" action="{{ route('comments.store') }}" style=" padding-top: 10px;border-top: 1px solid rgb(234, 237, 241);">
-                @csrf
-                <div class="form-group">
-                                
-                        <img src="{{$image}}" height="30px" alt="" style="border-radius: 100px;position: absolute;    margin: 0px 2%;   border: 1px solid #BDBDBD;object-fit: cover;">
-                        <textarea placeholder="Write a comment..." name="body" style="
-                        border: 1px solid #ccd0d5;
-                        border-radius: 16px;
-                        width: 75%;
-                        margin: 0% 0px 0% 12%;
-                        padding: 8px 12px;
-                        line-height: 16px;
-                        overflow: hidden;
-                        height: 35px;
-                        outline:none;
-                    "></textarea>
-                    <input type="hidden" name="post_id" :value="item.id" />
-                    <input type="hidden" name="commentType" value="3" />  
-                    <button type="submit" style="border: 0; background: transparent; position: absolute;outline:none;">
-                        <img src="https://image.flaticon.com/icons/svg/1878/1878898.svg" width="30" height="30" alt="submit" />
-                    </button>  
-                </div>
-            </form>
 
             <div :key="comment.id" v-for="comment in item.comments" >
                 <div style="margin: 15px 20px;">

@@ -25,12 +25,8 @@ class CardController extends Controller
      */
     public function create()
     {
-        if(\Session::has('user_id')){
-            $draws = Draw::orderBy('id','desc')->get();
-            return view('card.create',compact('draws')); 
-        }else{
-            return view('user.login');
-        }
+        $draws = Draw::orderBy('id','desc')->get();
+        return view('card.create',compact('draws')); 
     }
 
     /**
@@ -70,8 +66,8 @@ class CardController extends Controller
      */
     public function show($id)
     {
-        $card = Card::find($id);
-        return response()->json($card);
+        $card = Card::with('user')->with('like')->with('comments')->find($id);
+        return view('card.show',compact('card','id'));
     }
 
     /**

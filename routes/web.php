@@ -95,7 +95,7 @@ Route::get('api/card/{feed}',function($feed){
 Route::get('api/all',function(){
     $collection =  new \Illuminate\Database\Eloquent\Collection;
     $boon = App\Boon::with('user')->with('like')->with('comments')->with('photo')->orderBy('id','desc')->paginate(5);      
-    $card = App\Card::with('user')->with('like')->with('comments')->orderBy('id','desc')->paginate(5);
+    $card = App\Card::with('user')->with('like')->with('comments')->orderBy('id','desc')->paginate(3);
     $merged = $boon->merge($card);  
     
     foreach($boon as $boon){
