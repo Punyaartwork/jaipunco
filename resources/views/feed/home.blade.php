@@ -111,6 +111,22 @@
                 </span>
             </div>
 
+            <div style="margin: 15px 20px;">
+                <img v-bind:src="item.user.profile" alt="" style="
+                margin: 0px 10px 0px 0px;
+                border-radius: 100px;
+                height: 50px;
+                width: 50px;
+                object-fit: cover;
+                display: inline-block;
+                float: left;
+                "> 
+                <div style="display: inline-block;">
+                    <div style="font-weight: bold;font-size:26px" v-text="item.user.name"></div>
+                    <div style="font-size: 18px;" :text-content.prop="item.boonTime | timeSince"></div>
+                </div> 
+            </div>
+
             <div style="width:100%;display: table;line-height: 30px;clear: both;">
                 <div  style="display: block;line-height: 30px;width: 30%;float: left;display: inline-block;border-top: 1px solid rgb(234, 237, 241);">
                     <div style="padding: 5px;margin: auto;display: table;">
