@@ -552,29 +552,27 @@
                     let vm = this;
                     var postarray = [];
                     this.$http.get('/api/all?page='+this.page).then(function(response){
-                        postarray = response.body;
-                        this.items = postarray;            
-                        for (var i = 0; i < this.items.length; i++) { 
-                            this.items[i].share = false;
-                            this.items[i].index = i;                            
-                            if(this.items[i].like.length > 0){
-                                for (var j = 0; j < this.items[i].like.length; j++) { 
+                        postarray = response.body;        
+                        for (var i = 0; i < this.postarray.length; i++) { 
+                            this.postarray[i].share = false;
+                            this.postarray[i].index = i;                            
+                            if(this.postarray[i].like.length > 0){
+                                for (var j = 0; j < this.postarray[i].like.length; j++) { 
                                     @if(\Session::has('user_id'))
-                                    if(this.items[i].like[j].user_id == {{\Session::get('user_id')}}){
-                                        alert(this.items[i].like[j].user_id+'==' + {{\Session::get('user_id')}});
-                                        this.items[i].liked = true;
-                                        alert(this.items[i].liked);                                        
+                                    if(this.postarray[i].like[j].user_id == {{\Session::get('user_id')}}){
+                                        this.postarray[i].liked = true;                                    
                                     }else{
-                                        this.items[i].liked = false;
+                                        this.postarray[i].liked = false;
                                     }
                                     @else
-                                        this.items[i].liked = false;                                              
+                                        this.postarray[i].liked = false;                                              
                                     @endif
                                 }
                             }else{
-                                this.items[i].liked = false;
+                                this.postarray[i].liked = false;
                             }
-                        }        
+                        }    
+                        this.items = postarray;        
                     }, function(error){
                         console.log(error.statusText);
                     });
