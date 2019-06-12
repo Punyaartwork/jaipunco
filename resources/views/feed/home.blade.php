@@ -1,5 +1,5 @@
 @extends('feed.master')
-@section('title','latest.')
+@section('title','home | jaipun')
 @section('background','#fafafa')
 @section('nav')
 @if (\Session::has('user_id'))
