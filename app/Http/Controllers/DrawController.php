@@ -97,13 +97,22 @@ class DrawController extends Controller
             ]);        
         $draw = Draw::find($id);
         $filename = substr($draw->draw,1);
-        $delete = getcwd().$draw->draw;
+        if(\File::exists(public_path($filename))){
+            
+        \File::delete(public_path($filename));
+    
+        }else{
+    
+            dd('File does not exists.');
+    
+        }
         if(Input::hasFile('file')){
-            unlink("$delete");
-            //$file = Input::file('file');
+            \File::delete($filename);
+            $file = Input::file('file');
+            $time = time().".png";
             //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
-            //$file->move('draw/', $file->getClientOriginalName());
-            //rename('draw/'.$file->getClientOriginalName(),$filename);
+            $file->move('draw/', $file->getClientOriginalName());
+            rename('draw/'.$file->getClientOriginalName(),$filename);
             //$draw->draw = '/'.'draw/'.$time;
         }
         
