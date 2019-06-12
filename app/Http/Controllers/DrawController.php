@@ -98,7 +98,7 @@ class DrawController extends Controller
         $draw = Draw::find($id);
         $filename = substr($draw->draw,1);
         if(Input::hasFile('file')){
-            unlink('.'.$filename);
+            unlink('.'.$draw->draw);
             //$file = Input::file('file');
             //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
             //$file->move('draw/', $file->getClientOriginalName());
