@@ -109,9 +109,7 @@ class DrawController extends Controller
             dd('File does not exists.'.$draw->draw);
         }
         if(Input::hasFile('file')){
-            \File::delete($filename);
             $file = Input::file('file');
-            $time = time().".png";
             //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
             $file->move('draw/', $file->getClientOriginalName());
             rename('draw/'.$file->getClientOriginalName(),$filename);
