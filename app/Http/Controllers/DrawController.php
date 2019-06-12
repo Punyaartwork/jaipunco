@@ -101,6 +101,11 @@ class DrawController extends Controller
         if(\File::exists($deleteImage)){
             \File::delete($deleteImage);
         }else{
+            if (is_writable($deleteImage)) {
+                dd('The file is writable');
+            } else {
+                dd('The file is not writable');
+            }
     
             dd('File does not exists.'.$deleteImage);
     
