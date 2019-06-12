@@ -103,21 +103,15 @@ class DrawController extends Controller
         $file_path = app_path($filename); 
         //chmod($draw->draw,0777);
         if(\File::exists(public_path($filename))){
-            \File::delete(public_path($filename));
-            dd('The file is writable');            
-        }else{
-    
-            dd('File does not exists.'.$draw->draw);
-    
-        }
-        if(Input::hasFile('file')){
-            \File::delete($filename);
-            $file = Input::file('file');
-            $time = time().".png";
-            //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
-            $file->move('draw/', $file->getClientOriginalName());
-            rename('draw/'.$file->getClientOriginalName(),$filename);
-            //$draw->draw = '/'.'draw/'.$time;
+            \File::delete(public_path($filename));        
+            if(Input::hasFile('file')){
+                $file = Input::file('file');
+                $time = time().".png";
+                //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
+                $file->move('draw/', $file->getClientOriginalName());
+                rename('draw/'.$file->getClientOriginalName(),$filename);
+                //$draw->draw = '/'.'draw/'.$time;
+            }
         }
         
         $draw->drawname_id = $request->get('drawname_id');
