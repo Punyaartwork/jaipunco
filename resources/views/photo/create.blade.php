@@ -3,7 +3,7 @@
 @section('content')
   
 <div class="container">
-    <h1>เพิ่มภาพบุญของคุณ<button onclick="window.location.href='/'" class="btn btn-primary" style="float:right">POST</button></h1>
+    <h2>เพิ่มภาพบุญของคุณ<button onclick="window.location.href='/'" class="btn btn-primary" style="float:right">POST</button></h2>
 
     @if(count($errors) > 0)
         @foreach($errors->all() as $error)
@@ -22,7 +22,7 @@
 
 <head>
     <script src="/js/jquery.js"></script>
-    <script src="/js/croppie2.js"></script>
+    <script src="/js/croppie.js"></script>
     <link rel="stylesheet" href="/css/bootstrap-3.min.css">
     <link rel="stylesheet" href="/css/croppie.css">
   <meta name="csrf-token" content="{{ csrf_token() }}">
