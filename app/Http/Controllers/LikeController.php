@@ -99,7 +99,7 @@ class LikeController extends Controller
                 'user_id' => session('user_id'),
                 'likeType' => 3,                                
             ]);
-            $boon->boonLike += 10;
+            $card->cardLike += 10;
         } else {
             if (is_null($existing_like->deleted_at)) {
                 $existing_like->delete();
