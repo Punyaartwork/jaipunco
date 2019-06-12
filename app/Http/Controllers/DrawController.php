@@ -98,12 +98,11 @@ class DrawController extends Controller
         $draw = Draw::find($id);
         $filename = substr($draw->draw,1);
         if(Input::hasFile('file')){
-            \File::delete($filename);
-            $file = Input::file('file');
-            $time = time().".png";
+            unlink($filename);
+            //$file = Input::file('file');
             //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
-            $file->move('draw/', $file->getClientOriginalName());
-            rename('draw/'.$file->getClientOriginalName(),$filename);
+            //$file->move('draw/', $file->getClientOriginalName());
+            //rename('draw/'.$file->getClientOriginalName(),$filename);
             //$draw->draw = '/'.'draw/'.$time;
         }
         
