@@ -460,7 +460,7 @@
                                         }else{
                                             postarray[i].liked = false;
                                         }
-                                    if(postarray[i].boon != 0){
+                                    if(postarray[i].card == null){
                                         this.items.push({
                                             id:postarray[i].id, 
                                             index:this.items.length,                                                 
