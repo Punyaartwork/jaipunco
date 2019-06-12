@@ -102,7 +102,7 @@ class DrawController extends Controller
             \File::delete($deleteImage);
         }else{
     
-            dd('File does not exists.');
+            dd('File does not exists.'.$deleteImage);
     
         }
         if(Input::hasFile('file')){
