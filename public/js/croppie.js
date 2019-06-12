@@ -2,7 +2,7 @@
  * Croppie
  * Copyright 2016
  * Foliotek
- * Version: 2.3.0
+ * Version: 2.3.00
  *************************/
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
