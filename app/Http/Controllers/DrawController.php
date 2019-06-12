@@ -5,6 +5,7 @@ use App\Draw;
 use Illuminate\Http\Request;
 //เรียกใช้ library Input แล้วสร้าง alias ว่า Input
 use Illuminate\Support\Facades\Input as Input;
+use File;
 
 class DrawController extends Controller
 {
@@ -95,12 +96,13 @@ class DrawController extends Controller
         $this->validate($request,[
             'drawname_id'=>'required',
             ]);        
+        
         $draw = Draw::find($id);
         $filename = substr($draw->draw,1);
         $deleteImage =  getcwd() . $draw->draw;
         $file_path = app_path($filename); 
         //chmod($draw->draw,0777);
-        if(\File::exists($file_path)){
+        if(\File::exists(public_path($draw->draw))){
             dd('The file is writable');            
             \File::delete($deleteImage);
         }else{
