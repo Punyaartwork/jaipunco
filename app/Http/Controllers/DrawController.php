@@ -102,8 +102,8 @@ class DrawController extends Controller
         $deleteImage =  getcwd() . $draw->draw;
         $file_path = app_path($filename); 
         //chmod($draw->draw,0777);
-        //if(\File::exists(public_path($filename))){
-            //\File::delete(public_path($filename));
+        if(\File::exists(public_path($filename))){
+            \File::delete(public_path($filename));
             if(Input::hasFile('file')){
                 $file = Input::file('file');
                 //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
@@ -111,7 +111,7 @@ class DrawController extends Controller
                 rename('draw/'.$file->getClientOriginalName(),$filename);
                 //$draw->draw = '/'.'draw/'.$time;
             }
-        //}
+        }
 
         
         $draw->drawname_id = $request->get('drawname_id');
