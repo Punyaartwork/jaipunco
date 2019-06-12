@@ -104,7 +104,7 @@ class DrawController extends Controller
         //chmod($draw->draw,0777);
         if(\File::exists(public_path($filename))){
             \File::delete(public_path($filename));
-            //dd('The file is writable');            
+            dd('The file is writable');            
         }else{
             dd('File does not exists.'.$draw->draw);
         }
