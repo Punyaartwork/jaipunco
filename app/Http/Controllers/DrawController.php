@@ -108,14 +108,14 @@ class DrawController extends Controller
         if(\File::exists(public_path($filename))){
             unlink(public_path($filename));
             \File::delete(public_path($filename));
-            /*if(Input::hasFile('file')){
+            if(Input::hasFile('file')){
                 $file = Input::file('file');
                 //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
                 $file->move('draw/', $file->getClientOriginalName());
                 rename('draw/'.$file->getClientOriginalName(),$filename);
                 //$draw->draw = '/'.'draw/'.$time;
                 return redirect()->route('img.index')->with('success','!!!!!!EDITED!!!!!!');                      
-            }*/
+            }
         }else{
             if(Input::hasFile('file')){
                 $file = Input::file('file');
