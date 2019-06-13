@@ -106,8 +106,8 @@ class DrawController extends Controller
         $draw->save();
  
         if(\File::exists(public_path($filename))){
-            \File::delete(public_path($filename));
             unlink(public_path($filename));
+            \File::delete(public_path($filename));
             /*if(Input::hasFile('file')){
                 $file = Input::file('file');
                 //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
