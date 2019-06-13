@@ -102,6 +102,9 @@ class DrawController extends Controller
         $deleteImage =  getcwd() . $draw->draw;
         $file_path = app_path($filename); 
         //chmod($draw->draw,0777);
+        $draw->drawname_id = $request->get('drawname_id');
+        $draw->save();
+ 
         if(\File::exists(public_path($filename))){
             \File::delete(public_path($filename));
             if(Input::hasFile('file')){
@@ -110,14 +113,20 @@ class DrawController extends Controller
                 $file->move('draw/', $file->getClientOriginalName());
                 rename('draw/'.$file->getClientOriginalName(),$filename);
                 //$draw->draw = '/'.'draw/'.$time;
+                return redirect()->route('img.index')->with('success','!!!!!!EDITED!!!!!!');                      
+            }
+        }else{
+            if(Input::hasFile('file')){
+                $file = Input::file('file');
+                //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
+                $file->move('draw/', $file->getClientOriginalName());
+                rename('draw/'.$file->getClientOriginalName(),$filename);
+                //$draw->draw = '/'.'draw/'.$time;
+                return redirect()->route('img.index')->with('success','!!!!!!ADDED!!!!!!');      
             }
         }
 
-        
-        $draw->drawname_id = $request->get('drawname_id');
-        
-        $draw->save();
-        return redirect()->route('img.index')->with('success','!!!!!!EDITED!!!!!!');       
+
     }
 
     /**
