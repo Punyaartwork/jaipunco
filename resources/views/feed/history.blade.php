@@ -23,7 +23,7 @@
 
     <!-- https://image.flaticon.com/icons/svg/132/132233.svg -->
     <a href="" style="padding: 10px 15px;font-size: 14px;width: 20%;">
-        <img src="https://image.flaticon.com/icons/svg/132/132233.svg" style="width: 20px;">
+        <img src="https://image.flaticon.com/icons/svg/63/63269.svg" style="width: 20px;">
     </a>
 
     <!-- https://image.flaticon.com/icons/svg/149/149022.svg -->
@@ -124,7 +124,7 @@
                 <div style="
                     font-size: 20px;
                     font-weight: 600;
-                ">
+                ">  
                 {{$post->postName}} 
                 </div> 
                 <div>

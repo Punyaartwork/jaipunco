@@ -1,5 +1,5 @@
 @extends('feed.master')
-@section('title','Jaipun')
+@section('title','list | Jaipun')
 @section('background','#fafafa')
 @section('nav')
 <!-- https://image.flaticon.com/icons/svg/263/263115.svg -->
@@ -21,8 +21,8 @@
     </a>
 
     <!-- https://image.flaticon.com/icons/svg/132/132233.svg -->
-    <a href="/history" style="padding: 10px 15px;font-size: 14px;width: 20%;">
-        <img src="https://image.flaticon.com/icons/svg/132/132284.svg" style="width: 20px;">
+    <a href="/history" style="padding: 10px 15px; font-size: 14px; width: 20%;">
+        <img src="https://image.flaticon.com/icons/svg/63/63269.svg" style="width: 20px;">
     </a>
 
     <!-- https://image.flaticon.com/icons/svg/149/149022.svg -->

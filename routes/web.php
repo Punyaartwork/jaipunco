@@ -140,6 +140,18 @@ Route::get('api/user/{feed}/{id}',function($feed,$id){
     return response()->json($data);
 });
 
+Route::get('api/profile/{feed}/{id}',function($feed,$id){
+    if($feed == "boons"){
+        $data = App\Boon::with('user')->with('like')->with('comments')->with('photo')->where('user_id', $id)->orderBy('id','desc')->paginate(10);      
+
+    }else if($feed == "cards"){
+        $data = App\Card::with('user')->with('like')->with('comments')->where('user_id', $id)->orderBy('id','desc')->paginate(10);
+    }else{
+        $data = App\Post::with('user')->with('tag')->where('user_id', $id)->orderBy('id','desc')->paginate(10);
+    }
+    return response()->json($data);
+});
+
 
 Route::get('api/draw',function(){
     $data = App\Draw::all();
@@ -322,8 +334,7 @@ Route::get('/store/draw/{id}', function ($id) {
 });
 
 Route::get('/more', function () {
-    $title = 'more | jaipun';
-    return view('feed.coming',compact('title'));
+    return view('feed.more');
 });
 
 Route::get('/history', function () {
