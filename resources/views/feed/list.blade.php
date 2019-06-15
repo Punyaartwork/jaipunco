@@ -4,7 +4,7 @@
 @section('nav')
 <!-- https://image.flaticon.com/icons/svg/263/263115.svg -->
 <div class="navcenter" style="white-space: nowrap !important;overflow-y: auto;justify-content: center;
-    display: flex;text-align: center;max-width: 450px;margin: 0px auto;">
+    display: flex;text-align: center;max-width: 400px;margin: 0px auto;">
     <a href="/" style="padding: 10px 15px; font-size: 14px; font-weight: 600;width: 20%;">
         <img src="https://image.flaticon.com/icons/svg/263/263115.svg" style="width: 20px;">
     </a> 
