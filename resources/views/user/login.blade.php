@@ -14,8 +14,8 @@
           @endforeach    
       @endif
 
-      @isset($comment)
-      <p class="alert alert-danger">{{$comment}}</p>
+      @isset($commentlogin)
+      <p class="alert alert-danger">{{$commentlogin}}</p>
       @endisset
 			<!--
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
