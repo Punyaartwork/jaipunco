@@ -302,8 +302,8 @@
         })
         let feed = {
                 show   : false, // display content after API request
-                offset : 5,     // items to display after scroll
-                display: 5,     // initial items
+                offset : 3,     // items to display after scroll
+                display: 2,     // initial items
                 trigger: 300,   // how far from the bottom to trigger infinite scroll
                 items  : [],    // server response data
                 end    : false, // no more resources
