@@ -1202,8 +1202,8 @@
                             @endforeach    
                         @endif
 
-                        @isset($comment)
-                        <p style="color:red;">{{$comment}}</p>
+                        @isset($commentlogin)
+                        <p style="color:red;">{{$commentlogin}}</p>
                         @endisset
                         <form action="{{url('login')}}"  method="post">
                             {{csrf_field()}}
