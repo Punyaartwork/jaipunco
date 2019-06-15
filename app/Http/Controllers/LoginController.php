@@ -15,7 +15,7 @@ class LoginController extends Controller
         ]);
         $session_user = User::where([['email', '=',$request->get('email')],['password', '=',md5($request->get('password'))]])->first();
         if ($session_user === null) {
-            $comment = "Invalid email or password";
+            $commentlogin = "Invalid email or password";
             return view('user.login',compact('commentlogin')); 
         }else{
             Session::put('user_id',$session_user->id);
