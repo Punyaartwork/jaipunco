@@ -11,7 +11,7 @@ display: flex;text-align: center;max-width: 400px;margin: 0px auto;">
 
 
     <!-- https://image.flaticon.com/icons/svg/865/865132.svg -->
-    <a href="/more" style="padding: 10px 15px; font-size: 14px;width: 20%;">
+    <a href="/card" style="padding: 10px 15px; font-size: 14px;width: 20%;">
         <img src="https://image.flaticon.com/icons/svg/238/238693.svg" style="width: 20px;">
     </a> 
 
@@ -140,6 +140,7 @@ display: flex;text-align: center;max-width: 400px;margin: 0px auto;">
             outline:none;
         "></textarea>
         <input type="hidden" name="post_id" value="{{$card->id}}" />
+        <input type="hidden" name="commentTime" value="{{time()}}" />        
         <input type="hidden" name="commentType" value="3" />  
         <button type="submit" style="border: 0; background: transparent; position: absolute;outline:none;
             margin: 0px 0px 0px 0%;">
@@ -168,7 +169,7 @@ display: flex;text-align: center;max-width: 400px;margin: 0px auto;">
                             font-size: 20px;
                             margin: 0px 5px;
                         " >{{$comment->body}}</span>   
-                        <div style="font-size: 18px;" >{{$comment->created_at}}</div>
+                        <div style="font-size: 18px;" :text-content.prop="{{$comment->commentTime}} | timeSince"></div>
                     </div> 
                 </div>
     </div>

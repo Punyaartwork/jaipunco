@@ -27,6 +27,7 @@ class LikeController extends Controller
     {
         $existing_like = Like::withTrashed()->wherePostId($id)->whereUserId(session('user_id'))->where('likeType',1)->first();
         $post = Post::find( $id );
+        $user = User::find(\Session::get('user_id'));
         if (is_null($existing_like)) {
             Like::create([
                 'post_id' => $id,
@@ -34,15 +35,19 @@ class LikeController extends Controller
                 'likeType' => 1,                
             ]);
             $post->postLike += 1;
+            $user->power += 5;      
         } else {
             if (is_null($existing_like->deleted_at)) {
                 $existing_like->delete();
-                $post->postLike -= 1;                
+                $post->postLike -= 1;    
+                $user->power -= 5;        
             } else {
                 $existing_like->restore();
                 $post->postLike += 1;
+                $user->power += 5;      
             }
         }
+        $user->save();
         $post->save();        
     }
 
@@ -60,6 +65,7 @@ class LikeController extends Controller
     {
         $existing_like = Like::withTrashed()->wherePostId($id)->whereUserId(session('user_id'))->where('likeType',2)->first();
         $boon = Boon::find( $id );
+        $user = User::find(\Session::get('user_id'));
         if (is_null($existing_like)) {
             Like::create([
                 'post_id' => $id,
@@ -67,15 +73,19 @@ class LikeController extends Controller
                 'likeType' => 2,                                
             ]);
             $boon->boonLike += 10;
+            $user->power += 5;     
         } else {
             if (is_null($existing_like->deleted_at)) {
                 $existing_like->delete();
-                $boon->boonLike -= 10;                
+                $boon->boonLike -= 10;    
+                $user->power -= 5;                 
             } else {
                 $existing_like->restore();
                 $boon->boonLike += 10;
+                $user->power += 5;     
             }
         }
+        $user->save();
         $boon->save();        
     }
 
@@ -93,6 +103,7 @@ class LikeController extends Controller
     {
         $existing_like = Like::withTrashed()->wherePostId($id)->whereUserId(session('user_id'))->where('likeType',3)->first();
         $card = Card::find( $id );
+        $user = User::find(\Session::get('user_id'));        
         if (is_null($existing_like)) {
             Like::create([
                 'post_id' => $id,
@@ -100,15 +111,19 @@ class LikeController extends Controller
                 'likeType' => 3,                                
             ]);
             $card->cardLike += 10;
+            $user->power += 5;                                             
         } else {
             if (is_null($existing_like->deleted_at)) {
                 $existing_like->delete();
-                $card->cardLike -= 10;                
+                $card->cardLike -= 10;   
+                $user->power -= 5;                                 
             } else {
                 $existing_like->restore();
                 $card->cardLike += 10;
+                $user->power += 5;                                 
             }
         }
+        $user->save();        
         $card->save();        
     }
 }

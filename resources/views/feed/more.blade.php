@@ -48,14 +48,14 @@
         </div> 
         <h2 style="margin: 15px 0px 0px; color: rgb(84, 173, 161);">{{$user->name}}</h2> 
         <p style="margin: 5px 10px;">{{$user->detail}}</p> 
-        <div> <img src="https://image.flaticon.com/icons/svg/1835/1835765.svg" width="25px" alt=""> <span style=" margin: 5px;">0 (พลังบุญ)</span></div>
+        <div> <img src="https://image.flaticon.com/icons/svg/1835/1835765.svg" width="25px" alt=""> <span style=" margin: 5px;">{{$user->power}} (พลังบุญ)</span></div>
         <div class="profile-followers" style="display: table;margin: auto;padding: 0px;">
             <div @click="showboons" style="float: left; width: 80px;margin: 10px;padding: 10px 15px;font-weight: 600; border-bottom: 3px solid #EEEEEE;">
-                <span class="profile-follow-int">{{$user->stories}}</span> 
+                <span class="profile-follow-int">{{$user->boons}}</span> 
                 <span class="profile-follow-text">Boons</span>
             </div>
             <div @click="showcards" style="float: left; width: 80px;margin: 10px;padding: 10px 15px;font-weight: 600; border-bottom: 3px solid #EEEEEE;">
-                <span class="profile-follow-int">{{$user->stories}}</span> 
+                <span class="profile-follow-int">{{$user->cards}}</span> 
                 <span class="profile-follow-text">Cards</span>
             </div>
             <div @click="showstories" style="float: left; width: 80px;margin: 10px;padding: 10px 15px;font-weight: 600; border-bottom: 3px solid #EEEEEE;">

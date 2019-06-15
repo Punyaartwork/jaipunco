@@ -43,6 +43,9 @@ class LoginController extends Controller
                 'followers'=>'0',  
                 'notification'=>'0',                        
                 'link'=>$strLink,              
+                'boons'=>'0',              
+                'cards'=>'0',              
+                'power'=>'0',   
             ]
             );
             $user->save();

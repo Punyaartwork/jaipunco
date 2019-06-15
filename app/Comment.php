@@ -16,7 +16,7 @@
        *
        * @var array
        */
-      protected $fillable = ['user_id', 'post_id', 'parent_id', 'body','commentType'];
+      protected $fillable = ['user_id', 'post_id', 'parent_id', 'body','commentType','commentTime'];
      
       /**
        * The belongs to Relationship

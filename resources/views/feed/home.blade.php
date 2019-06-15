@@ -189,7 +189,7 @@
                             font-size: 20px;
                             margin: 0px 5px;
                         " v-text="comment.body"></span>   
-                        <div style="font-size: 18px;" v-text="comment.created_at"></div>
+                        <div style="font-size: 18px;" :text-content.prop="comment.commentTime | timeSince"></div>
                     </div> 
                 </div>
             </div>
@@ -291,7 +291,7 @@
                             font-size: 20px;
                             margin: 0px 5px;
                         " v-text="comment.body"></span>   
-                        <div style="font-size: 18px;" v-text="comment.created_at"></div>
+                        <div style="font-size: 18px;" :text-content.prop="comment.commentTime | timeSince"></div>
                     </div> 
                 </div>
             </div>

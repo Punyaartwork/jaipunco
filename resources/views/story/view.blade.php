@@ -539,6 +539,7 @@ z-index: 4;
         <div class="form-group">
             <textarea placeholder='Write a comment...'  name="body"></textarea>
             <input type="hidden" name="post_id" value="{{ $post->id }}" />
+            <input type="hidden" name="commentTime" value="{{time()}}" />        
             <input type="hidden" name="commentType" value="1" />    
         </div>
         <div class="form-group">

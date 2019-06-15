@@ -52,13 +52,16 @@ class UserController extends Controller
             'name'=>$request->get('name'),  
             'detail'=>'0',            
             'email'=>$request->get('email'),            
-            'profile'=>'0',            
+            'profile'=>'https://image.flaticon.com/icons/svg/1865/1865950.svg',            
             'password'=>md5($request->get('password')),
             'stories'=>'0',             
             'following'=>'0',
             'followers'=>'0',  
             'notification'=>'0',                        
-            'link'=>'0',              
+            'link'=>'0',    
+            'boons'=>'0',              
+            'cards'=>'0',              
+            'power'=>'0',             
         ]
         );
         $user->save();

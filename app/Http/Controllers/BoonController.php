@@ -58,6 +58,10 @@ class BoonController extends Controller
         ]
         );
         $boon->save();
+        $user = User::find(\Session::get('user_id'));
+        $user->power += 100;
+        $user->boons += 1;        
+        $user->save();
         return redirect()->route('photo.create')->with('boon_id',$boon->id);
     }
 

@@ -1,17 +1,8 @@
 @extends('feed.master')
 @section('title','Cards | jaipun')
-@section('background','#fafafa')
+@section('background','#eee')
 @section('nav')
-@if (\Session::has('user_id'))
-    <?php
-    $user = \App\User::find(\Session::get('user_id'));
-    $image = $user->profile;
-    ?>
-@else  
-    <?php
-    $image = "https://image.flaticon.com/icons/svg/109/109718.svg" ;
-    ?>
-@endif  
+
 <link rel="stylesheet" href="fonts/style.css" type="text/css" media="all" />
 
     <!-- https://image.flaticon.com/icons/svg/263/263115.svg -->
@@ -73,6 +64,7 @@
         background: #fff;
         border-radius: 10px;
         margin:20px 0px;
+        box-shadow: 0 10px 20px 0 rgba(0,0,0,.05)!important;
     ">
 
 
@@ -125,7 +117,7 @@
             </div>
         </div>
     </div>
-    <div style="
+    <a :href="'card/'+item.id" style="
     width: 35%;       float: left;  display: inline-block;
     border-top: 1px solid rgb(234, 237, 241);
     ">
@@ -135,7 +127,7 @@
                 <div style="font-size: 25px; margin: 3px 0px 0px 10px;">comment</div>
             </div>
         </div>
-    </div>
+    </a>
     <!-- https://image.flaticon.com/icons/svg/1787/1787882.svg -->
     <div style="
     width: 35%;      float: left;   display: inline-block;
@@ -165,35 +157,6 @@
     </div>
 </div>
 
-<form method="post" action="{{ route('comments.store') }}" style="
-    padding-top: 10px;
-    border-top: 1px solid rgb(234, 237, 241);
-">
-    @csrf
-    <div class="form-group">
-                    
-            <img src="{{$image}}" height="30px" alt="" style="border-radius: 100px;position: absolute;    margin: 0px 2%;   border: 1px solid #BDBDBD;object-fit: cover;">
-            <textarea placeholder="Write a comment..." name="body" style="
-            border: 1px solid #ccd0d5;
-            border-radius: 16px;
-            width: 75%;
-            margin: 0% 12%;
-            padding: 8px 12px;
-            line-height: 16px;
-            overflow: hidden;
-            height: 35px;
-            outline:none;
-        "></textarea>
-        <input type="hidden" name="post_id" :value="item.id" />
-        <input type="hidden" name="commentType" value="3" />  
-        <button type="submit" style="border: 0; background: transparent; position: absolute;outline:none;
-            margin: 0px 0px 0px -12%;">
-            <img src="https://image.flaticon.com/icons/svg/1878/1878898.svg" width="35" height="35" alt="submit" />
-        </button>  
-    </div>
-</form>
-
-
     <div :key="comment.id" v-for="comment in item.comments" >
 
                 <div style="margin: 15px 20px;">
@@ -212,7 +175,7 @@
                             font-size: 20px;
                             margin: 0px 5px;
                         " v-text="comment.body"></span>   
-                        <div style="font-size: 18px;" v-text="comment.created_at"></div>
+                        <div style="font-size: 18px;" :text-content.prop="comment.commentTime | timeSince"></div>
                     </div> 
                 </div>
     </div>
