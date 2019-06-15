@@ -27,7 +27,7 @@ class LikeController extends Controller
     {
         $existing_like = Like::withTrashed()->wherePostId($id)->whereUserId(session('user_id'))->where('likeType',1)->first();
         $post = Post::find( $id );
-        $user = User::find(\Session::get('user_id'));
+        $user = User::find($post->user_id);
         if (is_null($existing_like)) {
             Like::create([
                 'post_id' => $id,
@@ -65,7 +65,7 @@ class LikeController extends Controller
     {
         $existing_like = Like::withTrashed()->wherePostId($id)->whereUserId(session('user_id'))->where('likeType',2)->first();
         $boon = Boon::find( $id );
-        $user = User::find(\Session::get('user_id'));
+        $user = User::find($boon->user_id);
         if (is_null($existing_like)) {
             Like::create([
                 'post_id' => $id,
@@ -103,7 +103,7 @@ class LikeController extends Controller
     {
         $existing_like = Like::withTrashed()->wherePostId($id)->whereUserId(session('user_id'))->where('likeType',3)->first();
         $card = Card::find( $id );
-        $user = User::find(\Session::get('user_id'));        
+        $user = User::find($card->user_id);        
         if (is_null($existing_like)) {
             Like::create([
                 'post_id' => $id,
