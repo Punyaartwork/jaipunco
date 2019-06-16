@@ -5,13 +5,13 @@
 <!-- https://image.flaticon.com/icons/svg/263/263115.svg -->
 <div class="navcenter" style="white-space: nowrap !important;overflow-y: auto;justify-content: center;
 display: flex;text-align: center;max-width: 400px;margin: 0px auto;">
-    <a  style="padding: 10px 15px; font-size: 14px; font-weight: 600;width: 20%;">
+    <a href="/" style="padding: 10px 15px; font-size: 14px; font-weight: 600;width: 20%;">
         <img src="https://image.flaticon.com/icons/svg/263/263115.svg" style="width: 20px;">
     </a> 
 
 
     <!-- https://image.flaticon.com/icons/svg/865/865132.svg -->
-    <a href="/more" style="padding: 10px 15px; font-size: 14px;width: 20%;">
+    <a href="/card" style="padding: 10px 15px; font-size: 14px;width: 20%;">
         <img src="https://image.flaticon.com/icons/svg/238/238693.svg" style="width: 20px;">
     </a> 
 
