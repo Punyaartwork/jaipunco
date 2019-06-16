@@ -314,6 +314,9 @@ Route::get('/sharecard/{id}', function ($id) {
     $card = App\Card::find($id);
     $card->cardShare += 1;
     $card->save();
+    $user = App\User::find($card->user_id);
+    $user->power += 5;
+    $user->save();
 });
 
 Route::get('/loginfacebook', function () {
@@ -350,4 +353,9 @@ Route::get('/history', function () {
     $mark = App\Mark::where('user_id',\Session::get('user_id'))->orderBy('id','desc')->get();    
     $title = 'history | jaipun';
     return view('feed.history',compact('title','data','mark'));
+});
+
+Route::get('/notification', function () { 
+    $title = 'notification | jaipun';
+    return view('feed.notification',compact('title'));
 });

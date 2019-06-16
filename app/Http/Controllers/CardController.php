@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Card;
 use App\Draw;
+use App\User;
 use Illuminate\Http\Request;
 
 class CardController extends Controller

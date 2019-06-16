@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Boon;
+use App\User;
 use Illuminate\Http\Request;
 
 class BoonController extends Controller

@@ -25,8 +25,16 @@
         </a>
 
         <!-- https://image.flaticon.com/icons/svg/132/132233.svg -->
-        <a href="/history" style="padding: 10px 15px;font-size: 14px;width: 20%;">
-            <img src="https://image.flaticon.com/icons/svg/132/132284.svg" style="width: 20px;">
+        <a href="/notification" style="padding: 10px 15px;font-size: 14px;width: 20%;position: relative; ">
+            <div style="position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgb(255, 255, 255);
+            width: 10px;
+            height: 10px;
+            right: 35%;
+            background:#2196F3;">
+            </div>
+            <img src="https://image.flaticon.com/icons/svg/63/63269.svg" style="width: 20px;">
         </a>
 
         <!-- https://image.flaticon.com/icons/svg/149/149022.svg -->
