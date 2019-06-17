@@ -106,6 +106,18 @@
 
     <div v-if="stories==true">
         <article class="feed" v-for="item in sliced" :key="item.id" v-if="sliced">
+                <div style="display: table; position: relative; margin: 10px 10px -25px auto;">
+                    <a v-bind:href="'/post/' + item.id +'/edit'" style="float:left">
+                       <img src="https://image.flaticon.com/icons/svg/126/126483.svg" width="15px" alt="">
+                    </a>
+                    <form method="post" style="float: left;" class="detele_form" v-bind:action="'/post/' + item.id">
+                        {{csrf_field()}}
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" style="border: none;background: none;">
+                            <img src="https://image.flaticon.com/icons/svg/70/70287.svg" width="15px" alt="">
+                        </button>
+                    </form>
+                </div>
                 <div class="feed-text" >
                 <a v-bind:href="'/feed/' + item.tag_id">
                     <!--<div class="feed-tag" v-text="item.tag.tagname"></div>-->
@@ -143,12 +155,36 @@
     
 @stop
 @section('vuefeed')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(document).on("submit",".detele_form",function() {
+            if(confirm("You want to delete ??")){
+                return true;
+            }else{
+                return false;
+            }
+        });
+    });
+    </script>
         <script>
 
 Vue.component('boon', {
             props: ['item'],
         template:  `
         <div>
+            <div style="display: table; position: relative;margin: 10px 10px -25px auto;">
+                <a v-bind:href="'/boon/' + item.id +'/edit'" style="float:left">
+                    <img src="https://image.flaticon.com/icons/svg/126/126483.svg" width="15px" alt="">
+                </a>
+                <form method="post" style="float: left;" class="detele_form" v-bind:action="'/boon/' + item.id">
+                    {{csrf_field()}}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" style="border: none;background: none;">
+                        <img src="https://image.flaticon.com/icons/svg/70/70287.svg" width="15px" alt="">
+                    </button>
+                </form>
+            </div>
             <div style="padding: 10px 15px 5px 15px;text-align: center;"><div style="font-size:40px"  v-text="item.boonName"></div><div style="font-size:30px" class="feedboon-boon"   v-text="item.boon"></div></div>
             <div style="display: block;flex-wrap: wrap;overflow: hidden; position: relative;max-width: 560px;"> 
             <div><div v-if="item.photo.length > 1" v-on:click="$emit('prev', item.index)" style="left: 15px;position: absolute; font-size: 50px;top: 40%;cursor: pointer;user-select: none;">&lt;</div> <div v-if="item.photo.length > 1" v-on:click="$emit('next', item.index)" style="right: 15px;top: 40%;position: absolute;font-size: 50px;cursor: pointer;user-select: none;">&gt;</div></div>
@@ -189,6 +225,18 @@ Vue.component('boon', {
             props: ['item'],
         template: `
         <div>
+            <div style="display: table; position: relative; margin: 10px 10px -25px auto;">
+                <a v-bind:href="'/card/' + item.id +'/edit'" style="float:left">
+                    <img src="https://image.flaticon.com/icons/svg/126/126483.svg" width="15px" alt="">
+                </a>
+                <form method="post" style="float: left;" class="detele_form" v-bind:action="'/card/' + item.id">
+                    {{csrf_field()}}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" style="border: none;background: none;">
+                        <img src="https://image.flaticon.com/icons/svg/70/70287.svg" width="15px" alt="">
+                    </button>
+                </form>
+            </div>
             <div style="padding: 10px 60px 5px;text-align: center;">
                 <div style="font-size: 40px;margin-top: 60px;" v-html="item.card"></div>
                 <div style="font-weight: bold;font-size:26px" v-text="item.user.name"></div>
