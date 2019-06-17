@@ -98,26 +98,30 @@ class BoonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'user_id'=>'required',
-            'boonName' => 'required',
-            'boon' => 'required',             
-            'boonView' => 'required',
-            'boonLike' => 'required',
-            'boonComment' => 'required',
-            'boonShare' => 'required',             
-        ]);        
         $boon  = boon::find($id);
-        $boon ->user_id = $request->get('user_id');
-        $boon ->boonName = $request->get('boonName');
-        $boon ->boon = $request->get('boon');         
-        $boon ->boonView = $request->get('boonView');
-        $boon ->boonLike = $request->get('boonLike');
-        $boon ->boonComment = $request->get('boonComment');
-        $boon ->boonShare = $request->get('boonShare');         
-        $boon ->boon_ip = $request->getClientIp();  
-        $boon ->save();
-        return redirect()->route('boon.index')->with('success','!!!!!!EDITED!!!!!!');  
+        if($boon->user_id == \Session::get('user_id')){
+            $this->validate($request,[
+                'user_id'=>'required',
+                'boonName' => 'required',
+                'boon' => 'required',             
+                'boonView' => 'required',
+                'boonLike' => 'required',
+                'boonComment' => 'required',
+                'boonShare' => 'required',             
+            ]);        
+            $boon ->user_id = $request->get('user_id');
+            $boon ->boonName = $request->get('boonName');
+            $boon ->boon = $request->get('boon');         
+            $boon ->boonView = $request->get('boonView');
+            $boon ->boonLike = $request->get('boonLike');
+            $boon ->boonComment = $request->get('boonComment');
+            $boon ->boonShare = $request->get('boonShare');         
+            $boon ->boon_ip = $request->getClientIp();  
+            $boon ->save();
+            return redirect('/more')->with('success','!!!!!!EDITED!!!!!!');    
+        } else{
+            return back();
+        }
     }
 
     /**
@@ -129,7 +133,15 @@ class BoonController extends Controller
     public function destroy($id)
     {
         $boon = Boon::find($id);
-        $boon->delete();
-        return redirect()->route('boon.index')->with('success','!!!!DELETED!!!!');
+        if($boon->user_id == \Session::get('user_id')){
+            $user = User::find(\Session::get('user_id'));
+            $user->power -= 100;
+            $user->boons -= 1;        
+            $user->save();
+            $boon->delete();
+            return back()->with('success','!!!!DELETED!!!!');    
+        } else{
+            return back();
+        } 
     }
 }

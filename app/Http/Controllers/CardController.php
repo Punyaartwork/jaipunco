@@ -96,26 +96,30 @@ class CardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'user_id'=>'required',
-            'card' => 'required',
-            'cardPhoto' => 'required',             
-            'cardView' => 'required',
-            'cardLike' => 'required',
-            'cardComment' => 'required',
-            'cardShare' => 'required',             
-        ]);        
         $card  = Card::find($id);
-        $card ->user_id = $request->get('user_id');
-        $card ->card = $request->get('card');
-        $card ->cardPhoto = $request->get('cardPhoto');         
-        $card ->cardView = $request->get('cardView');
-        $card ->cardLike = $request->get('cardLike');
-        $card ->cardComment = $request->get('cardComment');
-        $card ->cardShare = $request->get('cardShare');         
-        $card ->card_ip = $request->getClientIp();  
-        $card ->save();
-        return redirect()->route('card.index')->with('success','!!!!!!EDITED!!!!!!');  
+        if($card->user_id == \Session::get('user_id')){
+            $this->validate($request,[
+                'user_id'=>'required',
+                'card' => 'required',
+                'cardPhoto' => 'required',             
+                'cardView' => 'required',
+                'cardLike' => 'required',
+                'cardComment' => 'required',
+                'cardShare' => 'required',             
+            ]);        
+            $card ->user_id = $request->get('user_id');
+            $card ->card = $request->get('card');
+            $card ->cardPhoto = $request->get('cardPhoto');         
+            $card ->cardView = $request->get('cardView');
+            $card ->cardLike = $request->get('cardLike');
+            $card ->cardComment = $request->get('cardComment');
+            $card ->cardShare = $request->get('cardShare');         
+            $card ->card_ip = $request->getClientIp();  
+            $card ->save();
+            return redirect('/more')->with('success','!!!!!!EDITED!!!!!!');
+        } else{
+            return back();
+        }  
     }
 
     /**
@@ -127,7 +131,15 @@ class CardController extends Controller
     public function destroy($id)
     {
         $card = Card::find($id);
-        $card->delete();
-        return redirect()->route('card.index')->with('success','!!!!DELETED!!!!');
+        if($card->user_id == \Session::get('user_id')){
+            $user = User::find(\Session::get('user_id'));
+            $user->power -= 100;
+            $user->cards -= 1;        
+            $user->save();
+            $card->delete();
+            return back()->with('success','!!!!DELETED!!!!');    
+        } else{
+            return back();
+        } 
     }
 }

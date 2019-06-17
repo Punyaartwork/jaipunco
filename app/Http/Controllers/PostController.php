@@ -102,30 +102,34 @@ class PostController extends Controller
       */
      public function update(Request $request, $id)
      {
-         $this->validate($request,[
-             'user_id'=>'required',
-             'tag_id' => 'required',
-             'postName' => 'required',
-             'post' => 'required',
-             'postDraw' => 'required',             
-             'postView' => 'required',
-             'postLike' => 'required',
-             'postComment' => 'required',
-             'postShare' => 'required',             
-             ]);        
-         $post  = Post::find($id);
-         $post ->user_id = $request->get('user_id');
-         $post ->tag_id = $request->get('tag_id');
-         $post ->postname = $request->get('postName');
-         $post ->post = $request->get('post');
-         $post ->postDraw = $request->get('postDraw');         
-         $post ->postView = $request->get('postView');
-         $post ->postLike = $request->get('postLike');
-         $post ->postLike = $request->get('postComment');
-         $post ->postLike = $request->get('postShare');         
-         $post ->post_ip = $request->getClientIp();  
-         $post ->save();
-         return redirect()->route('post.index')->with('success','!!!!!!EDITED!!!!!!');  
+        $post  = Post::find($id);
+        if($post->user_id == \Session::get('user_id')){
+            $this->validate($request,[
+                'user_id'=>'required',
+                'tag_id' => 'required',
+                'postName' => 'required',
+                'post' => 'required',
+                'postDraw' => 'required',             
+                'postView' => 'required',
+                'postLike' => 'required',
+                'postComment' => 'required',
+                'postShare' => 'required',             
+                ]);        
+            $post ->user_id = $request->get('user_id');
+            $post ->tag_id = $request->get('tag_id');
+            $post ->postname = $request->get('postName');
+            $post ->post = $request->get('post');
+            $post ->postDraw = $request->get('postDraw');         
+            $post ->postView = $request->get('postView');
+            $post ->postLike = $request->get('postLike');
+            $post ->postLike = $request->get('postComment');
+            $post ->postLike = $request->get('postShare');         
+            $post ->post_ip = $request->getClientIp();  
+            $post ->save();
+            return redirect('/more')->with('success','!!!!!!EDITED!!!!!!'); 
+        }else{
+            return back();
+        }  
      }
  
      /**
@@ -136,8 +140,16 @@ class PostController extends Controller
       */
      public function destroy($id)
      {
-         $post = Post::find($id);
-         $post->delete();
-         return redirect()->route('post.index')->with('success','!!!!DELETED!!!!');
+        $post = Post::find($id);
+        if($post->user_id == \Session::get('user_id')){
+            $user = User::find(\Session::get('user_id'));
+            $user->power -= 100;
+            $user->stories -= 1;        
+            $user->save();
+            $post->delete();
+            return back()->with('success','!!!!DELETED!!!!');    
+        } else{
+            return back();
+        } 
      }
 }

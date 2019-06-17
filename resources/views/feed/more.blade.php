@@ -73,7 +73,17 @@
         </div>
     </div>
 </div>
-  
+@if(\Session::has('success'))
+    <p class="alert alert-success" style="
+        text-align: center;
+        background: #8BC34A;
+        color: #fff;
+        padding: 10px;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 5px;
+    ">{{ \Session::get('success')}}</p>
+@endif
     <div v-if="boons==true">
     <boon style="border: 1px solid rgb(234, 237, 241);
     max-width: 560px;
