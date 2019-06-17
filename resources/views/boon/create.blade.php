@@ -19,14 +19,13 @@
     <form action="{{url('boon')}}" method="post">
     {{csrf_field()}}
 
-    <label for="sel1">เลือกคำนำหน้า :</label>
-      <select class="form-control" id="sel1" name="boonName">
-        <option value="เอาบุญมาฝากนะครับ">เอาบุญมาฝากนะครับ</option>
-        <option value="เอาบุญมาฝากนะคะ">เอาบุญมาฝากนะคะ</option>
-        <option value="เอาบุญทุกๆบุญมาฝาก">เอาบุญทุกๆบุญมาฝาก</option>
-        <option value="เอาบุญปลื้มสุด ๆ มาฝาก">เอาบุญปลื้มสุด ๆ มาฝาก</option>
-        <option value="เอาบุญหลายบุญหลายวาระมาฝากครับ">เอาบุญหลายบุญหลายวาระมาฝากครับ</option>        
-      </select>
+    <label for="sel1">เลือกคำนำหน้า :</label><br>
+    <label class="radio-inline"><input type="radio" name="boonName" checked value="เอาบุญมาฝากนะครับ">เอาบุญมาฝากนะครับ</label>    
+    <label class="radio-inline"><input type="radio" name="boonName" value="เอาบุญมาฝากนะคะ">เอาบุญมาฝากนะคะ</label>
+    <label class="radio-inline"><input type="radio" name="boonName" value="เอาบุญทุกๆบุญมาฝาก">เอาบุญทุกๆบุญมาฝาก</label>
+    <label class="radio-inline"><input type="radio" name="boonName" value="เอาบุญปลื้มสุด ๆ มาฝาก">เอาบุญปลื้มสุด ๆ มาฝาก</label>
+    <label class="radio-inline"><input type="radio" name="boonName" value="เอาบุญหลายบุญหลายวาระมาฝากครับ">เอาบุญหลายบุญหลายวาระมาฝากครับ</label>
+ 
       <br>
 
   <div class="type">

@@ -101,24 +101,14 @@ class BoonController extends Controller
         $boon  = boon::find($id);
         if($boon->user_id == \Session::get('user_id')){
             $this->validate($request,[
-                'user_id'=>'required',
                 'boonName' => 'required',
-                'boon' => 'required',             
-                'boonView' => 'required',
-                'boonLike' => 'required',
-                'boonComment' => 'required',
-                'boonShare' => 'required',             
+                'boon' => 'required',              
             ]);        
-            $boon ->user_id = $request->get('user_id');
             $boon ->boonName = $request->get('boonName');
-            $boon ->boon = $request->get('boon');         
-            $boon ->boonView = $request->get('boonView');
-            $boon ->boonLike = $request->get('boonLike');
-            $boon ->boonComment = $request->get('boonComment');
-            $boon ->boonShare = $request->get('boonShare');         
+            $boon ->boon = $request->get('boon');              
             $boon ->boon_ip = $request->getClientIp();  
             $boon ->save();
-            return redirect('/more')->with('success','!!!!!!EDITED!!!!!!');    
+            return redirect('/more')->with('success','!!!!!!EDITED!!!!!!');  
         } else{
             return back();
         }

@@ -84,7 +84,8 @@ class CardController extends Controller
     public function edit($id)
     {
         $card = Card::find($id);
-        return view('card.edit',compact('card','id'));
+        $draws = Draw::orderBy('id','desc')->get();        
+        return view('card.edit',compact('card','id','draws'));
     }
 
     /**
@@ -99,27 +100,18 @@ class CardController extends Controller
         $card  = Card::find($id);
         if($card->user_id == \Session::get('user_id')){
             $this->validate($request,[
-                'user_id'=>'required',
                 'card' => 'required',
-                'cardPhoto' => 'required',             
-                'cardView' => 'required',
-                'cardLike' => 'required',
-                'cardComment' => 'required',
-                'cardShare' => 'required',             
+                'cardPhoto' => 'required',               
             ]);        
-            $card ->user_id = $request->get('user_id');
             $card ->card = $request->get('card');
-            $card ->cardPhoto = $request->get('cardPhoto');         
-            $card ->cardView = $request->get('cardView');
-            $card ->cardLike = $request->get('cardLike');
-            $card ->cardComment = $request->get('cardComment');
-            $card ->cardShare = $request->get('cardShare');         
+            $card ->cardPhoto = $request->get('cardPhoto');          
             $card ->card_ip = $request->getClientIp();  
             $card ->save();
             return redirect('/more')->with('success','!!!!!!EDITED!!!!!!');
+
         } else{
             return back();
-        }  
+        } 
     }
 
     /**
