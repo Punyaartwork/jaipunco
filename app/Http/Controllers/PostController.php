@@ -90,7 +90,8 @@ class PostController extends Controller
      public function edit($id)
      {
          $post = Post::find($id);   
-         return view('post.edit',compact('post','id'));
+         $draws = Draw::orderBy('id','desc')->get();    
+         return view('post.edit',compact('post','id','draws'));
      }
  
      /**
@@ -105,31 +106,21 @@ class PostController extends Controller
         $post  = Post::find($id);
         if($post->user_id == \Session::get('user_id')){
             $this->validate($request,[
-                'user_id'=>'required',
                 'tag_id' => 'required',
                 'postName' => 'required',
                 'post' => 'required',
-                'postDraw' => 'required',             
-                'postView' => 'required',
-                'postLike' => 'required',
-                'postComment' => 'required',
-                'postShare' => 'required',             
+                'postDraw' => 'required',                
                 ]);        
-            $post ->user_id = $request->get('user_id');
             $post ->tag_id = $request->get('tag_id');
             $post ->postname = $request->get('postName');
             $post ->post = $request->get('post');
             $post ->postDraw = $request->get('postDraw');         
-            $post ->postView = $request->get('postView');
-            $post ->postLike = $request->get('postLike');
-            $post ->postLike = $request->get('postComment');
-            $post ->postLike = $request->get('postShare');         
             $post ->post_ip = $request->getClientIp();  
             $post ->save();
-            return redirect('/more')->with('success','!!!!!!EDITED!!!!!!'); 
+            return redirect('/more')->with('success','!!!!!!EDITED!!!!!!');     
         }else{
             return back();
-        }  
+        }
      }
  
      /**
