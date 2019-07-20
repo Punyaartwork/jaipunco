@@ -104,7 +104,7 @@ function checkLoginState() {
   <meta charset="UTF-8">
   <title>Jaipun</title>
   
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
   /* Created by Akash Soti follow me on twitter @akashsoti */
 body {
