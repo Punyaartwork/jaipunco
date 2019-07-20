@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+
 
 Route::get('/top', function () {
     $types = App\Type::all();
@@ -22,7 +22,7 @@ Route::get('/', function () {
     $shares =  App\Post::with('user')->with('tag')->orderBy('postShare','desc')->take(6)->get();
     $news =  App\Post::with('user')->with('tag')->orderBy('id','desc')->take(6)->get();    
     return view('feed.home',compact('tags','tops','shares','news'));
-});*/
+});
 Route::get('/', function () {
     return view('feed.home');    
 });
@@ -64,7 +64,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('deletephoto/{id}', 'PhotoController@destroy');
 });
 
-/********    API     *********/
+/********    API     ********
 Route::get('api/post/{feed}',function($feed){
     if($feed == "new"){
         $data = App\Post::with('user')->with('tag')->orderBy('id','desc')->paginate(10);      
@@ -186,7 +186,7 @@ Route::get('api/app/feedtag/{id}',function($id){
     return response()->json([$data]);
 });
 
-/********    API     *********/
+/********    API     ********
 
 Route::get('/new', function () {
     $types = App\Type::all();
@@ -356,3 +356,4 @@ Route::get('/notification', function () {
     $title = 'notification | jaipun';
     return view('feed.notification',compact('title'));
 });
+*/

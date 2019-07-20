@@ -2,13 +2,47 @@
 
 namespace App;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model
+class User extends Model implements
+    AuthenticatableContract,
+    AuthorizableContract,
+    CanResetPasswordContract
 {
-    protected $fillable=['facebook_id','name','detail','email','profile','password','stories','following','followers','notification','link','boons','cards','power'];  
-    public function likes()
+    use Authenticatable, Authorizable, CanResetPassword;
+
+    protected $fillable=[
+        'facebook_id',
+        'name',
+        'detail',        
+        'email',
+        'profile',        
+        'password',
+        'cards',
+        'following',
+        'followers',
+        'notification',
+        'link',
+        'api_token'];
+    protected $hidden = [
+        'password', 
+    ];
+  
+   /* public function likes()
     {
         return $this->belongsToMany('App\Post', 'likes', 'user_id', 'post_id');
-    }   
+    }   */
+    public function generateToken()
+    {
+        $this->api_token = str_random(60);
+        $this->save();
+
+        return $this->api_token;
+    }
 }

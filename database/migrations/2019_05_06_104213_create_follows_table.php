@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTagDateTagsTable extends Migration
+class CreateFollowsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class AddTagDateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::table('tags', function($table) {
-            $table->integer('tagDate');    
-            $table->string('tagColor');    
+        Schema::create('follows', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('fuser_id');
+            $table->integer('user_id');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
- 
+
     /**
      * Reverse the migrations.
      *
@@ -26,8 +29,6 @@ class AddTagDateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::table('tags', function($table) {
-            $table->dropColumn('tagVotes');
-        });
+        Schema::dropIfExists('likes');
     }
 }

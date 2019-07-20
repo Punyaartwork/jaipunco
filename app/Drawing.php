@@ -5,9 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
-class Mark extends Model
+class Drawing extends Model
 {
     use SoftDeletes;
-    protected $fillable=['post_id','user_id','markTime'];  
+    protected $fillable=['store_id','user_id'];    
 }

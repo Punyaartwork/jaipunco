@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMarksTable extends Migration
+class CreateKeepsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateMarksTable extends Migration
      */
     public function up()
     {
-        Schema::create('marks', function (Blueprint $table) {
+        Schema::create('keeps', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id');
+            $table->integer('card_id');
             $table->integer('user_id');
-            $table->integer('markTime');            
+            $table->integer('keepTime');            
             $table->softDeletes();
             $table->timestamps();
         });

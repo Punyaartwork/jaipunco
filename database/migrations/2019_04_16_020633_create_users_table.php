@@ -21,11 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('email');     
             $table->string('profile'); 
             $table->string('password');    
-            $table->integer('stories');
+            $table->integer('cards');
             $table->integer('following'); 
             $table->integer('followers');        
             $table->integer('notification');         
             $table->string('link');    
+            $table->string('api_token', 60)->unique()->nullable();
             $table->timestamps('');
         });
     }

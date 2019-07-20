@@ -17,6 +17,7 @@ class CreateDrawsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('drawname_id');
             $table->string('draw');    
+            $table->string('alt');                
             $table->timestamps();            
         });
     }

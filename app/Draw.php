@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Draw extends Model
 {
-    protected $fillable=['drawname_id','draw'];        
+    protected $fillable=['drawname_id','draw','alt'];        
 }

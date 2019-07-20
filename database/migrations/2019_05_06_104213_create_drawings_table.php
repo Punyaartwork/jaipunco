@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLikeTypeToLikes extends Migration
+class CreateDrawingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddLikeTypeToLikes extends Migration
      */
     public function up()
     {
-        Schema::table('likes', function (Blueprint $table) {
-            $table->integer('likeType');
+        Schema::create('drawings', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('store_id');
+            $table->integer('user_id');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddLikeTypeToLikes extends Migration
      */
     public function down()
     {
-        Schema::table('likes', function (Blueprint $table) {
-            $table->dropColumn('likeType');
-        });
+        Schema::dropIfExists('drawings');
     }
 }

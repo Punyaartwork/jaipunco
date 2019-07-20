@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    protected $fillable=['user_id','card','cardPhoto','cardView','cardLike','cardComment','cardShare','cardTime','card_ip']; 
-    public function user()
+    protected $fillable=['user_id','card','cardPhoto','cardBg','cardView','cardLike','cardComment','cardShare','cardTime','card_ip']; 
+    /*public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
     }          
@@ -18,5 +18,5 @@ class Card extends Model
     public function comments()
     {
         return $this->hasMany('App\Comment','post_id')->with('user')->whereNull('parent_id')->where('comments.commentType', '=', 3);
-    }  
+    }  */
 }

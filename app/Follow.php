@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Like extends Model
+class Follow extends Model
 {
     use SoftDeletes;
-    protected $fillable=['card_id','user_id','likeType'];    
+    protected $fillable=['fuser_id','user_id'];    
 }

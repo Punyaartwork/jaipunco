@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Like extends Model
 {
     use SoftDeletes;
-    protected $fillable=['card_id','user_id','likeType'];    
+    protected $fillable=['store_id','user_id','votes','review'];    
 }

@@ -17,7 +17,8 @@ class CreateCardsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');   
             $table->string('card');       
-            $table->string('cardPhoto');                    
+            $table->string('cardPhoto'); 
+            $table->string('cardBg');                                
             $table->integer('cardView');
             $table->integer('cardLike');   
             $table->integer('cardComment'); 
