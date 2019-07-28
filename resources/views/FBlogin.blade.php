@@ -80,6 +80,19 @@ function checkLoginState() {
 
 
 </script>
+
+
+<div style="
+    text-align: center;
+    margin: 25px;
+">  
+  <img src="https://sv1.picz.in.th/images/2019/02/25/TLqJve.png" style="
+      width: 45px;
+  "> 
+  <a style="display: block; "><img src="https://sv1.picz.in.th/images/2019/02/25/TLqMgN.png" style="width: 150px;"></a>
+  <h3>แพลตฟอร์มสำหรับให้ทุกคนทำธรรมะให้น่าอ่านด้วยภาพวาด</h3>
+    
+</div>
 เข้าสู่ระบบโดย Facebook...
 <fb:login-button 
   scope="public_profile,email"
