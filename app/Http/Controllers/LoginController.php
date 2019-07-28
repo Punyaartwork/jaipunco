@@ -50,7 +50,7 @@ class LoginController extends Controller
             $session_user = User::where('email', '=',$request->get('hdnEmail'))->first();       
             $session_user->api_token = Session::get('api');
             $session_user->save();  
-            return Session::get('api'); 
+            return redirect('/logined'); 
         }
     }
 
