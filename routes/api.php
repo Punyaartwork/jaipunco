@@ -13,6 +13,7 @@ use App\Store;
 use App\Keep;
 use App\Draw;
 use App\Notification;
+use Session;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -453,8 +454,8 @@ Route::post('checkfacebook', function(Request $request) {
         return redirect('/logined'); 
     }else{
         $session_user = User::where('email', '=',$request->get('hdnEmail'))->first();       
-        $session_user->api_token = \Session::get('api');
+        $session_user->api_token = Session::get('api');
         $session_user->save();  
-        return \Session::get('api'); 
+        return Session::get('api'); 
     }
 });
