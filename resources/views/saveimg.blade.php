@@ -104,7 +104,9 @@
                     FB.getLoginStatus(function (response) {
                         console.log(response);
                         var blob = dataURItoBlob(dataURL);
-                        alert(blob);
+                        var formData = new FormData();
+                        formData.append('access_token',response.authResponse.accessToken);
+                        formData.append('source', blob);
                     });
                 });
                 /*
