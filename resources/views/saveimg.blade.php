@@ -101,7 +101,7 @@
         		console.log(dataURL);
                 var doPostToFacebook = function () {
                 // วาดรุปภาพแล้วส่งกลับเป็นข้อมูล DOMString
-                var image = draw().toDataURL("image/png");
+                var image = canvas.toDataURL("image/png");
                 try {
                     // แปลงเป็นข้อมูลสำหรับโพสต์
                     blob = dataURItoBlob(image);
