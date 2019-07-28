@@ -80,7 +80,7 @@ function checkLoginState() {
 
 
 </script>
-
+{{\Session::get('api')}}
 เข้าสู่ระบบโดย Facebook...
 <fb:login-button 
   scope="public_profile,email"
