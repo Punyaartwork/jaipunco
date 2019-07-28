@@ -69,28 +69,29 @@
       <img src="https://jaipun.com/draw/1560588709.png" />
   </div>
   <div class="box paste"></div>
-  <button type="button" onclick="doPostToFacebook()">โพสต์ไปยัง Facebook</button>
+  <div id='shareFB'>Share to Facebook</div>
 </div>
 <!-- partial -->
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+ <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '2155150018131029',
-            cookie     : true,
-            xfbml      : true,
-            version    : 'v2.8'
-        });
-        FB.AppEvents.logPageView();   
-        };
 
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+    window.fbAsyncInit = function() {
+    FB.init({
+        appId      : '2155150018131029',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();   
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
     $(document).ready(function() {
 	    html2canvas($("#capture"), {
@@ -99,7 +100,27 @@
                 $('.paste').prepend(canvas);
                 var dataURL = canvas.toDataURL();
         		console.log(dataURL);
-                return canvas;
+                $('#shareFB').click(function () {
+                    try {
+                        blob = dataURItoBlob(dataURL);
+                    } catch (e) {
+                        console.log(e);
+                    }
+                    FB.getLoginStatus(function (response) {
+                        console.log(response);
+                        if (response.status === "connected") {
+                            postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
+                        } else if (response.status === "not_authorized") {
+                            FB.login(function (response) {
+                                postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
+                            }, {scope: "publish_actions"});
+                        } else {
+                            FB.login(function (response) {
+                                postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
+                            }, {scope: "publish_actions"});
+                        }
+                    });
+                });
                 /*
                 t=document.title;
                 u = 'https://jaipun.com/draw/1560588709.png';
@@ -110,68 +131,18 @@
       });
       $("#capture").hide();
 	});
-    var doPostToFacebook = function () {
-        // วาดรุปภาพแล้วส่งกลับเป็นข้อมูล DOMString
-        var image = canvas.toDataURL("image/png");
-        try {
-            // แปลงเป็นข้อมูลสำหรับโพสต์
-            blob = dataURItoBlob(image);
-        } catch (e) {
+
+    function dataURItoBlob(dataURI) {
+        var byteString = atob(dataURI.split(',')[1]);
+        var ab = new ArrayBuffer(byteString.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
         }
-        
-        // เข้าระบบด้วย Facebook
-        FB.getLoginStatus(function (response) {
-            if (response.status === "connected") {
-            postImageToFacebook(response.authResponse.accessToken, blob);
-            } else if (response.status === "not_authorized") {
-            FB.login(function (response) {
-                postImageToFacebook(response.authResponse.accessToken, blob);
-            }, {scope: "publish_actions"});
-            } else {
-            FB.login(function (response) {
-                postImageToFacebook(response.authResponse.accessToken, blob);
-            }, {scope: "publish_actions"});
-            }
-        });
-    }
-    function postImageToFacebook(token, image) {
-        var fd = new FormData();
-        fd.append("access_token", token);
-        fd.append("source", image);
-        fd.append("no_story", true);
-        var req = new GAjax({
-            contentType: null
-        });
-        // โพสต์ไปยังอัลบัมของ Facebbok
-        req.send("https://graph.facebook.com/me/photos?access_token=" + token, fd, function (xhr) {
-            // ข้อมูลส่งครับ
-            var data = xhr.responseText.toJSON();
-            // คืนค่า ID ของโพสต์
-            console.log(data.id);
-        });
+        return new Blob([ab], {type: 'image/png'});
     }
 
-    FB.api(
-    "/" + data.id + "?fields=images",
-    function (response) {
-        if (response && !response.error) {
-        // URL ของรูปภาพที่โพสต์
-        console.log(response.images[0].source);
-        }
-    }
-    );
-    FB.ui({
-        method: 'share_open_graph',
-        action_type: 'og.shares',
-        action_properties: JSON.stringify({
-        object: {
-            'og:title': document.title,
-            'og:image:width': 476,
-            'og:image:height': 476,
-            'og:image': response.images[0].source,
-            'og:url': response.images[0].source
-        }
-    });
+
 /*
   html2canvas 0.5.0-alpha2 <https://html2canvas.hertzen.com>
   Copyright (c) 2015 Niklas von Hertzen
