@@ -102,26 +102,12 @@
                 var doPostToFacebook = function () {
                 // วาดรุปภาพแล้วส่งกลับเป็นข้อมูล DOMString
                 var image = canvas.toDataURL("image/png");
-                try {
-                    // แปลงเป็นข้อมูลสำหรับโพสต์
-                    blob = dataURItoBlob(image);
-                } catch (e) {
+                    try {
+                        // แปลงเป็นข้อมูลสำหรับโพสต์
+                        blob = dataURItoBlob(image);
+                    } catch (e) {
                 }
-                // เข้าระบบด้วย Facebook
-                FB.getLoginStatus(function (response) {
-                    if (response.status === "connected") {
-                    postImageToFacebook(response.authResponse.accessToken, blob);
-                    } else if (response.status === "not_authorized") {
-                    FB.login(function (response) {
-                        postImageToFacebook(response.authResponse.accessToken, blob);
-                    }, {scope: "publish_actions"});
-                    } else {
-                    FB.login(function (response) {
-                        postImageToFacebook(response.authResponse.accessToken, blob);
-                    }, {scope: "publish_actions"});
-                    }
-                });
-                }
+                return doPostToFacebook;
                 /*
                 t=document.title;
                 u = 'https://jaipun.com/draw/1560588709.png';
@@ -132,7 +118,22 @@
       });
       $("#capture").hide();
 	});
-
+                
+    // เข้าระบบด้วย Facebook
+    FB.getLoginStatus(function (response) {
+        if (response.status === "connected") {
+        postImageToFacebook(response.authResponse.accessToken, blob);
+        } else if (response.status === "not_authorized") {
+        FB.login(function (response) {
+            postImageToFacebook(response.authResponse.accessToken, blob);
+        }, {scope: "publish_actions"});
+        } else {
+        FB.login(function (response) {
+            postImageToFacebook(response.authResponse.accessToken, blob);
+        }, {scope: "publish_actions"});
+        }
+    });
+    }
     function postImageToFacebook(token, image) {
         var fd = new FormData();
         fd.append("access_token", token);
