@@ -80,14 +80,13 @@ function checkLoginState() {
 
 
 </script>
-{{\Session::get('api')}}
 เข้าสู่ระบบโดย Facebook...
 <fb:login-button 
   scope="public_profile,email"
   onlogin="checkLoginState();">
 </fb:login-button>
 
-<form action="{{url('api/checkfacebook')}}" method="post" name="frmMain" id="frmMain">
+<form action="{{url('checkfacebook')}}" method="post" name="frmMain" id="frmMain">
 {{ csrf_field() }}
 	<input type="hidden" id="hdnFbID" name="hdnFbID">
 	<input type="hidden" id="hdnName" name="hdnName">

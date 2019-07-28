@@ -10,6 +10,8 @@ Route::get('/fblogin/{api}', function ($api) {
 Route::get('/logined', function () {
     return view('logined');
 });
+Route::post('checkfacebook', 'LoginController@checkfacebook');
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
