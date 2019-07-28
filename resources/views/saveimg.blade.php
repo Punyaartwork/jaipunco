@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-  <meta charset="UTF-8">fb:app_id
-  <meta property="og:url"                content="https://jaipun.com/" />
-  <meta property="fb:app_id"                content="2155150018131029" />
+<meta charset="UTF-8">
+<meta property="og:url"                content="https://jaipun.com/save" />
+<meta property="fb:app_id"                content="2155150018131029" />
 <meta property="og:type"               content="website" />
-<meta property="og:title"              content="Jaipun" />
-<meta property="og:updated_time"        content="1564319030" />
+<meta property="og:title"              content="Jaipun Save" />
+<meta property="og:description"              content="Jaipun SAVE and Share" />
+<meta property="og:updated_time"        content="1564320035" />
 <meta property="og:image"              content="https://sv1.picz.in.th/images/2019/02/25/TLqJve.png" />
   <title>Jaipun Save</title>
   <style>
