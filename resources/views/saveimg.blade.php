@@ -76,13 +76,13 @@
 <script>
 
     window.fbAsyncInit = function() {
-    FB.init({
-        appId      : '2155150018131029',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v2.8'
-    });
-    FB.AppEvents.logPageView();   
+        FB.init({
+            appId      : '2155150018131029',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();   
     };
 
     (function(d, s, id){
@@ -109,6 +109,7 @@
                     FB.getLoginStatus(function (response) {
                         console.log(response);
                         if (response.status === "connected") {
+                            alert(blob);
                             postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
                         } else if (response.status === "not_authorized") {
                             FB.login(function (response) {
@@ -157,14 +158,12 @@
             cache: false,
             success: function (data) {
                 console.log("success: ", data);
-
                 // Get image source url
                 FB.api(
                     "/" + data.id + "?fields=images",
                     function (response) {
                         if (response && !response.error) {
-                            //console.log(response.images[0].source);
-
+                            console.log(response.images[0].source);
                             // Create facebook post using image
                             FB.api(
                                 "/me/feed",
