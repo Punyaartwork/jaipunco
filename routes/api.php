@@ -38,6 +38,10 @@ Route::get('users/{id}', function($id) {
     return User::find($id);
 });
 
+Route::get('users/{api}', function($api) {
+    return User::where('api_token',$api);
+});
+
 Route::post('users', function(Request $request) {
     //return User::create($request->all);
     return  $request->post();

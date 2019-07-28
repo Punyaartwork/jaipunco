@@ -2,6 +2,38 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/fblogin/{api}', function ($api) {
+    Session::put('api',$api);                
+    return view('FBlogin');
+});
+Route::post('checkfacebook', function(Request $request) {
+    $session_user = User::where([['facebook_id', '=',$request->get('hdnFbID')]])->first();
+    if ($session_user === null) {
+        $strPicture = "https://graph.facebook.com/".$request->get('hdnFbID')."/picture?type=large";
+        $strLink = "https://www.facebook.com/app_scoped_user_id/".$request->get('hdnFbID')."/";
+        $user = User::create([
+            'facebook_id' => $request->get('hdnFbID'),            
+            'name' =>$request->get('hdnName'),  
+            'detail' => '...',                       
+            'email' => $request->get('hdnEmail'),     
+            'profile' => $strPicture,                         
+            'password' =>0,
+            'cards' => 0, 
+            'followers' => 0,                                    
+            'following' => 0,   
+            'notification' => 0,
+            'link'=> $strLink,
+            'api_token'=> \Session::get('api')               
+        ]);
+        $session_user = User::where('email', '=',$request->get('hdnEmail'))->first();
+        Session::put('user_id',$session_user->id);            
+        return redirect('/logined'); 
+    }else{
+        Session::put('user_id',$session_user->id);
+        return redirect('/logined'); 
+    }
+});
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
