@@ -82,7 +82,7 @@
                 var dataURL = canvas.toDataURL();
         		console.log(dataURL);
                 $('#shareFB').click(function () {
-                    window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(dataURL)+'&t='+encodeURIComponent('Jaipun Card'),'sharer','toolbar=0,status=0,width=626,height=436');
+                    window.open('https://www.facebook.com/sharer.php?u='+encodeURIComponent(dataURL)+'&t='+encodeURIComponent('Jaipun Card'),'sharer','toolbar=0,status=0,width=626,height=436');
                 });
 	        }
       });
