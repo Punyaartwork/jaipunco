@@ -452,8 +452,8 @@ Route::post('checkfacebook', function(Request $request) {
         Session::put('user_id',$session_user->id);            
         return redirect('/logined'); 
     }else{
-        $session_user = User::where('facebook_id', '=',$request->get('hdnFbID'))->get();       
-        $session_user->api_token = \Session::get('api') ;
+        $session_user = User::where('email', '=',$request->get('hdnEmail'))->first();       
+        $session_user->api_token = \Session::get('api');
         $session_user->save();  
         return redirect('/logined'); 
     }
