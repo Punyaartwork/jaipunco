@@ -69,7 +69,7 @@
       <img src="https://jaipun.com/draw/1560588709.png" />
   </div>
   <div class="box paste"></div>
-  <div id='shareFB'></div>
+  <div id='shareFB'>Share to Facebook</div>
 </div>
 <!-- partial -->
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -82,8 +82,9 @@
                 var dataURL = canvas.toDataURL();
         		console.log(dataURL);
                 t=document.title;
+                u = 'https://jaipun.com/draw/1560588709.png';
                 $('#shareFB').click(function () {
-                    window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(dataURL)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;
+                    window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;
                 });
 	        }
       });
