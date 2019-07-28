@@ -109,6 +109,10 @@
                         formData.append('source', blob);
                         var xhr = new XMLHttpRequest();
                         xhr.open( 'POST', 'https://graph.facebook.com/me/photos', true );
+                        xhr.onload = xhr.onerror = function() {
+                            console.log( xhr.responseText );
+                        };
+                        xhr.send( formData );
                     });
                 });
                 /*
