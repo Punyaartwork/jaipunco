@@ -9,6 +9,8 @@
 <meta property="og:description"              content="Jaipun SAVE and Share" />
 <meta property="og:updated_time"        content="1564320035" />
 <meta property="og:image"              content="https://sv1.picz.in.th/images/2019/02/25/TLqJve.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <title>Jaipun Save</title>
   <style>
   html {
@@ -76,7 +78,7 @@
       <img src="https://jaipun.com/draw/1560588709.png" />
   </div>
   <div class="box paste"></div>
-  <div id='shareFB'>Share to Facebook</div>
+ <!-- <div id='shareFB'>Share to Facebook</div> -->
 </div>
 <!-- partial -->
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
