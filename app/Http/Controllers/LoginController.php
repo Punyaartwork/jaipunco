@@ -25,7 +25,7 @@ class LoginController extends Controller
 
     public function checkfacebook(Request $request)
     {
-        $session_user = App\User::where([['facebook_id', '=',$request->get('hdnFbID')]])->first();
+        $session_user = User::where([['facebook_id', '=',$request->get('hdnFbID')]])->first();
         if ($session_user === null) {
             $strPicture = "https://graph.facebook.com/".$request->get('hdnFbID')."/picture?type=large";
             $strLink = "https://www.facebook.com/app_scoped_user_id/".$request->get('hdnFbID')."/";
