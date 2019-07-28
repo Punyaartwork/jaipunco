@@ -102,7 +102,7 @@
         		console.log(dataURL);
                 $('#shareFB').click(function () {
                     FB.getLoginStatus(function (response) {
-      
+                        console.log(response);
                     });
                 });
                 /*
