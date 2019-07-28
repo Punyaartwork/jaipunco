@@ -80,7 +80,7 @@
   </div>
   <div class="box paste"></div>
  <!-- <div id='shareFB'>Share to Facebook</div> -->
- <a id="download" download="triangle.png">
+ <a id="download" download="Card Jaipun.png">
     <button type="button" style="
         border: 0px;
         width: 100%;
