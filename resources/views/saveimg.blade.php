@@ -81,7 +81,7 @@
                 $('.paste').prepend(canvas);
                 var dataURL = canvas.toDataURL();
         		console.log(dataURL);
-                var encodedPng = dataURL.substring(data.indexOf(',') + 1, data.length);
+                var encodedPng = dataURL.substring(dataURL.indexOf(',') + 1, dataURL.length);
                 var decodedPng = Base64Binary.decode(encodedPng);                
                 t=document.title;
                 u = 'https://jaipun.com/draw/1560588709.png';
