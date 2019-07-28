@@ -79,6 +79,9 @@
   </div>
   <div class="box paste"></div>
  <!-- <div id='shareFB'>Share to Facebook</div> -->
+ <a id="download" download="triangle.png">
+    <button type="button" onClick="download()">Download</button>
+</a>
 </div>
 <!-- partial -->
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -109,6 +112,12 @@
                 $('.paste').prepend(canvas);
                 var dataURL = canvas.toDataURL();
         		console.log(dataURL);
+                function download() {
+                    var download = document.getElementById("download");
+                    var image = canvas.toDataURL().replace("image/png", "image/octet-stream");
+                    download.setAttribute("href", image);
+                    //download.setAttribute("download","archive.png");
+                }
                 $('#shareFB').click(function () {
                     FB.getLoginStatus(function (response) {
                         console.log(response);
