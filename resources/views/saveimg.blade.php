@@ -107,6 +107,8 @@
                         var formData = new FormData();
                         formData.append('access_token',response.authResponse.accessToken);
                         formData.append('source', blob);
+                        var xhr = new XMLHttpRequest();
+                        xhr.open( 'POST', 'https://graph.facebook.com/me/photos', true );
                     });
                 });
                 /*
