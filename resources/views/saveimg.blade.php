@@ -53,13 +53,13 @@
     margin: 0 auto;
   }
   div.box .text {
-    font-weight:100;font-size: 40px;margin-top: 60px;
+    font-weight:100;font-size: 40px;margin-top: 60px;width:100%;
   }
   div.box .name {
-    font-weight: bold;font-size:26px;display: block;
+    font-weight: bold;font-size:26px;display: block;width:100%;
   }
   div.box .time {
-    font-size: 18px;display: block;
+    font-size: 18px;display: block;width:100%;
   }
 
   canvas {
