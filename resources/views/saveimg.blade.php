@@ -24,6 +24,7 @@
   body {
     font-family: 'helvetica',arial,sans-serif;
     color: #666;
+    text-align: center;
   }
 
   .wrap {
@@ -80,7 +81,15 @@
   <div class="box paste"></div>
  <!-- <div id='shareFB'>Share to Facebook</div> -->
  <a id="download" download="triangle.png">
-    <button type="button" >Download</button>
+    <button type="button" style="
+        border: 0px;
+        width: 100%;
+        padding: 10px 50px;
+        font-size: x-large;
+        margin: 5px auto;
+        background: #03A9F4;
+        color: #fff;
+    ">Save</button>
 </a>
 </div>
 <!-- partial -->
