@@ -3,11 +3,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/fblogin/{api}', function ($api) {
-    Session::put('api',$api);                
+    \Session::put('api',$api);                
     return view('FBlogin');
 });
 
-
+Route::get('/logined', function () {
+    return view('logined');
+});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
