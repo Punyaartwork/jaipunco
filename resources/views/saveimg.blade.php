@@ -103,6 +103,8 @@
                 $('#shareFB').click(function () {
                     FB.getLoginStatus(function (response) {
                         console.log(response);
+                        var blob = dataURItoBlob(dataURL);
+                        alert(blob);
                     });
                 });
                 /*
