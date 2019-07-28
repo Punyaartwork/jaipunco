@@ -2,6 +2,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/save', function () {
+    return view('saveimg');
+});
 Route::get('/fblogin/{api}', function ($api) {
     \Session::put('api',$api);                
     return view('FBlogin');
