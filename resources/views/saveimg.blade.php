@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>HTML2Canvas Preview</title>
+  <title>Jaipun Save</title>
   <style>
   html {
     box-sizing: border-box;
@@ -81,8 +81,9 @@
                 $('.paste').prepend(canvas);
                 var dataURL = canvas.toDataURL();
         		console.log(dataURL);
+                t=document.title;
                 $('#shareFB').click(function () {
-                    window.open('https://www.facebook.com/sharer.php?u='+encodeURIComponent(dataURL)+'&t='+encodeURIComponent('Jaipun Card'),'sharer','toolbar=0,status=0,width=626,height=436');
+                    window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(dataURL)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;
                 });
 	        }
       });
