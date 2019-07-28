@@ -72,7 +72,7 @@
   <div id="shareFB">SHARE FACEBOOK</div>
 </div>
 <!-- partial -->
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
     $(document).ready(function() {
 	    html2canvas($("#capture"), {
