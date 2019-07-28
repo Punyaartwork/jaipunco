@@ -102,19 +102,7 @@
         		console.log(dataURL);
                 $('#shareFB').click(function () {
                     FB.getLoginStatus(function (response) {
-                        console.log(response);
-                        var dataURL = canvas.toDataURL('image/jpeg', 1.0);
-                        var blob = dataURItoBlob(dataURL);
-                        var formData = new FormData();
-                        formData.append('access_token',response.authResponse.accessToken);
-                        formData.append('source', blob);
-                        var xhr = new XMLHttpRequest();
-                        xhr.open( 'POST', 'https://graph.facebook.com/me/photos', true );
-                        xhr.onload = xhr.onerror = function() {
-                            console.log( xhr.responseText );
-                        };
-                            xhr.send( formData );
-                        }
+      
                     });
                 });
                 /*
