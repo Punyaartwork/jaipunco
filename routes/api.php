@@ -33,10 +33,24 @@ Route::get('users', function() {
     // this will return a JSON structure. This will be cleaned up later.
     return User::all();
 });
-/*
-Route::get('users/{id}', function($id) {
-    return User::find($id);
-});*/
+
+Route::get('addname/{name}/{api}', function($name,$api) {
+    $user = User::create([
+        'facebook_id' => 0,            
+        'name' =>$name,  
+        'detail' => '...',                       
+        'email' => 0,     
+        'profile' => 'https://image.flaticon.com/icons/png/512/64/64572.png',                         
+        'password' =>0,
+        'cards' => 0, 
+        'followers' => 0,                                    
+        'following' => 0,   
+        'notification' => 0,
+        'link'=> 0,
+        'api_token'=> $api              
+    ]);
+    return $user;
+});
 
 Route::get('users/{api}', function($api) {
     $user = User::where('api_token',$api)->get();
@@ -75,6 +89,7 @@ Route::get('cards/{id}', function($id) {
 });
 
 Route::post('cards', function(Request $request) {
+    //$user = User::where('api_token',$api)->get();    
     //return Card::create($request->all);
     return  $request->post();
 });
