@@ -33,10 +33,10 @@ Route::get('users', function() {
     // this will return a JSON structure. This will be cleaned up later.
     return User::all();
 });
- 
+/*
 Route::get('users/{id}', function($id) {
     return User::find($id);
-});
+});*/
 
 Route::get('users/{api}', function($api) {
     return User::where('api_token',$api);
