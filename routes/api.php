@@ -39,7 +39,8 @@ Route::get('users/{id}', function($id) {
 });*/
 
 Route::get('users/{api}', function($api) {
-    return User::where('api_token',$api);
+    $user = User::where('api_token',$api)->get();
+    return $user->toJson();
 });
 
 Route::post('users', function(Request $request) {
