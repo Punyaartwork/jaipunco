@@ -40,7 +40,7 @@ Route::get('users/{id}', function($id) {
 
 Route::get('users/{api}', function($api) {
     $user = User::where('api_token',$api)->get();
-    return $user->toJson();
+    return $user;
 });
 
 Route::post('users', function(Request $request) {
