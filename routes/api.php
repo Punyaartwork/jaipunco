@@ -89,9 +89,20 @@ Route::get('cards/{id}', function($id) {
 });
 
 Route::post('cards', function(Request $request) {
-    //$user = User::where('api_token',$api)->get();    
-    //return Card::create($request->all);
-    return  $request->post();
+    $user = User::where('api_token',$request->api)->get();    
+    return Card::create([
+        'user_id'=> $user->id,
+        'card'=> $request->card,
+        'cardPhoto'=> $request->cardPhoto,
+        'cardBg'=> $request->cardBg,
+        'cardView' => 0,
+        'cardLike' => 0,
+        'cardComment' => 0,
+        'cardShare' => 0,
+        'cardTime'  => time(),
+        'card_ip'=> $request->getClientIp()
+    ]);
+    //return  $request->post();
 });
 
 Route::put('cards/{id}', function(Request $request, $id) {
