@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Card extends Model
 {
     protected $fillable=['user_id','card','cardPhoto','cardBg','cardView','cardLike','cardComment','cardShare','cardTime','card_ip']; 
-    /*public function user()
+    public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
-    }          
+    }   /*       
     public function like()
     {
         return $this->hasMany('App\Like','post_id')->where('likes.likeType', '=', 3);

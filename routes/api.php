@@ -83,9 +83,13 @@ Route::delete('users/{id}', function($id) {
 Route::get('cards', function() {
     return Card::all();
 });
+
+Route::get('feedcards', function() {
+    return Card::with('user')->orderBy('id','desc')->paginate(10);
+});
  
 Route::get('cards/{id}', function($id) {
-    return Card::find($id);
+    return Card::with('user')->find($id);
 });
 
 Route::post('cards', function(Request $request) {
