@@ -46,6 +46,8 @@
     float: left;  
     border: none;
     padding: 0;
+    position: absolute;
+    z-index: 99;
   }
   div.box img {
     width: 50%;
@@ -90,6 +92,9 @@
         margin: 5px auto;
         background: #03A9F4;
         color: #fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
     ">Save</button>
 </a>
 </div>
