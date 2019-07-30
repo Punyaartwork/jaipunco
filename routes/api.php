@@ -90,7 +90,7 @@ Route::get('cards/{id}', function($id) {
 
 Route::post('cards', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();    
-    return $user;/* Card::create([
+    return $user->id.'"'.$user[id];/* Card::create([
         'user_id'=> $user->id,
         'card'=> $request->card,
         'cardPhoto'=> $request->cardPhoto,
