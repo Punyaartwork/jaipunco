@@ -118,10 +118,9 @@
 	    html2canvas($("#capture"), {
 	    		allowTaint: true,
 	        onrendered: function(canvas) {
-                var img  = canvas.toDataURL();
-                $('.paste').append('<img src="'+img+'"/>');
+                $('.paste').prepend(canvas);
                 var dataURL = canvas.toDataURL();
-        		console.log(dataURL);
+        		    console.log(dataURL);
                 $('#download').click(function () {
                     var download = document.getElementById("download");
                     var image = canvas.toDataURL().replace("image/png", "image/octet-stream");
