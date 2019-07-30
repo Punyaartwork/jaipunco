@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
+<!--
 <meta charset="UTF-8">
 <meta property="og:url"                content="https://jaipun.com/card" />
 <meta property="fb:app_id"                content="2155150018131029" />
@@ -8,7 +9,7 @@
 <meta property="og:title"              content="Jaipun Save" />
 <meta property="og:description"              content="Jaipun SAVE and Share" />
 <meta property="og:updated_time"        content="1564320035" />
-<meta property="og:image"              content="https://sv1.picz.in.th/images/2019/02/25/TLqJve.png" />
+<meta property="og:image"              content="https://sv1.picz.in.th/images/2019/02/25/TLqJve.png" />-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <title>Jaipun Save</title>
@@ -95,7 +96,7 @@
 <!-- partial -->
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-
+/*
     window.fbAsyncInit = function() {
         FB.init({
             appId      : '2155150018131029',
@@ -113,7 +114,7 @@
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
+*/
     $(document).ready(function() {
 	    html2canvas($("#capture"), {
 	    		allowTaint: true,
