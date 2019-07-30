@@ -89,7 +89,7 @@ Route::get('feedcards', function() {
 });
 
 Route::get('feedprofile', function() {
-    return Card::select('user_id')->groupBy('user_id')->get();
+    return Card::with('user')->select('user_id','user.name')->groupBy('user_id')->get();
 });
  
 Route::get('cards/{id}', function($id) {
