@@ -87,6 +87,10 @@ Route::get('cards', function() {
 Route::get('feedcards', function() {
     return Card::with('user')->orderBy('id','desc')->paginate(10);
 });
+
+Route::get('feedprofile', function() {
+    return Card::with('user')->orderBy('id','desc')->distinct('user_id')->take(10)->get();
+});
  
 Route::get('cards/{id}', function($id) {
     return Card::with('user')->find($id);

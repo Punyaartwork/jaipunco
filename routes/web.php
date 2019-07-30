@@ -5,6 +5,10 @@ Route::get('/', function () {
 Route::get('/save', function () {
     return view('saveimg');
 });
+Route::get('/card/{id}', function () {
+    $card = Card::with('user')->find($id);
+    return view('card',compact('card'));
+});
 Route::get('/fblogin/{api}', function ($api) {
     \Session::put('api',$api);                
     return view('FBlogin');
