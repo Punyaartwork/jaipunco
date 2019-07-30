@@ -120,7 +120,7 @@
 	    		allowTaint: true,
 	        onrendered: function(canvas) {
                 $('.paste').prepend(canvas);
-                var dataURL = canvas.toDataURL();
+                var dataURL = canvas.toDataURL("image/png");
         		    console.log(dataURL);
                 $('#download').click(function () {
                     var download = document.getElementById("download");
