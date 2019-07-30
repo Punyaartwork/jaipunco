@@ -120,7 +120,7 @@
 	    		allowTaint: true,
 	        onrendered: function(canvas) {
                 $('.paste').prepend(canvas);
-                var dataURL = canvas.toDataURL("image/jpeg");
+                var dataURL = canvas.toDataURL();
         		    console.log(dataURL);
                 $('#download').click(function () {
                     var download = document.getElementById("download");
@@ -128,6 +128,7 @@
                     download.setAttribute("href", image);
                     //download.setAttribute("download","archive.png");
                 });
+                /*
                 $('#shareFB').click(function () {
                     FB.getLoginStatus(function (response) {
                         console.log(response);
