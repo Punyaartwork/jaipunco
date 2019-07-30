@@ -89,7 +89,7 @@ Route::get('feedcards', function() {
 });
 
 Route::get('feedprofile', function() {
-    return Card::distinct()->get(['user_id']);
+    return Card::with('user')->distinct()->get(['user_id','user.name']);
 });
  
 Route::get('cards/{id}', function($id) {
