@@ -90,8 +90,8 @@ Route::get('cards/{id}', function($id) {
 
 Route::post('cards', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();    
-    return $user[0]->id;/* Card::create([
-        'user_id'=> $user->id,
+    return Card::create([
+        'user_id'=> $user[0]->id,
         'card'=> $request->card,
         'cardPhoto'=> $request->cardPhoto,
         'cardBg'=> $request->cardBg,
@@ -102,7 +102,7 @@ Route::post('cards', function(Request $request) {
         'cardTime'  => time(),
         'card_ip'=> $request->getClientIp()
     ]);
-    //return  $request->post();*/
+    //return  $request->post();
 });
 
 Route::put('cards/{id}', function(Request $request, $id) {
