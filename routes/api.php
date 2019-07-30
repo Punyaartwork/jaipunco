@@ -88,12 +88,20 @@ Route::get('feedcards', function() {
     return Card::with('user')->orderBy('id','desc')->paginate(10);
 });
 
+Route::get('feedusers/{id}', function($id) {
+    return Card::with('user')->where('user_id',$id)->orderBy('id','desc')->paginate(10);
+});
+
 Route::get('feedprofile', function() {
     return Card::join('users', 'cards.user_id', '=', 'users.id')->select('user_id','users.name','users.profile')->groupBy('user_id')->take(10)->get();
 });
  
 Route::get('cards/{id}', function($id) {
     return Card::with('user')->find($id);
+});
+
+Route::get('carduser/{id}', function($id) {
+    return Card::where('user_id',$id)->take(6)->get();
 });
 
 Route::post('cards', function(Request $request) {
