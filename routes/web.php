@@ -5,7 +5,7 @@ Route::get('/', function () {
 Route::get('/save', function () {
     return view('saveimg');
 });
-Route::get('/card/{id}', function () {
+Route::get('/card/{id}', function ($id) {
     $card = App\Card::with('user')->find($id);
     return view('card',compact('card'));
 });
