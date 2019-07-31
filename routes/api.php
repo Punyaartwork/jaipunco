@@ -93,7 +93,7 @@ Route::get('feedusers/{id}', function($id) {
 });
 
 Route::get('feedprofile', function() {
-    return Card::join('users', 'cards.user_id', '=', 'users.id')->select('user_id','users.name','users.profile')->groupBy('user_id')->where('cardTime','>=','UNIX_TIMESTAMP(CURDATE())')->take(10)->get();
+    return Card::join('users', 'cards.user_id', '=', 'users.id','cardTime')->select('user_id','users.name','users.profile')->groupBy('user_id')->where('cardTime','>=','UNIX_TIMESTAMP(CURDATE())')->take(10)->get();
 });
  
 Route::get('cards/{id}', function($id) {
@@ -102,7 +102,7 @@ Route::get('cards/{id}', function($id) {
 
 Route::get('carduser/{id}', function($id) {
     $user = Card::with('user')->find($id);
-    return Card::where('user_id',$user->user_id)->take(6)->get();
+    return Card::where('user_id',$user->user_id)->where('id','<>',$id)->take(6)->get();
 });
 
 Route::post('cards', function(Request $request) {
