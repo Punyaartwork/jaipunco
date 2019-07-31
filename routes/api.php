@@ -93,7 +93,7 @@ Route::get('feedusers/{id}', function($id) {
 });
 
 Route::get('feedprofile', function() {
-    return Card::join('users', 'cards.user_id', '=', 'users.id')->select('user_id','users.name','users.profile')->groupBy('user_id')->take(10)->get();
+    return Card::join('users', 'cards.user_id', '=', 'users.id')->select('user_id','users.name','users.profile')->groupBy('user_id')->idDescending()->take(10)->get();
 });
  
 Route::get('cards/{id}', function($id) {
