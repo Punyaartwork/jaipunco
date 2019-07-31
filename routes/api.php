@@ -93,7 +93,8 @@ Route::get('feedusers/{id}', function($id) {
 });
 
 Route::get('feedprofile', function() {
-    return Card::join('users', 'cards.user_id', '=', 'users.id')->select('user_id','users.name','users.profile', max(`created_at`))->groupBy('user_id')->whereDate( max(`created_at`) ,DB::raw('CURDATE()'))->take(10)->get();
+    return \DB::raw("SELECT  cards.user_id,users.name,users.profile, MAX(cards.created_at)AS date FROM cards,users where cards.user_id = users.id  GROUP BY user_id order by date DESC;");
+   // return Card::join('users', 'cards.user_id', '=', 'users.id')->select('user_id','users.name','users.profile',\DB::raw("(select max(`created_at`) from cards)"))->groupBy('user_id')->take(10)->get();
 });
  
 Route::get('cards/{id}', function($id) {
