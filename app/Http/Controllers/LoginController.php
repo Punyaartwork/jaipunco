@@ -29,11 +29,16 @@ class LoginController extends Controller
         if ($session_user === null) {
             $strPicture = "https://graph.facebook.com/".$request->get('hdnFbID')."/picture?type=large";
             $strLink = "https://www.facebook.com/app_scoped_user_id/".$request->get('hdnFbID')."/";
+            if($request->get('hdnEmail') != null){
+                $email = $request->get('hdnEmail'); 
+            }else{
+                $email = 0;
+            }
             $user = User::create([
                 'facebook_id' => $request->get('hdnFbID'),            
                 'name' =>$request->get('hdnName'),  
                 'detail' => '...',                       
-                'email' => $request->get('hdnEmail'),     
+                'email' => $email,     
                 'profile' => $strPicture,                         
                 'password' =>0,
                 'cards' => 0, 

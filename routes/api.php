@@ -40,7 +40,7 @@ Route::get('addname/{name}/{api}', function($name,$api) {
         'name' =>$name,  
         'detail' => '...',                       
         'email' => 0,     
-        'profile' => 'https://image.flaticon.com/icons/png/512/64/64572.png',                         
+        'profile' => 'https://sv1.picz.in.th/images/2019/08/02/KXZcLl.png',                         
         'password' =>0,
         'cards' => 0, 
         'followers' => 0,                                    
