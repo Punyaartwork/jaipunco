@@ -40,7 +40,7 @@ Route::get('addname/{name}/{api}', function($name,$api) {
         'name' =>$name,  
         'detail' => '...',                       
         'email' => 0,     
-        'profile' => 'https://sv1.picz.in.th/images/2019/08/02/KXZcLl.png',                         
+        'profile' => 'https://sv1.picz.in.th/images/2019/08/02/KXiX3g.png',                         
         'password' =>0,
         'cards' => 0, 
         'followers' => 0,                                    
@@ -108,6 +108,8 @@ Route::get('carduser/{id}', function($id) {
 
 Route::post('cards', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();    
+    $user->cards += 1;
+    $user->save();
     return Card::create([
         'user_id'=> $user[0]->id,
         'card'=> $request->card,
