@@ -108,7 +108,7 @@ Route::get('carduser/{id}', function($id) {
 
 Route::post('cards', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();  
-    $upload = User::where('api_token',$request->api);        
+    $upload = User::find($user[0]->id);        
     $upload->cards += 1;
     $upload->save();
     return Card::create([
