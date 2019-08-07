@@ -85,6 +85,14 @@ Route::get('cards', function() {
 });
 
 Route::get('feedcards', function() {
+    $cards = Card::with('user')->orderBy('id','desc')->paginate(10);
+    if(!empty($cards)) { //New default value is set
+        foreach($cards as $value) {
+            $update = Card::find($value->id);        
+            $update->cardView += 1;
+            $update->save();
+        }
+    }
     return Card::with('user')->orderBy('id','desc')->paginate(10);
 });
 

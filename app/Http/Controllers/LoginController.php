@@ -48,11 +48,11 @@ class LoginController extends Controller
                 'link'=> $strLink,
                 'api_token'=> \Session::get('api')               
             ]);
-            $session_user = User::where('email', '=',$request->get('hdnEmail'))->first();
+            $session_user = User::where('facebook_id', '=',$request->get('hdnFbID'))->first();
             Session::put('user_id',$session_user->id);            
             return redirect('/logined'); 
         }else{
-            $session_user = User::where('email', '=',$request->get('hdnEmail'))->first();       
+            $session_user = User::where('facebook_id', '=',$request->get('hdnFbID'))->first();       
             $session_user->api_token = Session::get('api');
             $session_user->save();  
             return view('logined',compact('session_user'));
