@@ -109,6 +109,22 @@ Route::get('cards/{id}', function($id) {
     return Card::with('user')->find($id);
 });
 
+Route::get('savecard/{id}', function($id) {
+    $card = Card::with('user')->find($id);
+    Notification::create([
+        'user_id' => 0,
+        'item_id' => $card->user_id,
+        'item' => $id,
+        'itemType' => 1,
+        'notificationStatus' => 0,
+        'notificationTime' => time(),
+    ]);
+    $user = User::find($card->user_id);
+    $user->following += 1;
+    $user->save();
+    return Card::with('user')->find($id);
+});
+
 Route::get('carduser/{id}', function($id) {
     $user = Card::with('user')->find($id);
     return Card::where('user_id',$user->user_id)->where('id','<>',$id)->take(6)->get();
@@ -457,6 +473,11 @@ Route::get('notifications', function() {
  
 Route::get('notifications/{id}', function($id) {
     return Notification::find($id);
+});
+
+Route::get('notification/{api}', function($api) {
+    $user = User::where('api_token',$api)->get();  
+    return Notification::where('item_id',$user[0]->id);
 });
 
 Route::post('notifications', function(Request $request) {
