@@ -31,7 +31,7 @@ class User extends Model implements
         'link',
         'api_token'];
     protected $hidden = [
-        'password', 
+        'password','api_token'
     ];
   
    /* public function likes()
