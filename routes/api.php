@@ -113,14 +113,27 @@ Route::get('savecard/{id}', function($id) {
     $card = Card::with('user')->find($id);
     $card->cardShare += 1;
     $card->save();
-    Notification::create([
-        'user_id' => $card->user_id,
-        'item_id' => $id,
-        'item' => 'มีผู้ดาวน์โหลดการ์ดของคุณ',
-        'itemType' => 1,
-        'notificationStatus' => 0,
-        'notificationTime' => time(),
-    ]);
+    if (Notification::where('user_id', '=', $card->user_id)->where('item_id', '=', $id)->exists()) {
+        Notification::where('user_id', '=', $card->user_id)->where('item_id', '=', $id)->first()->delete();
+        Notification::create([
+            'user_id' => $card->user_id,
+            'item_id' => $id,
+            'item' => 'มีผู้ดาวน์โหลดการ์ดของคุณ',
+            'itemType' => 1,
+            'notificationStatus' => 0,
+            'notificationTime' => time(),
+        ]);
+        // user found
+    }else{
+        Notification::create([
+            'user_id' => $card->user_id,
+            'item_id' => $id,
+            'item' => 'มีผู้ดาวน์โหลดการ์ดของคุณ',
+            'itemType' => 1,
+            'notificationStatus' => 0,
+            'notificationTime' => time(),
+        ]);
+    }
     $user = User::find($card->user_id);
     $user->following += 1;
     $user->save();
