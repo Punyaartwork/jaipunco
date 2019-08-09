@@ -479,7 +479,7 @@ Route::get('notifications/{id}', function($id) {
 
 Route::get('shownotification/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
-    return Notification::with('card')->where('item_id',$user[0]->id);
+    return Notification::with('card')->where('item_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
 });
 
 Route::post('notifications', function(Request $request) {
