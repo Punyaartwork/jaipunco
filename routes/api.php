@@ -477,7 +477,7 @@ Route::get('notifications/{id}', function($id) {
     return Notification::find($id);
 });
 
-Route::get('notification/{api}', function($api) {
+Route::get('shownotification/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
     return Notification::with('card')->where('user_id',$user[0]->id);
 });
