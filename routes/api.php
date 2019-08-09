@@ -137,7 +137,7 @@ Route::get('savecard/{id}', function($id) {
     $user = User::find($card->user_id);
     $user->following += 1;
     $user->save();
-    return Card::with('user')->find($id);
+    return 204;
 });
 
 Route::get('carduser/{id}', function($id) {
