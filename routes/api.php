@@ -111,6 +111,8 @@ Route::get('cards/{id}', function($id) {
 
 Route::get('savecard/{id}', function($id) {
     $card = Card::with('user')->find($id);
+    $card->cardShare += 1;
+    $card->save();
     Notification::create([
         'user_id' => $card->user_id,
         'item_id' => $id,
