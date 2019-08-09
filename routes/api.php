@@ -112,9 +112,9 @@ Route::get('cards/{id}', function($id) {
 Route::get('savecard/{id}', function($id) {
     $card = Card::with('user')->find($id);
     Notification::create([
-        'user_id' => 0,
-        'item_id' => $card->user_id,
-        'item' => $id,
+        'user_id' => $card->user_id,
+        'item_id' => $id,
+        'item' => 'มีผู้ดาวน์โหลดการ์ดของคุณ',
         'itemType' => 1,
         'notificationStatus' => 0,
         'notificationTime' => time(),
@@ -468,7 +468,7 @@ Route::delete('stores/{id}', function($id) {
 Route::get('notifications', function() {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Notification::all();
+    return Notification::with('card')->all();
 });
  
 Route::get('notifications/{id}', function($id) {
@@ -477,7 +477,7 @@ Route::get('notifications/{id}', function($id) {
 
 Route::get('notification/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
-    return Notification::where('item_id',$user[0]->id);
+    return Notification::with('card')->where('user_id',$user[0]->id);
 });
 
 Route::post('notifications', function(Request $request) {

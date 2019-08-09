@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notification extends Model
 {
-    protected $fillable=['user_id','item_id','item','itemType','notificationStatus','notificationTime'];        
+    protected $fillable=['user_id','item_id','item','itemType','notificationStatus','notificationTime'];  
+    public function card()
+    {
+        return $this->belongsTo('App\Card', 'item_id');
+    }       
 }
