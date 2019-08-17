@@ -40,7 +40,7 @@ Route::get('addname/{name}/{profile}/{api}', function($name,$profile,$api) {
         'name' =>$name,  
         'detail' => '...',                       
         'email' => 0,     
-        'profile' => $profile,                         
+        'profile' => urldecode($profile),                         
         'password' =>0,
         'cards' => 0, 
         'followers' => 0,                                    
