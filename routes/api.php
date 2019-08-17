@@ -148,6 +148,7 @@ Route::get('savecard/{id}', function($id) {
             'itemType' => 1,
             'notificationStatus' => 0,
             'notificationTime' => time(),
+            'sender' => 0,
         ]);
         // user found
     }else{
@@ -158,6 +159,7 @@ Route::get('savecard/{id}', function($id) {
             'itemType' => 1,
             'notificationStatus' => 0,
             'notificationTime' => time(),
+            'sender' => 0,
         ]);
     }
     $user = User::find($card->user_id);
@@ -186,7 +188,9 @@ Route::post('cards', function(Request $request) {
         'cardComment' => 0,
         'cardShare' => 0,
         'cardTime'  => time(),
-        'card_ip'=> $request->getClientIp()
+        'card_ip'=> $request->getClientIp(),
+        'cardColor' => $request->cardColor,
+        'cardDetail' => 0,
     ]);
     //return  $request->post();
 });

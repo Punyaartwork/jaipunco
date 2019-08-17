@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    protected $fillable=['user_id','card','cardPhoto','cardBg','cardView','cardLike','cardComment','cardShare','cardTime','card_ip']; 
+    protected $fillable=['user_id','card','cardPhoto','cardBg','cardView','cardLike','cardComment','cardShare','cardTime','card_ip','cardColor','cardDetail']; 
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
