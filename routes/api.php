@@ -34,13 +34,13 @@ Route::get('users', function() {
     return User::all();
 });
 
-Route::get('addname/{name}/{profile}/{api}', function($name,$profile,$api) {
+Route::get('addname/{name}/{profile}?{api}', function($name,$profile,$api) {
     $user = User::create([
         'facebook_id' => 0,            
         'name' =>$name,  
         'detail' => '...',                       
         'email' => 0,     
-        'profile' => urldecode($profile),                         
+        'profile' => $profile,                         
         'password' =>0,
         'cards' => 0, 
         'followers' => 0,                                    
