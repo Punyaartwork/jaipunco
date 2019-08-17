@@ -52,6 +52,15 @@ Route::get('addname/{name}/{api}', function($name,$api) {
     return $user;
 });
 
+
+Route::get('changeprofile/{profile}/{api}', function($profile,$api) {
+    $user = User::where('api_token',$api)->get();
+    $upload = User::find($user[0]->id);        
+    $upload->profile = $profile;
+    $upload->save();
+    return $user;
+});
+
 Route::get('users/{api}', function($api) {
     $user = User::where('api_token',$api)->get();
     return $user;
