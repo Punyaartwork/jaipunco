@@ -10,5 +10,9 @@ class Notification extends Model
     public function card()
     {
         return $this->belongsTo('App\Card', 'item_id');
-    }       
+    }      
+    public function sender()
+    {
+        return $this->belongsTo('App\User', 'sender');
+    }     
 }

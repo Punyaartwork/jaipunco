@@ -135,7 +135,8 @@ Route::get('cards/{id}', function($id) {
     return Card::with('user')->find($id);
 });
 
-Route::get('savecard/{id}', function($id) {
+Route::get('savecard/{id}/{api}', function($id,$api) {
+    $user = User::where('api_token',$api)->get();
     $card = Card::with('user')->find($id);
     $card->cardShare += 1;
     $card->save();
@@ -148,7 +149,7 @@ Route::get('savecard/{id}', function($id) {
             'itemType' => 1,
             'notificationStatus' => 0,
             'notificationTime' => time(),
-            'sender' => 0,
+            'sender' => $user[0]->id,
         ]);
         // user found
     }else{
@@ -159,7 +160,7 @@ Route::get('savecard/{id}', function($id) {
             'itemType' => 1,
             'notificationStatus' => 0,
             'notificationTime' => time(),
-            'sender' => 0,
+            'sender' => $user[0]->id,
         ]);
     }
     $user = User::find($card->user_id);
