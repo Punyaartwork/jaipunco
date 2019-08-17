@@ -52,6 +52,23 @@ Route::get('addname/{name}/{api}', function($name,$api) {
     return $user;
 });
 
+Route::post('adduser', function(Request $request) {
+    return User::create([
+        'facebook_id' => 0,            
+        'name' =>$request->name,  
+        'detail' => '...',                       
+        'email' => 0,     
+        'profile' => $request->profile,                         
+        'password' =>0,
+        'cards' => 0, 
+        'followers' => 0,                                    
+        'following' => 0,   
+        'notification' => 0,
+        'link'=> 0,
+        'api_token'=> $request->api    
+    ]);
+    //return  $request->post();
+});
 
 Route::get('changeprofile/{profile}/{api}', function($profile,$api) {
     $user = User::where('api_token',$api)->get();
