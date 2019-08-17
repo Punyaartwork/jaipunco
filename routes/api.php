@@ -34,13 +34,13 @@ Route::get('users', function() {
     return User::all();
 });
 
-Route::get('addname/{name}/{api}', function($name,$api) {
+Route::get('addname/{name}/{profile}/{api}', function($name,$profile,$api) {
     $user = User::create([
         'facebook_id' => 0,            
         'name' =>$name,  
         'detail' => '...',                       
         'email' => 0,     
-        'profile' => 'https://sv1.picz.in.th/images/2019/08/02/KXiX3g.png',                         
+        'profile' => $profile,                         
         'password' =>0,
         'cards' => 0, 
         'followers' => 0,                                    
@@ -49,15 +49,6 @@ Route::get('addname/{name}/{api}', function($name,$api) {
         'link'=> 0,
         'api_token'=> $api              
     ]);
-    return $user;
-});
-
-
-Route::get('changeprofile/{profile}/{api}', function($profile,$api) {
-    $user = User::where('api_token',$api)->get();
-    $upload = User::find($user[0]->id);        
-    $upload->profile = $profile;
-    $upload->save();
     return $user;
 });
 
