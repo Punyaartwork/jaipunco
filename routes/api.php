@@ -514,7 +514,7 @@ Route::delete('stores/{id}', function($id) {
 Route::get('notifications', function() {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Notification::with('card')->with('sender')->get();
+    return Notification::with('card')->get();
 });
  
 Route::get('notifications/{id}', function($id) {
@@ -523,7 +523,7 @@ Route::get('notifications/{id}', function($id) {
 
 Route::get('shownotification/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
-    return Notification::with('card')->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
+    return Notification::with('card')->with('sender')->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
 });
 
 Route::post('notifications', function(Request $request) {
