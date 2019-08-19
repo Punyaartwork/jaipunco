@@ -18,7 +18,7 @@ Route::get('/logined', function () {
     return view('logined');
 });
 Route::post('checkfacebook', 'LoginController@checkfacebook');
-
+Route::resource('img','DrawController');
 /*
 |--------------------------------------------------------------------------
 | Web Routes

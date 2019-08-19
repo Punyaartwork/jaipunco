@@ -52,7 +52,8 @@ class DrawController extends Controller
                 $draw = new Draw(
                 [
                     'drawname_id'=>$request->get('drawname_id'),
-                    'draw'=>'/'.'draw/'.$time
+                    'draw'=>'/'.'draw/'.$time,
+                    'alt'=>$request->get('alt'),
                 ]
                 );
                 $draw->save();
