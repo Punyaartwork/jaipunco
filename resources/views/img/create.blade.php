@@ -20,6 +20,10 @@
                 <label for="email">drawname_id:</label>
                 <input type="text" class="form-control" id="email" placeholder="Enter drawname_id" name="drawname_id">
                 </div>
+                <div class="type">
+                <label for="email">alt:</label>
+                <input type="text" class="form-control" id="alt" placeholder="Enter alt" name="alt">
+                </div>
 
                 <label for="file">Select image to upload:</label>
                 <input type="file" name="file" id="file">
