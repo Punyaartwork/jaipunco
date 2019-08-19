@@ -50,7 +50,7 @@ class LoginController extends Controller
             ]);
             $session_user = User::where('facebook_id', '=',$request->get('hdnFbID'))->first();
             Session::put('user_id',$session_user->id);            
-            return redirect('/logined'); 
+            return view('logined',compact('session_user'));
         }else{
             $session_user = User::where('facebook_id', '=',$request->get('hdnFbID'))->first();       
             $session_user->api_token = Session::get('api');
