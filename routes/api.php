@@ -458,6 +458,10 @@ Route::get('draws/{id}', function($id) {
     return Draw::find($id);
 });
 
+Route::get('searchdraws/{text}', function($text) {
+    return Draw::where('alt', 'LIKE', '%$text%')->paginate(20);
+});
+
 Route::post('draws', function(Request $request) {
     //return User::create($request->all);
     return  $request->post();
