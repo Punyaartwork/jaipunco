@@ -459,7 +459,7 @@ Route::get('draws/{id}', function($id) {
 });
 
 Route::get('searchdraws/{text}', function($text) {
-    return Draw::where('alt', 'LIKE', '%'.$text.'%')->paginate(20);
+    return Draw::where('alt', 'LIKE', '%'.$text.'%')->paginate(30);
 });
 
 Route::post('draws', function(Request $request) {
