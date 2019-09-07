@@ -593,7 +593,7 @@ Route::get('feedsubjects', function() {
 });
 
 Route::get('searchsubjects/{text}', function($text) {
-    return Subject::where('subject', 'LIKE', '%'.$text.'%')->paginate(10);
+    return Subject::with('user')->where('subject', 'LIKE', '%'.$text.'%')->paginate(10);
 });
 
 Route::post('subjects', function(Request $request) {
