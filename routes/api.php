@@ -585,7 +585,7 @@ Route::get('subjects', function() {
 });
  
 Route::get('subjects/{id}', function($id) {
-    return Subject::find($id);
+    return Subject::with('user')->find($id);
 });
 
 Route::get('feedsubjects', function() {
@@ -620,4 +620,31 @@ Route::put('subjects/{id}', function(Request $request, $id) {
 Route::delete('subjects/{id}', function($id) {
     Subject::find($id)->delete();
     return 204;
+});
+
+Route::post('subjectcards', function(Request $request) {
+    $user = User::where('api_token',$request->api)->get();  
+    $upload = User::find($user[0]->id);        
+    $upload->cards += 1;
+    $upload->save();
+    return Card::create([
+        'user_id'=> $user[0]->id,
+        'card'=> $request->card,
+        'cardPhoto'=> $request->cardPhoto,
+        'cardBg'=> $request->cardBg,
+        'cardView' => 0,
+        'cardLike' => 0,
+        'cardComment' => 0,
+        'cardShare' => 0,
+        'cardTime'  => time(),
+        'card_ip'=> $request->getClientIp(),
+        'cardColor' => $request->cardColor,
+        'cardDetail' => $request->cardDetail,
+        'subject_id' => $request->subjectId,
+    ]);
+    //return  $request->post();
+});
+
+Route::get('room/{id}', function($id) {
+    return Card::with('user')->where('subject_id',$id)->orderBy('id','desc')->paginate(10);
 });
