@@ -627,6 +627,9 @@ Route::post('postroom', function(Request $request) {
     $upload = User::find($user[0]->id);        
     $upload->cards += 1;
     $upload->save();
+    $subject = Subject::find($request->subject_id);        
+    $subject->subjectItem += 1;
+    $subject->save();
     return Card::create([
         'user_id'=> $user[0]->id,
         'card'=> $request->card,
