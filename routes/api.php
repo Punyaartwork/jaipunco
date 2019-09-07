@@ -204,6 +204,10 @@ Route::get('editcard/{id}/{text}', function($id,$text) {
 });
 
 Route::get('deletecard/{id}', function($id) {
+    $card = Card::find($id);
+    $user = User::find($card->user_id);
+    $user->cards -= 1;
+    $user->save();
     Card::find($id)->delete();
     return 204;
 });
