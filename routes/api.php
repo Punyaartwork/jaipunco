@@ -642,7 +642,7 @@ Route::post('postroom', function(Request $request) {
         'cardDetail' => $request->cardDetail,
         'subject_id' => $request->subjectId,
     ]);*/
-    return  $request->post();
+    return  User::where('api_token',$request->api)->get();
 });
 
 Route::get('room/{id}', function($id) {
