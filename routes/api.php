@@ -592,6 +592,10 @@ Route::get('feedsubjects', function() {
     return Subject::with('user')->orderBy('id','desc')->paginate(10);
 });
 
+Route::get('searchsubjects/{text}', function($text) {
+    return Subject::where('subject', 'LIKE', '%'.$text.'%')->paginate(10);
+});
+
 Route::post('subjects', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();  
     return Subject::create([
