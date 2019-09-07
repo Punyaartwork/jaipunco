@@ -196,7 +196,7 @@ Route::post('cards', function(Request $request) {
     //return  $request->post();
 });
 //api demo starts
-Route::post('editcard/{id}', function($id) {
+Route::post('editcard/{id}', function(Request $request,$id) {
     $card = Card::findOrFail($id);
     $card->card = $request->card;
     $card->save();
