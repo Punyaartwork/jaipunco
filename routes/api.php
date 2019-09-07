@@ -588,9 +588,22 @@ Route::get('subjects/{id}', function($id) {
     return Subject::find($id);
 });
 
+Route::get('feedsubjects', function() {
+    return Subject::with('user')->orderBy('id','desc')->paginate(10);
+});
+
 Route::post('subjects', function(Request $request) {
-    //return Card::create($request->all);
-    return  $request->post();
+    $user = User::where('api_token',$request->api)->get();  
+    return Subject::create([
+        'user_id'=> $user[0]->id,
+        'subject'=> $request->subject,
+        'subjectItem' => 0,
+        'subjectLike' => 0,
+        'subjectView' => 0,
+        'subjectTime'  => time(),
+        'subject_ip'=> $request->getClientIp(),
+    ]);
+    //return  $request->post();
 });
 
 Route::put('subjects/{id}', function(Request $request, $id) {
