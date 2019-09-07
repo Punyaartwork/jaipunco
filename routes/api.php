@@ -623,11 +623,11 @@ Route::delete('subjects/{id}', function($id) {
 });
 
 Route::post('postroom', function(Request $request) {
-    //$user = User::where('api_token',$request->api)->get();  
-    /* $upload = User::find($user[0]->id);        
+    $user = User::where('api_token',$request->api)->get();  
+    $upload = User::find($user[0]->id);        
     $upload->cards += 1;
     $upload->save();
-   return Card::create([
+    return Card::create([
         'user_id'=> $user[0]->id,
         'card'=> $request->card,
         'cardPhoto'=> $request->cardPhoto,
@@ -640,9 +640,9 @@ Route::post('postroom', function(Request $request) {
         'card_ip'=> $request->getClientIp(),
         'cardColor' => $request->cardColor,
         'cardDetail' => $request->cardDetail,
-        'subject_id' => $request->subjectId,
-    ]);*/
-    return  User::where('api_token',$request->api)->get();
+        'subject_id' => $request->subject_id,
+    ]);
+    //return  $request->post();
 });
 
 Route::get('room/{id}', function($id) {
