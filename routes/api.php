@@ -622,7 +622,7 @@ Route::delete('subjects/{id}', function($id) {
     return 204;
 });
 
-Route::post('subjectcards', function(Request $request) {
+Route::post('postroom', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();  
     $upload = User::find($user[0]->id);        
     $upload->cards += 1;
