@@ -13,6 +13,7 @@ use App\Store;
 use App\Keep;
 use App\Draw;
 use App\Notification;
+use App\Subject;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -192,6 +193,7 @@ Route::post('cards', function(Request $request) {
         'card_ip'=> $request->getClientIp(),
         'cardColor' => $request->cardColor,
         'cardDetail' => 0,
+        'subject_id' => 0,
     ]);
     //return  $request->post();
 });
@@ -571,3 +573,34 @@ Route::delete('notifications/{id}', function($id) {
 Route::post('register', 'Auth\RegisterController@register');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
+
+/*
+|--------------------------------------------------------------------------
+| POST API Routes Subject
+|--------------------------------------------------------------------------
+*/
+
+Route::get('subjects', function() {
+    return Subject::all();
+});
+ 
+Route::get('subjects/{id}', function($id) {
+    return Subject::find($id);
+});
+
+Route::post('subjects', function(Request $request) {
+    //return Card::create($request->all);
+    return  $request->post();
+});
+
+Route::put('subjects/{id}', function(Request $request, $id) {
+    $subject = Subject::findOrFail($id);
+    $subject->update($request->all());
+
+    return $subject;
+});
+
+Route::delete('subjects/{id}', function($id) {
+    Subject::find($id)->delete();
+    return 204;
+});
