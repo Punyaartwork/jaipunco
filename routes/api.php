@@ -623,7 +623,7 @@ Route::delete('subjects/{id}', function($id) {
 });
 
 Route::post('postroom', function(Request $request) {
-    $user = User::where('api_token',$request->api)->get();  
+    //$user = User::where('api_token',$request->api)->get();  
     /* $upload = User::find($user[0]->id);        
     $upload->cards += 1;
     $upload->save();
@@ -642,7 +642,7 @@ Route::post('postroom', function(Request $request) {
         'cardDetail' => $request->cardDetail,
         'subject_id' => $request->subjectId,
     ]);*/
-    return  $request->post() + ' api ' + $user[0]->id;
+    return  $request->post();
 });
 
 Route::get('room/{id}', function($id) {
