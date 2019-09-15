@@ -672,7 +672,7 @@ Route::get('posts', function() {
     return Post::all();
 });
  
-Route::get('posts/{id}', function($id) {
+Route::get('post/{id}', function($id) {
     return Post::with('user')->find($id);
 });
 
@@ -746,6 +746,6 @@ Route::post('postpost', function(Request $request) {
     //return  $request->post();
 });
 
-Route::get('post/{id}', function($id) {
-    return Post::with('user')->where('post_id',$id)->orderBy('id','desc')->paginate(10);
+Route::get('content/{id}', function($id) {
+    return Card::with('user')->where('post_id',$id)->orderBy('id','desc')->paginate(10);
 });
