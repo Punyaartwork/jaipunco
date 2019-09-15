@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Story extends Model
+class Post extends Model
 {
-    protected $fillable=['user_id','story','storyPhoto','storyDetail','storyBg','storyColor','storyItem','storyLike','storyView','storyComment','storyShare','storyTime','storyTags','story_ip']; 
+    protected $fillable=['user_id','post','postPhoto','postDetail','postBg','postColor','postItem','postLike','postView','postComment','postShare','postTime','postTags','post_ip']; 
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');

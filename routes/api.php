@@ -14,7 +14,7 @@ use App\Keep;
 use App\Draw;
 use App\Notification;
 use App\Subject;
-use App\Story;
+use App\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -196,7 +196,7 @@ Route::post('cards', function(Request $request) {
         'cardColor' => $request->cardColor,
         'cardDetail' => 0,
         'subject_id' => 0,
-        'story_id' => 0,
+        'post_id' => 0,
         'cardTags' => 0,
         'cardForm' => $request->cardForm,
     ]);
@@ -649,7 +649,7 @@ Route::post('postroom', function(Request $request) {
         'cardColor' => $request->cardColor,
         'cardDetail' => $request->cardDetail,
         'subject_id' => $request->subject_id,
-        'story_id' => 0,
+        'post_id' => 0,
         'cardTags' => 0,
         'cardForm' => $request->cardForm,
     ]);
@@ -664,67 +664,67 @@ Route::get('room/{id}', function($id) {
 
 /*
 |--------------------------------------------------------------------------
-| POST API Routes Story
+| POST API Routes Post
 |--------------------------------------------------------------------------
 */
 
-Route::get('stories', function() {
-    return Story::all();
+Route::get('posts', function() {
+    return Post::all();
 });
  
-Route::get('stories/{id}', function($id) {
-    return Story::with('user')->find($id);
+Route::get('posts/{id}', function($id) {
+    return Post::with('user')->find($id);
 });
 
-Route::get('feedstories', function() {
-    return Story::with('user')->orderBy('id','desc')->paginate(10);
+Route::get('feedposts', function() {
+    return Post::with('user')->orderBy('id','desc')->paginate(10);
 });
 
-Route::get('searchstories/{text}', function($text) {
-    return Story::with('user')->where('story', 'LIKE', '%'.$text.'%')->paginate(10);
+Route::get('searchposts/{text}', function($text) {
+    return Post::with('user')->where('post', 'LIKE', '%'.$text.'%')->paginate(10);
 });
 
-Route::post('stories', function(Request $request) {
+Route::post('posts', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();  
-    return Story::create([
+    return Post::create([
         'user_id'=> $user[0]->id,
-        'story'=> $request->story,
-        'storyPhoto'=> $request->storyPhoto,
-        'storyDetail' => $request->storyDetail,
-        'storyBg'=> $request->storyBg,
-        'storyColor' => $request->storyColor,
-        'storyItem' => 0,
-        'storyView' => 0,
-        'storyLike' => 0,
-        'storyShare' => 0,
-        'storyComment' => 0,
-        'storyTime'  => time(),
-        'story_ip'=> $request->getClientIp(),
-        'storyTags' => 0,
+        'post'=> $request->post,
+        'postPhoto'=> $request->postPhoto,
+        'postDetail' => $request->postDetail,
+        'postBg'=> $request->postBg,
+        'postColor' => $request->postColor,
+        'postItem' => 0,
+        'postView' => 0,
+        'postLike' => 0,
+        'postShare' => 0,
+        'postComment' => 0,
+        'postTime'  => time(),
+        'post_ip'=> $request->getClientIp(),
+        'postTags' => 0,
     ]);
     //return  $request->post();
 });
 
-Route::put('stories/{id}', function(Request $request, $id) {
-    $story = Story::findOrFail($id);
-    $story->update($request->all());
+Route::put('posts/{id}', function(Request $request, $id) {
+    $post = Post::findOrFail($id);
+    $post->update($request->all());
 
-    return $story;
+    return $post;
 });
 
-Route::delete('stories/{id}', function($id) {
-    Story::find($id)->delete();
+Route::delete('posts/{id}', function($id) {
+    Post::find($id)->delete();
     return 204;
 });
 
-Route::post('poststory', function(Request $request) {
+Route::post('postpost', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();  
     $upload = User::find($user[0]->id);        
     $upload->cards += 1;
     $upload->save();
-    $story = Story::find($request->story_id);        
-    $story->storyItem += 1;
-    $story->save();
+    $post = Post::find($request->post_id);        
+    $post->postItem += 1;
+    $post->save();
     return Card::create([
         'user_id'=> $user[0]->id,
         'card'=> $request->card,
@@ -739,13 +739,13 @@ Route::post('poststory', function(Request $request) {
         'cardColor' => $request->cardColor,
         'cardDetail' => $request->cardDetail,
         'subject_id' => 0,
-        'story_id' => $request->story_id,
+        'post_id' => $request->post_id,
         'cardTags' => 0,
         'cardForm' => $request->cardForm,
     ]);
     //return  $request->post();
 });
 
-Route::get('story/{id}', function($id) {
-    return Story::with('user')->where('subject_id',$id)->orderBy('id','desc')->paginate(10);
+Route::get('post/{id}', function($id) {
+    return Post::with('user')->where('post_id',$id)->orderBy('id','desc')->paginate(10);
 });

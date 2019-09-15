@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddstoryidToCards extends Migration
+class AddpostidToCards extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddstoryidToCards extends Migration
     public function up()
     {
         Schema::table('cards', function (Blueprint $table) {
-            $table->integer('story_id');    
+            $table->integer('post_id');    
             $table->integer('cardForm'); 
             $table->string('cardTags');    
         });
@@ -28,7 +28,7 @@ class AddstoryidToCards extends Migration
     public function down()
     {
         Schema::table('cards', function (Blueprint $table) {
-            $table->dropColumn('story_id');    
+            $table->dropColumn('post_id');    
             $table->dropColumn('cardForm');     
             $table->dropColumn('cardTags');       
         });
