@@ -194,6 +194,9 @@ Route::post('cards', function(Request $request) {
         'cardColor' => $request->cardColor,
         'cardDetail' => 0,
         'subject_id' => 0,
+        'story_id' => 0,
+        'cardTags' => 0,
+        'cardForm' => $request->cardForm,
     ]);
     //return  $request->post();
 });
@@ -644,6 +647,99 @@ Route::post('postroom', function(Request $request) {
         'cardColor' => $request->cardColor,
         'cardDetail' => $request->cardDetail,
         'subject_id' => $request->subject_id,
+        'story_id' => 0,
+        'cardTags' => 0,
+        'cardForm' => $request->cardForm,
+    ]);
+    //return  $request->post();
+});
+
+Route::get('room/{id}', function($id) {
+    return Card::with('user')->where('subject_id',$id)->orderBy('id','desc')->paginate(10);
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+| POST API Routes Story
+|--------------------------------------------------------------------------
+*/
+
+Route::get('storys', function() {
+    return Story::all();
+});
+ 
+Route::get('storys/{id}', function($id) {
+    return Story::with('user')->find($id);
+});
+
+Route::get('feedstorys', function() {
+    return Story::with('user')->orderBy('id','desc')->paginate(10);
+});
+
+Route::get('searchstorys/{text}', function($text) {
+    return Story::with('user')->where('story', 'LIKE', '%'.$text.'%')->paginate(10);
+});
+
+Route::post('storys', function(Request $request) {
+    $user = User::where('api_token',$request->api)->get();  
+    return Story::create([
+        'user_id'=> $user[0]->id,
+        'story'=> $request->story,
+        'storyPhoto'=> $request->storyPhoto,
+        'storyDetail' => $request->storyDetail,
+        'storyBg'=> $request->storyBg,
+        'storyColor' => $request->storyColor,
+        'storyItem' => 0,
+        'storyView' => 0,
+        'storyLike' => 0,
+        'storyShare' => 0,
+        'storyComment' => 0,
+        'storyTime'  => time(),
+        'story_ip'=> $request->getClientIp(),
+        'storyTags' => 0,
+    ]);
+    //return  $request->post();
+});
+
+Route::put('storys/{id}', function(Request $request, $id) {
+    $story = Story::findOrFail($id);
+    $story->update($request->all());
+
+    return $story;
+});
+
+Route::delete('storys/{id}', function($id) {
+    Story::find($id)->delete();
+    return 204;
+});
+
+Route::post('postroom', function(Request $request) {
+    $user = User::where('api_token',$request->api)->get();  
+    $upload = User::find($user[0]->id);        
+    $upload->cards += 1;
+    $upload->save();
+    $story = Story::find($request->story_id);        
+    $story->storyItem += 1;
+    $story->save();
+    return Card::create([
+        'user_id'=> $user[0]->id,
+        'card'=> $request->card,
+        'cardPhoto'=> $request->cardPhoto,
+        'cardBg'=> $request->cardBg,
+        'cardView' => 0,
+        'cardLike' => 0,
+        'cardComment' => 0,
+        'cardShare' => 0,
+        'cardTime'  => time(),
+        'card_ip'=> $request->getClientIp(),
+        'cardColor' => $request->cardColor,
+        'cardDetail' => $request->cardDetail,
+        'subject_id' => 0,
+        'story_id' => $request->story_id,
+        'cardTags' => 0,
+        'cardForm' => $request->cardForm,
     ]);
     //return  $request->post();
 });
