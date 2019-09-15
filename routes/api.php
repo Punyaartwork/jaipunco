@@ -738,8 +738,8 @@ Route::post('postpost', function(Request $request) {
         'card_ip'=> $request->getClientIp(),
         'cardColor' => $request->cardColor,
         'cardDetail' => $request->cardDetail,
-        'subject_id' => $request->post_id,
-        'post_id' => 0,
+        'subject_id' => 0,
+        'post_id' => $request->post_id,
         'cardTags' => 0,
         'cardForm' => $request->cardForm,
     ]);
