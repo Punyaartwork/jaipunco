@@ -725,7 +725,7 @@ Route::post('postpost', function(Request $request) {
     $post = Post::find($request->post_id);        
     $post->postItem += 1;
     $post->save();
-    return Card::create([
+    /*return Card::create([
         'user_id'=> $user[0]->id,
         'card'=> $request->card,
         'cardPhoto'=> $request->cardPhoto,
@@ -742,8 +742,8 @@ Route::post('postpost', function(Request $request) {
         'post_id' => $request->post_id,
         'cardTags' => 0,
         'cardForm' => $request->cardForm,
-    ]);
-    //return  $request->post();
+    ]);*/
+    return  $request->post();
 });
 
 Route::get('content/{id}', function($id) {
