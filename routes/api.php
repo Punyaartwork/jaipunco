@@ -14,6 +14,8 @@ use App\Keep;
 use App\Draw;
 use App\Notification;
 use App\Subject;
+use App\Story;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
