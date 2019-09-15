@@ -668,23 +668,23 @@ Route::get('room/{id}', function($id) {
 |--------------------------------------------------------------------------
 */
 
-Route::get('storys', function() {
+Route::get('stories', function() {
     return Story::all();
 });
  
-Route::get('storys/{id}', function($id) {
+Route::get('stories/{id}', function($id) {
     return Story::with('user')->find($id);
 });
 
-Route::get('feedstorys', function() {
+Route::get('feedstories', function() {
     return Story::with('user')->orderBy('id','desc')->paginate(10);
 });
 
-Route::get('searchstorys/{text}', function($text) {
+Route::get('searchstories/{text}', function($text) {
     return Story::with('user')->where('story', 'LIKE', '%'.$text.'%')->paginate(10);
 });
 
-Route::post('storys', function(Request $request) {
+Route::post('stories', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();  
     return Story::create([
         'user_id'=> $user[0]->id,
@@ -705,19 +705,19 @@ Route::post('storys', function(Request $request) {
     //return  $request->post();
 });
 
-Route::put('storys/{id}', function(Request $request, $id) {
+Route::put('stories/{id}', function(Request $request, $id) {
     $story = Story::findOrFail($id);
     $story->update($request->all());
 
     return $story;
 });
 
-Route::delete('storys/{id}', function($id) {
+Route::delete('stories/{id}', function($id) {
     Story::find($id)->delete();
     return 204;
 });
 
-Route::post('postroom', function(Request $request) {
+Route::post('poststory', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();  
     $upload = User::find($user[0]->id);        
     $upload->cards += 1;
@@ -746,6 +746,6 @@ Route::post('postroom', function(Request $request) {
     //return  $request->post();
 });
 
-Route::get('room/{id}', function($id) {
-    return Card::with('user')->where('subject_id',$id)->orderBy('id','desc')->paginate(10);
+Route::get('story/{id}', function($id) {
+    return Story::with('user')->where('subject_id',$id)->orderBy('id','desc')->paginate(10);
 });
