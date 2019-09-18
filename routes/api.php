@@ -377,9 +377,9 @@ Route::get('feedfollow', function() {
    return DB::select(' SELECT * 
         FROM posts 
         WHERE posts.user_id IN(
-        SELECT fuser_id,user_id
+        SELECT fuser_id
         FROM follows
-        WHERE posts.user_id = follows.fuser_id and user_id = 171
+        WHERE posts.user_id = follows.fuser_id 
         )
         LIMIT 0, 15');
 
