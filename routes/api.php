@@ -368,6 +368,14 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
     $usermember->save();     
 
 });
+
+Route::get('feedfollow', function($id,$api) {
+    $user = User::find(171);
+    $userIds = $user->following()->lists('user_id');
+    $userIds[] = $user->id;
+    return Post::whereIn('user_id', $userIds)->latest()->get();
+});
+
 /*
 |--------------------------------------------------------------------------
 | GET API Routes Like

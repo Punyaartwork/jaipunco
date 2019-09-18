@@ -10,7 +10,10 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
-    }   /*       
+    }  
+    public function follow() {  
+        return $this->BelongsToMany( 'App\User', 'App\Follow' ,'fuser_id', 'user_id');
+    } /*       
     public function like()
     {
         return $this->hasMany('App\Like','post_id')->where('likes.likeType', '=', 3);
