@@ -347,20 +347,20 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
         ]);
         //$follow->cardLike += 10;
         $user->followers += 1;      
-        $usermember->followeing += 1;        
+        $usermember->following += 1;        
     } else {
         if (is_null($existing_follow->deleted_at)) {
             $existing_follow->delete();
             //$follow->cardLike -= 10;   
             //$user->power -= 5;    
             $user->followers -= 1;    
-            $usermember->followeing -= 1;       
+            $usermember->following -= 1;       
         } else {
             $existing_follow->restore();
             //$follow->cardLike += 10;
             //$user->power += 5;       
             $user->followers += 1;         
-            $usermember->followeing += 1;         
+            $usermember->following += 1;         
         }
     }
     //$user->save();        
