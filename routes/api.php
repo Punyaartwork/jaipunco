@@ -326,9 +326,10 @@ Route::delete('reviews/{id}', function($id) {
 |--------------------------------------------------------------------------
 */
 
-Route::get('follow/{api}/isfollowbyme', function($api) {
-    $user = User::where('api_token',$api)->get();  
-    if (Follow::whereUserId(1)->where($user[0]->id)->exists()){
+Route::get('follow/{id}/isfollowbyme/{api}', function($id,$api) {
+    $user = User::findOrFail($id);    
+    $useronclick = User::where('api_token',$api)->get();  
+    if (Follow::whereUserId($useronclick[0]->id)->where($user->id)->exists()){
         return 'true';
     }
     return 'false';
