@@ -373,7 +373,16 @@ Route::get('feedfollow', function() {
     $user = User::find(171);
     $follow = Follow::where('user_id',$user->id)->get();
     //return Follow::where('user_id',$user->id)->get();
-    return Card::with('user')->where('user_id',$follow->fuser_id)->orderBy('id','desc')->paginate(10);
+   //Card::with('user')->where('user_id',$follow->fuser_id)->orderBy('id','desc')->paginate(10);
+   return DB::select(' SELECT * 
+        FROM posts 
+        WHERE posts.user_id IN(
+        SELECT fuser_id,user_id
+        FROM follows
+        WHERE posts.user_id = follows.fuser_id and user_id = 171
+        )
+        LIMIT 0, 15');
+
 });
 
 /*
