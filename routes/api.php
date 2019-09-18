@@ -379,7 +379,7 @@ Route::get('feedfollow', function() {
         WHERE cards.user_id IN(
         SELECT fuser_id
         FROM follows
-        WHERE cards.user_id = follows.fuser_id
+        WHERE cards.user_id = follows.fuser_id AND user_id = 171
         )
         LIMIT 0, 15');
 
