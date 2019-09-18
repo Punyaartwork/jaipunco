@@ -370,14 +370,14 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
 });
 
 Route::get('feedfollow/{id}', function($id) {
-    $user = User::find($id);
+    $user = User::find(171);
     $follow = Follow::where('user_id',$user->id)->get();
     //return Follow::where('user_id',$user->id)->get();
    //Card::with('user')->where('user_id',$follow->fuser_id)->orderBy('id','desc')->paginate(10);
    return Card::whereIn('user_id', function($query){
         $query->select('fuser_id')
         ->from('follows')
-        ->where('user_id', $id);
+        ->where('user_id', 171);
     })->with('user')->orderBy('id','desc')->paginate(10);
    /*return DB::select(' SELECT * 
         FROM cards 
