@@ -231,6 +231,10 @@ Route::delete('cards/{id}', function($id) {
     Card::find($id)->delete();
     return 204;
 });
+
+Route::get('searchcards/{text}', function($text) {
+    return Card::with('user')->where('card', 'LIKE', '%'.$text.'%')->paginate(10);
+});
 /*
 |--------------------------------------------------------------------------
 | POST API Routes Comment
@@ -573,6 +577,14 @@ Route::get('notifications/{id}', function($id) {
 Route::get('shownotification/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
     return Notification::with('card')->with('sender')->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
+});
+
+Route::get('checknotification/{api}', function($api) {
+    $user = User::where('api_token',$api)->get();  
+    return $user[0]->notification;
+    $update = User::find($user[0]->id);
+    $update->notification = 0;
+    $update->save();
 });
 
 Route::post('notifications', function(Request $request) {

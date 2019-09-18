@@ -18,6 +18,7 @@ Route::get('/logined', function () {
     return view('logined');
 });
 Route::post('checkfacebook', 'LoginController@checkfacebook');
+Route::post('uploadphoto', 'PhotoController@store');
 Route::resource('img','DrawController');
 /*
 |--------------------------------------------------------------------------

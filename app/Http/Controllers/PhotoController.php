@@ -55,6 +55,9 @@ class PhotoController extends Controller
     
     
             file_put_contents($path, $data);
+
+            return $image_name;
+            /*
             $photo = new Photo(
             [
                 'boon_id'=>$request->get('boon_id'),
@@ -63,6 +66,7 @@ class PhotoController extends Controller
             );
             $photo->save();
             return response()->json(['id'=>$photo->id]);
+            */
     }
 
     /**
