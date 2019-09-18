@@ -168,6 +168,7 @@ Route::get('savecard/{id}/{api}', function($id,$api) {
     }
     $user = User::find($card->user_id);
     $user->following += 1;
+    $user->notification += 1;
     $user->save();
     return 204;
 });
