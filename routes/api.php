@@ -370,7 +370,7 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
 });
 
 Route::get('feedfollow/{id}', function($id) {
-   return Card::whereIn('user_id', function($query,$id){
+   return Card::whereIn('user_id', function($query){
         $query->select('fuser_id')
         ->from('follows')
         ->where('user_id', $id);
