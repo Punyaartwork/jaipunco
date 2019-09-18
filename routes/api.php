@@ -369,7 +369,7 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
 
 });
 
-Route::get('feedfollow', function($id,$api) {
+Route::get('feedfollow', function() {
     $user = User::find(171);
     $userIds = $user->following()->lists('user_id');
     $userIds[] = $user->id;
