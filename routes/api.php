@@ -375,11 +375,11 @@ Route::get('feedfollow', function() {
     //return Follow::where('user_id',$user->id)->get();
    //Card::with('user')->where('user_id',$follow->fuser_id)->orderBy('id','desc')->paginate(10);
    return DB::select(' SELECT * 
-        FROM posts 
-        WHERE posts.user_id IN(
-        SELECT fuser_id
+        FROM cards 
+        WHERE cards.user_id IN(
+        SELECT fuser_id,user_id
         FROM follows
-        WHERE posts.user_id = follows.fuser_id 
+        WHERE cards.user_id = follows.fuser_id and user_id =1 71
         )
         LIMIT 0, 15');
 
