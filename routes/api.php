@@ -371,7 +371,7 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
 
 Route::get('feedfollow', function() {
     $user = User::find(171);
-    $userIds = $user->following()->lists('user_id');
+    $userIds = $user->following()->lists('fuser_id');
     $userIds[] = $user->id;
     return Post::whereIn('user_id', $userIds)->latest()->get();
 });
