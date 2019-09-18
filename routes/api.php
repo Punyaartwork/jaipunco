@@ -326,33 +326,36 @@ Route::delete('reviews/{id}', function($id) {
 |--------------------------------------------------------------------------
 */
 
-Route::get('follow/{id}/isfollowbyme', function($id) {
-    $user = User::findOrFail($id);        
-    if (Follow::whereUserId(1)->where($user->id)->exists()){
+Route::get('follow/{api}/isfollowbyme', function($api) {
+    $user = User::where('api_token',$api)->get();  
+    if (Follow::whereUserId(1)->where($user[0]->id)->exists()){
         return 'true';
     }
     return 'false';
 });
-Route::get('follow/{id}/followed', function($id) {
+Route::get('follow/{id}/followed/{api}', function($id,$api) {
     $existing_follow = Follow::withTrashed()->where('fuser_id',$id)->whereUserId(1)->first();
     $user = User::findOrFail($id);
+    $useronclick = User::where('api_token',$api)->get();  
     //$user = User::find($card->user_id);        
     if (is_null($existing_follow)) {
         Follow::create([
             'fuser_id' => $id,
-            'user_id' => 1,             
+            'user_id' => $useronclick[0]->id,             
         ]);
         //$follow->cardLike += 10;
-        //$user->power += 5;                                             
+        $user->followers += 1;                                             
     } else {
         if (is_null($existing_follow->deleted_at)) {
             $existing_follow->delete();
             //$follow->cardLike -= 10;   
-            //$user->power -= 5;                                 
+            //$user->power -= 5;    
+            $user->followers -= 1;    
         } else {
             $existing_follow->restore();
             //$follow->cardLike += 10;
-            //$user->power += 5;                                 
+            //$user->power += 5;       
+            $user->followers += 1;                                             
         }
     }
     //$user->save();        
