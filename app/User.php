@@ -45,4 +45,7 @@ class User extends Model implements
 
         return $this->api_token;
     }
+    public function follow() {  
+        return $this->BelongsToMany( 'App\User', 'App\Follow' ,'fuser_id', 'user_id');
+    } 
 }
