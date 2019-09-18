@@ -371,8 +371,8 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
 
 Route::get('feedfollow', function() {
     $user = User::find(171);
-    $follow = Follow::where($user->id)->get();
-    return Follow::where($user->id)->get();
+    $follow = Follow::where('user_id',$user->id)->get();
+    return Follow::where('user_id',$user->id)->get();
 });
 
 /*
