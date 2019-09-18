@@ -582,9 +582,14 @@ Route::get('shownotification/{api}', function($api) {
 Route::get('checknotification/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
     return $user[0]->notification;
+});
+
+Route::get('clearnotification/{api}', function($api) {
+    $user = User::where('api_token',$api)->get();  
     $update = User::find($user[0]->id);
     $update->notification = 0;
     $update->save();
+    return $user[0]->notification;
 });
 
 Route::post('notifications', function(Request $request) {
