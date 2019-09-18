@@ -375,7 +375,7 @@ Route::get('feedfollow/{api}', function($api) {
    return Card::whereIn('user_id', function($query) use ($id){
         $query->select('fuser_id')
         ->from('follows')
-        ->where('user_id', $id);
+        ->where('user_id', $id)->withTrashed();
     })->with('user')->orderBy('id','desc')->paginate(10);
 });
 
