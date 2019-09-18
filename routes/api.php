@@ -338,6 +338,7 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
     $useronclick = User::where('api_token',$api)->get();  
     $existing_follow = Follow::withTrashed()->where('fuser_id',$id)->whereUserId($useronclick[0]->id)->first();
     $user = User::findOrFail($id);
+    $usermember = User::findOrFail($useronclick[0]->id);
     //$user = User::find($card->user_id);        
     if (is_null($existing_follow)) {
         Follow::create([
@@ -345,22 +346,27 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
             'user_id' => $useronclick[0]->id,             
         ]);
         //$follow->cardLike += 10;
-        $user->followers += 1;                                             
+        $user->followers += 1;      
+        $usermember->followeing += 1;        
     } else {
         if (is_null($existing_follow->deleted_at)) {
             $existing_follow->delete();
             //$follow->cardLike -= 10;   
             //$user->power -= 5;    
             $user->followers -= 1;    
+            $usermember->followeing -= 1;       
         } else {
             $existing_follow->restore();
             //$follow->cardLike += 10;
             //$user->power += 5;       
-            $user->followers += 1;                                             
+            $user->followers += 1;         
+            $usermember->followeing += 1;         
         }
     }
     //$user->save();        
-    $user->save();     
+    $user->save();    
+    $usermember->save();     
+
 });
 /*
 |--------------------------------------------------------------------------
