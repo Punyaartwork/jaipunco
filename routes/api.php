@@ -335,9 +335,9 @@ Route::get('follow/{id}/isfollowbyme/{api}', function($id,$api) {
     return 'false';
 });
 Route::get('follow/{id}/followed/{api}', function($id,$api) {
-    $existing_follow = Follow::withTrashed()->where('fuser_id',$id)->whereUserId(1)->first();
-    $user = User::findOrFail($id);
     $useronclick = User::where('api_token',$api)->get();  
+    $existing_follow = Follow::withTrashed()->where('fuser_id',$id)->whereUserId($useronclick[0]->id)->first();
+    $user = User::findOrFail($id);
     //$user = User::find($card->user_id);        
     if (is_null($existing_follow)) {
         Follow::create([
