@@ -369,21 +369,14 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
 
 });
 
-Route::get('feedfollow/{id}', function($id) {
+Route::get('feedfollow/{api}', function($api) {
+    $user = User::where('api_token',$api)->get();  
+    $id = User::find($user[0]->id);  
    return Card::whereIn('user_id', function($query) use ($id){
         $query->select('fuser_id')
         ->from('follows')
         ->where('user_id', $id);
     })->with('user')->orderBy('id','desc')->paginate(10);
-   /*return DB::select(' SELECT * 
-        FROM cards 
-        WHERE cards.user_id IN(
-        SELECT fuser_id
-        FROM follows
-        WHERE cards.user_id = follows.fuser_id AND user_id = 171
-        )
-        LIMIT 0, 15');
-*/
 });
 
 /*
