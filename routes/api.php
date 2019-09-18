@@ -775,5 +775,5 @@ Route::post('postpost', function(Request $request) {
 });
 
 Route::get('content/{id}', function($id) {
-    return Card::with('user')->where('post_id',$id)->orderBy('id','desc')->paginate(10);
+    return Card::with('user')->where('post_id',$id)->paginate(10);
 });
