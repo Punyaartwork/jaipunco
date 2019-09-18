@@ -372,7 +372,8 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
 Route::get('feedfollow', function() {
     $user = User::find(171);
     $follow = Follow::where('user_id',$user->id)->get();
-    return Follow::where('user_id',$user->id)->get();
+    //return Follow::where('user_id',$user->id)->get();
+    return Card::with('user')->where('user_id',$follow->fuser_id)->orderBy('id','desc')->paginate(10);
 });
 
 /*
