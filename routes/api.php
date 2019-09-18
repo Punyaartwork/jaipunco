@@ -371,7 +371,7 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
 
 Route::get('feedfollow/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
-    $id = User::find($user[0]->id);  
+    $id = $user[0]->id;  
    return Card::whereIn('user_id', function($query) use ($id){
         $query->select('fuser_id')
         ->from('follows')
