@@ -397,40 +397,7 @@ Route::get('like/{id}/islikedbyme', function($id) {
     }
     return 'false';
 });
-Route::get('follow/{id}/followed/{api}', function($id,$api) {
-    $useronclick = User::where('api_token',$api)->get();  
-    $existing_follow = Follow::withTrashed()->where('fuser_id',$id)->whereUserId($useronclick[0]->id)->first();
-    $user = User::findOrFail($id);
-    $usermember = User::findOrFail($useronclick[0]->id);
-    //$user = User::find($card->user_id);        
-    if (is_null($existing_follow)) {
-        Follow::create([
-            'fuser_id' => $id,
-            'user_id' => $useronclick[0]->id,             
-        ]);
-        //$follow->cardLike += 10;
-        $user->followers += 1;      
-        $usermember->following += 1;        
-    } else {
-        if (is_null($existing_follow->deleted_at)) {
-            $existing_follow->delete();
-            //$follow->cardLike -= 10;   
-            //$user->power -= 5;    
-            $user->followers -= 1;    
-            $usermember->following -= 1;       
-        } else {
-            $existing_follow->restore();
-            //$follow->cardLike += 10;
-            //$user->power += 5;       
-            $user->followers += 1;         
-            $usermember->following += 1;         
-        }
-    }
-    //$user->save();        
-    $user->save();    
-    $usermember->save();     
 
-});
 Route::get('like/{id}/liked/{api}', function($id,$api) {
     $useronclick = User::where('api_token',$api)->get();  
     $existing_like = Like::withTrashed()->whereCardId($id)->whereUserId($useronclick[0]->id)->where('likeType',1)->first();

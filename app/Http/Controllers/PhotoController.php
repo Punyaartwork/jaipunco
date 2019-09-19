@@ -43,6 +43,7 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
+        /*
             $data = $request->image;
     
             list($type, $data) = explode(';', $data);
@@ -57,6 +58,8 @@ class PhotoController extends Controller
             file_put_contents($path, $data);
 
             return $image_name;
+        */
+            return  $request->post();
             /*
             $photo = new Photo(
             [
