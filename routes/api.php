@@ -397,28 +397,92 @@ Route::get('like/{id}/islikedbyme', function($id) {
     }
     return 'false';
 });
-Route::get('like/{id}/liked', function($id) {
-    $existing_like = Like::withTrashed()->whereCardId($id)->whereUserId(1)->where('likeType',1)->first();
-    $card = Card::find( $id );
+Route::get('follow/{id}/followed/{api}', function($id,$api) {
+    $useronclick = User::where('api_token',$api)->get();  
+    $existing_follow = Follow::withTrashed()->where('fuser_id',$id)->whereUserId($useronclick[0]->id)->first();
+    $user = User::findOrFail($id);
+    $usermember = User::findOrFail($useronclick[0]->id);
     //$user = User::find($card->user_id);        
+    if (is_null($existing_follow)) {
+        Follow::create([
+            'fuser_id' => $id,
+            'user_id' => $useronclick[0]->id,             
+        ]);
+        //$follow->cardLike += 10;
+        $user->followers += 1;      
+        $usermember->following += 1;        
+    } else {
+        if (is_null($existing_follow->deleted_at)) {
+            $existing_follow->delete();
+            //$follow->cardLike -= 10;   
+            //$user->power -= 5;    
+            $user->followers -= 1;    
+            $usermember->following -= 1;       
+        } else {
+            $existing_follow->restore();
+            //$follow->cardLike += 10;
+            //$user->power += 5;       
+            $user->followers += 1;         
+            $usermember->following += 1;         
+        }
+    }
+    //$user->save();        
+    $user->save();    
+    $usermember->save();     
+
+});
+Route::get('like/{id}/liked/{api}', function($id,$api) {
+    $useronclick = User::where('api_token',$api)->get();  
+    $existing_like = Like::withTrashed()->whereCardId($id)->whereUserId($useronclick[0]->id)->where('likeType',1)->first();
+    $card = Card::find( $id );
     if (is_null($existing_like)) {
         Like::create([
             'card_id' => $id,
-            'user_id' => 1,
+            'user_id' => $useronclick[0]->id,
             'likeType' => 1,                                
         ]);
-        $card->cardLike += 10;
+        $card->cardLike += 1;
+        if (Notification::where('user_id', '=', $card->user_id)->where('item_id', '=', $id)->exists()) {
+            Notification::where('user_id', '=', $card->user_id)->where('item_id', '=', $id)->first()->delete();
+            Notification::create([
+                'user_id' => $card->user_id,
+                'item_id' => $id,
+                'item' => 'กดชอบการ์ดของคุณ',
+                'itemType' => 2,
+                'notificationStatus' => 0,
+                'notificationTime' => time(),
+                'sender' => $useronclick[0]->id,
+            ]);
+            // user found
+        }else{
+            Notification::create([
+                'user_id' => $card->user_id,
+                'item_id' => $id,
+                'item' => 'กดชอบการ์ดของคุณ',
+                'itemType' => 2,
+                'notificationStatus' => 0,
+                'notificationTime' => time(),
+                'sender' => $useronclick[0]->id,
+            ]);
+        }
+        $user = User::find($card->user_id);        
+        $user->notification += 1;
+        $user->save();
         //$user->power += 5;                                             
     } else {
+        
+        $card->cardLike += 1;
+        /*
         if (is_null($existing_like->deleted_at)) {
             $existing_like->delete();
-            $card->cardLike -= 10;   
+            $card->cardLike -= 1;   
             //$user->power -= 5;                                 
         } else {
             $existing_like->restore();
-            $card->cardLike += 10;
+            $card->cardLike += 1;
             //$user->power += 5;                                 
         }
+        */
     }
     //$user->save();        
     $card->save();           
