@@ -540,7 +540,7 @@ Route::get('draws/{id}', function($id) {
 });
 
 Route::get('searchdraws/{text}', function($text) {
-    return Draw::where('alt', 'LIKE', '%'.$text.'%')->paginate(30);
+    return Draw::where('alt', 'LIKE', '%'.$text.'%')->orderBy('id','desc')->paginate(30);
 });
 
 Route::post('draws', function(Request $request) {
