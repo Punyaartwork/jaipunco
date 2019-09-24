@@ -130,7 +130,7 @@ Route::get('feedusers/{id}', function($id) {
 });
 
 Route::get('cardcard/{id}', function($id) {
-    return Card::with('user')->with('post')->where('id','<>',$id)->orderBy('id','desc')->paginate(10);
+    return Card::with('user')->with('post')->where('id','<=',$id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('feedprofile', function() {
