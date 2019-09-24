@@ -114,7 +114,7 @@ Route::get('cards', function() {
 });
 
 Route::get('feedcards', function() {
-    $cards = Card::with('user')->orderBy('id','desc')->paginate(10);
+    $cards = Card::with('user')->with('post')->orderBy('id','desc')->paginate(10);
     if(!empty($cards)) { //New default value is set
         foreach($cards as $value) {
             $update = Card::find($value->id);        
@@ -127,6 +127,10 @@ Route::get('feedcards', function() {
 
 Route::get('feedusers/{id}', function($id) {
     return Card::with('user')->where('user_id',$id)->orderBy('id','desc')->paginate(10);
+});
+
+Route::get('cardcard/{id}', function($id) {
+    return Card::with('user')->with('post')->where('id','<>',$id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('feedprofile', function() {
