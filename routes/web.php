@@ -19,7 +19,7 @@ Route::get('/logined', function () {
 });
 //Route::post('checkfacebook', 'LoginController@checkfacebook');
 Route::post('uploadphoto', 'PhotoController@store');
-Route::post('/upload', function () {
+Route::get('/upload', function () {
     return view('upload');
 });
 Route::resource('img','DrawController');
