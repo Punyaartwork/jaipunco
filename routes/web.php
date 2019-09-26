@@ -17,8 +17,11 @@ Route::get('/fblogin/{api}', function ($api) {
 Route::get('/logined', function () {
     return view('logined');
 });
-Route::post('checkfacebook', 'LoginController@checkfacebook');
+//Route::post('checkfacebook', 'LoginController@checkfacebook');
 Route::post('uploadphoto', 'PhotoController@store');
+Route::post('/upload', function () {
+    return view('upload');
+});
 Route::resource('img','DrawController');
 /*
 |--------------------------------------------------------------------------
