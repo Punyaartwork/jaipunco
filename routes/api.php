@@ -115,7 +115,7 @@ Route::get('cards', function() {
 
 Route::get('checkcard/{id}/{api}', function($id,$api) {
     $useronclick = User::where('api_token',$api)->get();  
-    if (Card::find($id)->where('user_id',$useronclick[0]->id)->exists()){
+    if (Card::where('id',$id)->where('user_id',$useronclick[0]->id)->exists()){
         return 'true';
     }
     return 'false';
