@@ -113,6 +113,14 @@ Route::get('cards', function() {
     return Card::all();
 });
 
+Route::get('checkcard/{id}/{api}', function($id,$api) {
+    $useronclick = User::where('api_token',$api)->get();  
+    if (Card::find($id)->where('user_id',$useronclick[0]->id)->exists()){
+        return 'true';
+    }
+    return 'false';
+});
+
 Route::get('feedcards', function() {
     $cards = Card::with('user')->orderBy('id','desc')->paginate(10);
     if(!empty($cards)) { //New default value is set
