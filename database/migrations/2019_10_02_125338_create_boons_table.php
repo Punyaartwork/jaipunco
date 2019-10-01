@@ -21,7 +21,8 @@ class CreateBoonsTable extends Migration
             $table->string('boonPhoto'); 
             $table->string('boonDetail'); 
             $table->string('boonBg');    
-            $table->string('boonColor');                                
+            $table->string('boonColor');    
+            $table->string('boonForm');                                
             $table->integer('boonLike');       
             $table->integer('boonComment');    
             $table->integer('boonView');  

@@ -28,6 +28,9 @@ class User extends Model implements
         'following',
         'followers',
         'notification',
+        'downloading',
+        'boons',
+        'status',
         'link',
         'api_token'];
     protected $hidden = [

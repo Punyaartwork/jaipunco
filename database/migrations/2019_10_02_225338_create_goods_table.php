@@ -13,14 +13,12 @@ class CreateGoodTable extends Migration
     {
         Schema::create('goods', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
             $table->string('good');    
+            $table->string('goodPhoto');
             $table->string('goodDetail');     
-            $table->string('goodPhoto');  
             $table->string('goodBg');     
-            $table->string('goodColor');     
-            $table->string('goodDetail');                 
-            $table->string('goodTag');
+            $table->string('goodColor');                 
+            $table->string('goodTags');
             $table->integer('goodItem');                        
             $table->integer('goodTime');               
             $table->string('good_ip');                               
