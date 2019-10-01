@@ -13,7 +13,7 @@ class CreateBoonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Boons', function (Blueprint $table) {
+        Schema::create('boons', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');   
             $table->integer('good_id');   
