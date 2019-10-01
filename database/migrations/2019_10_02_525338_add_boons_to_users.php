@@ -15,7 +15,9 @@ class AddboonsToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('boons');    
-            $table->integer('status');   
+            $table->string('status');  
+            $table->integer('status_id');   
+            $table->integer('ranking');   
             $table->integer('downloading');    
         });
     }
@@ -29,7 +31,9 @@ class AddboonsToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('boons');    
-            $table->dropColumn('status');      
+            $table->dropColumn('status'); 
+            $table->dropColumn('status_id');     
+            $table->dropColumn('ranking');      
             $table->dropColumn('downloading');          
         });
     }

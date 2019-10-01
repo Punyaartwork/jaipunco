@@ -16,7 +16,7 @@ class AddgoodidToDraws extends Migration
         Schema::table('draws', function (Blueprint $table) {
             $table->integer('good_id');    
             $table->integer('drawLevel'); 
-            $table->string('drawStatus');    
+            $table->integer('status_id');    
         });
     }
 
@@ -30,7 +30,7 @@ class AddgoodidToDraws extends Migration
         Schema::table('draws', function (Blueprint $table) {
             $table->dropColumn('good_id');    
             $table->dropColumn('drawLevel');     
-            $table->dropColumn('drawStatus');       
+            $table->dropColumn('status_id');       
         });
     }
 }

@@ -31,6 +31,8 @@ class User extends Model implements
         'downloading',
         'boons',
         'status',
+        'status_id',
+        'ranking',
         'link',
         'api_token'];
     protected $hidden = [

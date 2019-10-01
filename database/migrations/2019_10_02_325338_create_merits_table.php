@@ -17,7 +17,9 @@ class CreateMeritsTable extends Migration
             $table->increments('id');
             $table->integer('good_id');
             $table->integer('user_id');
-            $table->integer('merit');
+            $table->integer('status_id');
+            $table->integer('meritItem');
+            $table->integer('meritLike');
             $table->integer('meritTime');
             $table->softDeletes();
             $table->timestamps();

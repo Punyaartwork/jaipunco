@@ -33,8 +33,8 @@
                 <input type="text" class="form-control" id="email" placeholder="Enter drawLevel" name="drawLevel">
                 </div>
                 <div class="type">
-                <label for="email">drawStatus:</label>
-                <input type="text" class="form-control" id="email" placeholder="Enter drawStatus" name="drawStatus">
+                <label for="email">status_id:</label>
+                <input type="text" class="form-control" id="email" placeholder="Enter status_id" name="status_id">
                 </div>
                 <label for="file">Select image to upload:</label>
                 <input type="file" name="file" id="file">

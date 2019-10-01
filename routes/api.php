@@ -40,7 +40,7 @@ Route::get('users', function() {
     return User::all();
 });
 
-Route::get('addname/{name}/{api}/{status}', function($name,$api,$status) {
+Route::get('addname/{name}/{api}/{status}/{status_id}', function($name,$api,$status,$status_id) {
     $user = User::create([
         'facebook_id' => 0,            
         'name' =>$name,  
@@ -55,6 +55,8 @@ Route::get('addname/{name}/{api}/{status}', function($name,$api,$status) {
         'downloading' => 0,
         'boons' => 0,
         'status' => $status,
+        'status_id' => $status_id,
+        'ranking' => 0,
         'link'=> 0,
         'api_token'=> $api              
     ]);
@@ -75,7 +77,9 @@ Route::post('adduser', function(Request $request) {
         'notification' => 0,
         'downloading' => 0,
         'boons' => 0,
-        'status' => 2,
+        'status' => 'Man',
+        'status_id' => 2,
+        'ranking' => 0,
         'link'=> 0,
         'api_token'=> $request->api    
     ]);

@@ -36,8 +36,8 @@
       <input type="text" class="form-control" id="email" placeholder="Enter drawLevel" name="drawLevel"  value="{{$draw->drawLevel}}">
     </div>
     <div class="type">
-      <label for="email">drawStatus:</label>
-      <input type="text" class="form-control" id="email" placeholder="Enter drawStatus" name="drawStatus"  value="{{$draw->drawStatus}}">
+      <label for="email">status_id:</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter status_id" name="status_id"  value="{{$draw->status_id}}">
     </div>
     <div class="type">
       <label for="email">draw:</label>
