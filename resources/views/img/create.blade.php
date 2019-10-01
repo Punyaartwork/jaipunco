@@ -24,7 +24,18 @@
                 <label for="email">alt:</label>
                 <input type="text" class="form-control" id="alt" placeholder="Enter alt" name="alt">
                 </div>
-
+                <div class="type">
+                <label for="email">good_id:</label>
+                <input type="text" class="form-control" id="email" placeholder="Enter good_id" name="good_id">
+                </div>              
+                <div class="type">
+                <label for="email">drawLevel:</label>
+                <input type="text" class="form-control" id="email" placeholder="Enter drawLevel" name="drawLevel">
+                </div>
+                <div class="type">
+                <label for="email">drawStatus:</label>
+                <input type="text" class="form-control" id="email" placeholder="Enter drawStatus" name="drawStatus">
+                </div>
                 <label for="file">Select image to upload:</label>
                 <input type="file" name="file" id="file">
                 <input class="btn btn-primary" type="submit" value="Upload" name="submit">

@@ -15,6 +15,9 @@ use App\Draw;
 use App\Notification;
 use App\Subject;
 use App\Post;
+use App\Good;
+use App\Merit;
+use App\Boon;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +40,7 @@ Route::get('users', function() {
     return User::all();
 });
 
-Route::get('addname/{name}/{api}', function($name,$api) {
+Route::get('addname/{name}/{api}/{status}', function($name,$api,$status) {
     $user = User::create([
         'facebook_id' => 0,            
         'name' =>$name,  
@@ -49,6 +52,9 @@ Route::get('addname/{name}/{api}', function($name,$api) {
         'followers' => 0,                                    
         'following' => 0,   
         'notification' => 0,
+        'downloading' => 0,
+        'boons' => 0,
+        'status' => $status,
         'link'=> 0,
         'api_token'=> $api              
     ]);
@@ -67,6 +73,9 @@ Route::post('adduser', function(Request $request) {
         'followers' => 0,                                    
         'following' => 0,   
         'notification' => 0,
+        'downloading' => 0,
+        'boons' => 0,
+        'status' => 2,
         'link'=> 0,
         'api_token'=> $request->api    
     ]);
@@ -830,4 +839,97 @@ Route::post('postpost', function(Request $request) {
 
 Route::get('content/{id}', function($id) {
     return Card::with('user')->where('post_id',$id)->paginate(10);
+});
+/*
+|--------------------------------------------------------------------------
+| GET DATA API Routes Good
+|--------------------------------------------------------------------------
+*/
+Route::get('goods', function() {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Good::all();
+});
+ 
+Route::get('goods/{id}', function($id) {
+    return Good::find($id);
+});
+
+Route::post('goods', function(Request $request) {
+    //return User::create($request->all);
+    return  $request->post();
+});
+
+Route::put('goods/{id}', function(Request $request, $id) {
+    $good = Good::findOrFail($id);
+    $good->update($request->all());
+
+    return $good;
+});
+
+Route::delete('goods/{id}', function($id) {
+    Good::find($id)->delete();
+    return 204;
+});
+/*
+|--------------------------------------------------------------------------
+| GET DATA API Routes Merit
+|--------------------------------------------------------------------------
+*/
+Route::get('merits', function() {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Merit::all();
+});
+ 
+Route::get('merits/{id}', function($id) {
+    return Merit::find($id);
+});
+
+Route::post('Merits', function(Request $request) {
+    //return User::create($request->all);
+    return  $request->post();
+});
+
+Route::put('merits/{id}', function(Request $request, $id) {
+    $merit = Merit::findOrFail($id);
+    $merit->update($request->all());
+
+    return $merit;
+});
+
+Route::delete('merits/{id}', function($id) {
+    Merit::find($id)->delete();
+    return 204;
+});
+/*
+|--------------------------------------------------------------------------
+| GET DATA API Routes Boon
+|--------------------------------------------------------------------------
+*/
+Route::get('boons', function() {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Boon::all();
+});
+ 
+Route::get('boons/{id}', function($id) {
+    return Boon::find($id);
+});
+
+Route::post('boons', function(Request $request) {
+    //return User::create($request->all);
+    return  $request->post();
+});
+
+Route::put('boons/{id}', function(Request $request, $id) {
+    $boon = Boon::findOrFail($id);
+    $boon->update($request->all());
+
+    return $boon;
+});
+
+Route::delete('boons/{id}', function($id) {
+    Boon::find($id)->delete();
+    return 204;
 });

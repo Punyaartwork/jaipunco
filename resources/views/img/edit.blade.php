@@ -23,7 +23,22 @@
       <label for="email">drawname_id:</label>
       <input type="text" class="form-control" id="email" placeholder="Enter drawname_id" name="drawname_id"  value="{{$draw->drawname_id}}">
     </div>
-
+    <div class="type">
+      <label for="email">alt:</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter alt" name="alt"  value="{{$draw->alt}}">
+    </div>
+    <div class="type">
+      <label for="email">good_id:</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter good_id" name="good_id"  value="{{$draw->good_id}}">
+    </div>
+    <div class="type">
+      <label for="email">drawLevel:</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter drawLevel" name="drawLevel"  value="{{$draw->drawLevel}}">
+    </div>
+    <div class="type">
+      <label for="email">drawStatus:</label>
+      <input type="text" class="form-control" id="email" placeholder="Enter drawStatus" name="drawStatus"  value="{{$draw->drawStatus}}">
+    </div>
     <div class="type">
       <label for="email">draw:</label>
         <input type="file" name="file" id="file">

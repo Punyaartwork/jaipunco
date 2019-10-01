@@ -54,6 +54,9 @@ class DrawController extends Controller
                     'drawname_id'=>$request->get('drawname_id'),
                     'draw'=>'/'.'draw/'.$time,
                     'alt'=>$request->get('alt'),
+                    'good_id'=>$request->get('good_id'),
+                    'drawLevel'=>$request->get('drawLevel'),
+                    'drawStatus'=>$request->get('drawStatus'),
                 ]
                 );
                 $draw->save();
@@ -104,6 +107,10 @@ class DrawController extends Controller
         $file_path = app_path($filename); 
         //chmod($draw->draw,0777);
         $draw->drawname_id = $request->get('drawname_id');
+        $draw->alt = $request->get('alt');
+        $draw->good_id = $request->get('good_id');
+        $draw->drawLevel = $request->get('drawLevel');
+        $draw->drawStatus= $request->get('drawStatus');
         $draw->save();
         if(Input::hasFile('file')){
             if(\File::exists(public_path($filename))){

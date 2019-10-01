@@ -12,6 +12,10 @@
       <tr>
         <th>drawname_id</th>
         <th>draw</th>
+        <th>alt</th>
+        <th>good_id</th>
+        <th>drawLevel</th>
+        <th>drawStatus</th>
         <th><b>Edit</b></th>  
         <th><b>Deleie</b></th>                                                
       </tr>
@@ -22,7 +26,10 @@
         
         <td> {{$row['drawname_id']}}</td>    
         <td><img src="{{$row['draw']}}"  style="width:100px;"alt=""></td>
-        
+        <td> {{$row['alt']}}</td>   
+        <td> {{$row['good_id']}}</td>    
+        <td> {{$row['drawLevel']}}</td>    
+        <td> {{$row['drawStatus']}}</td>    
         <td> <a href="{{action('DrawController@edit',$row['id'])}}">edit</a></td> 
         <td>
         <form method="post" class="detele_form"action="{{action('DrawController@destroy',$row['id'])}}">
