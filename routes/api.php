@@ -890,7 +890,7 @@ Route::get('merits/{id}', function($id) {
     return Merit::find($id);
 });
 
-Route::post('Merits', function(Request $request) {
+Route::post('merits', function(Request $request) {
     //return User::create($request->all);
     return  $request->post();
 });
