@@ -899,6 +899,10 @@ Route::get('merituser/{id}', function($id) {
     return Merit::with('user')->with('good')->where('user_id',$id)->get();
 });
 
+Route::get('meritrank/{id}', function($id) {
+    return Merit::with('user')->with('good')->where('good_id',$id)->orderBy('meritItem','desc')->paginate(10);
+});
+
 Route::post('merits', function(Request $request) {
     //return User::create($request->all);
     return  $request->post();
@@ -932,6 +936,10 @@ Route::get('feedboons', function() {
     return Boon::with('user')->with('good')->orderBy('id','desc')->paginate(10);
 });
  
+Route::get('feedboongoodid/{id}', function($id) {
+    return Boon::with('user')->with('good')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
+});
+
 Route::get('boons/{id}', function($id) {
     return Boon::find($id);
 });
