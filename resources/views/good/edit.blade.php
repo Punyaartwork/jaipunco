@@ -19,7 +19,7 @@
     {{csrf_field()}}
     <div class="type">
       <label for="email">good:</label>
-      <input input type="text" name="good" class="form-control" id="email" placeholder="Enter good" value="{{$tag->good}}">
+      <input input type="text" name="good" class="form-control" id="email" placeholder="Enter good" value="{{$good->good}}">
     </div>
 
     <div class="type">

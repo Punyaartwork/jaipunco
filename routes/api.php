@@ -923,7 +923,33 @@ Route::get('boons/{id}', function($id) {
 
 Route::post('boons', function(Request $request) {
     //return User::create($request->all);
-    return  $request->post();
+    //return  $request->post();
+    $user = User::where('api_token',$request->api)->get();  
+    Merit::create([
+        'user_id'=> $user[0]->id,
+        'good_id'=> $request->good_id,
+        'status_id'=> $user[0]->id,
+        'meritItem' => 1,
+        'meritLike'=> 0,
+        'meritTime'  => time(),
+    ]);
+    return Boon::create([
+        'user_id'=> $user[0]->id,
+        'good_id'=> $request->good_id,
+        'boon'=> $request->boon,
+        'boonPhoto' => $request->boonPhoto,
+        'boonDetail'=> $request->postBg,
+        'boonBg' => $request->postColor,
+        'boonColor' => 0,
+        'boonForm' => 0,
+        'boonLike' => 0,
+        'boonComment' => 0,
+        'boonView' => 0,
+        'boonShare' => 0,
+        'boonTime'  => time(),
+        'boon_ip'=> $request->getClientIp(),
+        'boonTags' => 0,
+    ]);
 });
 
 Route::put('boons/{id}', function(Request $request, $id) {
