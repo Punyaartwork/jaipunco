@@ -23,6 +23,8 @@ Route::get('/upload', function () {
     return view('upload');
 });
 Route::resource('img','DrawController');
+Route::resource('good','GoodController');
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
