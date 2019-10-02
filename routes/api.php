@@ -922,19 +922,33 @@ Route::get('boons/{id}', function($id) {
 });
 
 Route::post('boons', function(Request $request) {
-    //return User::create($request->all);
-    //return  $request->post();
-    $user = User::where('api_token',$request->api)->get();  
-    Merit::create([
-        'user_id'=> $user[0]->id,
-        'good_id'=> $request->good_id,
-        'status_id'=> $user[0]->id,
-        'meritItem' => 1,
-        'meritLike'=> 0,
-        'meritTime'  => time(),
-    ]);
+
+    $userget = User::where('api_token',$request->api)->get();  
+
+    $existing_merit = Merit::where('good_id',$id)->where('user_id',$userget[0]->id)->first();
+    if (is_null($existing_merit)) {
+        Merit::create([
+            'user_id'=> $userget[0]->id,
+            'good_id'=> $request->good_id,
+            'status_id'=> $userget[0]->status_id,
+            'meritItem' => 1,
+            'meritLike'=> 0,
+            'meritTime'  => time(),
+        ]);
+        
+    }else{
+        $merit = Merit::find($existing_merit->id);
+        $merit->meritItem += 1;
+        $merit->meritTime = time();
+        $merit->save();
+    }
+    $user = User::find($userget[0]->id);        
+    $user->boons += 1;
+    $user->save();
+
+
     return Boon::create([
-        'user_id'=> $user[0]->id,
+        'user_id'=> $userget[0]->id,
         'good_id'=> $request->good_id,
         'boon'=> $request->boon,
         'boonPhoto' => $request->boonPhoto,
