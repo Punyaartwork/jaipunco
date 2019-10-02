@@ -925,7 +925,7 @@ Route::post('boons', function(Request $request) {
 
     $userget = User::where('api_token',$request->api)->get();  
 
-    $existing_merit = Merit::where('good_id',$id)->where('user_id',$userget[0]->id)->first();
+    $existing_merit = Merit::where('good_id',$request->good_id)->where('user_id',$userget[0]->id)->first();
     if (is_null($existing_merit)) {
         Merit::create([
             'user_id'=> $userget[0]->id,
