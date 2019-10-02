@@ -570,7 +570,7 @@ Route::get('searchdraws/{text}', function($text) {
 
 Route::get('drawboon/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
-    return Draw::with('good')->where('status_id',$user[0]->status_id)->where('good','>',0)->orderBy('id','desc')->paginate(30);
+    return Draw::with('good')->where('status_id',$user[0]->status_id)->where('good_id','>',0)->orderBy('id','desc')->paginate(30);
 });
 
 Route::post('draws', function(Request $request) {
