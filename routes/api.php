@@ -568,6 +568,11 @@ Route::get('searchdraws/{text}', function($text) {
     return Draw::where('alt', 'LIKE', '%'.$text.'%')->orderBy('id','desc')->paginate(30);
 });
 
+Route::get('drawboon/{api}', function($api) {
+    $user = User::where('api_token',$api)->get();  
+    return Draw::with('good')->where('status_id',$user[0]->status_id)->where('good','>',0)->orderBy('id','desc')->paginate(30);
+});
+
 Route::post('draws', function(Request $request) {
     //return User::create($request->all);
     return  $request->post();
@@ -915,6 +920,12 @@ Route::get('boons', function() {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
     return Boon::all();
+});
+
+Route::get('feedboons', function() {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Boon::with('user')->with('good')->orderBy('id','desc')->paginate(10);
 });
  
 Route::get('boons/{id}', function($id) {
