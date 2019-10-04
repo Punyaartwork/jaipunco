@@ -434,8 +434,8 @@ Route::get('like/{id}/liked/{api}', function($id,$api) {
             'likeType' => 1,                                
         ]);
         $card->cardLike += 1;
-        if (Notification::where('user_id', '=', $card->user_id)->where('item_id', '=', $id)->exists()) {
-            Notification::where('user_id', '=', $card->user_id)->where('item_id', '=', $id)->first()->delete();
+        if (Notification::where('user_id', '=', $card->user_id)->where('itemType', '=', 2)->where('item_id', '=', $id)->exists()) {
+            Notification::where('user_id', '=', $card->user_id)->where('itemType', '=', 2)->where('item_id', '=', $id)->first()->delete();
             Notification::create([
                 'user_id' => $card->user_id,
                 'item_id' => $id,
@@ -478,6 +478,68 @@ Route::get('like/{id}/liked/{api}', function($id,$api) {
     }
     //$user->save();        
     $card->save();           
+});
+
+
+Route::get('like/{id}/bliked/{api}', function($id,$api) {
+    $useronclick = User::where('api_token',$api)->get();  
+    $existing_like = Like::withTrashed()->whereCardId($id)->whereUserId($useronclick[0]->id)->where('likeType',2)->first();
+    $boon = Boon::find( $id );
+    $merit =Merit::find($boon->good_id);
+    if (is_null($existing_boon)) {
+        Like::create([
+            'card_id' => $id,
+            'user_id' => $useronclick[0]->id,
+            'likeType' => 2,                                
+        ]);
+        $boon->boonLike += 1;
+        $merit->meritLike += 1;
+        if (Notification::where('user_id', '=', $card->user_id)->where('item_id', '=', $id)->where('itemType', '=', 3)->exists()) {
+            Notification::where('user_id', '=', $card->user_id)->where('item_id', '=', $id)->where('itemType', '=', 3)->first()->delete();
+            Notification::create([
+                'user_id' => $boon->user_id,
+                'item_id' => $id,
+                'item' => 'กดอนุโมทนาบุญของคุณ',
+                'itemType' => 3,
+                'notificationStatus' => 0,
+                'notificationTime' => time(),
+                'sender' => $useronclick[0]->id,
+            ]);
+            // user found
+        }else{
+            Notification::create([
+                'user_id' => $boon->user_id,
+                'item_id' => $id,
+                'item' => 'กดอนุโมทนาบุญของคุณ',
+                'itemType' => 3,
+                'notificationStatus' => 0,
+                'notificationTime' => time(),
+                'sender' => $useronclick[0]->id,
+            ]);
+        }
+        $user = User::find($boon->user_id);        
+        $user->notification += 1;
+        $user->save();
+        //$user->power += 5;                                             
+    } else {
+        
+        $boon->boonLike += 1;
+        $merit->meritLike += 1;
+        /*
+        if (is_null($existing_like->deleted_at)) {
+            $existing_like->delete();
+            $card->cardLike -= 1;   
+            //$user->power -= 5;                                 
+        } else {
+            $existing_like->restore();
+            $card->cardLike += 1;
+            //$user->power += 5;                                 
+        }
+        */
+    }
+    //$user->save();        
+    $boon->save();     
+    $merit->save();      
 });
 /*
 |--------------------------------------------------------------------------
