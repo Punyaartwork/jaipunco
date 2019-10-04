@@ -630,9 +630,9 @@ Route::get('searchdraws/{text}', function($text) {
     return Draw::where('alt', 'LIKE', '%'.$text.'%')->orderBy('id','desc')->paginate(30);
 });
 
-Route::get('drawboon/{api}', function($api) {
+Route::get('drawboon/{api}/{id}', function($api,$id) {
     $user = User::where('api_token',$api)->get();  
-    return Draw::with('good')->where('status_id',$user[0]->status_id)->where('good_id','>',0)->orderBy('id','desc')->paginate(30);
+    return Draw::with('good')->where('status_id',$user[0]->status_id)->where('good_id',$id)->orderBy('id','desc')->paginate(30);
 });
 
 Route::post('draws', function(Request $request) {
@@ -1004,6 +1004,10 @@ Route::get('feedboons', function() {
  
 Route::get('feedboongoodid/{id}', function($id) {
     return Boon::with('user')->with('good')->with('like')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
+});
+
+Route::get('feedboonuser/{id}/{user_id}', function($id,$user_id) {
+    return Boon::with('like')->where('good_id',$id)->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('boons/{id}', function($id) {
