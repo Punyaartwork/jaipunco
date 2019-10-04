@@ -18,7 +18,7 @@ class Boon extends Model
     }       
     public function like()
     {
-        return $this->hasMany('App\Like','card_id')->where('likes.likeType', '=', 2);
+        return $this->hasMany('App\Like','card_id')->where('likes.likeType', '=', 2)->with('user');
     }  
     public function comments()
     {
