@@ -494,8 +494,8 @@ Route::get('like/{id}/bliked/{api}', function($id,$api) {
         ]);
         $boon->boonLike += 1;
         $merit->meritLike += 1;
-        if (Notification::where('user_id', '=', $card->user_id)->where('item_id', '=', $id)->where('itemType', '=', 3)->exists()) {
-            Notification::where('user_id', '=', $card->user_id)->where('item_id', '=', $id)->where('itemType', '=', 3)->first()->delete();
+        if (Notification::where('user_id', '=', $boon->user_id)->where('item_id', '=', $id)->where('itemType', '=', 3)->exists()) {
+            Notification::where('user_id', '=', $boon->user_id)->where('item_id', '=', $id)->where('itemType', '=', 3)->first()->delete();
             Notification::create([
                 'user_id' => $boon->user_id,
                 'item_id' => $id,
