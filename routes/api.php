@@ -999,7 +999,7 @@ Route::get('feedboons', function() {
 });
  
 Route::get('feedboongoodid/{id}', function($id) {
-    return Boon::with('user')->with('good')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('like')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('boons/{id}', function($id) {
