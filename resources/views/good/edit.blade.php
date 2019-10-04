@@ -38,6 +38,11 @@
     </div>
 
     <div class="type">
+      <label for="email">goodColor:</label>
+      <input input type="text" name="goodBg" class="form-control" id="email" placeholder="Enter goodColor" value="{{$good->goodColor}}">
+    </div>
+
+    <div class="type">
       <label for="email">goodItem:</label>
       <input input type="text" name="goodItem" class="form-control" id="email" placeholder="Enter goodItem" value="{{$good->goodItem}}">
     </div>

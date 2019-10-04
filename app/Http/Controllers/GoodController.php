@@ -97,6 +97,7 @@ class GoodController extends Controller
          $good ->goodPhoto = $request->get('goodPhoto');
          $good ->goodDetail = $request->get('goodDetail');
          $good ->goodBg = $request->get('goodBg');
+         $good ->goodColor = $request->get('goodColor');
          $good ->goodItem = $request->get('goodItem');    
          $good ->goodTags = $request->get('goodTags');        
          $good ->save();
