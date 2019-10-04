@@ -483,7 +483,7 @@ Route::get('like/{id}/liked/{api}', function($id,$api) {
 
 Route::get('like/{id}/bliked/{api}', function($id,$api) {
     $useronclick = User::where('api_token',$api)->get();  
-    $existing_like = Like::withTrashed()->whereCardId($id)->whereUserId($useronclick[0]->id)->where('likeType',2)->first();
+    $existing_boon = Like::withTrashed()->whereCardId($id)->whereUserId($useronclick[0]->id)->where('likeType',2)->first();
     $boon = Boon::find( $id );
     $merit =Merit::find($boon->good_id);
     if (is_null($existing_boon)) {
