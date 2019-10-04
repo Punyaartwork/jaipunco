@@ -485,7 +485,7 @@ Route::get('like/{id}/bliked/{api}', function($id,$api) {
     $useronclick = User::where('api_token',$api)->get();  
     $existing_boon = Like::withTrashed()->whereCardId($id)->whereUserId($useronclick[0]->id)->where('likeType',2)->first();
     $boon = Boon::find( $id );
-    $merit =Merit::find($boon->good_id);
+    $merit =Merit::where('good_id','=',$boon->good_id)->where('user_id','=',$boon->user_id)->first();
     if (is_null($existing_boon)) {
         Like::create([
             'card_id' => $id,
@@ -995,7 +995,7 @@ Route::get('boons', function() {
 Route::get('feedboons', function() {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Boon::with('user')->with('good')->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('like')->orderBy('id','desc')->paginate(10);
 });
  
 Route::get('feedboongoodid/{id}', function($id) {
