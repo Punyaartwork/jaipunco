@@ -961,8 +961,12 @@ Route::get('merituser/{id}', function($id) {
     return Merit::with('user')->with('good')->where('user_id',$id)->get();
 });
 
-Route::get('meritrank/{id}', function($id) {
+Route::get('meritrankitem/{id}', function($id) {
     return Merit::with('user')->with('good')->where('good_id',$id)->orderBy('meritItem','desc')->paginate(10);
+});
+
+Route::get('meritranklike/{id}', function($id) {
+    return Merit::with('user')->with('good')->where('good_id',$id)->orderBy('meritLike','desc')->paginate(10);
 });
 
 Route::post('merits', function(Request $request) {
