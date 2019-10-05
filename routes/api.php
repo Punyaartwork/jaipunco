@@ -700,7 +700,7 @@ Route::get('notifications/{id}', function($id) {
 
 Route::get('shownotification/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
-    return Notification::with('boon')->with('sender')->where('itemType',2)->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
+    return Notification::with('boon')->with('card')->with('sender')->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
 });
 
 Route::get('checknotification/{api}', function($api) {
