@@ -77,8 +77,8 @@ Route::post('adduser', function(Request $request) {
         'notification' => 0,
         'downloading' => 0,
         'boons' => 0,
-        'status' => 'Man',
-        'status_id' => 2,
+        'status' => '',
+        'status_id' => 1,
         'ranking' => 0,
         'link'=> 0,
         'api_token'=> $request->api    
@@ -984,6 +984,14 @@ Route::put('merits/{id}', function(Request $request, $id) {
 Route::delete('merits/{id}', function($id) {
     Merit::find($id)->delete();
     return 204;
+});
+
+Route::get('onemerititem/{start}/{end}', function($start,$end) {
+    return Merit::with('user')->where('meritTime','>',$start)->where('meritTime','<=',$end)->orderBy('meritItem','desc')->frist();
+});
+
+Route::get('onemeritlike/{start}/{end}', function($start,$end) {
+    return Merit::with('user')->where('meritTime','>',$start)->where('meritTime','<=',$end)->orderBy('meritLike','desc')->frist();
 });
 /*
 |--------------------------------------------------------------------------
