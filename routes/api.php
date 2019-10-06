@@ -987,11 +987,11 @@ Route::delete('merits/{id}', function($id) {
 });
 
 Route::get('onemerititem/{start}/{end}', function($start,$end) {
-    return Merit::with('user')->where('meritTime','>',$start)->where('meritTime','<=',$end)->orderBy('meritItem','desc')->get();
+    return Merit::with('user')->where('meritTime','>',$start)->where('meritTime','<=',$end)->orderBy('meritItem','desc')->frist();
 });
 
 Route::get('onemeritlike/{start}/{end}', function($start,$end) {
-    return Merit::with('user')->where('meritTime','>',$start)->where('meritTime','<=',$end)->orderBy('meritLike','desc')->get();
+    return Merit::with('user')->where('meritTime','>',$start)->where('meritTime','<=',$end)->orderBy('meritLike','desc')->first();
 });
 /*
 |--------------------------------------------------------------------------
