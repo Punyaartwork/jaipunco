@@ -89,7 +89,7 @@ Route::post('adduser', function(Request $request) {
 
 Route::post('addfbuser', function(Request $request) {
     if (User::where('facebook_id', '=', $request->id)->exists()) {
-        $user = User::where('facebook_id', '=', $request->id)->get();
+        $user = User::where('facebook_id', '=', $request->id)->first();
         $upload = User::find($user[0]->id);        
         $upload->api_token = $request->api;
         $upload->save();
