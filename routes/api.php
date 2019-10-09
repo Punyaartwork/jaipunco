@@ -88,25 +88,33 @@ Route::post('adduser', function(Request $request) {
 
 
 Route::post('addfbuser', function(Request $request) {
-    return User::create([
-        'facebook_id' => $request->id,            
-        'name' =>$request->name,  
-        'detail' => '...',                       
-        'email' => 0,     
-        'profile' => $request->profile,                         
-        'password' =>0,
-        'cards' => 0, 
-        'followers' => 0,                                    
-        'following' => 0,   
-        'notification' => 0,
-        'downloading' => 0,
-        'boons' => 0,
-        'status' => '',
-        'status_id' => 1,
-        'ranking' => 0,
-        'link'=> 0,
-        'api_token'=> $request->api    
-    ]);
+    if (User::where('facebook_id', '=', $request->id)->exists()) {
+        $user = User::where('facebook_id',$request->id)->get();
+        $upload = User::find($user[0]->id);        
+        $upload->api_token = $request->api;
+        $upload->save();
+        return $user;
+    }else{
+        return User::create([
+            'facebook_id' => $request->id,            
+            'name' =>$request->name,  
+            'detail' => '...',                       
+            'email' => 0,     
+            'profile' => $request->profile,                         
+            'password' =>0,
+            'cards' => 0, 
+            'followers' => 0,                                    
+            'following' => 0,   
+            'notification' => 0,
+            'downloading' => 0,
+            'boons' => 0,
+            'status' => '',
+            'status_id' => 1,
+            'ranking' => 0,
+            'link'=> 0,
+            'api_token'=> $request->api    
+        ]);
+    }
     //return  $request->post();
 });
 
