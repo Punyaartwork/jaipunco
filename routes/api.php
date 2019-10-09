@@ -86,6 +86,30 @@ Route::post('adduser', function(Request $request) {
     //return  $request->post();
 });
 
+
+Route::post('addfbuser', function(Request $request) {
+    return User::create([
+        'facebook_id' => $request->id,            
+        'name' =>$request->name,  
+        'detail' => '...',                       
+        'email' => 0,     
+        'profile' => $request->profile,                         
+        'password' =>0,
+        'cards' => 0, 
+        'followers' => 0,                                    
+        'following' => 0,   
+        'notification' => 0,
+        'downloading' => 0,
+        'boons' => 0,
+        'status' => '',
+        'status_id' => 1,
+        'ranking' => 0,
+        'link'=> 0,
+        'api_token'=> $request->api    
+    ]);
+    //return  $request->post();
+});
+
 Route::get('changeprofile/{profile}/{api}', function($profile,$api) {
     $user = User::where('api_token',$api)->get();
     $upload = User::find($user[0]->id);        
