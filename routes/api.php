@@ -62,7 +62,17 @@ Route::get('addname/{name}/{api}/{status}/{status_id}', function($name,$api,$sta
     ]);
     return $user;
 });
-
+Route::get('checkfbuser/{id}/{api}', function($id,$api) {
+    if (User::where('facebook_id', '=', $id)->exists()) {
+        $user = User::where('facebook_id', $id)->first();
+        $upload = User::find($user->id);        
+        $upload->api_token = $api;
+        $upload->save();
+        return $user;
+    }else{
+        return 'false';
+    }
+});
 Route::post('adduser', function(Request $request) {
     return User::create([
         'facebook_id' => 0,            
