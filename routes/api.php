@@ -108,8 +108,8 @@ Route::post('addfbuser', function(Request $request) {
             'notification' => 0,
             'downloading' => 0,
             'boons' => 0,
-            'status' => '',
-            'status_id' => 1,
+            'status' => $request->status,
+            'status_id' => $request->status_id,
             'ranking' => 0,
             'link'=> 0,
             'api_token'=> $request->api    
