@@ -60,6 +60,6 @@ class User extends Model implements
     } 
     public function merit()
     {
-        return $this->belongsTo('App\Merit', 'user_id')->with('good');
+        return $this->belongsTo('App\Merit', 'user_id');
     }      
 }
