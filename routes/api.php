@@ -19,6 +19,8 @@ use App\Good;
 use App\Merit;
 use App\Boon;
 use App\Join;
+use App\Admire;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -1223,5 +1225,36 @@ Route::put('stores/{id}', function(Request $request, $id) {
 
 Route::delete('joins/{id}', function($id) {
     Join::find($id)->delete();
+    return 204;
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| POST API Routes Admire
+|--------------------------------------------------------------------------
+*/
+
+Route::get('admires', function() {
+    return Admire::all();
+});
+ 
+Route::get('admires/{id}', function($id) {
+    return Admire::find($id);
+});
+
+Route::post('admires', function(Request $request) {
+    //return Card::create($request->all);
+    return  $request->post();
+});
+
+Route::put('admires/{id}', function(Request $request, $id) {
+    $admire = Admire::findOrFail($id);
+    $admire->update($request->all());
+    return $admire;
+});
+
+Route::delete('admires/{id}', function($id) {
+    Admire::find($id)->delete();
     return 204;
 });
