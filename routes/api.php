@@ -1203,7 +1203,8 @@ Route::post('joins', function(Request $request) {
     }
 
     //return User::create($request->all);
-    return  $request->post();
+    //return  $request->post();
+    return $update;
     /*
     if($request->join == null){
         return Join::create([
