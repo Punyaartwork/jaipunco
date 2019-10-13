@@ -1204,13 +1204,20 @@ Route::post('joins', function(Request $request) {
 
     //return User::create($request->all);
     //return  $request->post();
-    return $update;
+    return Join::create([
+        'boon_id'=> $request->boon_id,
+        'good_id'=> $request->good_id,
+        'user_id'=> $update->id,
+        'join'=> $request->join,
+        'joinType'=> 1,
+        'joinTime'  => time(),
+    ]);
     /*
     if($request->join == null){
         return Join::create([
             'boon_id'=> $request->boon_id,
             'good_id'=> $request->good_id,
-            'user_id'=> $user[0]->id,
+            'user_id'=> $update->id,
             'join'=> '',
             'joinType'=> 1,
             'joinTime'  => time(),
@@ -1219,7 +1226,7 @@ Route::post('joins', function(Request $request) {
         return Join::create([
             'boon_id'=> $request->boon_id,
             'good_id'=> $request->good_id,
-            'user_id'=> $user[0]->id,
+            'user_id'=> $update->id,
             'join'=> $request->join,
             'joinType'=> 1,
             'joinTime'  => time(),
