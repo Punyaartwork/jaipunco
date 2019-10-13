@@ -91,7 +91,11 @@ Route::post('adduser', function(Request $request) {
         'status_id' => 1,
         'ranking' => 0,
         'link'=> 0,
-        'api_token'=> $request->api    
+        'api_token'=> $request->api    ,
+        'joiner'=> 0,
+        'joining'=> 0,
+        'watyear'=> 0,
+        'online'=> 0,
     ]);
     //return  $request->post();
 });
@@ -122,7 +126,11 @@ Route::post('addfbuser', function(Request $request) {
             'status_id' => $request->status_id,
             'ranking' => 0,
             'link'=> 0,
-            'api_token'=> $request->api    
+            'api_token'=> $request->api ,
+            'joiner'=> 0,
+            'joining'=> 0,
+            'watyear'=> 0,
+            'online'=> 0,
         ]);
     }
     //return  $request->post();
@@ -1106,6 +1114,7 @@ Route::post('boons', function(Request $request) {
         'boonTime'  => time(),
         'boon_ip'=> $request->getClientIp(),
         'boonTags' => 0,
+        'boonJoin'=> 0,
     ]);
 });
 

@@ -34,7 +34,12 @@ class User extends Model implements
         'status_id',
         'ranking',
         'link',
-        'api_token'];
+        'api_token',
+        'joiner',
+        'joining',
+        'watyear',
+        'online',
+    ];
     protected $hidden = [
         'password','api_token'
     ];
