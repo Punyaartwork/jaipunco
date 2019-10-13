@@ -15,7 +15,7 @@ class AddjoinerToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('joiner');    
-            $table->string('joining');  
+            $table->integer('joining');  
             $table->integer('watyear');   
             $table->integer('online');   
         });
