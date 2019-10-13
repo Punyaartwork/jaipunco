@@ -1216,7 +1216,7 @@ Route::post('joins', function(Request $request) {
     ]);
 });
 
-Route::put('stores/{id}', function(Request $request, $id) {
+Route::put('joins/{id}', function(Request $request, $id) {
     $join = Join::findOrFail($id);
     $join->update($request->all());
 
@@ -1228,7 +1228,9 @@ Route::delete('joins/{id}', function($id) {
     return 204;
 });
 
-
+Route::get('feedjoin/{id}', function($id) {
+    return Join::with('user')->orderBy('id','desc')->where('boon_id',$id)->paginate(10);;
+});
 /*
 |--------------------------------------------------------------------------
 | POST API Routes Admire
