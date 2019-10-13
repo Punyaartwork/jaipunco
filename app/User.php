@@ -62,4 +62,9 @@ class User extends Model implements
     {
         return $this->hasMany('App\Merit', 'user_id')->with('good');
     }      
+
+    public function admire()
+    {
+        return $this->hasMany('App\Admire', 'user_id')->with('user');
+    }   
 }

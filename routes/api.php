@@ -1245,7 +1245,14 @@ Route::get('admires/{id}', function($id) {
 
 Route::post('admires', function(Request $request) {
     //return Card::create($request->all);
-    return  $request->post();
+    $user = User::where('api_token',$request->api)->get();
+    return  Admires::create([
+        'user_id'=> $request->user_id,
+        'sender_id'=> $user[0]->id,
+        'votes'=> 1,
+        'admire'=> $request->admire,
+        'admireTime'=> time(),
+    ]);
 });
 
 Route::put('admires/{id}', function(Request $request, $id) {
@@ -1257,4 +1264,8 @@ Route::put('admires/{id}', function(Request $request, $id) {
 Route::delete('admires/{id}', function($id) {
     Admire::find($id)->delete();
     return 204;
+});
+
+Route::get('feedadmire/{id}', function($id) {
+    return Admire::with('user')->orderBy('id','desc')->where('user_id',$id)->paginate(10);;
 });

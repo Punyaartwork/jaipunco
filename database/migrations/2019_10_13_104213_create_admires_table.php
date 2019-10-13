@@ -16,9 +16,10 @@ class CreateAdmiresTable extends Migration
         Schema::create('admires', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('sender_id');
             $table->integer('votes');  
             $table->string('admire'); 
-            $table->string('admireTime');    
+            $table->integer('admireTime');    
             $table->timestamps();
         });
     }
