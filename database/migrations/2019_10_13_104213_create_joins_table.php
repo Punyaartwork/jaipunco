@@ -18,7 +18,7 @@ class CreateJoinsTable extends Migration
             $table->integer('boon_id');
             $table->integer('good_id');
             $table->integer('user_id');
-            $table->integer('join');
+            $table->string('join');
             $table->integer('joinType');
             $table->integer('joinTime');
             $table->softDeletes();

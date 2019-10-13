@@ -1210,28 +1210,8 @@ Route::post('joins', function(Request $request) {
         'user_id'=> $update->id,
         'join'=> $request->join,
         'joinType'=> 1,
-        'joinTime'  => time(),
+        'joinTime'=>time(),
     ]);
-    /*
-    if($request->join == null){
-        return Join::create([
-            'boon_id'=> $request->boon_id,
-            'good_id'=> $request->good_id,
-            'user_id'=> $update->id,
-            'join'=> '',
-            'joinType'=> 1,
-            'joinTime'  => time(),
-        ]);
-    }else{
-        return Join::create([
-            'boon_id'=> $request->boon_id,
-            'good_id'=> $request->good_id,
-            'user_id'=> $update->id,
-            'join'=> $request->join,
-            'joinType'=> 1,
-            'joinTime'  => time(),
-        ]);
-    }*/
 });
 
 Route::put('stores/{id}', function(Request $request, $id) {
