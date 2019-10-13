@@ -58,4 +58,8 @@ class User extends Model implements
     public function following() {  
         return $this->BelongsToMany( 'App\User', 'App\Follow' ,'fuser_id', 'user_id');
     } 
+    public function merit()
+    {
+        return $this->belongsTo('App\Merit', 'user_id')->with('good');
+    }      
 }

@@ -15,7 +15,11 @@ class Boon extends Model
     public function good()
     {
         return $this->belongsTo('App\Good', 'good_id');
-    }       
+    }     
+    public function join()
+    {
+        return $this->belongsTo('App\Join', 'boon_id')->with('user');
+    }   
     public function like()
     {
         return $this->hasMany('App\Like','card_id')->where('likes.likeType', '=', 2)->with('user');

@@ -18,6 +18,7 @@ use App\Post;
 use App\Good;
 use App\Merit;
 use App\Boon;
+use App\Join;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,6 +167,9 @@ Route::delete('users/{id}', function($id) {
     return 204;
 });
 
+Route::get('feedusermerit', function() {
+    return User::with('merit')->orderBy('joining','desc')->paginate(10);;
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -1057,7 +1061,7 @@ Route::get('boons', function() {
 Route::get('feedboons', function() {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Boon::with('user')->with('good')->with('like')->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('join')->with('like')->orderBy('id','desc')->paginate(10);
 });
  
 Route::get('feedboongoodid/{id}', function($id) {
@@ -1127,5 +1131,37 @@ Route::put('boons/{id}', function(Request $request, $id) {
 
 Route::delete('boons/{id}', function($id) {
     Boon::find($id)->delete();
+    return 204;
+});
+
+/*
+|--------------------------------------------------------------------------
+| GET DATA API Routes Join
+|--------------------------------------------------------------------------
+*/
+Route::get('joins', function() {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Join::all();
+});
+ 
+Route::get('joins/{id}', function($id) {
+    return Join::find($id);
+});
+
+Route::post('joins', function(Request $request) {
+    //return User::create($request->all);
+    return  $request->post();
+});
+
+Route::put('stores/{id}', function(Request $request, $id) {
+    $join = Join::findOrFail($id);
+    $join->update($request->all());
+
+    return $join;
+});
+
+Route::delete('joins/{id}', function($id) {
+    Join::find($id)->delete();
     return 204;
 });
