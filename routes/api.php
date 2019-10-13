@@ -1244,7 +1244,9 @@ Route::get('admires/{id}', function($id) {
 });
 
 Route::post('admires', function(Request $request) {
+    return  $request->post();
     //return Card::create($request->all);
+    /*
     $user = User::where('api_token',$request->api)->get();
     return  Admires::create([
         'user_id'=> $request->user_id,
@@ -1252,7 +1254,7 @@ Route::post('admires', function(Request $request) {
         'votes'=> 1,
         'admire'=> $request->admire,
         'admireTime'=> time(),
-    ]);
+    ]);*/
 });
 
 Route::put('admires/{id}', function(Request $request, $id) {
