@@ -1166,28 +1166,63 @@ Route::post('joins', function(Request $request) {
     $uboon->save();
 
     $existing_merit = Merit::where('good_id',$request->good_id)->where('user_id',$user[0]->id)->first();
-    $merit = Merit::find($existing_merit->id);
-    $merit->meritItem += 1;
-    $merit->meritTime = time();
-    $merit->save();
+    if (is_null($existing_merit)) {
+        Merit::create([
+            'user_id'=> $user[0]->id,
+            'good_id'=> $request->good_id,
+            'status_id'=> $user[0]->status_id,
+            'meritItem' => 1,
+            'meritLike'=> 0,
+            'meritTime'  => time(),
+        ]);
+        
+    }else{
+        $merit = Merit::find($existing_merit->id);
+        $merit->meritItem += 1;
+        $merit->meritTime = time();
+        $merit->save();
+    }
 
 
-    $uexisting_merit = Merit::where('good_id',$request->good_id)->where('user_id',$boon->user_id)->first();
-    $umerit = Merit::find($existing_merit->id);
-    $umerit->meritItem += 1;
-    $umerit->meritTime = time();
-    $umerit->save();
+    $uexisting_merit = Merit::where('good_id',$request->good_id)->where('user_id',$uboon->id)->first();
+    if (is_null($uexisting_merit)) {
+        Merit::create([
+            'user_id'=> $uboon->id,
+            'good_id'=> $request->good_id,
+            'status_id'=> $uboon->status_id,
+            'meritItem' => 1,
+            'meritLike'=> 0,
+            'meritTime'  => time(),
+        ]);
+        
+    }else{
+        $umerit = Merit::find($uexisting_merit->id);
+        $umerit->meritItem += 1;
+        $umerit->meritTime = time();
+        $umerit->save();
+    }
+
     //return User::create($request->all);
     //return  $request->post();
-
-    return Join::create([
-        'good_id'=> $request->good_id,
-        'boon_id'=> $request->boon_id,
-        'user_id'=> $user[0]->id,
-        'join'=> $request->join,
-        'joinType'=> 1,
-        'joinTime'  => time(),
-    ]);
+    if($request->join == null){
+        return Join::create([
+            'good_id'=> $request->good_id,
+            'boon_id'=> $request->boon_id,
+            'user_id'=> $user[0]->id,
+            'join'=> '',
+            'joinType'=> 1,
+            'joinTime'  => time(),
+        ]);
+    }else{
+        return Join::create([
+            'good_id'=> $request->good_id,
+            'boon_id'=> $request->boon_id,
+            'user_id'=> $user[0]->id,
+            'join'=> $request->join,
+            'joinType'=> 1,
+            'joinTime'  => time(),
+        ]);
+    }
 });
 
 Route::put('stores/{id}', function(Request $request, $id) {
