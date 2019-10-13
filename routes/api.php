@@ -1203,7 +1203,8 @@ Route::post('joins', function(Request $request) {
     }
 
     //return User::create($request->all);
-    //return  $request->post();
+    return  $request->post();
+    /*
     if($request->join == null){
         return Join::create([
             'boon_id'=> $request->boon_id,
@@ -1222,7 +1223,7 @@ Route::post('joins', function(Request $request) {
             'joinType'=> 1,
             'joinTime'  => time(),
         ]);
-    }
+    }*/
 });
 
 Route::put('stores/{id}', function(Request $request, $id) {
