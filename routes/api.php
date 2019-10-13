@@ -1150,8 +1150,44 @@ Route::get('joins/{id}', function($id) {
 });
 
 Route::post('joins', function(Request $request) {
+    $user = User::where('api_token',$request->api)->get();
+    $update = User::find($user[0]->id);
+    $update->boons += 1;
+    $update->joining += 1;
+    $update->save();
+
+    $boon = Boon::find($request->boon_id);
+    $boon->boonJoin += 1;
+    $boon->save();
+
+    $uboon = User::find($boon->user_id);
+    $uboon->boons +=1;
+    $uboon->joiner +=1;
+    $uboon->save();
+
+    $existing_merit = Merit::where('good_id',$request->good_id)->where('user_id',$user[0]->id)->first();
+    $merit = Merit::find($existing_merit->id);
+    $merit->meritItem += 1;
+    $merit->meritTime = time();
+    $merit->save();
+
+
+    $uexisting_merit = Merit::where('good_id',$request->good_id)->where('user_id',$boon->user_id)->first();
+    $umerit = Merit::find($existing_merit->id);
+    $umerit->meritItem += 1;
+    $umerit->meritTime = time();
+    $umerit->save();
     //return User::create($request->all);
-    return  $request->post();
+    //return  $request->post();
+
+    return Join::create([
+        'good_id'=> $request->good_id,
+        'boon_id'=> $request->boon_id,
+        'user_id'=> $user[0]->id,
+        'join'=> $request->join,
+        'joinType'=> 1,
+        'joinTime'  => time(),
+    ]);
 });
 
 Route::put('stores/{id}', function(Request $request, $id) {
