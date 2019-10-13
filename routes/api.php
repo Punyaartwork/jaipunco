@@ -1246,7 +1246,7 @@ Route::get('admires/{id}', function($id) {
 Route::post('admires', function(Request $request) {
     //return Card::create($request->all);
     $user = User::where('api_token',$request->api)->get();
-    return  Admires::create([
+    return  Admire::create([
         'user_id'=> $request->user_id,
         'sender_id'=> $user[0]->id,
         'votes'=> 1,
