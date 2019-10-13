@@ -1206,8 +1206,8 @@ Route::post('joins', function(Request $request) {
     //return  $request->post();
     if($request->join == null){
         return Join::create([
-            'good_id'=> $request->good_id,
             'boon_id'=> $request->boon_id,
+            'good_id'=> $request->good_id,
             'user_id'=> $user[0]->id,
             'join'=> '',
             'joinType'=> 1,
@@ -1215,8 +1215,8 @@ Route::post('joins', function(Request $request) {
         ]);
     }else{
         return Join::create([
-            'good_id'=> $request->good_id,
             'boon_id'=> $request->boon_id,
+            'good_id'=> $request->good_id,
             'user_id'=> $user[0]->id,
             'join'=> $request->join,
             'joinType'=> 1,
