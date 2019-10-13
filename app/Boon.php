@@ -18,7 +18,7 @@ class Boon extends Model
     }     
     public function join()
     {
-        return $this->belongsTo('App\Join', 'boon_id')->with('user');
+        return $this->hasMany('App\Join', 'boon_id')->with('user');
     }   
     public function like()
     {
