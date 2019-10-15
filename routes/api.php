@@ -759,6 +759,11 @@ Route::get('shownotification/{api}', function($api) {
     return Notification::with('boon')->with('sender')->where('itemType',3)->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
 });
 
+Route::get('donotification/{api}', function($api) {
+    $user = User::where('api_token',$api)->get();  
+    return Notification::with('sender')->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
+});
+
 Route::get('checknotification/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
     return $user[0]->notification;
@@ -1204,6 +1209,31 @@ Route::post('joins', function(Request $request) {
         $umerit->save();
     }
 
+
+    if (Notification::where('user_id', '=', $uboon->id)->where('item_id', '=', $request->boon_id)->where('itemType', '=', 4)->exists()) {
+        Notification::where('user_id', '=', $uboon->id)->where('item_id', '=', $request->boon_id)->where('itemType', '=', 4)->first()->delete();
+        Notification::create([
+            'user_id' => $uboon->id,
+            'item_id' => $request->boon_id,
+            'item' => $request->join,
+            'itemType' => 4,
+            'notificationStatus' => 1,
+            'notificationTime' => time(),
+            'sender' => $user[0]->id,
+        ]);
+        // user found
+    }else{
+        Notification::create([
+            'user_id' => $uboon->id,
+            'item_id' => $request->boon_id,
+            'item' => $request->join,
+            'itemType' => 4,
+            'notificationStatus' => 1,
+            'notificationTime' => time(),
+            'sender' => $user[0]->id,
+        ]);
+    }
+
     //return User::create($request->all);
     //return  $request->post();
     return Join::create([
@@ -1248,6 +1278,15 @@ Route::get('admires/{id}', function($id) {
 Route::post('admires', function(Request $request) {
     //return Card::create($request->all);
     $user = User::where('api_token',$request->api)->get();
+    Notification::create([
+        'user_id' => $request->user_id,
+        'item_id' => $request->user_id,
+        'item' => $request->admire,
+        'itemType' => 5,
+        'notificationStatus' => 1,
+        'notificationTime' => time(),
+        'sender' => $user[0]->id,
+    ]);
     return  Admire::create([
         'user_id'=> $request->user_id,
         'sender_id'=> $user[0]->id,
