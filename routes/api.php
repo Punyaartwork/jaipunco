@@ -157,6 +157,11 @@ Route::post('users', function(Request $request) {
     return  $request->post();
 });
 
+Route::get('user/{id}', function($id) {
+    $user = User::find($id);
+    return $user;
+});
+
 Route::put('users/{id}', function(Request $request, $id) {
     $user = User::findOrFail($id);
     $user->update($request->all());
@@ -1080,7 +1085,7 @@ Route::get('feedboonuser/{id}/{user_id}', function($id,$user_id) {
 });
 
 Route::get('boons/{id}', function($id) {
-    return Boon::find($id);
+    return Boon::with('good')->with('user')->find($id);
 });
 
 Route::post('boons', function(Request $request) {
