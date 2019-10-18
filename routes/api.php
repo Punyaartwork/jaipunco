@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Input as Input;
 use Illuminate\Http\Request;
 Use App\User;
 use App\Card;
@@ -1315,3 +1315,32 @@ Route::delete('admires/{id}', function($id) {
 Route::get('feedadmire/{id}', function($id) {
     return Admire::with('user')->orderBy('id','desc')->where('user_id',$id)->paginate(10);;
 });
+
+
+Route::post('uploadfile', function(Request $request) {
+   /*
+        $data = $request->image;
+
+        list($type, $data) = explode(';', $data);
+        list(, $data)      = explode(',', $data);
+
+
+        $data = base64_decode($data);
+        $image_name= time().'.jpg';
+        $path = public_path() . "/photos/" . $image_name;
+
+
+        file_put_contents($path, $data);
+*/
+        return 'OKOK';
+        /*
+        $photo = new Photo(
+        [
+            'boon_id'=>$request->get('boon_id'),
+            'photo'=>'/'.'photos/'.$image_name
+        ]
+        );
+        $photo->save();
+        return response()->json(['id'=>$photo->id]);
+        */
+}
