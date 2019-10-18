@@ -1318,8 +1318,18 @@ Route::get('feedadmire/{id}', function($id) {
 
 
 Route::post('uploadfile', function(Request $request) {
-   
-        $data = $request->image;
+        if(Input::hasFile('image')){
+            $file = Input::file('image');
+            $time = time().".png";
+            //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
+            $file->move('photos/', $file->getClientOriginalName());
+            rename('photos/'.$file->getClientOriginalName(),'draw/'.$time);
+            return 'OKOK';
+        }else{
+            return 'error';
+
+        }
+         /*  $data = $request->image;
 
         list($type, $data) = explode(';', $data);
         list(, $data)      = explode(',', $data);
@@ -1332,8 +1342,7 @@ Route::post('uploadfile', function(Request $request) {
 
         //file_put_contents($path, $data);
 
-        return $path;
-        /*
+     
         $photo = new Photo(
         [
             'boon_id'=>$request->get('boon_id'),
