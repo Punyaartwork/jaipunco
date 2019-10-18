@@ -1330,7 +1330,7 @@ Route::post('uploadfile', function(Request $request) {
         $path = public_path() . "/photos/" . $image_name;
 
 
-        file_put_contents($path, $data);
+        //file_put_contents($path, $data);
 
         return $path;
         /*

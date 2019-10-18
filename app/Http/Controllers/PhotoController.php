@@ -43,7 +43,7 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-       /*
+       
             $data = $request->image;
     
             list($type, $data) = explode(';', $data);
@@ -56,8 +56,8 @@ class PhotoController extends Controller
     
     
             file_put_contents($path, $data);
-*/
-            return 'OKOK';
+
+            return $image_name;
             /*
             $photo = new Photo(
             [
