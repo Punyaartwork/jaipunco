@@ -57,7 +57,7 @@ class PhotoController extends Controller
     
             file_put_contents($path, $data);
 
-            return $image_name;
+            return $request->image;
             /*
             $photo = new Photo(
             [
