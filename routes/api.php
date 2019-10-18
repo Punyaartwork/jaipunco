@@ -1343,4 +1343,4 @@ Route::post('uploadfile', function(Request $request) {
         $photo->save();
         return response()->json(['id'=>$photo->id]);
         */
-}
+});
