@@ -1318,7 +1318,7 @@ Route::get('feedadmire/{id}', function($id) {
 
 
 Route::post('uploadfile', function(Request $request) {
-   /*
+   
         $data = $request->image;
 
         list($type, $data) = explode(';', $data);
@@ -1331,8 +1331,8 @@ Route::post('uploadfile', function(Request $request) {
 
 
         file_put_contents($path, $data);
-*/
-        return 'OKOK';
+
+        return $path;
         /*
         $photo = new Photo(
         [
