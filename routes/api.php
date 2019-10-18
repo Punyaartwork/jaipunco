@@ -1323,11 +1323,10 @@ Route::post('uploadfile', function(Request $request) {
             $time = time().".png";
             //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
             $file->move('photos/', $file->getClientOriginalName());
-            rename('photos/'.$file->getClientOriginalName(),'draw/'.$time);
+            rename('photos/'.$file->getClientOriginalName(),'photos/'.$time);
             return 'OKOK';
         }else{
             return 'error';
-
         }
          /*  $data = $request->image;
 
