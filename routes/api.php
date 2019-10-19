@@ -1317,14 +1317,14 @@ Route::get('feedadmire/{id}', function($id) {
 });
 
 
-Route::post('uploadfile', function(Request $request) {
+Route::post('uploadphoto', function(Request $request) {
         if(Input::hasFile('image')){
             $file = Input::file('image');
             $time = time().".png";
             //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
             $file->move('photos/', $file->getClientOriginalName());
             rename('photos/'.$file->getClientOriginalName(),'photos/'.$time);
-            return 'OKOK';
+            return $time;
         }else{
             return 'error';
         }
@@ -1351,4 +1351,17 @@ Route::post('uploadfile', function(Request $request) {
         $photo->save();
         return response()->json(['id'=>$photo->id]);
         */
+});
+
+Route::post('uploadprofile', function(Request $request) {
+    if(Input::hasFile('image')){
+        $file = Input::file('image');
+        $time = time().".png";
+        //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
+        $file->move('profile/', $file->getClientOriginalName());
+        rename('profile/'.$file->getClientOriginalName(),'profile/'.$time);
+        return $time;
+    }else{
+        return 'error';
+    }
 });
