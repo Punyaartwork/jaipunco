@@ -1353,13 +1353,17 @@ Route::post('uploadphoto', function(Request $request) {
         */
 });
 
-Route::post('uploadprofile', function(Request $request) {
+Route::post('uploadprofile/{api}', function(Request $request,$api) {
     if(Input::hasFile('image')){
         $file = Input::file('image');
         $time = time().".png";
         //เอาไฟล์ที่อัพโหลด ไปเก็บไว้ที่ public/uploads/ชื่อไฟล์เดิม
         $file->move('profile/', $file->getClientOriginalName());
         rename('profile/'.$file->getClientOriginalName(),'profile/'.$time);
+        $user = User::where('api_token',$api)->get();  
+        $saveprofile = User::find($user[0]->id);
+        $saveprofile->profile = $time;
+        $saveprofile->save();
         return $time;
     }else{
         return 'error';
