@@ -159,40 +159,32 @@ Route::post('users', function(Request $request) {
 
 Route::get('user/{id}/{api}', function($id,$api) {
     $viewer = User::where('api_token',$api)->get();
-   /* if (Notfication::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('itemType', '=', 5)->exists()) {
-        Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('itemType', '=', 5)->first()->delete();
+   /* if (Notfication::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('itemType', '=', 6)->exists()) {
+        Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('itemType', '=', 6)->first()->delete();
         Notification::create([
             'user_id' => $id,
             'item_id' => 0,
             'item' => 'เข้ามาดูโปรไฟล์ของคุณ',
-            'itemType' => 5,
+            'itemType' => 6,
             'notificationStatus' => 1,
             'notificationTime' => time(),
             'sender' => $viewer[0]->id,
         ]);
         // user found
     }else{
-        Notification::create([
-            'user_id' => $id,
-            'item_id' => 0,
-            'item' => 'เข้ามาดูโปรไฟล์ของคุณ',
-            'itemType' => 5,
-            'notificationStatus' => 1,
-            'notificationTime' => time(),
-            'sender' => $viewer[0]->id,
-        ]);
+            Notification::create([
+                    'user_id' => $id,
+                    'item_id' => 0,
+                    'item' => 'เข้ามาดูโปรไฟล์ของคุณ',
+                    'itemType' => 6,
+                    'notificationStatus' => 1,
+                    'notificationTime' => time(),
+                    'sender' => $viewer[0]->id,
+                ]);;
     }*/
 
     $user = User::find($id);
-    return  Notification::create([
-        'user_id' => $id,
-        'item_id' => 0,
-        'item' => 'เข้ามาดูโปรไฟล์ของคุณ',
-        'itemType' => 5,
-        'notificationStatus' => 1,
-        'notificationTime' => time(),
-        'sender' => $viewer[0]->id,
-    ]);;
+    return $user;
 });
 
 Route::put('users/{id}', function(Request $request, $id) {
