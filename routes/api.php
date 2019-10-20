@@ -1362,7 +1362,7 @@ Route::post('uploadprofile/{api}', function(Request $request,$api) {
         rename('profile/'.$file->getClientOriginalName(),'profile/'.$time);
         $user = User::where('api_token',$api)->get();  
         $saveprofile = User::find($user[0]->id);
-        $saveprofile->profile = $time;
+        $saveprofile->profile = 'https://jaipun.com/profile/'.$time;
         $saveprofile->save();
         return $time;
     }else{
