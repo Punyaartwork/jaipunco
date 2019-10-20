@@ -174,12 +174,12 @@ Route::get('user/{id}/{api}', function($id,$api) {
     }else{
         Notification::create([
             'user_id' => $id,
-            'item_id' => $request->boon_id,
-            'item' => $request->join,
+            'item_id' => 0,
+            'item' => 'เข้ามาดูโปรไฟล์ของคุณ',
             'itemType' => 4,
             'notificationStatus' => 1,
             'notificationTime' => time(),
-            'sender' => $user[0]->id,
+            'sender' => $viewer[0]->id,
         ]);
     }
 
