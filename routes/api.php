@@ -184,7 +184,15 @@ Route::get('user/{id}/{api}', function($id,$api) {
     }*/
 
     $user = User::find($id);
-    return $viewer;
+    return  Notification::create([
+        'user_id' => $id,
+        'item_id' => 0,
+        'item' => 'เข้ามาดูโปรไฟล์ของคุณ',
+        'itemType' => 5,
+        'notificationStatus' => 1,
+        'notificationTime' => time(),
+        'sender' => $viewer[0]->id,
+    ]);;
 });
 
 Route::put('users/{id}', function(Request $request, $id) {
