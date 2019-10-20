@@ -157,7 +157,32 @@ Route::post('users', function(Request $request) {
     return  $request->post();
 });
 
-Route::get('user/{id}', function($id) {
+Route::get('user/{id}/{api}', function($id,$api) {
+    $viewer = User::where('api_token',$request->api)->get();
+    if (Notfication::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('itemType', '=', 5)->exists()) {
+        Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('itemType', '=', 5)->first()->delete();
+        Notification::create([
+            'user_id' => $id,
+            'item_id' => 0,
+            'item' => 'เข้ามาดูโปรไฟล์ของคุณ',
+            'itemType' => 4,
+            'notificationStatus' => 1,
+            'notificationTime' => time(),
+            'sender' => $viewer[0]->id,
+        ]);
+        // user found
+    }else{
+        Notification::create([
+            'user_id' => $id,
+            'item_id' => $request->boon_id,
+            'item' => $request->join,
+            'itemType' => 4,
+            'notificationStatus' => 1,
+            'notificationTime' => time(),
+            'sender' => $user[0]->id,
+        ]);
+    }
+
     $user = User::find($id);
     return $user;
 });
@@ -1328,29 +1353,6 @@ Route::post('uploadphoto', function(Request $request) {
         }else{
             return 'error';
         }
-         /*  $data = $request->image;
-
-        list($type, $data) = explode(';', $data);
-        list(, $data)      = explode(',', $data);
-
-
-        $data = base64_decode($data);
-        $image_name= time().'.jpg';
-        $path = public_path() . "/photos/" . $image_name;
-
-
-        //file_put_contents($path, $data);
-
-     
-        $photo = new Photo(
-        [
-            'boon_id'=>$request->get('boon_id'),
-            'photo'=>'/'.'photos/'.$image_name
-        ]
-        );
-        $photo->save();
-        return response()->json(['id'=>$photo->id]);
-        */
 });
 
 Route::post('uploadprofile/{api}', function(Request $request,$api) {
