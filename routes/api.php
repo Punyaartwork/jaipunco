@@ -158,7 +158,7 @@ Route::post('users', function(Request $request) {
 });
 
 Route::get('user/{id}/{api}', function($id,$api) {
-    $viewer = User::where('api_token',$request->api)->get();
+    $viewer = User::where('api_token',$api)->get();
     if (Notfication::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('itemType', '=', 5)->exists()) {
         Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('itemType', '=', 5)->first()->delete();
         Notification::create([
