@@ -159,8 +159,8 @@ Route::post('users', function(Request $request) {
 
 Route::get('user/{id}/{api}', function($id,$api) {
     $viewer = User::where('api_token',$api)->get();
-    if (Notfication::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('itemType', '=', 6)->exists()) {
-        Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('itemType', '=', 6)->first()->delete();
+    if (Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('item', '=','เข้ามาดูโปรไฟล์ของคุณ')->where('itemType', '=', 6)->exists()) {
+        Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('item', '=','เข้ามาดูโปรไฟล์ของคุณ')->where('itemType', '=', 6)->first()->delete();
         Notification::create([
             'user_id' => $id,
             'item_id' => 0,
