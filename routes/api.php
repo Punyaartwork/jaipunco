@@ -1113,6 +1113,10 @@ Route::get('boons/{id}', function($id) {
     return Boon::with('good')->with('user')->find($id);
 });
 
+Route::get('lastboon', function() {
+    return Boon::latest('id')->first();
+});
+
 Route::post('boons', function(Request $request) {
 
     $userget = User::where('api_token',$request->api)->get();  
