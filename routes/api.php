@@ -158,6 +158,7 @@ Route::post('users', function(Request $request) {
 });
 
 Route::get('user/{id}/{api}', function($id,$api) {
+    /*
     $viewer = User::where('api_token',$api)->get();
     if (Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('item', '=','เข้ามาดูโปรไฟล์ของคุณ')->where('itemType', '=', 6)->exists()) {
         Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('item', '=','เข้ามาดูโปรไฟล์ของคุณ')->where('itemType', '=', 6)->first()->delete();
@@ -182,7 +183,7 @@ Route::get('user/{id}/{api}', function($id,$api) {
             'sender' => $viewer[0]->id,
         ]);
     }
-
+        */
     $user = User::find($id);
     return $user;
 });
