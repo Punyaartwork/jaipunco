@@ -149,7 +149,7 @@ Route::get('changeprofile/{profile}/{api}', function($profile,$api) {
 
 Route::get('changedetail/{detail}/{api}', function($detail,$api) {
     $user = User::where('api_token',$api)->get();
-    $upload = User::find($user[0]->id);        
+    $upload = User::find($user[0]->id)->first();        
     //$upload->detail = $detail;
     //$upload->save();
     return $upload;
