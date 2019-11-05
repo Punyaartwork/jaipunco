@@ -147,6 +147,14 @@ Route::get('changeprofile/{profile}/{api}', function($profile,$api) {
     return $user;
 });
 
+Route::get('changedetail/{detail}/{api}', function($detail,$api) {
+    $user = User::where('api_token',$api)->get();
+    $upload = User::find($user[0]->id);        
+    $upload->detail = $detail;
+    $upload->save();
+    return $user;
+});
+
 Route::get('users/{api}', function($api) {
     $user = User::where('api_token',$api)->get();
     return $user;
