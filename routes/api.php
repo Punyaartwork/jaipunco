@@ -1001,6 +1001,29 @@ Route::post('postpost', function(Request $request) {
     //return  $request->post();
 });
 
+Route::post('postdhamma', function(Request $request) {
+    return Card::create([
+        'user_id'=> 1,
+        'card'=> $request->card,
+        'cardPhoto'=> $request->cardPhoto,
+        'cardBg'=> $request->cardBg,
+        'cardView' => 0,
+        'cardLike' => 0,
+        'cardComment' => 0,
+        'cardShare' => 0,
+        'cardTime'  => time(),
+        'card_ip'=> $request->getClientIp(),
+        'cardColor' => $request->cardColor,
+        'cardDetail' => $request->cardDetail,
+        'subject_id' => 0,
+        'post_id' => 1,
+        'cardTags' => 0,
+        'cardForm' => $request->cardForm,
+    ]);
+    //return  $request->post();
+});
+
+
 Route::get('content/{id}', function($id) {
     return Card::with('user')->where('post_id',$id)->paginate(10);
 });
