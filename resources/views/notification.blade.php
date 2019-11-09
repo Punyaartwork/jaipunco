@@ -20,6 +20,6 @@ $(document).ready(function(){
 });
 </script>
 <?php
-$ch = curl_init();
-echo "OKOK";
+//$ch = curl_init();
+//echo "OKOK";
 ?>
