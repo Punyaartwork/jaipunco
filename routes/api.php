@@ -20,10 +20,6 @@ use App\Merit;
 use App\Boon;
 use App\Join;
 use App\Admire;
-use LaravelFCM\Message\OptionsBuilder;
-use LaravelFCM\Message\PayloadDataBuilder;
-use LaravelFCM\Message\PayloadNotificationBuilder;
-use FCM;
 
 /*
 |--------------------------------------------------------------------------
