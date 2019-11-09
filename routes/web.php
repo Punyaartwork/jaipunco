@@ -50,7 +50,7 @@ Route::get('testnotification', function() {
             ];
 
 
-            /*$ch = curl_init();
+            $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL,$fcmUrl);
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -58,10 +58,10 @@ Route::get('testnotification', function() {
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
             $result = curl_exec($ch);
-            curl_close($ch);*/
+            curl_close($ch);
 
 
-        return phpinfo();
+        return $result;
 });
 /*
 |--------------------------------------------------------------------------
