@@ -5,16 +5,16 @@ $(document).ready(function(){
             type : 'POST',
             url : "https://fcm.googleapis.com/fcm/send",
             headers : {
-                Authorization : 'key=' + '<key>'
+                Authorization : 'key=' + 'AIzaSyCu4hAVR2msOjx7B_eyn95y1kkTqfU1yGM'
             },
             contentType : 'application/json',
             dataType: 'json',
-            data: JSON.stringify({"to": "<instance ID>", "notification": {"title":"Test","body":"Test"}}),
+            data: JSON.stringify({"to": "1:40654945219:android:e722604c88e7d2f9bcdb76", "notification": {"title":"Test","body":"Test"}}),
             success : function(response) {
-                console.log(response);
+                alert(response);
             },
             error : function(xhr, status, error) {
-                console.log(xhr.error);                   
+                alert(xhr.error);                   
             }
         });
 });
