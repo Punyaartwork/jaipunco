@@ -11,7 +11,7 @@ $(document).ready(function(){
             dataType: 'json',
             data: JSON.stringify({"to": "eJN2WRYJP4k:APA91bGrjsht9ga_ef4VcK9LA3QoYTbxpLZG5xCdsWZ0b2J4I-pVqraYVrMOOLajVawRQXiMXghTQJRJJbeR8g_TZaBhJQOIE23BDqj7QVCIXuF02EywRBAIFjfU7g18EFh2pdfZByia", "notification": {"title":"Test","body":"Test"}}),
             success : function(response) {
-                alert('success'+response);
+                alert('success'+JSON.stringify(response));
             },
             error : function(xhr, status, error) {
                 alert('error'+xhr.error);                   
