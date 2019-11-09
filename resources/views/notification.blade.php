@@ -11,7 +11,7 @@ $(document).ready(function(){
             dataType: 'json',
             data: JSON.stringify({"to": "1:40654945219:android:e722604c88e7d2f9bcdb76", "notification": {"title":"Test","body":"Test"}}),
             success : function(response) {
-                alert(response);
+                alert('success'+response);
             },
             error : function(xhr, status, error) {
                 alert(xhr.error);                   
