@@ -61,7 +61,7 @@ Route::get('testnotification', function() {
             curl_close($ch);
 
 
-        return $result;
+        return phpinfo();
 });
 /*
 |--------------------------------------------------------------------------
