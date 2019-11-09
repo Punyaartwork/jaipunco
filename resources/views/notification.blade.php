@@ -19,7 +19,7 @@ $(document).ready(function(){
         });
 });
 </script>
-<?
+<?php
 $ch = curl_init();
-//echo "OKOK";
+echo "OKOK";
 ?>
