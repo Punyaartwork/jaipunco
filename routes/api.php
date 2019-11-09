@@ -1441,7 +1441,7 @@ Route::get('fcmtest', function() {
     //android
     //$token = "eJN2WRYJP4k:APA91bGrjsht9ga_ef4VcK9LA3QoYTbxpLZG5xCdsWZ0b2J4I-pVqraYVrMOOLajVawRQXiMXghTQJRJJbeR8g_TZaBhJQOIE23BDqj7QVCIXuF02EywRBAIFjfU7g18EFh2pdfZByia";
     //iOS
-    $token = "dnTjuGJMeAo:APA91bHptzm_4Qzspz7-pGMnbz-MXofuBWErNN3AhyQvOjw1_NczqcafgOPJwW6IEx17ko-8QCWjqlEiUdc2nfwIb4Y-ier9E7pZPG1ZxQdKAAciXAuSKiaMHqW7bnjuR2GyVCSHVcn1";
+    $token = "eotKYVOUog0:APA91bHtEL4KDYhvQUqiYjzYXHsNPbxehml2_AUPHwS63-zN0kN6D-RMYDS_0_HuojqiSpL480TQmAgLnGOA40BwQuLsZk7V-Si01-IV7Kd6h4iUQpNp0mIMzwwtfrK8op_uRLnobLc6";
     $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
 
     $downstreamResponse->numberSuccess();
