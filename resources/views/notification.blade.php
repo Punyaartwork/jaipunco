@@ -14,7 +14,7 @@ $(document).ready(function(){
                 alert('success'+response);
             },
             error : function(xhr, status, error) {
-                alert(xhr.error);                   
+                alert('error'+xhr.error);                   
             }
         });
 });
