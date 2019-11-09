@@ -21,4 +21,5 @@ $(document).ready(function(){
 </script>
 <?
 $ch = curl_init();
+echo "OKOK";
 ?>
