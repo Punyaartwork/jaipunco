@@ -1425,37 +1425,38 @@ use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
 
 Route::get('fcmtest', function() {
-$optionBuilder = new OptionsBuilder();
-$optionBuilder->setTimeToLive(60*20);
+    $optionBuilder = new OptionsBuilder();
+    $optionBuilder->setTimeToLive(60*20);
 
-$notificationBuilder = new PayloadNotificationBuilder('my title');
-$notificationBuilder->setBody('Hello world')
-				    ->setSound('default');
+    $notificationBuilder = new PayloadNotificationBuilder('my title');
+    $notificationBuilder->setBody('Hello world')
+                        ->setSound('default');
 
-$dataBuilder = new PayloadDataBuilder();
-$dataBuilder->addData(['a_data' => 'my_data']);
+    $dataBuilder = new PayloadDataBuilder();
+    $dataBuilder->addData(['a_data' => 'my_data']);
 
-$option = $optionBuilder->build();
-$notification = $notificationBuilder->build();
-$data = $dataBuilder->build();
+    $option = $optionBuilder->build();
+    $notification = $notificationBuilder->build();
+    $data = $dataBuilder->build();
+    //android
+    //$token = "eJN2WRYJP4k:APA91bGrjsht9ga_ef4VcK9LA3QoYTbxpLZG5xCdsWZ0b2J4I-pVqraYVrMOOLajVawRQXiMXghTQJRJJbeR8g_TZaBhJQOIE23BDqj7QVCIXuF02EywRBAIFjfU7g18EFh2pdfZByia";
+    //iOS
+    $token = "dnTjuGJMeAo:APA91bHptzm_4Qzspz7-pGMnbz-MXofuBWErNN3AhyQvOjw1_NczqcafgOPJwW6IEx17ko-8QCWjqlEiUdc2nfwIb4Y-ier9E7pZPG1ZxQdKAAciXAuSKiaMHqW7bnjuR2GyVCSHVcn1";
+    $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
 
-$token = "eJN2WRYJP4k:APA91bGrjsht9ga_ef4VcK9LA3QoYTbxpLZG5xCdsWZ0b2J4I-pVqraYVrMOOLajVawRQXiMXghTQJRJJbeR8g_TZaBhJQOIE23BDqj7QVCIXuF02EywRBAIFjfU7g18EFh2pdfZByia";
+    $downstreamResponse->numberSuccess();
+    $downstreamResponse->numberFailure();
+    $downstreamResponse->numberModification();
 
-$downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+    // return Array - you must remove all this tokens in your database
+    $downstreamResponse->tokensToDelete();
 
-$downstreamResponse->numberSuccess();
-$downstreamResponse->numberFailure();
-$downstreamResponse->numberModification();
+    // return Array (key : oldToken, value : new token - you must change the token in your database)
+    $downstreamResponse->tokensToModify();
 
-// return Array - you must remove all this tokens in your database
-$downstreamResponse->tokensToDelete();
+    // return Array - you should try to resend the message to the tokens in the array
+    $downstreamResponse->tokensToRetry();
 
-// return Array (key : oldToken, value : new token - you must change the token in your database)
-$downstreamResponse->tokensToModify();
-
-// return Array - you should try to resend the message to the tokens in the array
-$downstreamResponse->tokensToRetry();
-
-// return Array (key:token, value:error) - in production you should remove from your database the tokens
-$downstreamResponse->tokensWithError();
+    // return Array (key:token, value:error) - in production you should remove from your database the tokens
+    $downstreamResponse->tokensWithError();
 });
