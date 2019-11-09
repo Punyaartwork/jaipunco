@@ -9,7 +9,7 @@ $(document).ready(function(){
             },
             contentType : 'application/json',
             dataType: 'json',
-            data: JSON.stringify({"to": "1:40654945219:android:e722604c88e7d2f9bcdb76", "notification": {"title":"Test","body":"Test"}}),
+            data: JSON.stringify({"to": "eJN2WRYJP4k:APA91bGrjsht9ga_ef4VcK9LA3QoYTbxpLZG5xCdsWZ0b2J4I-pVqraYVrMOOLajVawRQXiMXghTQJRJJbeR8g_TZaBhJQOIE23BDqj7QVCIXuF02EywRBAIFjfU7g18EFh2pdfZByia", "notification": {"title":"Test","body":"Test"}}),
             success : function(response) {
                 alert('success'+response);
             },
