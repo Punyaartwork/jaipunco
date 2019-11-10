@@ -168,8 +168,11 @@ Route::post('users', function(Request $request) {
 });
 
 Route::post('savetokenuser', function(Request $request) {
-    //return User::create($request->all);
-    return  $request->post();
+    $user = User::where('api_token',$request->api)->get();
+    $upload = User::find($user[0]->id);        
+    $upload->token = $request->token;
+    $upload->save();
+    return  $upload;
 });
 
 Route::get('user/{id}/{api}', function($id,$api) {
@@ -1430,7 +1433,7 @@ Route::post('uploadprofile/{api}', function(Request $request,$api) {
 use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
-//use FCM;
+use FCM;
 
 Route::get('fcmtest', function() {
     $optionBuilder = new OptionsBuilder();
