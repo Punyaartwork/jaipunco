@@ -165,6 +165,11 @@ Route::get('users/{api}', function($api) {
     return $user;
 });
 
+Route::get('showuser/{id}', function($api) {
+    $user = User::find($id);
+    return $user;
+});
+
 Route::post('users', function(Request $request) {
     //return User::create($request->all);
     return  $request->post();
@@ -211,8 +216,8 @@ Route::get('user/{id}/{api}', function($id,$api) {
             $optionBuilder = new OptionsBuilder();
             $optionBuilder->setTimeToLive(60*20);
         
-            $notificationBuilder = new PayloadNotificationBuilder('เข้ามาดูโปรไฟล์ของคุณ');
-            $notificationBuilder->setBody($viewer[0]->name)
+            $notificationBuilder = new PayloadNotificationBuilder($viewer[0]->name);
+            $notificationBuilder->setBody('เข้ามาดูโปรไฟล์ของคุณ')
                                 ->setSound('default');
         
             $dataBuilder = new PayloadDataBuilder();
