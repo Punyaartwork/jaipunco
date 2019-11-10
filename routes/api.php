@@ -20,7 +20,10 @@ use App\Merit;
 use App\Boon;
 use App\Join;
 use App\Admire;
-
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use FCM;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -1457,10 +1460,7 @@ Route::post('uploadprofile/{api}', function(Request $request,$api) {
     }
 });
 
-use LaravelFCM\Message\OptionsBuilder;
-use LaravelFCM\Message\PayloadDataBuilder;
-use LaravelFCM\Message\PayloadNotificationBuilder;
-use FCM;
+
 
 Route::get('fcmtest', function() {
     $optionBuilder = new OptionsBuilder();
