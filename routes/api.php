@@ -60,7 +60,8 @@ Route::get('addname/{name}/{api}/{status}/{status_id}', function($name,$api,$sta
         'status_id' => $status_id,
         'ranking' => 0,
         'link'=> 0,
-        'api_token'=> $api              
+        'api_token'=> $api,
+        'token'=> 0,        
     ]);
     return $user;
 });
@@ -98,6 +99,7 @@ Route::post('adduser', function(Request $request) {
         'joining'=> 0,
         'watyear'=> 0,
         'online'=> 0,
+        'token'=> 0,
     ]);
     //return  $request->post();
 });
@@ -133,6 +135,7 @@ Route::post('addfbuser', function(Request $request) {
             'joining'=> 0,
             'watyear'=> 0,
             'online'=> 0,
+            'token'=> 0,
         ]);
     }
     //return  $request->post();
@@ -160,6 +163,11 @@ Route::get('users/{api}', function($api) {
 });
 
 Route::post('users', function(Request $request) {
+    //return User::create($request->all);
+    return  $request->post();
+});
+
+Route::post('savetokenuser', function(Request $request) {
     //return User::create($request->all);
     return  $request->post();
 });

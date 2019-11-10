@@ -39,9 +39,10 @@ class User extends Model implements
         'joining',
         'watyear',
         'online',
+        'token'
     ];
     protected $hidden = [
-        'password','api_token'
+        'password','api_token','token'
     ];
   
    /* public function likes()
