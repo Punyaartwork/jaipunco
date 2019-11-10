@@ -165,7 +165,7 @@ Route::get('users/{api}', function($api) {
     return $user;
 });
 
-Route::get('showuser/{id}', function($api) {
+Route::get('showuser/{id}', function($id) {
     $user = User::find($id);
     return $user;
 });
