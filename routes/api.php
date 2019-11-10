@@ -178,21 +178,10 @@ Route::post('savetokenuser', function(Request $request) {
 Route::get('user/{id}/{api}', function($id,$api) {
     
     $viewer = User::where('api_token',$api)->get();
-    if (Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('item', '=','เข้ามาดูโปรไฟล์ของคุณ')->where('itemType', '=', 6)->exists()) {
-        Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('item', '=','เข้ามาดูโปรไฟล์ของคุณ')->where('itemType', '=', 6)->first()->delete();
-        Notification::create([
-            'user_id' => $id,
-            'item_id' => 0,
-            'item' => 'เข้ามาดูโปรไฟล์ของคุณ',
-            'itemType' => 6,
-            'notificationStatus' => 1,
-            'notificationTime' => time(),
-            'sender' => $viewer[0]->id,
-        ]);
-        // user found
-        $user = User::find($id);
-    }else{
-    Notification::create([
+    if($viewer[0]->id != $id){
+        if (Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('item', '=','เข้ามาดูโปรไฟล์ของคุณ')->where('itemType', '=', 6)->exists()) {
+            Notification::where('user_id', '=', $id)->where('sender', '=',$viewer[0]->id)->where('item', '=','เข้ามาดูโปรไฟล์ของคุณ')->where('itemType', '=', 6)->first()->delete();
+            Notification::create([
                 'user_id' => $id,
                 'item_id' => 0,
                 'item' => 'เข้ามาดูโปรไฟล์ของคุณ',
@@ -201,9 +190,47 @@ Route::get('user/{id}/{api}', function($id,$api) {
                 'notificationTime' => time(),
                 'sender' => $viewer[0]->id,
             ]);
+            // user found
+            $user = User::find($id);
+        }else{
+        Notification::create([
+                    'user_id' => $id,
+                    'item_id' => 0,
+                    'item' => 'เข้ามาดูโปรไฟล์ของคุณ',
+                    'itemType' => 6,
+                    'notificationStatus' => 1,
+                    'notificationTime' => time(),
+                    'sender' => $viewer[0]->id,
+                ]);
+            $user = User::find($id);
+        }
+        if(strlen($user->token) > 1){
+            $optionBuilder = new OptionsBuilder();
+            $optionBuilder->setTimeToLive(60*20);
+        
+            $notificationBuilder = new PayloadNotificationBuilder('เข้ามาดูโปรไฟล์ของคุณ');
+            $notificationBuilder->setBody($viewer[0]->name)
+                                ->setSound('default');
+        
+            $dataBuilder = new PayloadDataBuilder();
+            $dataBuilder->addData(['a_data' => 'my_data']);
+        
+            $option = $optionBuilder->build();
+            $notification = $notificationBuilder->build();
+            $data = $dataBuilder->build();
+            $downstreamResponse = FCM::sendTo($user->token, $option, $notification, $data);
+        
+            $downstreamResponse->numberSuccess();
+            $downstreamResponse->numberFailure();
+            $downstreamResponse->numberModification();
+            $downstreamResponse->tokensToDelete();
+            $downstreamResponse->tokensToModify();
+            $downstreamResponse->tokensToRetry();
+            $downstreamResponse->tokensWithError();
+        }
+    }else{
         $user = User::find($id);
     }
-        
     return $user;
 });
 
