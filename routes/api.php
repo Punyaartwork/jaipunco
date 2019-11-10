@@ -1430,7 +1430,7 @@ Route::post('uploadprofile/{api}', function(Request $request,$api) {
 use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
-use FCM;
+//use FCM;
 
 Route::get('fcmtest', function() {
     $optionBuilder = new OptionsBuilder();
