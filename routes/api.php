@@ -640,7 +640,7 @@ Route::get('like/{id}/bliked/{api}', function($id,$api) {
             Notification::create([
                 'user_id' => $boon->user_id,
                 'item_id' => $id,
-                'item' => 'กดอนุโมทนาบุญของคุณ',
+                'item' => 'กดชื่นชมการจอยบุญของคุณ',
                 'itemType' => 3,
                 'notificationStatus' => 0,
                 'notificationTime' => time(),
