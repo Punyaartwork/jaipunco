@@ -1211,6 +1211,10 @@ Route::get('lastboonphoto', function() {
     return Boon::latest('id')->where('boonPhoto','!=','0')->first();
 });
 
+Route::get('lastboontop', function() {
+    return Boon::latest('id')->where('boonJoin','!=',0)->first();
+});
+
 Route::post('boons', function(Request $request) {
 
     $userget = User::where('api_token',$request->api)->get();  
