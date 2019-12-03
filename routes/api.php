@@ -1191,7 +1191,7 @@ Route::get('feedboongoodid/{id}', function($id) {
 });
 
 Route::get('feedboonuser/{id}/{user_id}', function($id,$user_id) {
-    return Boon::with('like')->where('good_id',$id)->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('like')->where('good_id',$id)->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('boons/{id}', function($id) {
