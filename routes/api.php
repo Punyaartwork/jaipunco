@@ -1184,7 +1184,12 @@ Route::get('feedboonphotos', function() {
     // this will return a JSON structure. This will be cleaned up later.
     return Boon::with('user')->with('good')->with('join')->with('like')->where('boonPhoto','!=','0')->orderBy('id','desc')->paginate(10);
 });
- 
+
+Route::get('feedboontop', function() {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Boon::with('user')->with('good')->with('join')->with('like')->where('boonJoin','!=',0)->orderBy('id','desc')->paginate(10);
+});
 
 Route::get('feedboongoodid/{id}', function($id) {
     return Boon::with('user')->with('good')->with('like')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
