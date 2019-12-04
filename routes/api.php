@@ -1212,7 +1212,7 @@ Route::get('lastboonphoto', function() {
 });
 
 Route::get('lastboontop', function() {
-    return Boon::latest('id')->where('boonJoin','!=',0)->first();
+    return Boon::latest('boonJoin')->where('boonJoin','!=',0)->first();
 });
 
 Route::post('boons', function(Request $request) {
