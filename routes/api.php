@@ -640,7 +640,7 @@ Route::get('like/{id}/bliked/{api}', function($id,$api) {
             Notification::create([
                 'user_id' => $boon->user_id,
                 'item_id' => $id,
-                'item' => 'กดชื่นชมการจอยบุญของคุณ',
+                'item' => 'กดอนุโมทนาบุญของคุณ',
                 'itemType' => 3,
                 'notificationStatus' => 0,
                 'notificationTime' => time(),
@@ -657,6 +657,31 @@ Route::get('like/{id}/bliked/{api}', function($id,$api) {
                 'notificationTime' => time(),
                 'sender' => $useronclick[0]->id,
             ]);
+            $user = User::find($boon->user_id); 
+            if(strlen($user->token) > 1){
+                $optionBuilder = new OptionsBuilder();
+                $optionBuilder->setTimeToLive(60*20);
+            
+                $notificationBuilder = new PayloadNotificationBuilder($useronclick[0]->name);
+                $notificationBuilder->setBody('กดอนุโมทนาบุญของคุณ')
+                                    ->setSound('default');
+            
+                $dataBuilder = new PayloadDataBuilder();
+                $dataBuilder->addData(['a_data' => 'my_data']);
+            
+                $option = $optionBuilder->build();
+                $notification = $notificationBuilder->build();
+                $data = $dataBuilder->build();
+                $downstreamResponse = FCM::sendTo($user->token, $option, $notification, $data);
+            
+                $downstreamResponse->numberSuccess();
+                $downstreamResponse->numberFailure();
+                $downstreamResponse->numberModification();
+                $downstreamResponse->tokensToDelete();
+                $downstreamResponse->tokensToModify();
+                $downstreamResponse->tokensToRetry();
+                $downstreamResponse->tokensWithError();
+            }
         }
         $user = User::find($boon->user_id);        
         $user->notification += 1;
@@ -1364,6 +1389,30 @@ Route::post('joins', function(Request $request) {
             'notificationTime' => time(),
             'sender' => $user[0]->id,
         ]);
+        if(strlen($uboon->token) > 1){
+            $optionBuilder = new OptionsBuilder();
+            $optionBuilder->setTimeToLive(60*20);
+        
+            $notificationBuilder = new PayloadNotificationBuilder($user[0]->name);
+            $notificationBuilder->setBody('ร่วมจอยบุญกับคุณ')
+                                ->setSound('default');
+        
+            $dataBuilder = new PayloadDataBuilder();
+            $dataBuilder->addData(['a_data' => 'my_data']);
+        
+            $option = $optionBuilder->build();
+            $notification = $notificationBuilder->build();
+            $data = $dataBuilder->build();
+            $downstreamResponse = FCM::sendTo($uboon->token, $option, $notification, $data);
+        
+            $downstreamResponse->numberSuccess();
+            $downstreamResponse->numberFailure();
+            $downstreamResponse->numberModification();
+            $downstreamResponse->tokensToDelete();
+            $downstreamResponse->tokensToModify();
+            $downstreamResponse->tokensToRetry();
+            $downstreamResponse->tokensWithError();
+        }
     }
 
     //return User::create($request->all);
