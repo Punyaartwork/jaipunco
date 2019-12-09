@@ -574,6 +574,16 @@ Route::get('feedfollow/{api}', function($api) {
     })->with('user')->orderBy('id','desc')->paginate(10);
 });
 
+Route::get('boonfollow/{api}', function($api) {
+    $user = User::where('api_token',$api)->get();  
+    $id = $user[0]->id;  
+
+   return Boon::whereIn('user_id', function($query) use ($id){
+        $query->select('fuser_id')
+        ->from('follows')
+        ->where('user_id', $id)->where('deleted_at', null);
+    })->with('user')->orderBy('id','desc')->paginate(10);
+});
 /*
 |--------------------------------------------------------------------------
 | GET API Routes Like
