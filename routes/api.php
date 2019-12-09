@@ -518,7 +518,31 @@ Route::get('follow/{id}/followed/{api}', function($id,$api) {
         ]);
         //$follow->cardLike += 10;
         $user->followers += 1;      
-        $usermember->following += 1;        
+        $usermember->following += 1;       
+        if(strlen($user->token) > 1){
+            $optionBuilder = new OptionsBuilder();
+            $optionBuilder->setTimeToLive(60*20);
+        
+            $notificationBuilder = new PayloadNotificationBuilder($usermember->name);
+            $notificationBuilder->setBody('ติดตามการทำบุญของคุณ')
+                                ->setSound('default');
+        
+            $dataBuilder = new PayloadDataBuilder();
+            $dataBuilder->addData(['a_data' => 'my_data']);
+        
+            $option = $optionBuilder->build();
+            $notification = $notificationBuilder->build();
+            $data = $dataBuilder->build();
+            $downstreamResponse = FCM::sendTo($user->token, $option, $notification, $data);
+        
+            $downstreamResponse->numberSuccess();
+            $downstreamResponse->numberFailure();
+            $downstreamResponse->numberModification();
+            $downstreamResponse->tokensToDelete();
+            $downstreamResponse->tokensToModify();
+            $downstreamResponse->tokensToRetry();
+            $downstreamResponse->tokensWithError();
+        } 
     } else {
         if (is_null($existing_follow->deleted_at)) {
             $existing_follow->delete();
