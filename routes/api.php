@@ -589,8 +589,8 @@ Route::get('isfollow/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
     $id = $user[0]->id;  
     $result = Follow::where('user_id',$id)->get();
-    foreach ($result->fuser_id as $fuser_id){ 
-        $fuser = User::find($fuser_id);
+    foreach ($results as $result){ 
+        $fuser = User::find($result->fuser_id);
         if(strlen($fuser->token) > 1){
             $optionBuilder = new OptionsBuilder();
             $optionBuilder->setTimeToLive(60*20);
