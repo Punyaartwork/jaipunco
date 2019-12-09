@@ -588,7 +588,7 @@ Route::get('boonfollow/{api}', function($api) {
 Route::get('isfollow/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
     $id = $user[0]->id;  
-    $result = Follow::where('user_id',$id)->get();
+    $results = Follow::where('user_id',$id)->get();
     foreach ($results as $result){ 
         $fuser = User::find($result->fuser_id);
         if(strlen($fuser->token) > 1){
