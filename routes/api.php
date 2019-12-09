@@ -584,6 +584,13 @@ Route::get('boonfollow/{api}', function($api) {
         ->where('user_id', $id)->where('deleted_at', null);
     })->with('user')->orderBy('id','desc')->paginate(10);
 });
+
+Route::get('isfollow/{api}', function($api) {
+    $user = User::where('api_token',$api)->get();  
+    $id = $user[0]->id;  
+
+   return Follow::where('user_id',$id)->get();
+});
 /*
 |--------------------------------------------------------------------------
 | GET API Routes Like
