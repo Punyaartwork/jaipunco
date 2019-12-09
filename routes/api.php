@@ -588,7 +588,37 @@ Route::get('boonfollow/{api}', function($api) {
 Route::get('isfollow/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
     $id = $user[0]->id;  
-
+    $result = Follow::where('user_id',$id)->get();
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $fuser = User::find($row['fuser_id']);
+            if(strlen($fuser->token) > 1){
+                $optionBuilder = new OptionsBuilder();
+                $optionBuilder->setTimeToLive(60*20);
+            
+                $notificationBuilder = new PayloadNotificationBuilder($user[0]->name);
+                $notificationBuilder->setBody('กำลังทำบุญ ณ ที่ใดที่หนึ่ง')
+                                    ->setSound('default');
+            
+                $dataBuilder = new PayloadDataBuilder();
+                $dataBuilder->addData(['a_data' => 'my_data']);
+            
+                $option = $optionBuilder->build();
+                $notification = $notificationBuilder->build();
+                $data = $dataBuilder->build();
+                $downstreamResponse = FCM::sendTo($fuser->token, $option, $notification, $data);
+            
+                $downstreamResponse->numberSuccess();
+                $downstreamResponse->numberFailure();
+                $downstreamResponse->numberModification();
+                $downstreamResponse->tokensToDelete();
+                $downstreamResponse->tokensToModify();
+                $downstreamResponse->tokensToRetry();
+                $downstreamResponse->tokensWithError();
+            } 
+        }
+    }
    return Follow::where('user_id',$id)->get();
 });
 /*
