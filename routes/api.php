@@ -588,9 +588,9 @@ Route::get('boonfollow/{api}', function($api) {
 Route::get('isfollow/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
     $id = $user[0]->id;  
-    $results = Follow::where('user_id',$id)->get();
+    $results = Follow::where('fuser_id',$id)->get();
     foreach ($results as $result){ 
-        $fuser = User::find($result->fuser_id);
+        $fuser = User::find($result->user_id);
         if(strlen($fuser->token) > 1){
             $optionBuilder = new OptionsBuilder();
             $optionBuilder->setTimeToLive(60*20);
