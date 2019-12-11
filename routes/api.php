@@ -620,7 +620,7 @@ Route::get('isfollow/{api}', function($api) {
    return Follow::where('user_id',$id)->get();
 });
 
-Route::get('showfollowing/{id}', function($api) {
+Route::get('showfollowing/{id}', function($id) {
     $user = User::find( $id );  
     $id = $user->id;  
    return Follow::where('user_id',$id)->with('fuser')->paginate(10);
