@@ -619,6 +619,19 @@ Route::get('isfollow/{api}', function($api) {
 
    return Follow::where('user_id',$id)->get();
 });
+
+Route::get('showfollowing/{id}', function($api) {
+    $user = User::find( $id );  
+    $id = $user->id;  
+   return Follow::where('user_id',$id)->with('fuser')->get();
+});
+
+
+Route::get('showfollower/{id}', function($api) {
+    $user = User::find( $id );  
+    $id = $user->id;  
+   return Follow::where('fuser_id',$id)->with('user')->get();
+});
 /*
 |--------------------------------------------------------------------------
 | GET API Routes Like
