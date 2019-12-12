@@ -258,6 +258,9 @@ Route::get('feedusermerit', function() {
     return User::with('merit')->orderBy('joining','desc')->paginate(10);;
 });
 
+Route::get('introfollow', function() {
+    return User::orderBy('followers','desc')->paginate(10);;
+});
 /*
 |--------------------------------------------------------------------------
 | POST API Routes Card
