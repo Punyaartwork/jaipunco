@@ -1527,6 +1527,9 @@ Route::delete('joins/{id}', function($id) {
 Route::get('feedjoin/{id}', function($id) {
     return Join::with('user')->orderBy('id','desc')->where('boon_id',$id)->paginate(10);;
 });
+Route::get('userjoin/{id}', function($id) {
+    return Join::with('user')->with('boon')->orderBy('id','desc')->where('user_id',$id)->paginate(10);;
+});
 /*
 |--------------------------------------------------------------------------
 | POST API Routes Admire

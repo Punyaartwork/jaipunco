@@ -13,4 +13,8 @@ class Join extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     } 
+    public function boon()
+    {
+        return $this->belongsTo('App\Boon', 'boon_id');
+    } 
 }
