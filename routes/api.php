@@ -1529,7 +1529,7 @@ Route::get('feedjoin/{id}', function($id) {
 });
 Route::get('userjoin/{id}', function($id) {
     return Join::whereIn('user_id', function($query) use ($id){
-        $query->select('fuser_id')
+        $query->select('user_id')
         ->from('boons')
         ->where('user_id', $id);
     })->with('user')->orderBy('id','desc')->paginate(10);
