@@ -1528,8 +1528,8 @@ Route::get('feedjoin/{id}', function($id) {
     return Join::with('user')->orderBy('id','desc')->where('boon_id',$id)->paginate(10);;
 });
 Route::get('userjoin/{id}', function($id) {
-    return Join::whereIn('user_id', function($query) use ($id){
-        $query->select('user_id')
+    return Join::whereIn('boon_id', function($query) use ($id){
+        $query->select('boon_id')
         ->from('boons')
         ->where('user_id', $id);
     })->with('user')->orderBy('id','desc')->paginate(10);
