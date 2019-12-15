@@ -1532,7 +1532,7 @@ Route::get('userjoin/{id}', function($id) {
         $query->select('boon_id')
         ->from('boons')
         ->where('user_id', $id);
-    })->with('user')->orderBy('id','desc')->paginate(10);
+    })->with('user')->with('boon')->orderBy('id','desc')->paginate(10);
     //return Join::with('user')->with('boon')->orderBy('id','desc')->where('user_id',$id)->paginate(10);
 });
 /*
