@@ -1325,6 +1325,10 @@ Route::get('lastboontop', function() {
     return Boon::latest('boonJoin')->where('boonJoin','!=',0)->first();
 });
 
+Route::get('boonuser/{user_id}', function($id,$user_id) {
+    return Boon::with('user')->with('good')->with('join')->with('like')->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
+});
+
 Route::post('boons', function(Request $request) {
 
     $userget = User::where('api_token',$request->api)->get();  
