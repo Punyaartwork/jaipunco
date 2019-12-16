@@ -585,7 +585,7 @@ Route::get('boonfollow/{api}', function($api) {
         $query->select('fuser_id')
         ->from('follows')
         ->where('user_id', $id)->where('deleted_at', null);
-    })->with('user')->orderBy('id','desc')->paginate(10);
+    })->with('user')->with('good')->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('isfollow/{api}', function($api) {
