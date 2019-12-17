@@ -1318,7 +1318,11 @@ Route::get('groupboon', function() {
     /*return DB::table('boons')
              ->select('*')
              ->groupBy('user_id')->pluck('user_id')->paginate(10);*/
-             return   Boon::paginate(10)->groupBy('user_id');
+    return        DB::table('boons')
+                 ->select('user_id', DB::raw('*'))
+                 ->groupBy('user_id')
+                 ->get();
+    //return   Boon::paginate(10)->groupBy('user_id');
 });
 
 Route::get('lastboon', function() {
