@@ -1317,12 +1317,17 @@ Route::get('groupboon', function() {
     //return Boon::with('good')->with('user')->groupBy('user_id')->paginate(10);
     /*return DB::table('boons')
              ->select('*')
-             ->groupBy('user_id')->pluck('user_id')->paginate(10);*/
+             ->groupBy('user_id')->pluck('user_id')->paginate(10);
     return        DB::table('boons')
                  ->select('user_id', DB::raw('max(boonTime) as boonTime'))
                  ->groupBy('user_id')->orderBy('boonTime','desc')
-                 ->paginate(10);
+                 ->paginate(10);*/
     //return   Boon::paginate(10)->groupBy('user_id');
+    return User::whereIn('id', function($query){
+        $query->select('user_id', DB::raw('max(boonTime) as boonTime'))
+        ->from('boons')->orderBy('boonTime','desc')
+        ->groupBy('user_id');
+    })->paginate(10);
 });
 
 Route::get('lastboon', function() {
