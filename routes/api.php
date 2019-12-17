@@ -1313,6 +1313,10 @@ Route::get('boons/{id}', function($id) {
     return Boon::with('good')->with('user')->find($id);
 });
 
+Route::get('groupboon', function() {
+    return Boon::with('good')->with('user')->groupBy('user_id')->orderBy('id','desc')->paginate(10);
+});
+
 Route::get('lastboon', function() {
     return Boon::latest('id')->first();
 });
