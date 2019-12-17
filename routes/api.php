@@ -1314,7 +1314,7 @@ Route::get('boons/{id}', function($id) {
 });
 
 Route::get('groupboon', function() {
-    return Boon::with('good')->with('user')->groupBy('user_id')->orderBy('id','desc')->paginate(10);
+    return Boon::with('good')->with('user')->groupBy('user_id')->orderBy('id','desc')->get();
 });
 
 Route::get('lastboon', function() {
