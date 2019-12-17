@@ -1318,10 +1318,10 @@ Route::get('groupboon', function() {
     /*return DB::table('boons')
              ->select('*')
              ->groupBy('user_id')->pluck('user_id')->paginate(10);*/
-    return        DB::table('boons')
+    return        DB::table('boons')->with('user')
                  ->select('user_id', DB::raw('max(boonTime) as boonTime'))
-                 ->groupBy('user_id')
-                 ->get();
+                 ->groupBy('user_id')->orderBy('boonTime','desc')
+                 ->paginate(10);
     //return   Boon::paginate(10)->groupBy('user_id');
 });
 
