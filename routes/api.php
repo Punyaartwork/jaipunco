@@ -1320,7 +1320,7 @@ Route::get('groupboon', function() {
              ->groupBy('user_id')->pluck('user_id')->paginate(10);*/
     return        DB::table('boons')
                  ->select('user_id', DB::raw('max(boonTime) as boonTime'))
-                 ->groupBy('user_id')->orderBy('boonTime','desc')->with('user')
+                 ->groupBy('user_id')->orderBy('boonTime','desc')
                  ->paginate(10);
     //return   Boon::paginate(10)->groupBy('user_id');
 });
