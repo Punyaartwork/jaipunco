@@ -1319,7 +1319,7 @@ Route::get('groupboon', function() {
              ->select('*')
              ->groupBy('user_id')->pluck('user_id')->paginate(10);*/
     return        DB::table('boons')
-                 ->select('user_id as id', DB::raw('max(boonTime) as boonTime'),'users.name','users.profile','users.detail','users.followers','users.following')
+                 ->select('user_id as id', DB::raw('max(boonTime) as boonTime'), DB::raw('max(id) as boon_id'),'users.name','users.profile','users.detail','users.followers','users.following')
                  ->join('users','user_id','=','users.id')
                  ->groupBy('user_id')->orderBy('boonTime','desc')
                  ->paginate(10);
