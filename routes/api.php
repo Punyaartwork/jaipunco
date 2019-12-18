@@ -1360,6 +1360,7 @@ Route::post('boons', function(Request $request) {
     }else{
         $merit = Merit::find($existing_merit->id);
         $merit->meritItem += 1;
+        $ToBoonView = $merit->meritItem;
         $merit->meritTime = time();
         $merit->save();
     }
@@ -1379,7 +1380,7 @@ Route::post('boons', function(Request $request) {
         'boonForm' => 0,
         'boonLike' => 0,
         'boonComment' => 0,
-        'boonView' => 0,
+        'boonView' => $ToBoonView,
         'boonShare' => 0,
         'boonTime'  => time(),
         'boon_ip'=> $request->getClientIp(),
