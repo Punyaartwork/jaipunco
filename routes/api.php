@@ -1690,7 +1690,7 @@ Route::get('rooms/{id}', function($id) {
 
 Route::post('rooms', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();  
-    $upload = User::find($user[0]->id);   
+    $update = User::find($user[0]->id);   
     return Room::create([
         'user_id'=> $update->id,
         'good_id'=> $request->good_id,
