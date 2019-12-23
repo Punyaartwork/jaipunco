@@ -1689,8 +1689,17 @@ Route::get('rooms/{id}', function($id) {
 });
 
 Route::post('rooms', function(Request $request) {
-    //return User::create($request->all);
-    return  $request->post();
+    $user = User::where('api_token',$request->api)->get();  
+    $upload = User::find($user[0]->id);   
+    return Room::create([
+        'user_id'=> $update->id,
+        'good_id'=> $request->good_id,
+        'room'=> $request->room,
+        'roomLike'=> 0,
+        'roomType'=> 1,
+        'roomTime'=>time(),
+    ]);
+    //return  $request->post();
 });
 
 Route::put('rooms/{id}', function(Request $request, $id) {
