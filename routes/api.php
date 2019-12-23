@@ -20,6 +20,7 @@ use App\Merit;
 use App\Boon;
 use App\Join;
 use App\Admire;
+use App\Room;
 use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
@@ -1671,4 +1672,35 @@ Route::get('fcmtest', function() {
 
     // return Array (key:token, value:error) - in production you should remove from your database the tokens
     $downstreamResponse->tokensWithError();
+});
+/*
+|--------------------------------------------------------------------------
+| GET DATA API Routes Room
+|--------------------------------------------------------------------------
+*/
+Route::get('rooms', function() {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Room::all();
+});
+ 
+Route::get('rooms/{id}', function($id) {
+    return Room::find($id);
+});
+
+Route::post('rooms', function(Request $request) {
+    //return User::create($request->all);
+    return  $request->post();
+});
+
+Route::put('rooms/{id}', function(Request $request, $id) {
+    $room = Room::findOrFail($id);
+    $room->update($request->all());
+
+    return $room;
+});
+
+Route::delete('rooms/{id}', function($id) {
+    Room::find($id)->delete();
+    return 204;
 });
