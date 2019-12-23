@@ -1688,6 +1688,18 @@ Route::get('rooms/{id}', function($id) {
     return Room::find($id);
 });
 
+Route::get('feedroom/{id}', function($id) {
+    return Room::with('user')->orderBy('id','desc')->where('good_id',$id)->paginate(10);;
+});
+
+Route::get('lastroom', function() {
+    return Room::latest('id')->first();
+});
+
+Route::get('updateroom/{id}', function($id) {
+    return Room::with('user')->orderBy('id','desc')->where('id','>',$id)->paginate(10);;
+});
+
 Route::post('rooms', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();  
     $update = User::find($user[0]->id);   
@@ -1705,7 +1717,6 @@ Route::post('rooms', function(Request $request) {
 Route::put('rooms/{id}', function(Request $request, $id) {
     $room = Room::findOrFail($id);
     $room->update($request->all());
-
     return $room;
 });
 
