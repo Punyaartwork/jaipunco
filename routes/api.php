@@ -1692,12 +1692,12 @@ Route::get('feedroom/{id}', function($id) {
     return Room::with('user')->orderBy('id','desc')->where('good_id',$id)->paginate(10);;
 });
 
-Route::get('lastroom', function() {
-    return Room::latest('id')->first();
+Route::get('lastroom/{good_id}', function($good_id) {
+    return Room::latest('id')->where('good_id',$good_id)->first();
 });
 
-Route::get('updateroom/{id}', function($id) {
-    return Room::with('user')->orderBy('id','desc')->where('id','>',$id)->paginate(10);;
+Route::get('updateroom/{id}/{good_id}', function($id,$good_id) {
+    return Room::with('user')->orderBy('id','desc')->where('id','>',$id)->where('good_id',$good_id)->paginate(10);;
 });
 
 Route::post('rooms', function(Request $request) {
