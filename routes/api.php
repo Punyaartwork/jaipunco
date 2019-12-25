@@ -1364,7 +1364,9 @@ Route::get('feedboongoodidphotos_goodid/{id}', function($id) {
     // this will return a JSON structure. This will be cleaned up later.
     return Boon::with('user')->with('good')->with('join')->with('like')->where('boonPhoto','!=','0')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
 });
-
+Route::get('searchboons/{text}', function($text) {
+    return Boon::with('user')->with('good')->with('join')->with('like')->where('boon', 'LIKE', '%'.$text.'%')->orderBy('id','desc')->paginate(10);
+});
 Route::post('boons', function(Request $request) {
 
     $userget = User::where('api_token',$request->api)->get();  
