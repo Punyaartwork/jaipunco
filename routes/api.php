@@ -1302,10 +1302,6 @@ Route::get('feedboontop', function() {
     return Boon::with('user')->with('good')->with('join')->with('like')->where('boonJoin','!=',0)->orderBy('boonJoin','desc')->paginate(10);
 });
 
-Route::get('feedboongoodid/{id}', function($id) {
-    return Boon::with('user')->with('good')->with('like')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
-});
-
 Route::get('feedboonuser/{id}/{user_id}', function($id,$user_id) {
     return Boon::with('user')->with('like')->where('good_id',$id)->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
 });
@@ -1341,6 +1337,32 @@ Route::get('lastboontop', function() {
 
 Route::get('boonuser/{user_id}', function($user_id) {
     return Boon::with('user')->with('good')->with('join')->with('like')->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
+});
+//*********************** GOOD_ID  ***********************************/
+Route::get('lastboon_goodid/{id}', function($id)  {
+    return Boon::latest('id')->where('good_id',$id)->first();
+});
+
+Route::get('lastboonphoto_goodid/{id}', function($id)  {
+    return Boon::latest('id')->where('good_id',$id)->where('boonPhoto','!=','0')->first();
+});
+
+Route::get('lastboontop_goodid/{id}', function($id)  {
+    return Boon::latest('boonJoin')->where('good_id',$id)->where('boonJoin','!=',0)->first();
+});
+
+Route::get('feedboon_goodid/{id}', function($id) {
+    return Boon::with('user')->with('good')->with('like')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
+});
+
+Route::get('feedboonlike_goodid/{id}', function($id) {
+    return Boon::with('user')->with('good')->with('like')->where('good_id',$id)->orderBy('boonJoin','desc')->paginate(10);
+});
+
+Route::get('feedboongoodidphotos_goodid/{id}', function($id) {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Boon::with('user')->with('good')->with('join')->with('like')->where('boonPhoto','!=','0')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::post('boons', function(Request $request) {
