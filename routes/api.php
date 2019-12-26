@@ -1224,12 +1224,16 @@ Route::delete('goods/{id}', function($id) {
 });
 
 Route::get('gooddistance/{lat}/{lng}', function($lat,$lng) {
-    $sqlDistance = DB::raw('( 111.045 * acos( cos( radians(' . $lat . ') ) 
+    $sqlDistance =  DB::raw('( 6371 * acos( cos( radians(' . $lat . ') ) 
+        * cos( radians( goodLatitude ) ) 
+        * cos( radians( goodLongitude ) - radians(' . $lng  . ' ) + sin( radians(' . $lat . ') ) 
+        * sin( radians( goodLatitude ) ) ) )');
+    /*$sqlDistance = DB::raw('( 111.045 * acos( cos( radians(' . $lat . ') ) 
        * cos( radians( goodLatitude ) ) 
        * cos( radians( goodLongitude ) 
        - radians(' . $lng  . ') ) 
        + sin( radians(' . $lat  . ') ) 
-       * sin( radians( goodLatitude ) ) ) )');
+       * sin( radians( goodLatitude ) ) ) )');*/
     return DB::table('goods')
     ->select('*')
     ->selectRaw("{$sqlDistance} AS distance")
