@@ -15,7 +15,7 @@ class AddgoodlatitudeToGoods extends Migration
     {
         Schema::table('goods', function (Blueprint $table) {
             $table->float('goodLatitude', 9, 7); 
-            $table->float('goodLongitude', 9, 7); 
+            $table->float('goodLongitude', 10, 7); 
             $table->float('goodDistance', 5, 3);   
             $table->integer('goodOnline');     
         });
