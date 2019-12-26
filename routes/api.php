@@ -1234,7 +1234,7 @@ Route::get('gooddistance/{lat}/{lng}', function($lat,$lng) {
     ->select('*')
     ->selectRaw("{$sqlDistance} AS distance")
     ->orderBy('distance')
-    ->get();
+    ->paginate(4);
 });
 /*
 |--------------------------------------------------------------------------
