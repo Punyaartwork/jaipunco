@@ -49,7 +49,10 @@ class GoodController extends Controller
             'goodItem'=>0, 
             'goodTags'=>0,
             'goodTime'=>time(),    
-            'good_ip'=>$request->getClientIp(),                                    
+            'good_ip'=>$request->getClientIp(),    
+            'goodLatitude'=>$request->get('goodLatitude'),  
+            'goodLongitude'=>$request->get('goodLongitude'),  
+            'goodOnline'=>0,                                    
          ]
          );
          $good->save();
@@ -99,7 +102,9 @@ class GoodController extends Controller
          $good ->goodBg = $request->get('goodBg');
          $good ->goodColor = $request->get('goodColor');
          $good ->goodItem = $request->get('goodItem');    
-         $good ->goodTags = $request->get('goodTags');        
+         $good ->goodTags = $request->get('goodTags');  
+         $good ->goodLatitude = $request->get('goodLatitude');  
+         $good ->goodLongitude = $request->get('goodLongitude');      
          $good ->save();
          return redirect()->route('good.index')->with('success','!!!!!!EDITED!!!!!!');     
      }

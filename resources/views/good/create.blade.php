@@ -27,6 +27,16 @@
       <label for="email">goodDetail:</label>
       <input input type="text" name="goodDetail" class="form-control" id="email" placeholder="Enter goodDetail" >
     </div>
+
+    <div class="type">
+      <label for="email">goodLatitude:</label>
+      <input input type="text" name="goodLatitude" class="form-control" id="email" placeholder="Enter goodLatitude" >
+    </div>
+
+    <div class="type">
+      <label for="email">goodLongitude:</label>
+      <input input type="text" name="goodLongitude" class="form-control" id="email" placeholder="Enter goodLongitude" >
+    </div>
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

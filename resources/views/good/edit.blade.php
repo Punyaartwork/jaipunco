@@ -51,6 +51,16 @@
       <label for="pwd">goodTags:</label>
       <input type="text" class="form-control" id="pwd" placeholder="Enter goodTags" name="goodTags"  value="{{$good->goodTags}}">
     </div>
+
+    <div class="form-group">
+      <label for="pwd">goodLatitude:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter goodLatitude" name="goodLatitude"  value="{{$good->goodLatitude}}">
+    </div>
+
+    <div class="form-group">
+      <label for="pwd">goodLongitude:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter goodLongitude" name="goodLongitude"  value="{{$good->goodLongitude}}">
+    </div>
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>
     <input type="hidden" name="_method" value="PATCH">
