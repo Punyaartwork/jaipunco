@@ -37,6 +37,11 @@
       <label for="email">goodLongitude:</label>
       <input input type="text" name="goodLongitude" class="form-control" id="email" placeholder="Enter goodLongitude" >
     </div>
+
+    <div class="type">
+      <label for="email">goodDistance:</label>
+      <input input type="text" name="goodDistance" class="form-control" id="email" placeholder="Enter goodDistance" >
+    </div>
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

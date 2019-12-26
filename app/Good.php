@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Good extends Model
 {
-    protected $fillable=['good','goodPhoto','goodDetail','goodBg','goodColor','goodItem','goodTags','goodTime','good_ip','goodLatitude','goodLongitude','goodOnline']; 
+    protected $fillable=['good','goodPhoto','goodDetail','goodBg','goodColor','goodItem','goodTags','goodTime','good_ip','goodLatitude','goodLongitude','goodDistance','goodOnline']; 
 }

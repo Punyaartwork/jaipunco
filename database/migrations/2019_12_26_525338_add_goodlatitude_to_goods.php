@@ -14,8 +14,9 @@ class AddgoodlatitudeToGoods extends Migration
     public function up()
     {
         Schema::table('goods', function (Blueprint $table) {
-            $table->integer('goodLatitude');     
-            $table->integer('goodLongitude');   
+            $table->float('goodLatitude');  
+            $table->float('goodLongitude');
+            $table->float('goodDistance');   
             $table->integer('goodOnline');     
         });
     }
@@ -30,6 +31,7 @@ class AddgoodlatitudeToGoods extends Migration
         Schema::table('goods', function (Blueprint $table) {
             $table->dropColumn('goodLatitude');  
             $table->dropColumn('goodLongitude'); 
+            $table->dropColumn('goodDistance'); 
             $table->dropColumn('goodOnline');              
         });
     }
