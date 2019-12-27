@@ -1638,8 +1638,17 @@ Route::delete('admires/{id}', function($id) {
     return 204;
 });
 
-Route::get('feedadmire/{id}', function($id) {
-    return Admire::with('user')->orderBy('id','desc')->where('user_id',$id)->paginate(10);;
+Route::get('feedadmire/{id}/{api}', function($id,$api) {
+    $sender = User::where('api_token',$api)->get();
+    return Admire::with('user')->orderBy('id','desc')
+    ->where('user_id',$id)
+    ->where('sender_id',$sender[0]->id)
+    ->paginate(10);
+});
+
+Route::get('useradmire/{api}', function($api) {
+    $user = User::where('api_token',$api)->get();
+    return Admire::with('user')->orderBy('id','desc')->where('user_id',$user[0]->id)->paginate(10);;
 });
 
 
