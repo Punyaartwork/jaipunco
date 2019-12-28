@@ -1208,7 +1208,7 @@ Route::get('goods/{id}', function($id) {
 
 Route::get('feedgoods', function() {
     return Good::with('boon')->paginate(10)->map(function ($query) {
-        $query->setRelation('boon', $query->boon->take(10)->latest('id'));
+        $query->setRelation('boon', $query->boon->take(10));
         return $query;
     });
 });
