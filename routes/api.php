@@ -1207,9 +1207,11 @@ Route::get('goods/{id}', function($id) {
 });
 
 Route::get('feedgoods', function() {
-    return Good::with(['boon'=>function($query) {
-        return $query->take(10);
-    }])->orderBy('goodItem','desc')->paginate(10);
+    $good = Good::with('boon')->paginate(10)->map(function($good) {
+        $good->boon = $good->boon->take(5);
+        return $good;
+    });
+    return $good; 
 });
 
 Route::post('goods', function(Request $request) {
