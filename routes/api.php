@@ -1206,7 +1206,7 @@ Route::get('goods/{id}', function($id) {
     return Good::find($id);
 });
 
-Route::get('feedgoods', function($id) {
+Route::get('feedgoods', function() {
     return Good::with('boon')->orderBy('goodItem','desc')->paginate(10);
 });
 
@@ -1414,7 +1414,7 @@ Route::post('boons', function(Request $request) {
     $good = Good::find($request->good_id); 
     $good->goodItem += 1;
     $good->save();
-    
+
     return Boon::create([
         'user_id'=> $userget[0]->id,
         'good_id'=> $request->good_id,
