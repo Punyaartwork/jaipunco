@@ -1207,11 +1207,11 @@ Route::get('goods/{id}', function($id) {
 });
 
 Route::get('feedgoods', function() {
-    $good = Good::with('boon')->paginate(10)->map(function($good) {
+    $goods = Good::with('boon')->paginate(10)->map(function($good) {
         $good->boon = $good->boon->take(5);
         return $good;
     });
-    return $good; 
+    return $goods; 
 });
 
 Route::post('goods', function(Request $request) {
