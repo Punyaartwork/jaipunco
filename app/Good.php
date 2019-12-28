@@ -9,6 +9,6 @@ class Good extends Model
     protected $fillable=['good','goodPhoto','goodDetail','goodBg','goodColor','goodItem','goodTags','goodTime','good_ip','goodLatitude','goodLongitude','goodDistance','goodOnline']; 
     public function boon()
     {
-        return $this->hasMany('App\Boon')->take(5);
+        return $this->hasMany('App\Boon');
     } 
 }
