@@ -166,6 +166,18 @@ Route::get('users/{api}', function($api) {
     return $user;
 });
 
+Route::get('updateonline/{api}', function($api) {
+    $update = User::where('api_token',$api)->get();
+    $user = User::find($update[0]->id);
+    $user->online = time();
+    $user->save();
+    return $user;
+});
+
+Route::get('searchname/{text}', function($text) {
+    return User::where('name', 'LIKE', '%'.$text.'%')->paginate(10);
+});
+
 Route::get('showuser/{id}', function($id) {
     $user = User::find($id);
     return $user;
@@ -631,6 +643,12 @@ Route::get('showfollowing/{id}', function($id) {
    return Follow::where('user_id',$id)->with('fuser')->paginate(10);
 });
 
+Route::get('showfriends/{api}', function($api) {
+    $update = User::where('api_token',$api)->get();
+    $user = User::find( $update[0]->id);  
+    $id = $user->id;  
+   return Follow::where('user_id',$id)->with('fuser')->paginate(10);
+});
 
 Route::get('showfollower/{id}', function($id) {
     $user = User::find( $id );  
