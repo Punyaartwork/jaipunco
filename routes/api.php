@@ -1469,6 +1469,10 @@ Route::delete('boons/{id}', function($id) {
     return 204;
 });
 
+Route::get('boonweek/{user_id}/{start}/{end}', function($user_id,$start,$end) {
+    return Boon::where('user_id',$user_id)->where('boonTime','>',$start)->where('boonTime','<=',$end)->orderBy('boonTime','desc')->get();
+});
+
 /*
 |--------------------------------------------------------------------------
 | GET DATA API Routes Join
