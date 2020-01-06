@@ -1897,13 +1897,12 @@ Route::get('photos/{id}', function($id) {
 });
 
 Route::post('photos', function(Request $request) {
-    $results = $request->photos;
-    /*foreach ($results as $result){ 
+    /*$results = $request->photos;
+    foreach ($results as $result){ 
         echo $result;
     }*/
-    
     //return User::create($request->all);
-    return  $results;
+    return  $request->post();
 });
 
 Route::put('photos/{id}', function(Request $request, $id) {
