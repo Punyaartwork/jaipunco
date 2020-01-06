@@ -38,9 +38,9 @@
         <td>{{$row['locatLongitude']}}  </td>
         <td>{{$row['locatDistance']}}  </td>     
         <td>{{$row['locatTime']}}  </td>               
-        <td> <a href="{{action('locatController@edit',$row['id'])}}">edit</a></td> 
+        <td> <a href="{{action('LocatController@edit',$row['id'])}}">edit</a></td> 
         <td>
-        <form method="post" class="detele_form"action="{{action('locatController@destroy',$row['id'])}}">
+        <form method="post" class="detele_form"action="{{action('LocatController@destroy',$row['id'])}}">
         {{csrf_field()}}
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit">DETELE</button>
