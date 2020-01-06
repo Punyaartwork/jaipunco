@@ -1902,7 +1902,7 @@ Route::post('photos', function(Request $request) {
         echo $result;
     }*/
     //return User::create($request->all);
-    return  $request->photos();
+    return  $request->post();
 });
 
 Route::put('photos/{id}', function(Request $request, $id) {
