@@ -65,6 +65,14 @@
       <label for="pwd">goodDistance:</label>
       <input type="text" class="form-control" id="pwd" placeholder="Enter goodDistance" name="goodDistance"  value="{{$good->goodDistance}}">
     </div>
+    <div class="form-group">
+      <label for="pwd">locat_id:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter locat_id" name="locat_id"  value="{{$good->locat_id}}">
+    </div>
+    <div class="form-group">
+      <label for="pwd">status_id:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter status_id" name="status_id"  value="{{$good->status_id}}">
+    </div>
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>
     <input type="hidden" name="_method" value="PATCH">

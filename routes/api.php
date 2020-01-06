@@ -21,6 +21,8 @@ use App\Boon;
 use App\Join;
 use App\Admire;
 use App\Room;
+use App\Locat;
+use App\Photo;
 use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
@@ -1829,3 +1831,68 @@ Route::delete('rooms/{id}', function($id) {
     Room::find($id)->delete();
     return 204;
 });
+
+/*
+|--------------------------------------------------------------------------
+| GET DATA API Routes Locat
+|--------------------------------------------------------------------------
+*/
+Route::get('locats', function() {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Locat::all();
+});
+ 
+Route::get('locats/{id}', function($id) {
+    return Locat::find($id);
+});
+
+Route::post('locats', function(Request $request) {
+    //return User::create($request->all);
+    return  $request->post();
+});
+
+Route::put('locats/{id}', function(Request $request, $id) {
+    $locat = Locat::findOrFail($id);
+    $locat->update($request->all());
+
+    return $locat;
+});
+
+Route::delete('locats/{id}', function($id) {
+    Locat::find($id)->delete();
+    return 204;
+});
+
+/*
+|--------------------------------------------------------------------------
+| GET DATA API Routes Photo
+|--------------------------------------------------------------------------
+*/
+Route::get('photos', function() {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Photo::all();
+});
+ 
+Route::get('photos/{id}', function($id) {
+    return Photo::find($id);
+});
+
+Route::post('photos', function(Request $request) {
+    //return User::create($request->all);
+    return  $request->post();
+});
+
+Route::put('photos/{id}', function(Request $request, $id) {
+    $photo = Photo::findOrFail($id);
+    $photo->update($request->all());
+
+    return $photo;
+});
+
+Route::delete('photos/{id}', function($id) {
+    Photo::find($id)->delete();
+    return 204;
+});
+

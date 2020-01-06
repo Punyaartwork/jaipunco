@@ -24,6 +24,7 @@ Route::get('/upload', function () {
 });
 Route::resource('img','DrawController');
 Route::resource('good','GoodController');
+Route::resource('locat','LocatController');
 Route::get('testnotification', function() {
 
 

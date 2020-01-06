@@ -20,7 +20,9 @@
         <th>goodTags</th>   
         <th>goodLatitude</th>  
         <th>goodLongitude</th> 
-        <th>goodDistance</th>    
+        <th>goodDistance</th>  
+        <th>locat_id</th> 
+        <th>status_id</th>    
         <th><b>Edit</b></th>  
         <th><b>Deleie</b></th>                                                
       </tr>
@@ -39,7 +41,9 @@
         <td>{{$row['goodTags']}}  </td>  
         <td>{{$row['goodLatitude']}}  </td>                       
         <td>{{$row['goodLongitude']}}  </td>
-        <td>{{$row['goodDistance']}}  </td>                       
+        <td>{{$row['goodDistance']}}  </td>     
+        <td>{{$row['locat_id']}}  </td>
+        <td>{{$row['status_id']}}  </td>                    
         <td> <a href="{{action('GoodController@edit',$row['id'])}}">edit</a></td> 
         <td>
         <form method="post" class="detele_form"action="{{action('GoodController@destroy',$row['id'])}}">
