@@ -1227,6 +1227,10 @@ Route::get('goods/{id}', function($id) {
     return Good::find($id);
 });
 
+Route::get('feedlocatgoods/{id}', function($id) {
+    return Good::where('locat_id',$id)->latest('goodItem')->get();
+});
+
 Route::get('feedgoods', function() {
     return Good::with('boon')->get()->map(function ($query) {
         $query->setRelation('boon', $query->boon->take(3));
@@ -1864,6 +1868,19 @@ Route::delete('locats/{id}', function($id) {
     return 204;
 });
 
+Route::get('locatdistance/{lat}/{lng}', function($lat,$lng) {
+    $sqlDistance = DB::raw('( 6371 * acos( cos( radians(' . $lat . ') ) 
+       * cos( radians( locatLatitude ) ) 
+       * cos( radians( locatLongitude ) 
+       - radians(' . $lng  . ') ) 
+       + sin( radians(' . $lat  . ') ) 
+       * sin( radians( locatLatitude ) ) ) )');
+    return DB::table('locats')
+    ->select('*')
+    ->selectRaw("{$sqlDistance} AS distance")
+    ->orderBy('distance')
+    ->paginate(4);
+});
 /*
 |--------------------------------------------------------------------------
 | GET DATA API Routes Photo
