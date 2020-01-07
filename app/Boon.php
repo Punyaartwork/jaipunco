@@ -28,4 +28,8 @@ class Boon extends Model
     {
         return $this->hasMany('App\Comment','card_id')->with('user')->whereNull('parent_id')->where('comments.commentType', '=', 1);
     }  
+    public function photo()
+    {
+        return $this->belongsTo('App\Photo', 'boon_id');
+    } 
 }

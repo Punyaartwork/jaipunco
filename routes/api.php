@@ -163,6 +163,15 @@ Route::get('changedetail/{detail}/{api}', function($detail,$api) {
     return $user;
 });
 
+Route::get('changestatus/{api}/{status}/{status_id}',function($api,$status,$status_id) {
+    $user = User::where('api_token',$api)->get();
+    $upload = User::find($user[0]->id);        
+    $upload->status = $status;
+    $upload->status_id = $status_id;
+    $upload->save();
+    return $user;
+});
+
 Route::get('users/{api}', function($api) {
     $user = User::where('api_token',$api)->get();
     return $user;
@@ -601,7 +610,7 @@ Route::get('boonfollow/{api}', function($api) {
         $query->select('fuser_id')
         ->from('follows')
         ->where('user_id', $id)->where('deleted_at', null);
-    })->with('user')->with('good')->orderBy('id','desc')->paginate(10);
+    })->with('user')->with('good')->with('photo')->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('isfollow/{api}', function($api) {
@@ -1398,20 +1407,20 @@ Route::get('lastboontop_goodid/{id}', function($id)  {
 });
 
 Route::get('feedboon_goodid/{id}', function($id) {
-    return Boon::with('user')->with('good')->with('like')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('like')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('feedboonlike_goodid/{id}', function($id) {
-    return Boon::with('user')->with('good')->with('like')->where('good_id',$id)->orderBy('boonJoin','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('like')->where('good_id',$id)->orderBy('boonJoin','desc')->paginate(10);
 });
 
 Route::get('feedboongoodidphotos_goodid/{id}', function($id) {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Boon::with('user')->with('good')->with('join')->with('like')->where('boonPhoto','!=','0')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('boonPhoto','!=','0')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
 });
 Route::get('searchboons/{text}', function($text) {
-    return Boon::with('user')->with('good')->with('join')->with('like')->where('boon', 'LIKE', '%'.$text.'%')->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('boon', 'LIKE', '%'.$text.'%')->orderBy('id','desc')->paginate(10);
 });
 Route::post('boons', function(Request $request) {
 
@@ -1497,7 +1506,7 @@ Route::get('joins/{id}', function($id) {
 Route::post('joins', function(Request $request) {
     $user = User::where('api_token',$request->api)->get();
     $update = User::find($user[0]->id);
-    $update->boons += 1;
+  //  $update->boons += 1;
     $update->joining += 1;
     $update->save();
 
@@ -1506,10 +1515,10 @@ Route::post('joins', function(Request $request) {
     $boon->save();
 
     $uboon = User::find($boon->user_id);
-    $uboon->boons +=1;
+  //  $uboon->boons +=1;
     $uboon->joiner +=1;
     $uboon->save();
-
+/*
     $existing_merit = Merit::where('good_id',$request->good_id)->where('user_id',$user[0]->id)->first();
     if (is_null($existing_merit)) {
         Merit::create([
@@ -1527,7 +1536,6 @@ Route::post('joins', function(Request $request) {
         $merit->meritTime = time();
         $merit->save();
     }
-
 
     $uexisting_merit = Merit::where('good_id',$request->good_id)->where('user_id',$uboon->id)->first();
     if (is_null($uexisting_merit)) {
@@ -1547,7 +1555,7 @@ Route::post('joins', function(Request $request) {
         $umerit->save();
     }
 
-
+    */
     if (Notification::where('user_id', '=', $uboon->id)->where('item_id', '=', $request->boon_id)->where('itemType', '=', 4)->exists()) {
         Notification::where('user_id', '=', $uboon->id)->where('item_id', '=', $request->boon_id)->where('itemType', '=', 4)->first()->delete();
         Notification::create([
