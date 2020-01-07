@@ -1342,27 +1342,27 @@ Route::get('boons', function() {
 Route::get('feedboons', function() {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Boon::with('user')->with('good')->with('join')->with('like')->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->orderBy('id','desc')->paginate(10);
 });
  
 Route::get('feedboonphotos', function() {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Boon::with('user')->with('good')->with('join')->with('like')->where('boonPhoto','!=','0')->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('boonPhoto','!=','0')->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('feedboontop', function() {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Boon::with('user')->with('good')->with('join')->with('like')->where('boonJoin','!=',0)->orderBy('boonJoin','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('boonJoin','!=',0)->orderBy('boonJoin','desc')->paginate(10);
 });
 
 Route::get('feedboonuser/{id}/{user_id}', function($id,$user_id) {
-    return Boon::with('user')->with('like')->where('good_id',$id)->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('like')->with('photo')->where('good_id',$id)->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('boons/{id}', function($id) {
-    return Boon::with('good')->with('user')->find($id);
+    return Boon::with('good')->with('photo')->with('user')->find($id);
 });
 
 Route::get('groupboon', function() {
