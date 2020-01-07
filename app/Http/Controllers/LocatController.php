@@ -42,9 +42,9 @@ class LocatController extends Controller
          $locat = new locat(
          [
             'locat'=>$request->get('locat'),
-            'locatPhoto'=>0,  
-            'locatBg'=>0,  
-            'locatColor'=>0,  
+            'locatPhoto'=>$request->get('locatPhoto'),  
+            'locatBg'=>'#fff',  
+            'locatColor'=>'#000',  
             'locatLatitude'=>$request->get('locatLatitude'),  
             'locatLongitude'=>$request->get('locatLongitude'),  
             'locatDistance'=>$request->get('locatDistance'),  

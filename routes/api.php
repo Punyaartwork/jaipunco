@@ -1265,7 +1265,7 @@ Route::get('gooddistance/{lat}/{lng}', function($lat,$lng) {
     return DB::table('goods')
     ->select('*')
     ->selectRaw("{$sqlDistance} AS distance")
-    ->orderBy('distance')
+    ->orderBy('distance')->where('status_id',0)
     ->paginate(4);
 });
 /*
@@ -1898,7 +1898,10 @@ Route::get('photos/{id}', function($id) {
 
 Route::post('photos', function(Request $request) {
     //return User::create($request->all);
-    return  $request->post();
+    return  Photo::create([
+        'boon_id'=> $request->boon_id,
+        'photo'=> $request->photo,
+    ]);
 });
 
 Route::put('photos/{id}', function(Request $request, $id) {
