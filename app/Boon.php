@@ -30,6 +30,6 @@ class Boon extends Model
     }  
     public function photo()
     {
-        return $this->belongsTo('App\Photo', 'boon_id');
+        return $this->hasMany('App\Photo', 'boon_id');
     } 
 }
