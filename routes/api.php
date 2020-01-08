@@ -610,7 +610,7 @@ Route::get('boonfollow/{api}', function($api) {
         $query->select('fuser_id')
         ->from('follows')
         ->where('user_id', $id)->where('deleted_at', null);
-    })->with('user')->with('good')->with('photo')->orderBy('id','desc')->paginate(10);
+    })->with('user')->with('good')->with('join')->with('like')->with('photo')->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('isfollow/{api}', function($api) {
@@ -1411,11 +1411,11 @@ Route::get('lastboontop_goodid/{id}', function($id)  {
 });
 
 Route::get('feedboon_goodid/{id}', function($id) {
-    return Boon::with('user')->with('good')->with('photo')->with('like')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('like')->with('join')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('feedboonlike_goodid/{id}', function($id) {
-    return Boon::with('user')->with('good')->with('photo')->with('like')->where('good_id',$id)->orderBy('boonJoin','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('like')->with('join')->where('good_id',$id)->orderBy('boonJoin','desc')->paginate(10);
 });
 
 Route::get('feedboongoodidphotos_goodid/{id}', function($id) {
