@@ -1395,7 +1395,7 @@ Route::get('lastboontop', function() {
 });
 
 Route::get('boonuser/{user_id}', function($user_id) {
-    return Boon::with('user')->with('good')->with('join')->with('like')->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
 });
 //*********************** GOOD_ID  ***********************************/
 Route::get('lastboon_goodid/{id}', function($id)  {
