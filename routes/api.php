@@ -1237,7 +1237,11 @@ Route::get('goods/{id}', function($id) {
 });
 
 Route::get('feedlocatgoods/{id}', function($id) {
-    return Good::where('locat_id',$id)->latest('goodItem')->get();
+    return Good::where('locat_id',$id)->where('status_id',0)->latest('goodItem')->get();
+});
+
+Route::get('feedlocatgoodsvpeace/{id}', function($id) {
+    return Good::where('locat_id',$id)->whereIn('status_id', array(0,1))->latest('goodItem')->get();
 });
 
 Route::get('feedgoods', function() {
