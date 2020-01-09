@@ -292,7 +292,11 @@ Route::get('feedusermerit', function() {
 });
 
 Route::get('introfollow', function() {
-    return User::orderBy('followers','desc')->paginate(10);;
+    return User::orderBy('followers','desc')->paginate(10);
+});
+
+Route::get('dhamma08', function() {
+    return User::where('watyear',1)->count();
 });
 /*
 |--------------------------------------------------------------------------
