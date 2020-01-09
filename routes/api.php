@@ -304,7 +304,7 @@ Route::get('dhamma08', function() {
             $optionBuilder->setTimeToLive(60*20);
         
             $notificationBuilder = new PayloadNotificationBuilder('ขอ 1 นาที ให้ธรรมะ');
-            $notificationBuilder->setBody('กำลังทำบุญ ณ ที่ใดที่หนึ่ง')
+            $notificationBuilder->setBody('ทุก 1 ชั่วโมง ขอ 1 นาที เพื่อหยุดใจ นึกถึงดวง องค์พระ หรือทำใจนิ่งๆ ว่างๆ ที่ศูนย์กลางกายฐานที่ 7')
                                 ->setSound('default');
         
             $dataBuilder = new PayloadDataBuilder();
