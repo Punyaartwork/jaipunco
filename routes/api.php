@@ -1493,7 +1493,7 @@ Route::get('boonweek/{user_id}/{start}/{end}', function($user_id,$start,$end) {
 });
 
 Route::get('feedboonday/{user_id}/{start}/{end}', function($user_id,$start,$end) {
-    return Boon::where('user_id',$user_id)->where('boonTime','>',$start)->where('boonTime','<=',$end)->orderBy('boonTime','desc')->get();
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('user_id',$user_id)->where('boonTime','>',$start)->where('boonTime','<=',$end)->orderBy('boonTime','desc')->get();
 });
 /*
 |--------------------------------------------------------------------------
