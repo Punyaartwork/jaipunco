@@ -298,12 +298,12 @@ Route::get('introfollow', function() {
 Route::get('dhamma08', function() {
     $results = User::where('watyear',1)->get();  
     foreach ($results as $result){ 
-        $fuser = User::find($result->user_id);
+        $fuser = User::find($result->id);
         if(strlen($fuser->token) > 1){
             $optionBuilder = new OptionsBuilder();
             $optionBuilder->setTimeToLive(60*20);
         
-            $notificationBuilder = new PayloadNotificationBuilder($user[0]->name);
+            $notificationBuilder = new PayloadNotificationBuilder('ขอ 1 นาที ให้ธรรมะ');
             $notificationBuilder->setBody('กำลังทำบุญ ณ ที่ใดที่หนึ่ง')
                                 ->setSound('default');
         
