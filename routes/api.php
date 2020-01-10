@@ -244,7 +244,6 @@ Route::get('user/{id}/{api}', function($id,$api) {
                 ]);
             $user = User::find($id);
         }
-        /*
         if(strlen($user->token) > 1){
             $optionBuilder = new OptionsBuilder();
             $optionBuilder->setTimeToLive(60*20);
@@ -268,7 +267,7 @@ Route::get('user/{id}/{api}', function($id,$api) {
             $downstreamResponse->tokensToModify();
             $downstreamResponse->tokensToRetry();
             $downstreamResponse->tokensWithError();
-        }*/
+        }
     }else{
         $user = User::find($id);
     }
@@ -791,7 +790,7 @@ Route::get('like/{id}/bliked/{api}', function($id,$api) {
         ]);
         $boon->boonLike += 1;
         $merit->meritLike += 1;
-        if (Notification::where('user_id', '=', $boon->user_id)->where('item_id', '=', $id)->where('itemType', '=', 3)->exists()) {
+       /* if (Notification::where('user_id', '=', $boon->user_id)->where('item_id', '=', $id)->where('itemType', '=', 3)->exists()) {
             Notification::where('user_id', '=', $boon->user_id)->where('item_id', '=', $id)->where('itemType', '=', 3)->first()->delete();
             Notification::create([
                 'user_id' => $boon->user_id,
@@ -803,16 +802,16 @@ Route::get('like/{id}/bliked/{api}', function($id,$api) {
                 'sender' => $useronclick[0]->id,
             ]);
             // user found
-        }else{
-            Notification::create([
-                'user_id' => $boon->user_id,
-                'item_id' => $id,
-                'item' => 'กดอนุโมทนาบุญของคุณ',
-                'itemType' => 3,
-                'notificationStatus' => 0,
-                'notificationTime' => time(),
-                'sender' => $useronclick[0]->id,
-            ]);
+        }else{*/
+        Notification::create([
+            'user_id' => $boon->user_id,
+            'item_id' => $id,
+            'item' => 'กดอนุโมทนาบุญของคุณ',
+            'itemType' => 3,
+            'notificationStatus' => 0,
+            'notificationTime' => time(),
+            'sender' => $useronclick[0]->id,
+        ]);
             $user = User::find($boon->user_id); 
             if(strlen($user->token) > 1){
                 $optionBuilder = new OptionsBuilder();
@@ -838,26 +837,24 @@ Route::get('like/{id}/bliked/{api}', function($id,$api) {
                 $downstreamResponse->tokensToRetry();
                 $downstreamResponse->tokensWithError();
             }
-        }
+        //}
         $user = User::find($boon->user_id);        
         $user->notification += 1;
         $user->save();
         //$user->power += 5;                                             
     } else {
         
-        $boon->boonLike += 1;
-        $merit->meritLike += 1;
-        /*
-        if (is_null($existing_like->deleted_at)) {
-            $existing_like->delete();
-            $card->cardLike -= 1;   
-            //$user->power -= 5;                                 
+        
+        if (is_null($existing_boon->deleted_at)) {
+            $existing_boon->delete();
+            $boon->boonLike -= 1;   
+            $merit->meritLike -= 1;                               
         } else {
-            $existing_like->restore();
-            $card->cardLike += 1;
-            //$user->power += 5;                                 
+            $existing_boon->restore();
+            $boon->boonLike += 1;
+            $merit->meritLike += 1;                               
         }
-        */
+        
     }
     //$user->save();        
     $boon->save();     
