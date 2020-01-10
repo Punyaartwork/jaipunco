@@ -847,6 +847,9 @@ Route::get('like/{id}/bliked/{api}', function($id,$api) {
         
         if (is_null($existing_boon->deleted_at)) {
             $existing_boon->delete();
+            if (Notification::where('user_id', '=', $boon->user_id)->where('item_id', '=', $id)->where('itemType', '=', 3)->exists()) {
+                Notification::where('user_id', '=', $boon->user_id)->where('item_id', '=', $id)->where('itemType', '=', 3)->first()->delete();
+            }
             $boon->boonLike -= 1;   
             $merit->meritLike -= 1;                               
         } else {
