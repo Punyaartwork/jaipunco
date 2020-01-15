@@ -268,6 +268,9 @@ Route::get('user/{id}/{api}', function($id,$api) {
             $downstreamResponse->tokensToRetry();
             $downstreamResponse->tokensWithError();
         }
+        $ntcuser = User::find($user->id);        
+        $ntcuser->notification += 1;
+        $ntcuser->save();
     }else{
         $user = User::find($id);
     }
@@ -1022,11 +1025,17 @@ Route::get('notifications/{id}', function($id) {
 
 Route::get('shownotification/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
+    $ntcuser = User::find($user[0]->id);        
+    $ntcuser->notification = 0;
+    $ntcuser->save();
     return Notification::with('boon')->with('sender')->where('itemType',3)->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
 });
 
 Route::get('donotification/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
+    $ntcuser = User::find($user[0]->id);        
+    $ntcuser->notification = 0;
+    $ntcuser->save();
     return Notification::with('sender')->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
 });
 
@@ -1649,6 +1658,9 @@ Route::post('joins', function(Request $request) {
             $downstreamResponse->tokensToRetry();
             $downstreamResponse->tokensWithError();
         }
+        $ntcuser = User::find($uboon->id);        
+        $ntcuser->notification += 1;
+        $ntcuser->save();
     }
 
     //return User::create($request->all);
@@ -1737,6 +1749,9 @@ Route::post('admires', function(Request $request) {
         $downstreamResponse->tokensToRetry();
         $downstreamResponse->tokensWithError();
     }
+    $ntcuser = User::find($request->user_id);        
+    $ntcuser->notification += 1;
+    $ntcuser->save();
     return  Admire::create([
         'user_id'=> $request->user_id,
         'sender_id'=> $user[0]->id,
