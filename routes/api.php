@@ -163,6 +163,14 @@ Route::get('changedetail/{detail}/{api}', function($detail,$api) {
     return $user;
 });
 
+Route::get('changename/{name}/{api}', function($name,$api) {
+    $user = User::where('api_token',$api)->get();
+    $upload = User::find($user[0]->id);        
+    $upload->name = $name;
+    $upload->save();
+    return $user;
+});
+
 Route::get('changewatyear/{watyear}/{api}', function($watyear,$api) {
     $user = User::where('api_token',$api)->get();
     $upload = User::find($user[0]->id);        
