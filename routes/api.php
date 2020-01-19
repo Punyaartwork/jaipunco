@@ -1783,8 +1783,8 @@ Route::delete('admires/{id}', function($id) {
 Route::get('feedadmire/{id}/{api}', function($id,$api) {
     $sender = User::where('api_token',$api)->get();
     return Admire::with('user')->orderBy('id','desc')
-    ->where('user_id',$id)
-    ->where('sender_id',$sender[0]->id)
+    ->whereIn('user_id', array($id,$sender[0]->id))
+    ->whereIn('sender_id', array($sender[0]->id,$id))
     ->paginate(10);
 });
 
