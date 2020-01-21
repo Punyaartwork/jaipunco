@@ -1302,10 +1302,10 @@ Route::get('feedlocatgoodsvpeace/{id}', function($id) {
 });
 
 Route::get('feedgoods', function() {
-    $feed = Good::with('boon')->get()->map(function ($query) {
+    $feed = collect(Good::with('boon')->get()->map(function ($query) {
         $query->setRelation('boon', $query->boon->take(3));
         return $query;
-    });
+    }));
     $feed = $feed->orderBy('goodItem','desc');
     return $feed;
 });
