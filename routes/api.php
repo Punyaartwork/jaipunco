@@ -1305,7 +1305,7 @@ Route::get('feedgoods', function() {
     return Good::with('boon')->get()->map(function ($query) {
         $query->setRelation('boon', $query->boon->take(3));
         return $query;
-    })->sortBy('goodItem','desc');
+    })->sortBy('goodItem');
 });
 
 Route::post('goods', function(Request $request) {
