@@ -1970,7 +1970,7 @@ Route::get('locatpost/{lat}/{lng}', function($lat,$lng) {
     ->select('*')
     ->selectRaw("{$sqlDistance} AS distance")
     ->orderBy('distance')
-    ->first();
+    ->take(1);
 });
 /*
 |--------------------------------------------------------------------------
