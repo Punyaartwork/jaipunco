@@ -1959,6 +1959,19 @@ Route::get('locatdistance/{lat}/{lng}', function($lat,$lng) {
     ->orderBy('distance')
     ->paginate(4);
 });
+Route::get('locatpost/{lat}/{lng}', function($lat,$lng) {
+    $sqlDistance = DB::raw('( 6371 * acos( cos( radians(' . $lat . ') ) 
+       * cos( radians( locatLatitude ) ) 
+       * cos( radians( locatLongitude ) 
+       - radians(' . $lng  . ') ) 
+       + sin( radians(' . $lat  . ') ) 
+       * sin( radians( locatLatitude ) ) ) )');
+    return DB::table('locats')
+    ->select('*')
+    ->selectRaw("{$sqlDistance} AS distance")
+    ->orderBy('distance')
+    ->first();
+});
 /*
 |--------------------------------------------------------------------------
 | GET DATA API Routes Photo
