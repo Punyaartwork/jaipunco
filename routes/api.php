@@ -2007,7 +2007,7 @@ Route::delete('photos/{id}', function($id) {
 });
 
 Route::post('invitelocat', function(Request $request) {
- /*   //return Card::create($request->all);
+      //return Card::create($request->all);
     $user = User::where('api_token',$request->api)->get();
 
     $touser = User::find($request->user_id);
@@ -2016,7 +2016,7 @@ Route::post('invitelocat', function(Request $request) {
         $optionBuilder->setTimeToLive(60*20);
     
         $notificationBuilder = new PayloadNotificationBuilder($user[0]->name);
-        $notificationBuilder->setBody($request->admire)
+        $notificationBuilder->setBody('ชวนคุณไปทำบุญที่'.$request->locat)
                             ->setSound('default');
     
         $dataBuilder = new PayloadDataBuilder();
@@ -2040,12 +2040,12 @@ Route::post('invitelocat', function(Request $request) {
     $ntcuser->save();
     return   Notification::create([
         'user_id' => $request->user_id,
-        'item_id' => $request->user_id,
-        'item' => 'ชวนคุณไปทำบุญที่'+,
+        'item_id' => $request->locat_id,
+        'item' => 'ชวนคุณไปทำบุญที่'.$request->locat,
         'itemType' => 7,
         'notificationStatus' => 1,
         'notificationTime' => time(),
         'sender' => $user[0]->id,
-    ]);*/
-    return  $request->post();
+    ]);
+    //return  $request->post();
 });
