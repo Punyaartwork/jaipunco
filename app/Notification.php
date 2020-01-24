@@ -15,6 +15,10 @@ class Notification extends Model
     {
         return $this->belongsTo('App\Boon', 'item_id');
     } 
+    public function locat()
+    {
+        return $this->belongsTo('App\Locat', 'item_id');
+    } 
     public function sender()
     {
         return $this->belongsTo('App\User', 'sender');

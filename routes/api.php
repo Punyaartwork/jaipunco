@@ -1039,6 +1039,14 @@ Route::get('shownotification/{api}', function($api) {
     return Notification::with('boon')->with('sender')->where('itemType',3)->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
 });
 
+Route::get('showinvitelocat/{api}', function($api) {
+    $user = User::where('api_token',$api)->get();  
+    $ntcuser = User::find($user[0]->id);        
+    $ntcuser->notification = 0;
+    $ntcuser->save();
+    return Notification::with('locat')->with('sender')->where('itemType',7)->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
+});
+
 Route::get('donotification/{api}', function($api) {
     $user = User::where('api_token',$api)->get();  
     $ntcuser = User::find($user[0]->id);        
