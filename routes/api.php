@@ -2006,3 +2006,46 @@ Route::delete('photos/{id}', function($id) {
     return 204;
 });
 
+Route::post('invitelocat', function(Request $request) {
+ /*   //return Card::create($request->all);
+    $user = User::where('api_token',$request->api)->get();
+
+    $touser = User::find($request->user_id);
+    if(strlen($touser->token) > 1){
+        $optionBuilder = new OptionsBuilder();
+        $optionBuilder->setTimeToLive(60*20);
+    
+        $notificationBuilder = new PayloadNotificationBuilder($user[0]->name);
+        $notificationBuilder->setBody($request->admire)
+                            ->setSound('default');
+    
+        $dataBuilder = new PayloadDataBuilder();
+        $dataBuilder->addData(['a_data' => 'my_data']);
+    
+        $option = $optionBuilder->build();
+        $notification = $notificationBuilder->build();
+        $data = $dataBuilder->build();
+        $downstreamResponse = FCM::sendTo($touser->token, $option, $notification, $data);
+    
+        $downstreamResponse->numberSuccess();
+        $downstreamResponse->numberFailure();
+        $downstreamResponse->numberModification();
+        $downstreamResponse->tokensToDelete();
+        $downstreamResponse->tokensToModify();
+        $downstreamResponse->tokensToRetry();
+        $downstreamResponse->tokensWithError();
+    }
+    $ntcuser = User::find($request->user_id);        
+    $ntcuser->notification += 1;
+    $ntcuser->save();
+    return   Notification::create([
+        'user_id' => $request->user_id,
+        'item_id' => $request->user_id,
+        'item' => 'ชวนคุณไปทำบุญที่'+,
+        'itemType' => 7,
+        'notificationStatus' => 1,
+        'notificationTime' => time(),
+        'sender' => $user[0]->id,
+    ]);*/
+    return  $request->post();
+});
