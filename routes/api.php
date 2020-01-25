@@ -1044,7 +1044,7 @@ Route::get('showinvitelocat/{api}', function($api) {
     $ntcuser = User::find($user[0]->id);        
     $ntcuser->notification = 0;
     $ntcuser->save();
-    return Notification::with('locat')->with('sender')->where('itemType',7)->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
+    return Notification::with('locat')->with('sender')->where('itemType',7)->where('user_id',$user[0]->id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('donotification/{api}', function($api) {
