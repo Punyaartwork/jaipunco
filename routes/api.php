@@ -1961,10 +1961,9 @@ Route::get('locatdistance/{lat}/{lng}', function($lat,$lng) {
        - radians(' . $lng  . ') ) 
        + sin( radians(' . $lat  . ') ) 
        * sin( radians( locatLatitude ) ) ) )');
-    return DB::table('locats')
-    ->select('*')
+    return Locat::select('*')
     ->selectRaw("{$sqlDistance} AS distance")
-    ->orderBy('distance')
+    ->orderBy('distance')->with('good')
     ->paginate(4);
 });
 Route::get('locatpost/{lat}/{lng}', function($lat,$lng) {
