@@ -72,6 +72,38 @@
     <div class="form-group">
       <label for="pwd">status_id:</label>
       <input type="text" class="form-control" id="pwd" placeholder="Enter status_id" name="status_id"  value="{{$good->status_id}}">
+    </div>'goodStory','goodIcon','goodDhamma','goodResult','goodLike','goodView','goodDonate','goodDonateMax'
+    <div class="form-group">
+      <label for="pwd">goodStory:</label>
+      <textarea class="form-control" rows="5"id="email" name="goodStory" placeholder="Enter goodStory" >{{$good->goodStory}}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="pwd">goodIcon:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter goodIcon" name="goodIcon"  value="{{$good->goodIcon}}">
+    </div>
+    <div class="form-group">
+      <label for="pwd">goodDhamma:</label>
+      <textarea class="form-control" rows="5"id="email" name="goodDhamma" placeholder="Enter goodDhamma" >{{$good->goodDhamma}}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="pwd">goodResult:</label>
+      <textarea class="form-control" rows="5"id="email" name="goodResult" placeholder="Enter goodResult" >{{$good->goodResult}}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="pwd">goodLike:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter goodLike" name="goodLike"  value="{{$good->goodLike}}">
+    </div>
+    <div class="form-group">
+      <label for="pwd">goodView:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter goodView" name="goodView"  value="{{$good->goodView}}">
+    </div>
+    <div class="form-group">
+      <label for="pwd">goodDonate:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter goodDonate" name="goodDonate"  value="{{$good->goodDonate}}">
+    </div>
+    <div class="form-group">
+      <label for="pwd">goodDonateMax:</label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter goodDonateMax" name="goodDonateMax"  value="{{$good->goodDonateMax}}">
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>

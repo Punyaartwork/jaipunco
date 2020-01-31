@@ -22,7 +22,15 @@
         <th>goodLongitude</th> 
         <th>goodDistance</th>  
         <th>locat_id</th> 
-        <th>status_id</th>    
+        <th>status_id</th>
+        <th>goodStory</th>    
+        <th>goodIcon</th>    
+        <th>goodDhamma</th>    
+        <th>goodResult</th>    
+        <th>goodLike</th>    
+        <th>goodView</th>    
+        <th>goodDonate</th>    
+        <th>goodDonateMax</th>    
         <th><b>Edit</b></th>  
         <th><b>Deleie</b></th>                                                
       </tr>
@@ -43,7 +51,16 @@
         <td>{{$row['goodLongitude']}}  </td>
         <td>{{$row['goodDistance']}}  </td>     
         <td>{{$row['locat_id']}}  </td>
-        <td>{{$row['status_id']}}  </td>                    
+        <td>{{$row['status_id']}}  </td>    
+        <td>{{$row['goodStory']}}  </td>                    
+        <td>{{$row['goodIcon']}}  </td>                    
+        <td>{{$row['goodDhamma']}}  </td>                    
+        <td>{{$row['goodResult']}}  </td>                    
+        <td>{{$row['goodLike']}}  </td>                    
+        <td>{{$row['goodView']}}  </td>                    
+        <td>{{$row['goodDonate']}}  </td>                    
+        <td>{{$row['goodDonateMax']}}  </td>                    
+
         <td> <a href="{{action('GoodController@edit',$row['id'])}}">edit</a></td> 
         <td>
         <form method="post" class="detele_form"action="{{action('GoodController@destroy',$row['id'])}}">

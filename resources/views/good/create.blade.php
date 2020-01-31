@@ -42,6 +42,21 @@
       <label for="email">goodDistance:</label>
       <input input type="text" name="goodDistance" class="form-control" id="email" placeholder="Enter goodDistance" >
     </div>
+
+    <div class="type">
+      <label for="email">goodStory:</label>
+      <textarea class="form-control" rows="5"id="email" name="goodStory" placeholder="Enter goodStory" ></textarea>
+    </div>
+
+    <div class="type">
+      <label for="email">goodDhamma:</label>
+      <textarea class="form-control" rows="5"id="email" name="goodDhamma" placeholder="Enter goodDhamma" ></textarea>
+    </div>
+
+    <div class="type">
+      <label for="email">goodResult:</label>
+      <textarea class="form-control" rows="5"id="email" name="goodResult" placeholder="Enter goodResult" ></textarea>
+    </div>
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

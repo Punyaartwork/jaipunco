@@ -56,6 +56,14 @@ class GoodController extends Controller
             'goodOnline'=>0,                                    
             'locat_id'=>0,  
             'status_id'=>0,  
+            'goodStory'=>$request->get('goodStory'), 
+            'goodIcon'=>0,
+            'goodDhamma'=>$request->get('goodDhamma'), 
+            'goodResult'=>$request->get('goodResult'), 
+            'goodLike'=>0,
+            'goodView'=>0,
+            'goodDonate'=>0,
+            'goodDonateMax'=>0,
          ]
          );
          $good->save();
@@ -111,6 +119,14 @@ class GoodController extends Controller
          $good ->goodDistance = $request->get('goodDistance');     
          $good ->locat_id = $request->get('locat_id');  
          $good ->status_id = $request->get('status_id');     
+         $good ->goodStory = $request->get('goodStory'); 
+         $good ->goodIcon = $request->get('goodIcon'); 
+         $good ->goodDhamma = $request->get('goodDhamma'); 
+         $good ->goodResult = $request->get('goodResult'); 
+         $good ->goodLike = $request->get('goodLike'); 
+         $good ->goodView = $request->get('goodView'); 
+         $good ->goodDonate = $request->get('goodDonate'); 
+         $good ->goodDonateMax = $request->get('goodDonateMax'); 
          $good ->save();
          return redirect()->route('good.index')->with('success','!!!!!!EDITED!!!!!!');     
      }
