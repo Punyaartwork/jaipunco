@@ -14,10 +14,10 @@ class AddgoodstoryToGoods extends Migration
     public function up()
     {
         Schema::table('goods', function (Blueprint $table) {
-            $table->string('goodStory'); 
-            $table->string('goodIcon'); 
-            $table->string('goodDhamma'); 
-            $table->string('goodResult'); 
+            $table->longText('goodStory'); 
+            $table->longText('goodIcon'); 
+            $table->longText('goodDhamma'); 
+            $table->longText('goodResult'); 
             $table->integer('goodLike'); 
             $table->integer('goodView'); 
             $table->integer('goodDonate'); 
