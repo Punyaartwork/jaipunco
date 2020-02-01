@@ -1301,6 +1301,20 @@ Route::get('goods/{id}', function($id) {
     return Good::find($id);
 });
 
+Route::get('plusgoodLike/{id}', function($id) {
+    $good = Good::find($id);
+    $good->goodLike += 1;
+    $good->save();
+    return $good;
+});
+
+Route::get('plusgoodDonate/{id}', function($id) {
+    $good = Good::find($id);
+    $good->goodDonate += 1;
+    $good->save();
+    return $good;
+});
+
 Route::get('feedlocatgoods/{id}', function($id) {
     return Good::where('locat_id',$id)->where('status_id',0)->latest('goodItem')->get();
 });
