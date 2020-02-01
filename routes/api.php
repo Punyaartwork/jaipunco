@@ -1310,7 +1310,7 @@ Route::get('plusgoodLike/{id}', function($id) {
 
 Route::get('plusgoodDonate/{id}', function($id) {
     $good = Good::find($id);
-    $good->goodDonate += 1;
+    $good->goodDonate += 10;
     $good->save();
     return $good;
 });
