@@ -1554,6 +1554,12 @@ Route::post('boons', function(Request $request) {
         'boonJoin'=> 0,
     ]);
 });
+Route::post('editboons', function(Request $request) {
+    $boon = Boon::find($request->id);
+    $boon->boon = $request->boon;
+    $boon->save();
+    return $request->post();
+});
 
 Route::put('boons/{id}', function(Request $request, $id) {
     $boon = Boon::findOrFail($id);
