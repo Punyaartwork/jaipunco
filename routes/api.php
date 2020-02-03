@@ -1568,6 +1568,11 @@ Route::put('boons/{id}', function(Request $request, $id) {
     return $boon;
 });
 
+Route::get('deleteboons/{id}', function($id) {
+    Boon::find($id)->delete();
+    return 204;
+});
+
 Route::delete('boons/{id}', function($id) {
     Boon::find($id)->delete();
     return 204;
