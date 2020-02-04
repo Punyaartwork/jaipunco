@@ -1052,7 +1052,7 @@ Route::get('donotification/{api}', function($api) {
     $ntcuser = User::find($user[0]->id);        
     $ntcuser->notification = 0;
     $ntcuser->save();
-    return Notification::with('sender')->where('user_id',$user[0]->id)->orderBy('id','desc')->take(10)->get();
+    return Notification::with('sender')->where('user_id',$user[0]->id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('checknotification/{api}', function($api) {
