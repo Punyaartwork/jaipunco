@@ -2038,6 +2038,14 @@ Route::delete('photos/{id}', function($id) {
     return 204;
 });
 
+Route::get('photouser/{id}', function($id) {
+   return Photo::whereIn('boon_id', function($query) use ($id){
+        $query->select('id')
+        ->from('boons')
+        ->where('user_id', $id)->where('deleted_at', null);
+    })->orderBy('id','desc')->paginate(10);
+});
+
 Route::post('invitelocat', function(Request $request) {
       //return Card::create($request->all);
     $user = User::where('api_token',$request->api)->get();
