@@ -2060,9 +2060,9 @@ Route::get('photoalluser/{id}',function($id){
         ->from('boons')
         ->where('user_id', $id);
     })->orderBy('id','desc')->paginate(10);
-    $boon = Boon::select('boonPhoto')->where('boonPhoto','!=','0')->where('user_id',$id)->orderBy('id','desc')->paginate(10);
+    $boon = Boon::select('id','boonPhoto')->where('boonPhoto','!=','0')->where('user_id',$id)->orderBy('id','desc')->paginate(20);
 
-    $merged = $boon->merge($photo );  
+    $merged = $boon->merge($photo);  
     
     foreach($merged as $merged){
         $collection->push($merged);
