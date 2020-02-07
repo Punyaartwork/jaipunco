@@ -2042,7 +2042,7 @@ Route::get('photouser/{id}', function($id) {
    return Photo::whereIn('boon_id', function($query) use ($id){
         $query->select('id')
         ->from('boons')
-        ->where('user_id', $id)->where('deleted_at', null);
+        ->where('user_id', $id);
     })->orderBy('id','desc')->paginate(10);
 });
 
