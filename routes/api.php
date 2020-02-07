@@ -2043,7 +2043,7 @@ Route::get('photouser/{id}', function($id) {
         $query->select('id')
         ->from('boons')
         ->where('user_id', $id);
-    })->orderBy('id','desc')->paginate(10);
+    })->orderBy('id','desc')->paginate(20);
 });
 
 Route::post('invitelocat', function(Request $request) {
