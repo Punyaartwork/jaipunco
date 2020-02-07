@@ -2051,7 +2051,7 @@ Route::get('photouser/{id}', function($id) {
         ->where('user_id', $id);
     })->orderBy('id','desc')->paginate(20);
 });
-
+use \Illuminate\Database\Eloquent\Collection;
 Route::get('photoalluser/{id}',function($id){
     $collection =  new Collection;
     //$boon = App\Boon::with('user')->with('like')->with('comments')->with('photo')->orderBy('id','desc')->paginate(5);      
