@@ -2038,6 +2038,12 @@ Route::delete('photos/{id}', function($id) {
     return 204;
 });
 
+Route::get('photoboonuser/{id}', function($id) {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Boon::where('boonPhoto','!=','0')->where('user_id',$id)->orderBy('id','desc')->paginate(10);
+});
+
 Route::get('photouser/{id}', function($id) {
    return Photo::whereIn('boon_id', function($query) use ($id){
         $query->select('id')
