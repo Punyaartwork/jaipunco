@@ -2052,6 +2052,25 @@ Route::get('photouser/{id}', function($id) {
     })->orderBy('id','desc')->paginate(20);
 });
 
+Route::get('photoalluser/{id}',function($id){
+    $collection =  new Collection;
+    //$boon = App\Boon::with('user')->with('like')->with('comments')->with('photo')->orderBy('id','desc')->paginate(5);      
+    $photo = Photo::whereIn('boon_id', function($query) use ($id){
+        $query->select('id')
+        ->from('boons')
+        ->where('user_id', $id);
+    })->orderBy('id','desc')->paginate(10);
+    $boon = Boon::select('boonPhoto')->where('boonPhoto','!=','0')->where('user_id',$id)->orderBy('id','desc')->paginate(10);
+
+    $merged = $boon->merge($photo );  
+    
+    foreach($merged as $merged){
+        $collection->push($merged);
+    }
+
+return response()->json($collection);
+});
+
 Route::post('invitelocat', function(Request $request) {
       //return Card::create($request->all);
     $user = User::where('api_token',$request->api)->get();
