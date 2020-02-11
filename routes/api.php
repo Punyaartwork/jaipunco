@@ -1552,6 +1552,7 @@ Route::post('boons', function(Request $request) {
         'boon_ip'=> $request->getClientIp(),
         'boonTags' => 0,
         'boonJoin'=> 0,
+        'locat_id'=>0,
     ]);
 });
 Route::post('editboons', function(Request $request) {
