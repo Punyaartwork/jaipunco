@@ -1552,7 +1552,7 @@ Route::post('boons', function(Request $request) {
         'boon_ip'=> $request->getClientIp(),
         'boonTags' => 0,
         'boonJoin'=> 0,
-        'locat_id'=>0,
+        'locat_id'=>11,
     ]);
 });
 Route::post('boonnew', function(Request $request) {
@@ -1584,10 +1584,13 @@ Route::post('boonnew', function(Request $request) {
     $good = Good::find($request->good_id); 
     $good->goodItem += 1;
     $good->save();
+    
     if($request->locat_id != 0){
-    $locat = Locat::find($request->locat_id); 
-    $locat->locatItem += 1;
-    $locat->save();}
+        $locat = Locat::find($request->locat_id); 
+        $locat->locatItem += 1;
+        $locat->save();
+        $locat_id = $request->locat_id;
+    }else{$locat_id = 11; }
 
     return Boon::create([
         'user_id'=> $userget[0]->id,
@@ -1606,7 +1609,7 @@ Route::post('boonnew', function(Request $request) {
         'boon_ip'=> $request->getClientIp(),
         'boonTags' => 0,
         'boonJoin'=> 0,
-        'locat_id'=>$request->locat_id,
+        'locat_id'=>$locat_id,
     ]);
 });
 Route::post('editboons', function(Request $request) {
