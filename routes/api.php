@@ -1425,23 +1425,23 @@ Route::get('boons', function() {
 Route::get('feedboons', function() {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->with('locat')->orderBy('id','desc')->paginate(10);
 });
  
 Route::get('feedboonphotos', function() {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('boonPhoto','!=','0')->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->with('locat')->where('boonPhoto','!=','0')->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('feedboontop', function() {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('boonJoin','!=',0)->orderBy('boonJoin','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->with('locat')->where('boonJoin','!=',0)->orderBy('boonJoin','desc')->paginate(10);
 });
 
 Route::get('feedboonuser/{id}/{user_id}', function($id,$user_id) {
-    return Boon::with('user')->with('like')->with('good')->with('join')->with('photo')->where('good_id',$id)->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('like')->with('good')->with('join')->with('photo')->with('locat')->where('good_id',$id)->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('boons/{id}', function($id) {
@@ -1474,7 +1474,7 @@ Route::get('lastboontop', function() {
 });
 
 Route::get('boonuser/{user_id}', function($user_id) {
-    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->with('locat')->where('user_id',$user_id)->orderBy('id','desc')->paginate(10);
 });
 //*********************** GOOD_ID  ***********************************/
 Route::get('lastboon_goodid/{id}', function($id)  {
@@ -1490,20 +1490,20 @@ Route::get('lastboontop_goodid/{id}', function($id)  {
 });
 
 Route::get('feedboon_goodid/{id}', function($id) {
-    return Boon::with('user')->with('good')->with('photo')->with('like')->with('join')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('like')->with('join')->with('locat')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
 });
 
 Route::get('feedboonlike_goodid/{id}', function($id) {
-    return Boon::with('user')->with('good')->with('photo')->with('like')->with('join')->where('good_id',$id)->orderBy('boonJoin','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('like')->with('join')->with('locat')->where('good_id',$id)->orderBy('boonJoin','desc')->paginate(10);
 });
 
 Route::get('feedboongoodidphotos_goodid/{id}', function($id) {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('boonPhoto','!=','0')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->with('locat')->where('boonPhoto','!=','0')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
 });
 Route::get('searchboons/{text}', function($text) {
-    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('boon', 'LIKE', '%'.$text.'%')->orderBy('id','desc')->paginate(10);
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->with('locat')->where('boon', 'LIKE', '%'.$text.'%')->orderBy('id','desc')->paginate(10);
 });
 Route::post('boons', function(Request $request) {
 
@@ -1638,7 +1638,7 @@ Route::get('boonweek/{user_id}/{start}/{end}', function($user_id,$start,$end) {
 });
 
 Route::get('feedboonday/{user_id}/{start}/{end}', function($user_id,$start,$end) {
-    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->where('user_id',$user_id)->where('boonTime','>',$start)->where('boonTime','<=',$end)->orderBy('boonTime','desc')->get();
+    return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->with('locat')->where('user_id',$user_id)->where('boonTime','>',$start)->where('boonTime','<=',$end)->orderBy('boonTime','desc')->get();
 });
 /*
 |--------------------------------------------------------------------------

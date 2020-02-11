@@ -16,6 +16,10 @@ class Boon extends Model
     {
         return $this->belongsTo('App\Good', 'good_id');
     }     
+    public function locat()
+    {
+        return $this->belongsTo('App\Locat', 'locat_id');
+    }    
     public function join()
     {
         return $this->hasMany('App\Join', 'boon_id')->with('user');
