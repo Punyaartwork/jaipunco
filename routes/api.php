@@ -1506,57 +1506,6 @@ Route::get('searchboons/{text}', function($text) {
     return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->with('locat')->where('boon', 'LIKE', '%'.$text.'%')->orderBy('id','desc')->paginate(10);
 });
 Route::post('boons', function(Request $request) {
-
-    $userget = User::where('api_token',$request->api)->get();  
-
-    $existing_merit = Merit::where('good_id',$request->good_id)->where('user_id',$userget[0]->id)->first();
-    if (is_null($existing_merit)) {
-        Merit::create([
-            'user_id'=> $userget[0]->id,
-            'good_id'=> $request->good_id,
-            'status_id'=> $userget[0]->status_id,
-            'meritItem' => 1,
-            'meritLike'=> 0,
-            'meritTime'  => time(),
-        ]);
-        
-    }else{
-        $merit = Merit::find($existing_merit->id);
-        $merit->meritItem += 1;
-        $ToBoonView = $merit->meritItem;
-        $merit->meritTime = time();
-        $merit->save();
-    }
-    $user = User::find($userget[0]->id);        
-    $user->boons += 1;
-    $user->save();
-
-    $good = Good::find($request->good_id); 
-    $good->goodItem += 1;
-    $good->save();
-
-    return Boon::create([
-        'user_id'=> $userget[0]->id,
-        'good_id'=> $request->good_id,
-        'boon'=> $request->boon,
-        'boonPhoto' => $request->boonPhoto,
-        'boonDetail'=> 0,
-        'boonBg' => '#fff',
-        'boonColor' => '#000',
-        'boonForm' => 0,
-        'boonLike' => 0,
-        'boonComment' => 0,
-        'boonView' => $ToBoonView,
-        'boonShare' => 0,
-        'boonTime'  => time(),
-        'boon_ip'=> $request->getClientIp(),
-        'boonTags' => 0,
-        'boonJoin'=> 0,
-        'locat_id'=>11,
-    ]);
-});
-Route::post('boonnew', function(Request $request) {
-
     $userget = User::where('api_token',$request->api)->get();  
 
     $existing_merit = Merit::where('good_id',$request->good_id)->where('user_id',$userget[0]->id)->first();
@@ -1612,6 +1561,7 @@ Route::post('boonnew', function(Request $request) {
         'locat_id'=>$locat_id,
     ]);
 });
+
 Route::post('editboons', function(Request $request) {
     $boon = Boon::find($request->id);
     $boon->boon = $request->boon;
