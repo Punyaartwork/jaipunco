@@ -1584,10 +1584,10 @@ Route::post('boonnew', function(Request $request) {
     $good = Good::find($request->good_id); 
     $good->goodItem += 1;
     $good->save();
-
+    if($request->locat_id != 0){
     $locat = Locat::find($request->locat_id); 
     $locat->locatItem += 1;
-    $locat->save();
+    $locat->save();}
 
     return Boon::create([
         'user_id'=> $userget[0]->id,
