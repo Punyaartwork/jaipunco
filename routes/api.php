@@ -1300,7 +1300,10 @@ Route::get('goods', function() {
 Route::get('goodtags/{id}', function($id) {
     // If the Content-Type and Accept headers are set to 'application/json', 
     // this will return a JSON structure. This will be cleaned up later.
-    return Good::where('goodTags', 'LIKE', '%'.$id.'%')->paginate(10);
+    return Good::where(function ($query) {
+        $query->where('goodTags', 'LIKE', '%'.$id.'%')
+              ->orWhere('status_id', '=', 0);
+    })->paginate(10);
 });
  
 Route::get('goods/{id}', function($id) {
