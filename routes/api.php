@@ -439,7 +439,7 @@ Route::post('cards', function(Request $request) {
         'cardTime'  => time(),
         'card_ip'=> $request->getClientIp(),
         'cardColor' => $request->cardColor,
-        'cardDetail' => 0,
+        'cardDetail' => $request->cardDetail,
         'subject_id' => 0,
         'post_id' => 0,
         'cardTags' => 0,
