@@ -1541,6 +1541,7 @@ Route::post('boons', function(Request $request) {
 
     $good = Good::find($request->good_id); 
     $good->goodItem += 1;
+    $good=time();
     $good->save();
     
     if($request->locat_id != 0){
@@ -1548,7 +1549,7 @@ Route::post('boons', function(Request $request) {
         $locat->locatItem += 1;
         $locat->save();
         $locat_id = $request->locat_id;
-    }else{$locat_id = 11; }
+    }else{$locat_id = 0; }
 
     return Boon::create([
         'user_id'=> $userget[0]->id,
