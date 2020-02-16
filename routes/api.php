@@ -1541,7 +1541,7 @@ Route::post('boons', function(Request $request) {
 
     $good = Good::find($request->good_id); 
     $good->goodItem += 1;
-    $good=time();
+    $good->goodTime=time();
     $good->save();
     
     if($request->locat_id != 0){
@@ -1599,7 +1599,7 @@ Route::post('boon16feb', function(Request $request) {
 
     $good = Good::find($request->good_id); 
     $good->goodItem += 1;
-    $good=time();
+    $good->goodTime=time();
     $good->save();
     
     if($request->locat_id != 0){
