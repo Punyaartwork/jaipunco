@@ -4,7 +4,7 @@ Route::get('/', function () {
 });
 
 Route::get('/prototype', function () {
-    $card = App\Card::find($id);
+    $card = App\Card::find(1);
     $card->cardLike += 1;
     $card->save();
     return view('prototype1');
