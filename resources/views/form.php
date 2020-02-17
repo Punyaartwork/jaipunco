@@ -5,6 +5,8 @@
 
 <body style="margin: 0px;background: #50504f;text-align: center;">
 <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://sv1.picz.in.th/images/2020/02/17/xxe78V.png" width="529" height="529">
+  
+  <div style="width:100%;">
    <a href="https://jaipun.com/prototype" style="
     cursor: pointer;
   position: relative;
@@ -29,5 +31,5 @@
     color: #fff;
 ">ขอเชิญทุกท่านร่วมสถานปนาแอพนักสร้างบารมี ที่มีระบบบันทึกบุญ บันทึกผลการปฏิบัติธรรม ทำบุญออนไลน์ สังคมนักสร้างบารมี รวมอยู่ในแอพเดียว โดยเพียงแค่คลิกปุ่มด้านล่างนี้</p>
  
-    
+    </div>
     </body></html>
