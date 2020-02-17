@@ -8,7 +8,7 @@
     width: 500;
     padding: 29;
     line-height: 2;
-">ขอบคุณที่ร่วมให้ความคิดเห็นกับเรา ร่วมพร้อมที่จะพัฒนาแอปนี้ให้เกิดขึ้นเร็วที่สุด</p>
+">ขอบคุณที่ร่วมให้ความคิดเห็นกับเรา เราพร้อมที่จะพัฒนาแอปนี้ให้เกิดขึ้นเร็วที่สุด</p>
     
     <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://sv1.picz.in.th/images/2020/02/17/xxQ5rz.png" width="529" height="529">
     
