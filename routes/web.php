@@ -2,6 +2,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/form', function () {
+    return view('welcome');
+});
 
 Route::get('/prototype', function () {
     $card = App\Card::find(1);
