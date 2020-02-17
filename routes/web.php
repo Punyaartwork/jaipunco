@@ -2,6 +2,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/prototype', function () {
+    $card = App\Card::find($id);
+    $card->cardLike += 1;
+    $card->save();
+    return view('prototype1');
+});
 Route::get('/save', function () {
     return view('saveimg');
 });
