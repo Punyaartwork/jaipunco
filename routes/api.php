@@ -1607,7 +1607,7 @@ Route::post('boon16feb', function(Request $request) {
         $locat->locatItem += 1;
         $locat->save();
         $locat_id = $request->locat_id;
-    }else{$locat_id = 0; }
+    }else{$locat_id = 11; }
 
     return Boon::create([
         'user_id'=> $userget[0]->id,
