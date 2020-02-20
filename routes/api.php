@@ -2192,8 +2192,8 @@ Route::post('invitelocat', function(Request $request) {
 });
 Route::get('newspopup', function() {
     return [
-        'newsphoto' => $resource->name,
-        'news' => $resource->rating,
-        'click' => $resource->created_at->toAtomString(),
+        'newsphoto' => 'https://image.flaticon.com/icons/png/128/2487/2487641.png',
+        'news' => 'อัพเดตการทำบุญของคุณจากสถานที่จริง บันทึกบุญในแต่ละวันของคุณ',
+        'click' => 'ตกลง',
     ];
 });
