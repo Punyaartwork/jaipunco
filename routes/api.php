@@ -2190,7 +2190,7 @@ Route::post('invitelocat', function(Request $request) {
     ]);
     //return  $request->post();
 });
-Route::get('newspopup', function($id) {
+Route::get('newspopup', function() {
     return [
         'newsphoto' => $resource->name,
         'news' => $resource->rating,
