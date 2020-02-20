@@ -2190,3 +2190,10 @@ Route::post('invitelocat', function(Request $request) {
     ]);
     //return  $request->post();
 });
+Route::get('newspopup', function($id) {
+    return [
+        'newsphoto' => $resource->name,
+        'news' => $resource->rating,
+        'click' => $resource->created_at->toAtomString(),
+    ];
+});
