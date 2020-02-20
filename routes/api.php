@@ -2202,5 +2202,16 @@ Route::get('updateranking', function() {
     User::where('boons','>=', 20)
           ->where('boons','<', 50)
           ->update(['ranking' => 1]);
+    User::where('boons','>=', 50)
+          ->where('boons','<', 100)
+          ->update(['ranking' => 2]);
+    User::where('boons','>=', 100)
+          ->where('boons','<', 150)
+          ->update(['ranking' => 3]);
+    User::where('boons','>=', 150)
+          ->where('boons','<', 200)
+          ->update(['ranking' => 4]);
+    User::where('boons','>=', 200)
+          ->update(['ranking' => 5]);
     return 204;
 });
