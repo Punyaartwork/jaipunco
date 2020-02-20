@@ -2197,3 +2197,10 @@ Route::get('newspopup', function() {
         'click' => 'ตกลง',
     ];
 });
+
+Route::get('updateranking', function() {
+    User::where('boons','>=', 20)
+          ->where('boons','<', 50)
+          ->update(['ranking' => 1]);
+    return 204;
+});
