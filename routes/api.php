@@ -172,6 +172,7 @@ Route::get('changename/{name}/{api}', function($name,$api) {
 });
 
 Route::get('changewatyear/{watyear}/{api}', function($watyear,$api) {
+    if($watyear ===1){$watyear = 4;}
     $user = User::where('api_token',$api)->get();
     $upload = User::find($user[0]->id);        
     $upload->watyear = $watyear;
@@ -306,7 +307,7 @@ Route::get('introfollow', function() {
 });
 
 Route::get('dhamma08', function() {
-    $results = User::where('watyear',1)->get();  
+    $results = User::where('watyear',4)->get();  
     foreach ($results as $result){ 
         $fuser = User::find($result->id);
         if(strlen($fuser->token) > 1){
