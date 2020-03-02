@@ -1499,6 +1499,10 @@ Route::get('lastboontop_goodid/{id}', function($id)  {
     return Boon::latest('boonJoin')->where('good_id',$id)->where('boonJoin','!=',0)->first();
 });
 
+Route::get('lastboon_locatid/{id}', function($id)  {
+    return Boon::latest('id')->where('locatid',$id)->first();
+});
+
 Route::get('feedboon_goodid/{id}', function($id) {
     return Boon::with('user')->with('good')->with('photo')->with('like')->with('join')->with('locat')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
 });
@@ -1512,6 +1516,11 @@ Route::get('feedboongoodidphotos_goodid/{id}', function($id) {
     // this will return a JSON structure. This will be cleaned up later.
     return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->with('locat')->where('boonPhoto','!=','0')->where('good_id',$id)->orderBy('id','desc')->paginate(10);
 });
+
+Route::get('feedboon_locatid/{id}', function($id) {
+    return Boon::with('user')->with('good')->with('photo')->with('like')->with('join')->with('locat')->where('locat_id',$id)->orderBy('id','desc')->paginate(10);
+});
+
 Route::get('searchboons/{text}', function($text) {
     return Boon::with('user')->with('good')->with('photo')->with('join')->with('like')->with('locat')->where('boon', 'LIKE', '%'.$text.'%')->orderBy('id','desc')->paginate(10);
 });
