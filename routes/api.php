@@ -1304,7 +1304,7 @@ Route::get('goodtags/{id}', function($id) {
     return Good::where(function ($query) use ($id){
         $query->where('goodTags', 'LIKE', '%'.$id.'%')
               ->orWhere('status_id', '=', 0);
-    })->orderBy('status_id')->paginate(10);
+    })->orderBy('status_id','desc')->paginate(10);
 });
  
 Route::get('goods/{id}', function($id) {
