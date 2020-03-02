@@ -305,7 +305,9 @@ Route::get('feedusermerit', function() {
 Route::get('introfollow', function() {
     return User::orderBy('followers','desc')->paginate(10);
 });
-
+Route::get('introboon', function() {
+    return User::orderBy('boons','desc')->paginate(10);
+});
 Route::get('dhamma08', function() {
     $results = User::where('watyear',4)->get();  
     foreach ($results as $result){ 
