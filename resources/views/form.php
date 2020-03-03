@@ -10,7 +10,7 @@
 body {
   font-family: Arial;
   padding: 25px;
-  background-color: #f5f5f5;
+  background-color: #f4f1bb;
   color: #808080;
   	text-align: center;	
 }
@@ -35,7 +35,6 @@ body {
 	position: relative;
 	display:inline;
 	display: inline-block;
-	float: left;
 	margin-right: 2%;
 	margin-bottom: 20px;
 }
@@ -43,7 +42,7 @@ body {
 /* Column Grids End */
 
 .wrapper { width: 980px; margin: 30px auto; position: relative;}
-.counter { background-color: #ffffff; padding: 20px 0; border-radius: 5px;}
+.counter { background-color: #fff994; padding: 20px 0; border-radius: 5px;margin-bottom: 20px;}
 .count-title { font-size: 40px; font-weight: normal;  margin-top: 10px; margin-bottom: 0; text-align: center; }
 .count-text { font-size: 13px; font-weight: normal;  margin-top: 10px; margin-bottom: 0; text-align: center; }
 .fa-2x { margin: 0 auto; float: none; display: table; color: #4ad1e5; }
@@ -60,15 +59,11 @@ body {
 <body translate="no">
 <h1>มาร่วมสถาปนา แอพถามพระ</h1>
 <h3>จะพัฒนาจริงเมื่อมีผลโหวตครบ 1,000 โหวต</h3>
-<div class="wrapper">
-
 
 <div class="counter col_fourth">
 <i class="fa fa-lightbulb-o fa-2x"></i>
 <h2 class="timer count-title count-number" data-to="11900" data-speed="1500">11,900</h2>
 <p class="count-text ">การโหวต</p>
-</div>
-
 </div>
 
 <a href="https://jaipun.com/prototype" style="
