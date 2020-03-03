@@ -3,11 +3,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/form', function () {
-    return view('form');
+    $card = App\Card::find(2);
+    $count = $card->cardLike; 
+    return view('form',compact('count'));
 });
 
 Route::get('/prototype', function () {
-    $card = App\Card::find(1);
+    $card = App\Card::find(2);
     $card->cardLike += 1;
     $card->save();
     return view('prototype1');
