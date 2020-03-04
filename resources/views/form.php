@@ -22,7 +22,7 @@ body {
 
 .col_half { width: 49%; }
 .col_third { width: 32%; }
-.col_fourth { width: 23.5%; }
+.col_fourth { width: 250px; }
 .col_fifth { width: 18.4%; }
 .col_sixth { width: 15%; }
 .col_three_fourth { width: 74.5%;}
@@ -57,7 +57,14 @@ body {
   }
 </script>
 </head>
-<body translate="no">
+<body translate="no" style="
+    width: 500px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+">
 <h1>มาร่วมสถาปนา แอพถามพระ</h1>
 <h3>จะพัฒนาจริงเมื่อมีผลโหวตครบ 1,000 โหวต</h3>
 
