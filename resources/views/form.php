@@ -62,7 +62,7 @@ body {
 
 <div class="counter col_fourth">
 <i class="fa fa-lightbulb-o fa-2x"></i>
-<h2 class="timer count-title count-number" data-to="{{ $count }}" data-speed="1500"> </h2>
+<h2 class="timer count-title count-number" data-to="<?php echo $count; ?>" data-speed="1500"> </h2>
 <p class="count-text ">การโหวต </p>
 </div>
 
