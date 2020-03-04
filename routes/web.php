@@ -4,7 +4,8 @@ Route::get('/', function () {
 });
 Route::get('/form', function () {
     $card = App\Card::find(2);
-    return view('form',compact('card'));
+    $count = $card->cardLike; 
+    return view('form',compact('count'));
 });
 
 Route::get('/prototype', function () {

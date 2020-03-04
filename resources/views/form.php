@@ -62,8 +62,8 @@ body {
 
 <div class="counter col_fourth">
 <i class="fa fa-lightbulb-o fa-2x"></i>
-<h2 class="timer count-title count-number" data-to="11900" data-speed="1500">11,900 </h2>
-<p class="count-text ">การโหวต {{ $card->card }}</p>
+<h2 class="timer count-title count-number" data-to="{{ $count }}" data-speed="1500"> </h2>
+<p class="count-text ">การโหวต </p>
 </div>
 
 <a href="https://jaipun.com/prototype" style="
