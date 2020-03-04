@@ -1,9 +1,10 @@
 <html lang="en" class=" scrollbar-y phablet"><head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, minimum-scale=0.1">
 <link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
 <meta name="apple-mobile-web-app-title" content="CodePen">
 <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
-<title>แบบสำรวจก่อนพัฒนาจริง แอพถามพระ</title>
+<title>แบบสำรวจก่อนพัฒนาจริง แอพถามพระ ** การโหวต <?php echo $count; ?>/1000 **</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <style>
@@ -61,7 +62,7 @@ body {
 <h3>จะพัฒนาจริงเมื่อมีผลโหวตครบ 1,000 โหวต</h3>
 
 <div class="counter col_fourth">
-<i class="fa fa-lightbulb-o fa-2x"></i>
+<i class="fa fa-trophy fa-2x"></i>
 <h2 class="timer count-title count-number" data-to="<?php echo $count; ?>" data-speed="1500"> </h2>
 <p class="count-text ">การโหวต </p>
 </div>
