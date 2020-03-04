@@ -65,12 +65,13 @@ button, .dot {
 }
 
 #success-box {
-margin:auto;  width: 35%;
-  height: 100%;
-  background: linear-gradient(to bottom right, #B0DB7D 40%, #99DBB4 100%);
-  border-radius: 20px;
-  box-shadow: 5px 5px 20px #cbcdd3;
-  perspective: 40px;
+    margin: auto;
+    width: 300px;
+    height: 305px;
+    background: linear-gradient(to bottom right, #B0DB7D 40%, #99DBB4 100%);
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px #cbcdd3;
+    perspective: 40px;
 }
 
 #error-box {
@@ -278,7 +279,6 @@ footer a:hover {
 </script>
 </head>
 <body translate="no">
-<div id="container" style="margin-top: 20;">
 <div id="success-box">
 <div class="dot"></div>
 <div class="dot two"></div>
@@ -294,9 +294,8 @@ footer a:hover {
 ">โหวตอีกครั้ง</a></h1></button>
 </div>
 
-</div>
 <footer>
-<p>made by <a href="https://codepen.io/juliepark"> julie</a> ♡
+<p>made by <a href="https://apps.apple.com/us/app/jaipun/id1476142057"> JaiPun</a> ♡
 </p></footer>
 
 
