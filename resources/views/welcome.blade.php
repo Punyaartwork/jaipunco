@@ -149,7 +149,8 @@ body {
 }
 .iphone-outer .lock-screen {
   position: absolute;
-  background: url("https://sv1.picz.in.th/images/2019/07/21/KUgp3J.jpg");
+  background: url("https://sv1.picz.in.th/images/2020/03/22/QqWddJ.jpg");
+  /*background: url("https://sv1.picz.in.th/images/2019/07/21/KUgp3J.jpg");*/
   background-size: 100%;
   width: 285px;
   height: 460px;
@@ -488,9 +489,10 @@ body {
 <div class='home-button'>
   <div class='shine'></div>
 </div>
-<div class='brand'>Jaipun App</div>
-<div class='detail'>กำลังปรับปรุงระบบ</div>
-<div class='twodetail'>เปิดใช้งานเดือนสิงหาคมนี้</div>
+<div class='brand'>JaiMy App</div>
+<div class='detail'>Check the list of things you should do and tutorials for training your mind in app.</div>
+<div class='detail'>contact us</div>
+<div class='twodetail'>Gmail :: jaipunproject@gmail.com</div>
   
   
 
