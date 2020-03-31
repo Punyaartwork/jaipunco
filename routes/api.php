@@ -2091,6 +2091,18 @@ Route::get('locatpost/{lat}/{lng}', function($lat,$lng) {
     ->orderBy('distance')->with('good')
     ->paginate(1);
 });
+Route::get('locatpostid/{id}/{lat}/{lng}', function($id,$lat,$lng) {
+    $sqlDistance = DB::raw('( 6371 * acos( cos( radians(' . $lat . ') ) 
+       * cos( radians( locatLatitude ) ) 
+       * cos( radians( locatLongitude ) 
+       - radians(' . $lng  . ') ) 
+       + sin( radians(' . $lat  . ') ) 
+       * sin( radians( locatLatitude ) ) ) )');
+    return Locat::select('*')
+    ->selectRaw("{$sqlDistance} AS distance")
+    ->orderBy('distance')->with('good')->where('id',$id)
+    ->get();
+});
 /*
 |--------------------------------------------------------------------------
 | GET DATA API Routes Photo
